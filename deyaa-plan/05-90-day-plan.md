@@ -136,7 +136,7 @@ Google Sheets · Looker Studio · Anki · Meta Ad Library · Kaggle Learn · Kha
 - **مساعدة:** خطوة السبت.
 
 ### الأسبوع ٦ — (١٧–٢٣ نوفمبر) — Creative strategy: Angles وResearch
-- **المذاكرة:** إزاي تطلع Angles من: Reviews، Comments، أسئلة العملاء في الـ Inbox، الـ Objections، الـ Jobs-to-be-done. Awareness levels (من *Breakthrough Advertising*، شوف `06`). Hook types.
+- **المذاكرة:** إزاي تطلع Angles من: Reviews، Comments، أسئلة العملاء في الـ Inbox، الـ Objections، الـ Jobs-to-be-done. Hook types. **مصدر الأسبوع:** فريم ورك أحمد سيف من الـ Community (شوف `06`)، أما الـ Awareness levels (*Breakthrough Advertising*) فهتيجي في Q2.
 - **الناتج:** **Angle library** لبراند واحد (شغلك الحالي أو عميل Storylab قديم): ≥ ١٥ Angle، وكل Angle عليه: الـ Pain، والـ Claim، والـ Proof، و٢ Hooks مقترحين.
 - **علاقات:** مقابلة ١:١.
 - **مساعدة:** اعرض المكتبة على حد في الشغل/صاحب واسأله "أنهي Angle كنت هتصدقه؟"
