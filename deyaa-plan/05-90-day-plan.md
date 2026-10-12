@@ -112,8 +112,9 @@ Google Sheets · Looker Studio · Anki · Meta Ad Library · Kaggle Learn · Kha
 - **المذاكرة:** Google Sheets للماركتينج: SUMIFS، XLOOKUP، Pivot tables، Conditional formatting، Charts.
 - **الخطوة المخيفة (ابدأ بيها):** ابعت **١٠ رسايل** لناس شغالين Creative strategist/Performance (LinkedIn) تطلب ١٥ دقيقة. الهدف **٥ محادثات** خلال الأسابيع ٢–٥. الأسئلة: (١) يومك شكله إيه؟ (٢) إيه المهارة اللي الناس الجديدة ناقصاها؟ (٣) لو كنت مكاني، أبدأ بإيه؟ (٤) نطاق المرتبات في المستوى ده؟
 - **الناتج:** Dashboard صغير في Sheets من داتا الأسبوع ١ (أكتر ١٠ مهارات مطلوبة + توزيع Remote/Hybrid).
-- **علاقات:** مقابلة ١:١ مع صاحب/قريب (≥ ساعة).
+- **علاقات:** مقابلة ١:١ مع صاحب/قريب (≥ ساعة) + **اشترك في School of Marketing Community** (٦٠٠ ج) وعرّف نفسك فيه.
 - **مساعدة:** ابعت لزميل في الشغل حاجة مفيدة اتعلمتها.
+- **قاعدة الـ Community (من الأسبوع ده لآخر الـ ٩٠ يوم):** محتواه **جلسة واحدة في الأسبوع بالكتير** (يُفضّل الخميس). وكل مرحلة في فريم ورك أحمد سيف تتكتب في `ahmed-saif-framework.md` عشان تتحول لـ Tags في أسبوع ٦ و٨.
 
 ### الأسبوع ٣ — (٢٧ أكتوبر–٢ نوفمبر) — مقاييس الكريتيف والـ Funnel
 - **المذاكرة:** CPM، CTR (link/all)، CPC، CVR، CPA، ROAS. و**مقاييس الفيديو**: Hook rate (مشاهدات ٣ ثواني ÷ Impressions)، Hold rate (مثلًا ThruPlays أو ١٥ ثانية ÷ مشاهدات ٣ ثواني). **اتأكد من التعريف المستخدم في كل مصدر**، لأن التعريفات بتختلف. كورس Motion المجاني "Fundamentals of Creative Analysis" لو متاح.
@@ -147,7 +148,7 @@ Google Sheets · Looker Studio · Anki · Meta Ad Library · Kaggle Learn · Kha
 - **مساعدة:** اسأل واحد من المحادثات يقرا الـ Case study ويديك Feedback.
 
 ### الأسبوع ٨ — (١ – ٧ ديسمبر) — Creative tagging (قلب الـ Creative analytics)
-- **المذاكرة:** إزاي تبني **Taxonomy**: Angle · Hook type · Format · Talent/Persona · Length · Proof type · CTA. ليه لازم Tags محددة ومتسقة.
+- **المذاكرة:** إزاي تبني **Taxonomy**: Angle · Hook type · Format · Talent/Persona · Length · Proof type · CTA · **+ عناصر فريم ورك أحمد سيف** (من `ahmed-saif-framework.md`). ليه لازم Tags محددة ومتسقة.
 - **الناتج:** **Dataset من ≥ ٤٠ إعلان** متعملهم Tag. المصدر: داتا شغلك (بإذن) **أو** Meta Ad Library لـ ٣–٤ براندات في قطاع واحد (مع ملاحظة إن Ad Library مفيهاش Performance، فالمقياس البديل = **مدة تشغيل الإعلان** كمؤشر تقريبي. اكتب حدود ده بوضوح).
 - **إضافي:** ابدأ **Calibration log**: قبل ما تشوف أي رقم، اكتب توقّعك.
 - **علاقات:** مقابلة ١:١.

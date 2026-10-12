@@ -41,6 +41,7 @@
 | ***Alchemy*** — Rory Sutherland | علم نفس سلوكي في الإعلان. بيوازن "الداتا" بـ "الإنسان" | Q2 | 💰 📚 |
 | ***Ogilvy on Advertising*** | كلاسيك، وأوجيلفي كان بيقيس كل حاجة | Y2 | 💰 📚 |
 | **School of Marketing — Sales Content Online Course 3.0** (أحمد سيف) | عناصر البيع (Triggers, Claims, Gains, Logistics, Social proof) + Templates، **بالعربي وللسوق المحلي**. استخدمه كمصدر **Tags** للتحليل | Q2 (اختياري، بعد قرار "أكمل") | 💰 ١٥٠٠ ج ✅ [academy.school-of-marketing.com](https://academy.school-of-marketing.com/p/sales-content-online-workshop-3-0) |
+| **School of Marketing — Community** (فريم ورك أحمد سيف في Content marketing + محتوى) | Community مصري بالعربي (يعني "ناس شبهك") + فريم ورك تحوّله لـ Tags. **بشرط:** جلسة واحدة في الأسبوع بالكتير (شوف `01`) | Q1 (من أسبوع ٢) | 💰 ٦٠٠ ج 🗣️ (معلومة منك، اتأكد هل شهري ولا مرة واحدة) |
 | **School of Marketing — Blog + eBooks مجانية** ("Content Marketing 101"، "حكاية نقرة") | مدخل عربي مجاني قبل ما تقرر تدفع | Q1 | 💚 ✅ [Blog](https://school-of-marketing.com/category/blog/) |
 
 ## ٤. مصادر عربية
@@ -72,7 +73,7 @@
 | المجتمع | ليه | التكلفة |
 |---|---|---|
 | **Motion Bootcamp Community** | ناس بتتعلم نفس الحاجة بالظبط، وده بيخدم "ناس شبهي" مهنيًا | 💚 ✅ |
-| **School of Marketing** (صفحة/مجتمع؟) | **مش متأكد إن فيه Community** ❌. اسألهم مباشرة | ؟ |
+| **School of Marketing Community** | موجود وعليه محتوى (معلومة منك). مصري وعربي ومهتم بنفس المجال | 💰 ٦٠٠ ج 🗣️ |
 | **Egypt Marketing Club** | ظهر في بروفايل LinkedIn كمجموعة "Only for Marketers". **معلومة ضعيفة** ⚠️، اتأكد بنفسك | ؟ |
 | **LinkedIn**: تابع Creative strategists في الخليج ومصر، وعلّق بجدية | علاقات + اختبار سوق | 💚 |
 | **مجتمع غير مهني** (حلقة، تطوع، رياضة جماعية) | **مهم زي المهني**: "ناس شبهي" مش لازم يكونوا في التسويق | 💚 |
@@ -80,7 +81,7 @@
 ---
 
 ## ترتيب الصرف المقترح (لو الميزانية محدودة)
-1. **صفر جنيه في Q1.** كل حاجة في الـ ٩٠ يوم مجانية.
-2. Q2: كتاب واحد (*Naked Statistics* أو *Breakthrough Advertising*) + **School of Marketing ١٥٠٠ ج (اختياري)**.
+1. **Q1: الاستثناء الوحيد هو School of Marketing Community (٦٠٠ ج).** غير كده كل حاجة في الـ ٩٠ يوم مجانية.
+2. Q2: كتاب واحد (*Naked Statistics* أو *Breakthrough Advertising*). وكورس Sales Content (١٥٠٠ ج) **بس** لو الـ Community مش مغطيه.
 3. Q2–Q3: Google Data Analytics (اطلب **Financial aid** الأول).
 4. Q3: Meta Creative Strategy cert (~١٥٠$) **فقط** لو ظهر في ≥ ٢٠٪ من الإعلانات اللي حللتها.
