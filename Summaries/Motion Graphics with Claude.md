@@ -1,4 +1,15 @@
+---
+type: summary
+aliases: [موشن جرافيك بكلود]
+tags: [ai, claude, motion-graphics, remotion, video]
+created: 2026-10-13
+sources: 5
+related: ["[[AI Video Editing]]"]
+---
+
 # Motion Graphics بـ Claude Code + Remotion: ملخص مجمّع
+
+**مرتبط بـ:** [[AI Video Editing]]
 
 ده ملخص لأحسن 5 مصادر، مقسّم حسب الموضوع مش حسب الفيديو، والحاجات المتكررة اتشالت.
 المصادر في آخر الملف.

@@ -1,4 +1,15 @@
+---
+type: summary
+aliases: [الـ AI في الفيديو ايديتنج]
+tags: [ai, video-editing, video, youtube]
+created: 2026-10-13
+sources: 5
+related: ["[[Motion Graphics with Claude]]"]
+---
+
 # الـ AI في الفيديو ايديتنج: ملخص مجمّع
+
+**مرتبط بـ:** [[Motion Graphics with Claude]]
 
 ده ملخص لأحسن 5 مصادر، مقسّم حسب الموضوع مش حسب المصدر، والحاجات المتكررة اتشالت.
 المصادر في آخر الملف.
