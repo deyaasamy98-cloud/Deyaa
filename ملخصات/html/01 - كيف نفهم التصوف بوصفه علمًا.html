@@ -1,0 +1,761 @@
+<title>التصوف بوصفه علمًا</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: a manuscript page, one reading column with timestamp "folio" markers and margin notes (حواشي) for corrections */
+:root{
+  --paper:#F4F6F3; --panel:#E9EDE8; --ink:#18212F; --muted:#556070; --rule:#D3D9D2;
+  --lapis:#2747A3; --lapis-soft:#E1E7F6; --saffron:#9A6512; --saffron-soft:#F4EAD7;
+  --ok:#2C7650; --ok-soft:#DDEFE4; --bad:#A83A3A; --bad-soft:#F5E0DE;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F131A; --panel:#171D27; --ink:#E5E8EE; --muted:#9AA4B4; --rule:#2A3242;
+  --lapis:#93ACF2; --lapis-soft:#1C2742; --saffron:#E3AC56; --saffron-soft:#2D2416;
+  --ok:#69C495; --ok-soft:#15291F; --bad:#EE8A84; --bad-soft:#2E1817; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#0F131A; --panel:#171D27; --ink:#E5E8EE; --muted:#9AA4B4; --rule:#2A3242;
+  --lapis:#93ACF2; --lapis-soft:#1C2742; --saffron:#E3AC56; --saffron-soft:#2D2416;
+  --ok:#69C495; --ok-soft:#15291F; --bad:#EE8A84; --bad-soft:#2E1817; color-scheme:dark;}
+
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16.5px;line-height:1.85}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{direction:rtl;max-width:880px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.35;margin:0}
+h2{font-size:clamp(1.65rem,1.2rem + 1.6vw,2.15rem);font-weight:700}
+h3{font-size:1.35rem;font-weight:700}
+p{margin:0}
+a{color:var(--lapis)}
+a:focus-visible,button:focus-visible,input:focus-visible+span,summary:focus-visible{outline:2px solid var(--lapis);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;font-family:var(--f-body);direction:ltr;unicode-bidi:isolate}
+
+/* header */
+header.top{padding-block:40px 28px;display:grid;gap:14px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--saffron);font-weight:600}
+h1{font-size:clamp(2.3rem,1.5rem + 3.2vw,3.5rem);font-weight:700}
+.lede{font-size:1.1rem;max-width:62ch;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.92rem;color:var(--muted)}
+.meta b{color:var(--ink);font-weight:500}
+.thesis{margin-top:6px;background:var(--lapis-soft);border-radius:10px;padding:16px 18px;display:grid;gap:4px}
+.thesis .label{font-size:.8rem;font-weight:600;color:var(--lapis);letter-spacing:.03em}
+.thesis p{font-family:var(--f-display);font-size:1.3rem;line-height:1.6}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--rule);padding-inline-start:12px}
+
+/* nav */
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.9rem;padding:5px 12px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--lapis);color:var(--lapis)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:64ch}
+
+/* mind map */
+.mm{display:grid;gap:18px}
+.mm-root{justify-self:center;font-family:var(--f-display);font-size:1.45rem;font-weight:700;background:var(--ink);color:var(--paper);padding:10px 26px;border-radius:999px;text-align:center}
+.mm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;position:relative}
+.mm-b{border:1px solid var(--rule);border-radius:10px;padding:14px 16px;background:var(--paper);min-width:0}
+.mm-b h4{margin:0 0 8px;font-family:var(--f-display);font-size:1.18rem;color:var(--lapis);display:flex;gap:8px;align-items:baseline}
+.mm-b h4 .num{font-size:.78rem;color:var(--muted)}
+.mm-b ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;border-inline-start:2px solid var(--rule);padding-inline-start:12px}
+.mm-b li{position:relative;font-size:.95rem;line-height:1.6}
+.mm-b li::before{content:"";position:absolute;inset-inline-start:-12px;top:.8em;width:8px;border-top:2px solid var(--rule)}
+
+/* human act diagram */
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.flow .step{background:var(--panel);border-radius:8px;padding:8px 14px;font-weight:500;text-align:center;line-height:1.4}
+.flow .step small{display:block;font-weight:400;color:var(--muted);font-size:.78rem}
+.flow .arr{color:var(--muted);font-size:1.2rem}
+.tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tri > div{border-top:3px solid var(--lapis);background:var(--panel);border-radius:0 0 8px 8px;padding:12px 14px;display:grid;gap:4px;min-width:0}
+.tri > div.mid{border-top-color:var(--saffron)}
+.tri .k{font-size:.8rem;color:var(--muted)}
+.tri .v{font-family:var(--f-display);font-size:1.3rem;font-weight:700}
+.tri p{font-size:.9rem;line-height:1.6}
+@media (max-width:560px){.tri{grid-template-columns:1fr}}
+
+/* concepts */
+.concepts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 28px;margin:0}
+.concepts > div{padding-block:12px;border-bottom:1px solid var(--rule);min-width:0}
+.concepts dt{font-family:var(--f-display);font-size:1.2rem;font-weight:700}
+.concepts dd{margin:2px 0 0;font-size:.95rem;color:var(--ink)}
+
+/* lessons */
+.lesson{display:grid;grid-template-columns:96px minmax(0,1fr);gap:4px 20px;padding-block:26px;border-top:1px solid var(--rule)}
+.lesson:first-of-type{border-top:0}
+.folio{grid-row:1 / span 3;display:grid;align-content:start;gap:2px;font-size:.8rem;color:var(--muted)}
+.folio a{font-size:1.05rem;font-weight:600;text-decoration:none;color:var(--saffron)}
+.folio a:hover{text-decoration:underline}
+.lesson h3{margin-bottom:6px}
+.lesson .body{display:grid;gap:10px;max-width:66ch}
+.lesson ul.pts{margin:0;padding-inline-start:20px;display:grid;gap:6px}
+.lesson ul.pts li::marker{color:var(--lapis)}
+.quote{font-family:var(--f-display);font-size:1.18rem;line-height:1.75;border-inline-start:3px solid var(--saffron);padding-inline-start:14px;color:var(--ink)}
+.quote cite{display:block;font-family:var(--f-body);font-style:normal;font-size:.82rem;color:var(--muted);margin-top:4px}
+.def{background:var(--lapis-soft);border-radius:10px;padding:14px 16px}
+.def .label{font-size:.8rem;font-weight:600;color:var(--lapis)}
+.def p{font-family:var(--f-display);font-size:1.25rem;line-height:1.7}
+.def small{display:block;color:var(--muted);font-size:.8rem;margin-top:4px}
+.qa{background:var(--panel);border-radius:10px;padding:12px 16px;display:grid;gap:6px}
+.qa .q{font-weight:600}
+.qa .q::before{content:"سؤال للفهم: ";color:var(--lapis)}
+.qa .a::before{content:"الإجابة: ";color:var(--ok);font-weight:600}
+.margin-note{font-size:.88rem;background:var(--saffron-soft);border-radius:8px;padding:10px 14px}
+.margin-note b{color:var(--saffron)}
+@media (max-width:600px){.lesson{grid-template-columns:minmax(0,1fr)}.folio{grid-row:auto;display:flex;gap:10px;align-items:baseline}}
+
+/* practice */
+.steps{counter-reset:s;display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.steps > li{counter-increment:s;display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;align-items:start}
+.steps > li::before{content:counter(s);font-variant-numeric:tabular-nums;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--paper);font-weight:600}
+.steps b{display:block}
+.card{border:1px solid var(--rule);border-radius:12px;padding:18px;display:grid;gap:14px}
+.card h3{font-size:1.3rem}
+.ladder{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.ladder span.r{background:var(--lapis-soft);color:var(--ink);padding:5px 12px;border-radius:6px;font-weight:500}
+.ladder span.a{color:var(--muted)}
+.khaldun{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.khaldun > div{background:var(--panel);border-radius:8px;padding:12px;display:grid;gap:4px;min-width:0}
+.khaldun .v{font-family:var(--f-display);font-size:1.25rem;font-weight:700}
+.khaldun .tag{justify-self:start;font-size:.78rem;padding:2px 8px;border-radius:999px;background:var(--ok-soft);color:var(--ok);font-weight:600}
+.khaldun .tag.need{background:var(--saffron-soft);color:var(--saffron)}
+@media (max-width:560px){.khaldun{grid-template-columns:1fr}}
+
+/* review table */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--panel);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.pill.fix{background:var(--bad-soft);color:var(--bad)}
+.pill.upd{background:var(--saffron-soft);color:var(--saffron)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+
+/* quiz */
+.quiz{display:grid;gap:14px;counter-reset:qq}
+fieldset.qz{counter-increment:qq;border:1px solid var(--rule);border-radius:10px;padding:14px 16px;margin:0;display:grid;gap:8px;min-width:0}
+fieldset.qz legend{padding:0 6px;font-weight:600;line-height:1.6}
+fieldset.qz legend::before{content:counter(qq) ". ";color:var(--lapis);font-variant-numeric:tabular-nums}
+fieldset.qz label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;padding:6px 8px;border-radius:6px}
+fieldset.qz label:hover{background:var(--panel)}
+fieldset.qz input{margin-top:.45em;accent-color:var(--lapis)}
+fieldset.qz .fb{font-size:.88rem;font-weight:600}
+fieldset.qz.ok{border-color:var(--ok);background:var(--ok-soft)}
+fieldset.qz.bad{border-color:var(--bad);background:var(--bad-soft)}
+fieldset.qz.skip{border-style:dashed}
+.qbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:9px 18px;cursor:pointer;background:var(--ink);color:var(--paper)}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+#score{font-weight:600}
+ol.key{margin:0;padding-inline-start:22px;display:grid;gap:8px}
+ol.key li::marker{font-variant-numeric:tabular-nums;color:var(--muted)}
+ol.key b{color:var(--ok)}
+
+/* sources */
+.src{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px}
+.src > div{border:1px solid var(--rule);border-radius:10px;padding:14px 16px;display:grid;gap:8px;align-content:start;min-width:0}
+.src h4{margin:0;font-family:var(--f-display);font-size:1.15rem}
+.src ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.92rem}
+.src .why{font-size:.85rem;color:var(--muted)}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:6px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">ملخص دراسي · بودكاست سهم · سلسلة «خبير» ١٥</span>
+  <h1>كيف نفهم التصوف بوصفه علمًا؟</h1>
+  <p class="lede">حوار مع عبد الله ريان، المهتم بعلم النفس الإسلامي والمنطق والفلسفة والتصوف. الفكرة الأساسية: نفهم التصوف قبل أن نحكم عليه، ونفصل بين التصوف كعلم وبين ما يفعله المنتسبون إليه.</p>
+  <div class="meta">
+    <span>المدة: <b class="num">1:11:25</b></span>
+    <span>النشر: <b>22 سبتمبر 2026</b></span>
+    <span>الفصول: <b class="num">16</b></span>
+    <span><a href="https://youtu.be/EzjvmLyF7OI" target="_blank" rel="noopener">مشاهدة الحلقة على يوتيوب</a></span>
+  </div>
+  <div class="thesis">
+    <span class="label">الحلقة في سطرين</span>
+    <p>التصوف علم يضبط «المساحة القلبية» بين الفكرة والفعل، كما تضبط العقيدةُ الأفكارَ ويضبط الفقهُ الأفعال. وكل ممارسة صوفية تُعرض على ميزان الفقه والعقيدة، لا على الاستحسان الشخصي.</p>
+  </div>
+  <p class="note">هذا ملخص أمين لكلام الضيف. الآراء العقدية والفقهية الواردة رأيه، وبعضها محل خلاف معروف بين المدارس الإسلامية. أضفتُ مراجعة للمعلومات الواقعية في قسم «مراجعة وتحديث».</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#map">الخريطة الذهنية</a></li>
+    <li><a href="#concepts">أهم المفاهيم</a></li>
+    <li><a href="#lessons">الشرح بالتفصيل</a></li>
+    <li><a href="#practice">التطبيق العملي</a></li>
+    <li><a href="#review">مراجعة وتحديث</a></li>
+    <li><a href="#quiz">اختبر فهمك</a></li>
+    <li><a href="#answers">الإجابات</a></li>
+    <li><a href="#sources">للتوسع</a></li>
+  </ul>
+</nav>
+
+<!-- MIND MAP -->
+<section class="block" id="map">
+  <div class="sec-head">
+    <h2>الخريطة الذهنية</h2>
+    <p>كل ما قيل في الحلقة في سبعة فروع. اقرأها قبل الشرح وبعده.</p>
+  </div>
+  <div class="mm">
+    <div class="mm-root">التصوف بوصفه علمًا</div>
+    <div class="mm-grid">
+      <div class="mm-b"><h4>المنهج أولًا <span class="num">3:22</span></h4>
+        <ul><li>افهم الشيء قبل أن تحكم عليه</li><li>فرّق بين «المفهوم» و«المصداق» (الفكرة وتطبيق الناس لها)</li><li>نص ابن الهيثم: العلماء غير معصومين</li><li>العلوم قديمًا وحدة واحدة، واليوم جزر منعزلة</li></ul></div>
+      <div class="mm-b"><h4>خريطة الإنسان <span class="num">7:45</span></h4>
+        <ul><li>إدراك ← نزوع ← إرادة ← قدرة ← فعل</li><li>الأفكار ← تضبطها العقيدة</li><li>النزوع والقلب ← يضبطه التصوف</li><li>الأفعال الظاهرة ← يضبطها الفقه</li></ul></div>
+      <div class="mm-b"><h4>ما هو التصوف؟ <span class="num">20:34</span></h4>
+        <ul><li>علم، لا مجرد حال ولا وعظ</li><li>تعريفات كثيرة لأنها «بالرسم» حسب حال السائل</li><li>موضوعه: الفعل الإرادي للمكلّف</li><li>من حيث تهذيبه الموصل إلى الله، بقيد الشرع</li><li>غايته: التوحيد العملي</li></ul></div>
+      <div class="mm-b"><h4>كيف يعمل؟ <span class="num">27:00</span></h4>
+        <ul><li>التوبة: علم ثم حال (ندم) ثم عمل</li><li>علاج الحسد والكبر يأخذ سنوات</li><li>المقامات مرتبة، والإخلاص لا يُطلب أولًا</li><li>ابن خلدون: تقوى ← استقامة ← مكاشفة</li></ul></div>
+      <div class="mm-b"><h4>الميزان <span class="num">46:27</span></h4>
+        <ul><li>الأفعال تُعرض على الفقه بمذهب معتبر محدد</li><li>الأفكار تُعرض على العقيدة</li><li>لا لـ«التلفيق» ولا للقول المنفرد</li><li>الحسد ونحوه: الفقه لا يحكم عليه، التصوف يعالجه</li></ul></div>
+      <div class="mm-b"><h4>التصوف والآخر <span class="num">49:17</span></h4>
+        <ul><li>موضوع العلم شيء، والوسيلة شيء آخر</li><li>يأخذ التقنيات من أي علم (الطب، علم النفس)</li><li>المشابهة لا يلزم منها المؤاخذة</li><li>يرفض الخلط العقدي «كلنا نصل لله بأي طريق»</li></ul></div>
+      <div class="mm-b"><h4>الواقع والنصيحة <span class="num">61:05</span></h4>
+        <ul><li>4 أسباب للافتراء على التصوف</li><li>الطريقة الصوفية مثل المذهب الفقهي، ليست هي التصوف</li><li>ماذا خسر المسلمون: الخواء الروحي والنفسي</li><li>للسالك: تعلّم الفقه. للناقد: حدّد الموضع والدليل</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPTS -->
+<section class="block" id="concepts">
+  <div class="sec-head">
+    <h2>أهم المفاهيم</h2>
+    <p>المصطلحات التي يقوم عليها كلام الحلقة، بمعناها عند الضيف.</p>
+  </div>
+  <dl class="concepts">
+    <div><dt>القوة النزوعية</dt><dd>القوة التي تحرّك الإنسان نحو الشيء (شوقًا) أو بعيدًا عنه (هربًا). هي الحلقة الوسطى بين المعرفة والفعل.</dd></div>
+    <div><dt>المفهوم والمصداق</dt><dd>المفهوم: حقيقة الشيء كما هو في علمه. المصداق: الأشخاص والأفعال الواقعية المنسوبة إليه. خطأ شخص صوفي لا يُحسب على مفهوم التصوف.</dd></div>
+    <div><dt>التعريف بالحد</dt><dd>تعريف «جامع مانع» يحدد حقيقة الشيء بالكامل، فلا يخرج منه فرد ولا يدخل فيه غيره.</dd></div>
+    <div><dt>التعريف بالرسم</dt><dd>تعريف بالأثر أو العلامة المميِّزة، يكفي لتمييز الشيء. أغلب تعريفات الصوفية من هذا النوع، بحسب حال السائل.</dd></div>
+    <div><dt>معاني «العلم» الثلاثة</dt><dd>(1) مجرد الإدراك. (2) الملَكة: القدرة على العمل وفق القانون دون معرفة اسمه. (3) المسائل الكلية المنضبطة. والتصوف علم بالمعنى الثالث.</dd></div>
+    <div><dt>الفكر الثقافي</dt><dd>نقاش آراء بلا أصول ولا نموذج تفسيري واضح يمكن المحاسبة عليه. يراه الضيف مضيعة للوقت ما لم ينضبط بعلم.</dd></div>
+    <div><dt>التوحيد العملي</dt><dd>ألا يصدر عنك فعل إلا مرادًا لله، وألا ترى في الكون فاعلًا على الحقيقة إلا الله. هذا عند الضيف هو جوهر التصوف.</dd></div>
+    <div><dt>بقيد الشرع</dt><dd>أن ينطلق السلوك من أفكار عقدية منضبطة وأفعال فقهية مشروعة. التقرب بغير المشروع يورث «ظلمة» لا نورًا.</dd></div>
+    <div><dt>الوعظ</dt><dd>كلام تحفيزي (Motivational speaking) يُشعل حماسًا لحظيًا. ليس مذمومًا، لكنه ليس علم التصوف.</dd></div>
+    <div><dt>الخُلُق</dt><dd>هيئة نفسانية راسخة تصدر عنها الأفعال بسهولة، بلا تفكير ولا روية. يمكن اكتسابه، فالبخيل يتعلم الكرم.</dd></div>
+    <div><dt>المقام</dt><dd>مرحلة مستقرة في طريق السلوك (توبة، خوف، زهد، رجاء، صدق، إخلاص...)، ولها ترتيب لا يُقفز عليه.</dd></div>
+    <div><dt>التلفيق</dt><dd>جمع نصوص متفرقة من أئمة مختلفين خارج سياقها لإثبات رأي مسبق. يراه الضيف بلا قيمة علمية.</dd></div>
+  </dl>
+</section>
+
+<!-- LESSONS -->
+<section class="block" id="lessons">
+  <div class="sec-head">
+    <h2>الشرح بالتفصيل</h2>
+    <p>بترتيب فصول الحلقة. الوقت في الهامش يفتح الحلقة عند تلك الدقيقة.</p>
+  </div>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=0" target="_blank" rel="noopener">0:00</a><span>الفصل 1</span></div>
+    <h3>مقدمة: من علم النفس إلى التصوف</h3>
+    <div class="body">
+      <ul class="pts">
+        <li>بدأ الضيف من أسئلة شخصية لا أكاديمية. قاده علم النفس الإسلامي إلى دراسة الإسلام نفسه: الفقه والعقيدة، ثم أصولهما، ثم الفلسفة («ميكروسكوب العقل»)، ثم المنطق («منهجية النظر»).</li>
+        <li>في خريطة العلوم القديمة كانت المعارف وحدة واحدة: المهندس يدرس الرياضيات والموسيقى والمناظر وجر الأثقال والمنطق والشريعة.</li>
+        <li>العالم الحديث حوّل العلوم إلى «جزر منعزلة». النتيجة: غياب أبجديات التفكير، وأحكام مبنية على المشهورات والمغالطات.</li>
+      </ul>
+      <div class="qa"><p class="q">ما المشكلة التي يراها الضيف في التخصصات الحديثة المنفصلة؟</p><p class="a">أنها أفقدتنا الرابط بين العلوم وأبجديات التفكير، فصارت أحكامنا مبنية على المشهور والمقبول والمغالطات بدل المنهج.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=202" target="_blank" rel="noopener">3:22</a><span>الفصل 2</span></div>
+    <h3>قبل الحكم على التصوف</h3>
+    <div class="body">
+      <p>الصورة الشائعة عن التصوف: زيارة القبور والتمسح بها، دراويش وأوراد، «حدثني قلبي عن ربي»، الغلو في محبة النبي ﷺ. هذه الصورة تتكوّن من الإعلام والبيئة وأئمة المساجد، ثم تميل النفس لإثبات ما تعتقده سلفًا.</p>
+      <div class="quote">الحق مطلوب لذاته... ووجود الحق صعب، والطريق إليه وعر، والحقائق منغمسة في الشبهات، وحسن الظن بالعلماء في طباع جميع الناس... وما عصم الله العلماء من الزلل.<cite>ابن الهيثم، «الشكوك على بطليموس»</cite></div>
+      <ul class="pts">
+        <li>نحن نقرأ المخالف بعيون شيوخنا، فمعرفتنا عنه منقولة لا مباشرة.</li>
+        <li>القاعدة: افهم الشيء أولًا، ثم احكم عليه بما يظهر، أيًّا كانت النتيجة.</li>
+        <li>افصل الممارسة عن أصل الشيء، وحدّد المنهج الذي تعرف به الأشياء.</li>
+      </ul>
+      <div class="qa"><p class="q">لماذا استشهد الضيف بنص ابن الهيثم في بداية الكلام؟</p><p class="a">ليؤكد أن الحق يُطلب لذاته، وأن حسن الظن بالعلماء طبع في الناس رغم أنهم غير معصومين. لذلك يجب فحص الأقوال لا التسليم بها، ومن ذلك ما نقلناه عن التصوف من شيوخنا.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=465" target="_blank" rel="noopener">7:45</a><span>الفصل 3</span></div>
+    <h3>خريطة الفعل الإنساني</h3>
+    <div class="body">
+      <p>أي فعل إنساني يمر بسلسلة لا بد منها، لأن «المجهول من كل وجه يستحيل أن يُطلب»:</p>
+      <div class="flow" aria-label="سلسلة الفعل الإنساني">
+        <span class="step">إدراك ومعرفة<small>أفكار ومعتقدات</small></span><span class="arr">←</span>
+        <span class="step">نزوع<small>شوق أو هرب</small></span><span class="arr">←</span>
+        <span class="step">إرادة<small>اختيار هذا دون ذاك</small></span><span class="arr">←</span>
+        <span class="step">قدرة</span><span class="arr">←</span>
+        <span class="step">فعل وسلوك</span>
+      </div>
+      <p>وكل مساحة تحتاج «معيارًا» يرجّح بين الاختيارات، كما نحتاج المسطرة للأطوال والكيلو للأوزان والمنطق للأفكار:</p>
+      <div class="tri">
+        <div><span class="k">مساحة الأفكار</span><span class="v">العقيدة</span><p>منها ثابت لا يُتخلى عنه (من «العَقد» أي الثبات)، ومنها مساحة آراء ومذاهب مقبولة.</p></div>
+        <div class="mid"><span class="k">مساحة القلب والنزوع</span><span class="v">التصوف</span><p>الدوافع والمشاعر والأخلاق والملكات الداخلية.</p></div>
+        <div><span class="k">مساحة الأفعال</span><span class="v">الفقه</span><p>«المسطرة» التي يوزن بها كل فعل لمعرفة رتبته وحكمه.</p></div>
+      </div>
+      <p class="muted">هذا التقسيم يتفق مع تقسيم الغزالي (علم، حال، عمل)، ومع تقسيمات أرسطو والرواقيين، وحتى العلاج المعرفي السلوكي (CBT) والجدلي السلوكي (DBT).</p>
+      <div class="qa"><p class="q">ما العلم الذي يضبط كل مساحة من المساحات الثلاث؟</p><p class="a">الأفكار تضبطها العقيدة، والأفعال الظاهرة يضبطها الفقه، والمساحة القلبية (النزوع والدوافع) يضبطها التصوف.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=795" target="_blank" rel="noopener">13:15</a><span>الفصل 4</span></div>
+    <h3>وظيفة التصوف في القلب</h3>
+    <div class="body">
+      <ul class="pts">
+        <li>القلب عند الغزالي، بعد خلاف المحاسبي والحكيم الترمذي، هو الحقيقة التي تفرّق بين الحي والميت: النفس أو الروح، «الشيء الذي تقول عنه: أنا».</li>
+        <li>المشكلة: فجوة بين ما في العقل وما في القلب. مثال الضيف: شخص يعتقد يقينًا أن المحتوى الإباحي يضره، ثم يشاهده، ثم يجلد ذاته ويرى حياته كلها «بايظة».</li>
+        <li>وظيفة التصوف: علم تدريبي ينقل المعتقد من العقل إلى النزوع الداخلي، فلا تتحرك إلا لله.</li>
+        <li>أبو حنيفة يرى أن الإيمان (التصديق) لا يزيد ولا ينقص. فلماذا قضى الصحابة سنوات في «تعلّم الإيمان»؟ لأن ما يزيد وينقص هو «التسليم» النفسي الزائد على التصديق العقلي، وهذه مسألة في علم الكلام.</li>
+        <li>التصوف «مطلب إنساني»: كل إنسان يضبط نزواته بمنهج ما، بوذي أو إلحادي أو إسلامي. الخلاف في المعيار، لا في وجود الشيء. سمِّه تزكية أو تربية، المهم المعنى.</li>
+      </ul>
+      <div class="qa"><p class="q">إذا كان المسلم مقتنعًا عقليًا بالعقيدة، فما الحاجة إلى التصوف؟</p><p class="a">لأن الاقتناع العقلي لا يضمن تحرك القلب به. قد يعلم الإنسان أن الفعل يضره ثم يفعله. والتصوف هو التدريب الذي يحوّل المعتقد إلى دافع حقيقي ومشاعر وأخلاق.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=1234" target="_blank" rel="noopener">20:34</a><span>الفصل 5</span></div>
+    <h3>لماذا تعددت التعريفات؟</h3>
+    <div class="body">
+      <p>اعتراض شائع: «اختلف الصوفية على ألفي تعريف، إذن لا أصل للتصوف». يرى الضيف أن هذه مغالطة سببها الجهل بأنواع التعريف:</p>
+      <ul class="pts">
+        <li><b>التعريف بالحد</b>: جامع مانع، وهو ما تناقشه الحواشي طويلًا.</li>
+        <li><b>التعريف بالرسم</b>: بالأثر المميِّز. تقول «هات الخشبة الطويلة التي خلفك» دون أن تشرح حقيقة الخشب.</li>
+        <li>أغلب تعريفات الصوفية بالرسم، وتأتي حسب حال السائل: لصاحب مشكلة الأخلاق «التصوف تهذيب الخلق»، ولغيره «التزام الإخلاص»، ولثالث «الحب الإلهي».</li>
+        <li>وهكذا كانت أجوبة النبي ﷺ تختلف لمن يسأل «أي العمل أفضل؟» بحسب حال السائل.</li>
+      </ul>
+      <div class="qa"><p class="q">هل كثرة تعريفات التصوف دليل على أنه بلا أصل؟</p><p class="a">لا. أغلبها تعريفات بالرسم، يصف كل منها جانبًا من الأثر بما يناسب حال السائل، وهذا موجود في كل العلوم الإسلامية. وتعدّد الرسوم لا ينفي وجود الحقيقة.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=1377" target="_blank" rel="noopener">22:57</a><span>الفصل 6</span></div>
+    <h3>التصوف علم أم حال؟</h3>
+    <div class="body">
+      <p>كلمة «علم» لها ثلاثة إطلاقات:</p>
+      <ul class="pts">
+        <li><b>الإدراك</b>: أي تصور أو حكم يحصل في ذهنك.</li>
+        <li><b>الملَكة</b>: أن تحضر 50 تسجيل بودكاست فتتعلم صنعته دون معرفة أسماء قوانينه. وقد يحفظ أحدهم كتب الفقه كلها ولا «يفكر كفقيه».</li>
+        <li><b>المسائل الكلية المنضبطة</b>: مثل قانون أوم، لا يهمه السلك في بيت مَن. وهذا المقصود حين نقول «التصوف علم».</li>
+      </ul>
+      <p>الفرق بين العلم و«الفكر الثقافي»: العلم له أصول يمكن محاسبتك عليها («خالفتَ أصلك هنا»)، والفكر الثقافي آراء بلا نموذج تفسيري.</p>
+      <p><b>مثال التوبة كقانون:</b> ماهيتها ثلاثة أركان: علم (يقظة وإدراك الخطأ)، ثم ندم (شعور ينشأ تلقائيًا ولا يتعلق به تكليف)، ثم فعل. هذا القانون واحد، وتطبيقه يختلف بحسب «مزاج» كل شخص وطبيعته النفسية.</p>
+      <p><b>والخلاصة:</b> التغيير نفسه هو «فعل التصوف»، والعلم هو القانون الحاكم لعملية التغيير. ولذلك للتصوف جانب نظري (القوانين) وجانب عملي (التجربة الشخصية).</p>
+      <div class="qa"><p class="q">ما الفرق بين «علم التصوف» و«فعل التصوف»؟</p><p class="a">علم التصوف هو القوانين الكلية التي تحكم تغيير النفس، مثل أركان التوبة وطرق علاج الحسد. وفعل التصوف هو التغيير الذي يمارسه كل شخص بحسب طبيعته.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=1898" target="_blank" rel="noopener">31:38</a><span>الفصل 7</span></div>
+    <h3>انفصال الفقه عن التصوف</h3>
+    <div class="body">
+      <ul class="pts">
+        <li>انفصال العلوم علامة نضج: حين تجتمع مسائل حول موضوع أو غاية مشتركة يستقل العلم، كما استقل الأئمة المجتهدون عن مجالس شيوخهم حين نضج نظرهم.</li>
+        <li>اعتراض المحاور: صار الفقيه منشغلًا بأحكام الدنيا وحدها، أليس هذا مذمومًا؟</li>
+        <li>رد الضيف: الفقيه «من حيث هو فقيه» صنعته الأحكام. ترقيق القلب وظيفة علم آخر (نقلها عن أستاذه د. مدحت ماهر). المطلوب ألا نخلط موضوع العلم بما يجب على الشخص أن يجمعه.</li>
+      </ul>
+      <div class="qa"><p class="q">هل انفصال الفقه عن التصوف كعلمين أمر مذموم عند الضيف؟</p><p class="a">لا. هو طبيعي ككل علم ينضج فيستقل بموضوعه. أما الشخص فيحتاج الاثنين معًا، فالفقه يعلّمه الأحكام والتصوف يضبط قلبه.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=2034" target="_blank" rel="noopener">33:54</a><span>الفصل 8</span></div>
+    <h3>موضوع علم التصوف</h3>
+    <div class="body">
+      <p>يبني الضيف التعريف قيدًا قيدًا:</p>
+      <ul class="pts">
+        <li><b>السلوك الإنساني</b> بنوعيه: فعل النفس (تحسد، تحقد، تغضب، تشتهي)، وفعل الجوارح (ذِكر باللسان، نظر، سعي).</li>
+        <li><b>الإنساني</b>: بخلاف علم النفس الذي يدرس سلوك الكائن الحي عمومًا.</li>
+        <li><b>الإرادي</b>: ما يقع تحت سلطة الإرادة، حتى لو كانت إرادتي متعثرة. وهنا قال إن الإدمان فعل إرادي، خلافًا لحلقة سابقة في سهم.</li>
+        <li><b>للمكلّف</b>: الطفل خارج الموضوع، لكن أباه مكلف في تربيته.</li>
+        <li><b>من حيث التهذيب الموصل إلى الله</b>: الفعل الواحد قد يصدر عن 100 دافع. ولهذا يؤجر الصحابي على العمل الواحد أجورًا بعدد نياته المستقلة.</li>
+        <li><b>بقيد الشرع</b>: هذا ما يميّزه عن الروحانيات البوذية والمسيحية، أو «مسرحية» تجمع أتباع الأديان ليشعروا بحب الله.</li>
+      </ul>
+      <div class="def"><span class="label">التعريف مجمَّعًا</span><p>التصوف هو العلم الباحث عن الفعل الإرادي الإنساني للمكلَّف، من حيث تهذيبه الموصل إلى الله تعالى، بقيد الشرع.</p><small>صياغة تجمع قيود الضيف كما ذكرها متفرقة في هذا الفصل.</small></div>
+      <p><b>التوحيد العملي:</b> الألم قدَرٌ يريد أن يعلمك شيئًا، فتتعلم مهارة الصبر. والذنب قدرٌ كذلك، فتتعلم مهارة التوبة. وشرك النية (الرياء) تقابله مهارة الإخلاص. والمهارات نفسها عادية، والفرق في الدافع: أن يكون منطلقها رؤية الله.</p>
+      <p><b>موضوع العلم ≠ الوسيلة:</b> لذلك نقل الغزالي عن اليونان مباحث كاملة، ويأخذ السالك من الطب ما يعرّفه بالأمزجة. التقنيات مأخوذة من أي علم، والموضوع والغاية محددان بالشرع.</p>
+      <div class="qa"><p class="q">ما الذي يجعل التأمل الصوفي مختلفًا عن التأمل البوذي إذا تشابه الشكل؟</p><p class="a">قيد الشرع: أن يكون الدافع والنية شرعيين، والاعتقاد المصاحب منضبطًا بالتوحيد، والفعل نفسه مباحًا فقهًا. التقنية قد تتشابه، والمعيار مختلف.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=2460" target="_blank" rel="noopener">41:00</a><span>الفصل 9</span></div>
+    <h3>التصوف ليس وعظًا</h3>
+    <div class="body">
+      <ul class="pts">
+        <li>الوعظ هو ما يُسمّى اليوم Motivational speaking: كلام يريك الفرق بين حالك والمطلوب منك، فتشتعل نفسك شوقًا أو لومًا. وليس مذمومًا، فالكلمة قرآنية.</li>
+        <li>مثال: كتب الضيف قديمًا «تاريخ توبته» (25/5) ليحكيه لاحقًا في لقاء تلفزيوني. هذا عبث في نظر علم التصوف، لأن التوبة مهارة رجوع تستخدمها حتى الموت، ولكلٍّ توبته: الصلاة في وقتها، ثم في المسجد، ثم السنن...</li>
+        <li>الحسد فعل من أفعال النفس، والفقه لا يحكم عليه لأنه مختص بالظاهر. هنا يعمل التصوف.</li>
+        <li>الفقه والعقيدة «مبدأ» لغاية أكبر: ألا يصدر عنك فعل إلا خالصًا لله. والتقرّب بغير المشروع يورث ظلمة لا نورًا.</li>
+      </ul>
+      <div class="qa"><p class="q">ما الفرق بين التصوف والوعظ في جملة واحدة؟</p><p class="a">التصوف علم يضبط السلوك الإنساني وحركته باستمرار، والوعظ يعطيك شعورًا لحظيًا تقوم به بحماس ثم تعود لحالك.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=2787" target="_blank" rel="noopener">46:27</a><span>الفصل 10</span></div>
+    <h3>الفقه ميزان الممارسات</h3>
+    <div class="body">
+      <ul class="pts">
+        <li>الانتقادات الشائعة: بدعة، خرافات، ممارسات شعبية دخيلة. والجواب المنهجي: ما ضابطنا في الأفعال؟ الفقه.</li>
+        <li>إن كانت الممارسة مباحة فقهًا، فالاعتراض عليها اعتراض على الشرع. وإن لم تكن، فهي مرفوضة ولو فعلها صوفي.</li>
+        <li>مثال: التمسح بالقبر ونداء «يا بدوي». الفعل يُعرض على الفقه (في المذهب: مكروه)، والجانب العقدي يُعرض على العقيدة.</li>
+        <li>رأي الضيف أن دعاء غير الله مع عدم اعتقاد ألوهيته أو تأثيره لا يُعدّ شركًا عقديًا. <span class="muted">(هذه مسألة خلافية معروفة بين المدارس، ويخالفه فيها كثيرون.)</span></li>
+      </ul>
+      <div class="qa"><p class="q">ما المنهج الذي يقترحه الضيف للتعامل مع أي ممارسة صوفية منتقدة؟</p><p class="a">أن نفصلها عن مفهوم التصوف، ثم نعرض الفعل على الفقه بمذهب معتبر محدد، والجانب الفكري على العقيدة. المقبول فقهًا مقبول، والمرفوض فقهًا مرفوض، دون استحسان شخصي.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=2957" target="_blank" rel="noopener">49:17</a><span>الفصل 11</span></div>
+    <h3>التصوف والديانات الأخرى</h3>
+    <div class="body">
+      <ul class="pts">
+        <li>دعوى أن أصل التصوف يوناني أو بوذي أو شرقي: إن كان المقصود «روحانية» عامة، فمن أخذ من مَن؟ والتصوف يأخذ من كل علم ما يخدم السلوك.</li>
+        <li>السماع والحركة: في «الإحياء» باب كامل في السماع والوجد يفصّل الحركات: المُخلّة بالمروءة، والهزّات الخفيفة، والإرادية، و«غلبة الحال». لكلٍّ حكمه، والضابط الفقه.</li>
+        <li>الفقه يُؤخذ بمذهب، لا بقول منفرد. فلسفة المذهب تُستنبط من مجموع أقواله، لا من قول واحد قد يكون مخصوصًا بواقعة.</li>
+        <li>يرفض الضيف بوضوح «كلنا نصل لله»: إيقاد الشموع في الأضرحة وزيارة الأديرة طلبًا للروحانية عنده عبث ومنكر لا علاقة له بالتصوف.</li>
+        <li>يقبل «القوانين الطبيعية للنفس»: الصيام يورث صفاءً وهمة، والتأمل يزيد الصلابة النفسية (ومثّل ببرامج اليقظة الذهنية وجلسات DBT). يستخدمها بنية شرعية وتوحيد.</li>
+        <li><b>المشابهة لا يلزم منها المؤاخذة</b>: لو أنشأتُ بودكاست دون أن أرى برنامجك، فلا يلزم أني سرقته منك إلا بدليل.</li>
+        <li>هل كان النبي ﷺ متصوفًا؟ لم يكن عالم لغة ولا عروض ولا فقيهًا بالمعنى الاصطلاحي، لكن هذه العلوم «مبثوثة» في كلامه. وكذلك التصوف.</li>
+      </ul>
+      <div class="qa"><p class="q">ما الحد الفاصل عند الضيف بين الاستفادة من ممارسات الآخرين والخلط المرفوض؟</p><p class="a">الاستفادة من «التقنية» كقانون طبيعي للنفس مقبولة إذا وُضعت فيها النية الشرعية والتوحيد وكانت مباحة فقهًا. أما خلط العقائد والتعبّد بطقوس الآخرين فمرفوض.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=3439" target="_blank" rel="noopener">57:19</a><span>الفصل 12</span></div>
+    <h3>مظاهر التصوف تحت الميزان</h3>
+    <div class="body">
+      <ul class="pts">
+        <li>المظاهر المنتقدة: الدف والمديح في المسجد، والغلو في النبي ﷺ (علم الغيب، «لولاه ما خرجت الدنيا»)، ودعاء الأموات، و«حدثني قلبي عن ربي»، والمشي على الماء، واشتراط «الكرامة» للشيخ المربي.</li>
+        <li>المنهج واحد: اعرض كل فعل على المذاهب الأربعة. فإن قال المذهب «باطل» فالطريقة مخطئة في هذا الفعل.</li>
+        <li>بعض المشكلات عقدية وتعليمية أصلًا، مثل الخلط في فهم الممكن والواجب والكرامات. علاجها بالتعليم.</li>
+        <li>أكثر من كشف حيل مدّعي الولاية هم الصوفية أنفسهم، كالجوبري في القرن السابع الهجري.</li>
+        <li>القصص الرمزية، مثل موت الغزالي وصحيح البخاري على صدره، لا دلالة علمية لها. الدين محفوظ بالأصول، لا بالكلام الشعبوي.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=3665" target="_blank" rel="noopener">61:05</a><span>الفصل 13</span></div>
+    <h3>لماذا يُفترى على التصوف؟</h3>
+    <div class="body">
+      <ul class="pts">
+        <li><b>أولًا:</b> ما يُبتدع باسم التصوف ليس هو التصوف.</li>
+        <li><b>ثانيًا:</b> الناس تستحسن وتستقبح بمزاجها، ثم تُلبس ذلك لباس الشريعة. وهذا عنده «أعظم افتراء».</li>
+        <li><b>ثالثًا:</b> أفعال سيئة فعلًا من بعض المنتسبين، فيُخلط المصداق بالمفهوم.</li>
+        <li><b>رابعًا:</b> التلفيق، أي جمع نص من الأشعري ونص من الباقلاني ونص من ابن تيمية ونص من أحمد في توليفة لا معنى لها.</li>
+      </ul>
+      <div class="qa"><p class="q">اذكر الأسباب الأربعة للافتراء على التصوف عند الضيف.</p><p class="a">(1) نسبة المبتدَع إليه. (2) الاستحسان والاستقباح بالمزاج ثم إلباسه ثوب الشرع. (3) الخلط بين أفعال المنتسبين ومفهوم التصوف. (4) التلفيق بين النصوص.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=3763" target="_blank" rel="noopener">62:43</a><span>الفصل 14</span></div>
+    <h3>هل تلزم طريقة صوفية؟</h3>
+    <div class="body">
+      <ul class="pts">
+        <li>التصوف (العلم) شيء، والطريقة الصوفية شيء آخر، تمامًا كالفرق بين الفقه والمذهب الفقهي.</li>
+        <li>العلم منظَّم جدًا. لا تطلب الإخلاص أول الطريق وإلا أصابك الوسواس، لأن توحيد الدافع لشيء غائب عنك صعب. الترتيب الذي ذكره: توبة ← خوف ← زهد ← رجاء ← صدق ← إخلاص.</li>
+        <li>«الكامل من كل وجه لا يطلب الكمال»: يبدأ الطريق مذنبًا يعرف نقصه.</li>
+        <li>ابن خلدون («شفاء السائل لتهذيب المسائل»): مجاهدة التقوى، ثم الاستقامة، ثم المكاشفة. والشيخ شرط في المكاشفة، لأنها طريق مجهول تختلط فيه الأوهام والوساوس.</li>
+        <li>«الطريق الذي يُسلك به إلى محبة الله هو نفسه الذي يُسلك به إلى محبة الشيطان»، ولذلك تحتاج مرشدًا في المراحل الخفية.</li>
+        <li>سأل المحاور: يكفي صديق سبقني في الطريق؟ فأجاب: نعم، هذا هو المراد (منتور).</li>
+      </ul>
+      <div class="qa"><p class="q">هل يجب على كل أحد الانتساب لطريقة صوفية حسب كلام الحلقة؟</p><p class="a">لا. الطريقة كالمذهب، وسيلة منظمة. ومراحل التقوى والاستقامة لا تفتقر إلى شيخ عند ابن خلدون، والشيخ شرط في مرحلة المكاشفة. ويكفي مرشد ثقة سبقك في الطريق.</p></div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=4017" target="_blank" rel="noopener">66:57</a><span>الفصل 15</span></div>
+    <h3>ماذا خسر المسلمون بترك التصوف؟</h3>
+    <div class="body">
+      <ul class="pts">
+        <li>لم يسلكوا طريق الحب والتوحيد العملي. الصلاة الصحيحة فقهًا «وعاء فارغ» يحتاج أن يُملأ.</li>
+        <li>البعد عن جوهر الإسلام، وخواء في المعنى وفي النفس، وكثرة الإدمانات والأمراض النفسية والوساوس الناتجة عن أفكار عقدية خاطئة.</li>
+        <li>«الإنسان صوفي بطبعه»: إن لم يجد طريقًا صحيحًا بحث عن بديل.</li>
+        <li>زمالات المدمنين (12 خطوة) بنيتها بنية «طريقة»: مشرف تعرض عليه خواطرك، ومجالس منتظمة، ودعاء يتكرر فيثبت في النفس. ورفض الضيف ترديد «دعاء السكينة» لأن أصله مسيحي.</li>
+      </ul>
+      <div class="margin-note"><b>حاشية:</b> نسب الضيف دعاء السكينة إلى «القديس بولس في 1900 وشوية». والصحيح أنه للاهوتي الأمريكي راينهولد نيبور. التفاصيل في قسم المراجعة.</div>
+    </div>
+  </article>
+
+  <article class="lesson">
+    <div class="folio"><a class="num" href="https://youtu.be/EzjvmLyF7OI?t=4120" target="_blank" rel="noopener">68:40</a><span>الفصل 16</span></div>
+    <h3>نصيحة للسالك والناقد</h3>
+    <div class="body">
+      <ul class="pts">
+        <li><b>للسالك:</b> تعلّم الفقه. والطرق التي يعرفها في مصر تعلّمه، وكثير منها يدير مدارس لأطفال الفقراء في أماكن نائية.</li>
+        <li><b>للناقد، مؤيدًا أو معارضًا:</b> حدّد الموضع الخطأ بالضبط، واذكر دليله، وإن قلت «حرام» فاذكر رأي مذهب معتبر. غير ذلك تلفيق لا قيمة له.</li>
+      </ul>
+    </div>
+  </article>
+</section>
+
+<!-- PRACTICE -->
+<section class="block" id="practice">
+  <div class="sec-head">
+    <h2>التطبيق العملي</h2>
+    <p>ما قيل في الحلقة محوَّلًا إلى أدوات تستخدمها بنفسك.</p>
+  </div>
+
+  <div class="card">
+    <h3>1. ميزان أي ممارسة أو نقد</h3>
+    <ol class="steps">
+      <li><div><b>افصل المفهوم عن المصداق</b>هل تنتقد التصوف كعلم، أم فعل شخص أو طريقة بعينها؟</div></li>
+      <li><div><b>صنّف المسألة</b>فكرة أو اعتقاد؟ اذهب للعقيدة. فعل ظاهر؟ اذهب للفقه. دافع أو حال قلبي؟ هذا مجال التصوف.</div></li>
+      <li><div><b>اسأل مذهبًا معتبرًا محددًا</b>«ما حكم هذا في المذهب الحنفي/المالكي/الشافعي/الحنبلي؟»، لا قولًا منفردًا مقتطعًا.</div></li>
+      <li><div><b>احذر التلفيق</b>لا تجمع نصوصًا متفرقة من أئمة مختلفين لتثبت رأيًا مسبقًا.</div></li>
+      <li><div><b>سلّم للنتيجة</b>المقبول فقهًا مقبول ولو استغربتَه، والمرفوض مرفوض ولو فعله من تحب.</div></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>2. التوبة كإطار عمل: مثال الحسد</h3>
+    <p class="muted">المثال الذي ضربه الضيف: شتمتُ شخصًا، فكيف أتوب «بالقانون»؟</p>
+    <ol class="steps">
+      <li><div><b>العلم (اليقظة)</b>راجع أفكارك: لماذا شتمته؟ «شعرت أنه ينتقص مني، أو أخذ مكانة أستحقها». التشخيص: هذا حسد.</div></li>
+      <li><div><b>الحال (الندم)</b>إن لم تجد الندم، استدعِه بإحدى ثلاث طرق ذكرها: الاعتبار (التأمل)، أو الإخبار (معرفة حقيقة المرض وعواقبه)، أو الاختبار (التجربة).</div></li>
+      <li><div><b>العمل</b>أفعال تغيّر «رتب القيم» عندك، مع إصلاح ما أفسدته مع الشخص نفسه.</div></li>
+      <li><div><b>كرّر</b>التوبة مهارة دائمة لا «تاريخ» واحد. وشكل تطبيقها يختلف بحسب طبيعتك، فالشجاع غير المتردد.</div></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>3. ترتيب المقامات: لا تقفز</h3>
+    <div class="ladder" aria-label="ترتيب المقامات كما ذكره الضيف">
+      <span class="r">توبة</span><span class="a">←</span><span class="r">خوف</span><span class="a">←</span><span class="r">زهد</span><span class="a">←</span><span class="r">رجاء</span><span class="a">←</span><span class="r">صدق</span><span class="a">←</span><span class="r">إخلاص</span>
+    </div>
+    <p class="muted">هذا الترتيب كما ذكره الضيف للتمثيل. ترتيب المقامات وعددها يختلف بين كتب القوم، فالقشيري والهروي مثلًا لهما ترتيبان مختلفان. والقاعدة الثابتة: طلب الإخلاص قبل أوانه يورث الوسواس.</p>
+  </div>
+
+  <div class="card">
+    <h3>4. خريطة ابن خلدون: متى تحتاج شيخًا؟</h3>
+    <div class="khaldun">
+      <div><span class="v">مجاهدة التقوى</span><p>المحافظة على الفروض، والتوبة، وألا تحتقر أحدًا من المسلمين.</p><span class="tag">تكفي الكتب ومعلم الفقه</span></div>
+      <div><span class="v">مجاهدة الاستقامة</span><p>بعد انضباط الظاهر، العمل على الباطن: الأخلاق والدوافع.</p><span class="tag">صديق سبقك أو مرشد يساعد</span></div>
+      <div><span class="v">مجاهدة المكاشفة</span><p>طريق غير مدوَّن تختلط فيه الأوهام والوساوس بالحقائق.</p><span class="tag need">الشيخ هنا شرط</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section class="block" id="review">
+  <div class="sec-head">
+    <h2>مراجعة وتحديث</h2>
+    <p>الحلقة حديثة (سبتمبر 2026) ومحتواها مفاهيمي، فلا توجد «تحديثات» بمعنى تغيّر أداة أو منصة. لكني راجعتُ المعلومات الواقعية التي ذكرها الضيف: بعضها يحتاج تصحيحًا، وفي مسألة علمية واحدة حدث تطور يستحق المعرفة.</p>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>الموضوع</th><th>ما قيل في الحلقة</th><th>الصحيح / الأحدث</th><th>الحالة</th></tr></thead>
+      <tbody>
+        <tr><td>دعاء السكينة (Serenity Prayer)</td><td>«دعاء القديس بولس، في 1900 وشوية»</td><td>كتبه اللاهوتي الأمريكي راينهولد نيبور في ثلاثينيات وأربعينيات القرن العشرين، وانتشر عبر زمالة المدمنين المجهولين (AA) في الأربعينيات. ليس من رسائل بولس. وأصله المسيحي صحيح.</td><td><span class="pill fix">تصحيح</span></td></tr>
+        <tr><td>برنامج MBSR للتأمل</td><td>«طريقة علاج 14 يوم قائمة على التأمل الروحي»</td><td>برنامج «تقليل التوتر القائم على اليقظة الذهنية» أسسه جون كابات-زين في جامعة ماساتشوستس عام 1979، ومدته 8 أسابيع.</td><td><span class="pill fix">تصحيح</span></td></tr>
+        <tr><td>بطليموس</td><td>«كان راجل طبيب وكان فلكي»</td><td>بطليموس فلكي ورياضي وجغرافي، ولا يُعرف طبيبًا. ربما اختلط بجالينوس، وللرازي كتاب «الشكوك على جالينوس». أما نص ابن الهيثم المقروء فصحيح.</td><td><span class="pill fix">تصحيح بسيط</span></td></tr>
+        <tr><td>هل الإدمان فعل إرادي؟</td><td>الضيف: إرادي (خلافًا لحلقة سابقة في سهم)</td><td>الموقف الرسمي للمعهد الأمريكي لأبحاث المخدرات (NIDA): الإدمان اضطراب مزمن انتكاسي يغيّر وظائف الدماغ. الدليل التشخيصي DSM-5 (2013) دمج «سوء الاستخدام» و«الاعتماد» في تشخيص واحد هو «اضطراب تعاطي المواد»، وأبقاه DSM-5-TR (2022). وفي المقابل نماذج «التعلّم» و«الاختيار» (مارك لويس، جين هايمان). المسألة خلافية علميًا، وقول الضيف أحد طرفيها.</td><td><span class="pill upd">تحديث علمي</span></td></tr>
+        <tr><td>أبو حنيفة والإيمان</td><td>«الإيمان هو التصديق العقلي، لا يزيد ولا ينقص»</td><td>المنقول عن أبي حنيفة: الإيمان تصديق بالقلب وإقرار باللسان، لا يزيد ولا ينقص. ووصفه بـ«العقلي» تبسيط من الضيف.</td><td><span class="pill upd">ضبط</span></td></tr>
+        <tr><td>«ألفا تعريف للتصوف»</td><td>اعتراض متداول: 2000 تعريف</td><td>الرقم ثابت في المصادر: قال أحمد زروق في «قواعد التصوف» إن التصوف حُدّ ورُسم وفُسّر بوجوه تبلغ نحو الألفين.</td><td><span class="pill ok">مؤكَّد</span></td></tr>
+        <tr><td>«من زاد عليك في الخُلق...»</td><td>مقولة في تعريف التصوف بالأخلاق</td><td>مشهورة عن أبي بكر الكتاني: «التصوف خُلق، فمن زاد عليك في الخلق زاد عليك في الصفاء». نقلها القشيري، وذكرها ابن القيم في «مدارج السالكين».</td><td><span class="pill ok">مؤكَّد</span></td></tr>
+        <tr><td>كتاب الجوبري</td><td>«كتب كتاب 600 وشوية في حيل مدعي النبوة والتصوف»</td><td>عبد الرحيم الجوبري، «المختار في كشف الأسرار وهتك الأستار»، في القرن السابع الهجري (الـ600 هجرية لا ميلادية).</td><td><span class="pill ok">مؤكَّد مع توضيح</span></td></tr>
+        <tr><td>ابن خلدون ومراحل السلوك</td><td>تقوى ثم استقامة ثم مكاشفة، والشيخ شرط في المكاشفة</td><td>صحيح في جملته، وهو في «شفاء السائل لتهذيب المسائل».</td><td><span class="pill ok">مؤكَّد</span></td></tr>
+        <tr><td>«معارج القدس» للغزالي</td><td>ذُكر ضمن كتب الغزالي</td><td>نسبته للغزالي محل نقاش بين الباحثين. أما «الإحياء» وباب «آداب السماع والوجد» فيه فثابتان.</td><td><span class="pill upd">تنبيه</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="block" id="quiz">
+  <div class="sec-head">
+    <h2>اختبر فهمك</h2>
+    <p>12 سؤالًا. أجب أولًا، ثم اضغط «صحّح إجاباتي». الإجابات مع الشرح في القسم التالي.</p>
+  </div>
+  <form class="quiz" id="quizForm" novalidate>
+    <fieldset class="qz" id="q1"><legend>ما العلم الذي يضبط «المساحة القلبية» (النزوع والدوافع) حسب الضيف؟</legend>
+      <label><input type="radio" name="q1" value="a" id="q1a"><span>الفقه</span></label>
+      <label><input type="radio" name="q1" value="b" id="q1b"><span>العقيدة</span></label>
+      <label><input type="radio" name="q1" value="c" id="q1c"><span>التصوف</span></label>
+      <label><input type="radio" name="q1" value="d" id="q1d"><span>المنطق</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <fieldset class="qz" id="q2"><legend>كثرة تعريفات التصوف (نحو ألفين) تعني عند الضيف أن:</legend>
+      <label><input type="radio" name="q2" value="a" id="q2a"><span>التصوف بلا أصل</span></label>
+      <label><input type="radio" name="q2" value="b" id="q2b"><span>أغلبها تعريفات بالرسم بحسب حال السائل</span></label>
+      <label><input type="radio" name="q2" value="c" id="q2c"><span>الصوفية مختلفون في العقيدة</span></label>
+      <label><input type="radio" name="q2" value="d" id="q2d"><span>التعريفات أُضيفت متأخرًا</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <fieldset class="qz" id="q3"><legend>حين يقول الضيف «التصوف علم»، فأي معنى للعلم يقصد؟</legend>
+      <label><input type="radio" name="q3" value="a" id="q3a"><span>مجرد الإدراك</span></label>
+      <label><input type="radio" name="q3" value="b" id="q3b"><span>الملكة وحدها</span></label>
+      <label><input type="radio" name="q3" value="c" id="q3c"><span>المسائل الكلية المنضبطة والقوانين</span></label>
+      <label><input type="radio" name="q3" value="d" id="q3d"><span>حفظ النصوص</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <fieldset class="qz" id="q4"><legend>ما أركان التوبة الثلاثة كما ذكرها؟</legend>
+      <label><input type="radio" name="q4" value="a" id="q4a"><span>علم، ثم ندم، ثم فعل</span></label>
+      <label><input type="radio" name="q4" value="b" id="q4b"><span>خوف، ثم رجاء، ثم حب</span></label>
+      <label><input type="radio" name="q4" value="c" id="q4c"><span>نية، ثم قول، ثم عمل</span></label>
+      <label><input type="radio" name="q4" value="d" id="q4d"><span>صلاة، ثم صيام، ثم صدقة</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <fieldset class="qz" id="q5"><legend>أي أركان التوبة قال إنه «ينشأ تلقائيًا ولا يتعلق به تكليف»؟</legend>
+      <label><input type="radio" name="q5" value="a" id="q5a"><span>العلم (اليقظة)</span></label>
+      <label><input type="radio" name="q5" value="b" id="q5b"><span>الندم (الحال)</span></label>
+      <label><input type="radio" name="q5" value="c" id="q5c"><span>الفعل</span></label>
+      <label><input type="radio" name="q5" value="d" id="q5d"><span>لا شيء منها</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <fieldset class="qz" id="q6"><legend>لماذا ليس الوعظ هو التصوف؟</legend>
+      <label><input type="radio" name="q6" value="a" id="q6a"><span>لأن الوعظ مذموم شرعًا</span></label>
+      <label><input type="radio" name="q6" value="b" id="q6b"><span>لأن الوعظ شعور لحظي، والتصوف علم يضبط السلوك باستمرار</span></label>
+      <label><input type="radio" name="q6" value="c" id="q6c"><span>لأن الوعظ للعامة فقط</span></label>
+      <label><input type="radio" name="q6" value="d" id="q6d"><span>لأن الوعظ بدعة حديثة</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <fieldset class="qz" id="q7"><legend>الحسد بوصفه فعلًا من أفعال النفس، أي علم يتعامل معه حسب الضيف؟</legend>
+      <label><input type="radio" name="q7" value="a" id="q7a"><span>الفقه، لأنه يحكم بالحلال والحرام</span></label>
+      <label><input type="radio" name="q7" value="b" id="q7b"><span>التصوف، لأن الفقه مختص بالظاهر</span></label>
+      <label><input type="radio" name="q7" value="c" id="q7c"><span>علم النفس وحده</span></label>
+      <label><input type="radio" name="q7" value="d" id="q7d"><span>العقيدة</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <fieldset class="qz" id="q8"><legend>ما معنى «بقيد الشرع» في تعريف التصوف؟</legend>
+      <label><input type="radio" name="q8" value="a" id="q8a"><span>ألا نأخذ أي تقنية من خارج التراث الإسلامي</span></label>
+      <label><input type="radio" name="q8" value="b" id="q8b"><span>أن ينطلق السلوك من أفكار عقدية منضبطة وأفعال فقهية مشروعة</span></label>
+      <label><input type="radio" name="q8" value="c" id="q8c"><span>الالتزام بطريقة صوفية معينة</span></label>
+      <label><input type="radio" name="q8" value="d" id="q8d"><span>ترك علم النفس الحديث</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <fieldset class="qz" id="q9"><legend>عند ابن خلدون، في أي مرحلة يكون الشيخ شرطًا؟</legend>
+      <label><input type="radio" name="q9" value="a" id="q9a"><span>في كل المراحل</span></label>
+      <label><input type="radio" name="q9" value="b" id="q9b"><span>مجاهدة التقوى</span></label>
+      <label><input type="radio" name="q9" value="c" id="q9c"><span>مجاهدة الاستقامة</span></label>
+      <label><input type="radio" name="q9" value="d" id="q9d"><span>مجاهدة المكاشفة</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <fieldset class="qz" id="q10"><legend>لماذا لا يُطلب مقام الإخلاص في أول الطريق؟</legend>
+      <label><input type="radio" name="q10" value="a" id="q10a"><span>لأنه غير مطلوب شرعًا</span></label>
+      <label><input type="radio" name="q10" value="b" id="q10b"><span>لأن طلبه قبل أوانه يورث الوسواس، وللمقامات ترتيب</span></label>
+      <label><input type="radio" name="q10" value="c" id="q10c"><span>لأنه خاص بالشيوخ</span></label>
+      <label><input type="radio" name="q10" value="d" id="q10d"><span>لأنه يأتي بالكرامات فقط</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <fieldset class="qz" id="q11"><legend>ما «التلفيق» الذي حذّر منه الضيف؟</legend>
+      <label><input type="radio" name="q11" value="a" id="q11a"><span>تقليد مذهب واحد</span></label>
+      <label><input type="radio" name="q11" value="b" id="q11b"><span>جمع نصوص متفرقة من أئمة مختلفين خارج سياقها لإثبات رأي مسبق</span></label>
+      <label><input type="radio" name="q11" value="c" id="q11c"><span>ترجمة كتب التصوف</span></label>
+      <label><input type="radio" name="q11" value="d" id="q11d"><span>الكذب الصريح على العلماء</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <fieldset class="qz" id="q12"><legend>قاعدة «المشابهة لا يلزم منها المؤاخذة» تعني أن:</legend>
+      <label><input type="radio" name="q12" value="a" id="q12a"><span>كل ما يشبه ممارسات الأديان الأخرى مقبول بلا قيد</span></label>
+      <label><input type="radio" name="q12" value="b" id="q12b"><span>تشابه ممارسة مع ممارسة دين آخر لا يثبت أنها مأخوذة منه أو مذمومة إلا بدليل</span></label>
+      <label><input type="radio" name="q12" value="c" id="q12c"><span>لا يجوز التشابه مطلقًا</span></label>
+      <label><input type="radio" name="q12" value="d" id="q12d"><span>المؤاخذة على النية فقط</span></label>
+      <span class="fb" aria-live="polite"></span></fieldset>
+    <div class="qbar">
+      <button type="submit" id="checkBtn">صحّح إجاباتي</button>
+      <button type="button" class="ghost" id="resetBtn">ابدأ من جديد</button>
+      <span id="score" aria-live="polite"></span>
+    </div>
+  </form>
+</section>
+
+<!-- ANSWERS -->
+<section class="block" id="answers">
+  <div class="sec-head">
+    <h2>الإجابات</h2>
+    <p>مفتاح الاختبار مع سبب كل إجابة والدقيقة التي ورد فيها الكلام.</p>
+  </div>
+  <ol class="key">
+    <li><b>التصوف.</b> العقيدة للأفكار، والفقه للأفعال، والتصوف للنزوع. <span class="muted num">(13:15)</span></li>
+    <li><b>أغلبها تعريفات بالرسم.</b> تعرّف بالأثر بحسب حال السائل، وتعدّدها لا ينفي الأصل. <span class="muted num">(20:34)</span></li>
+    <li><b>المسائل الكلية المنضبطة.</b> قوانين كلية تضبط النفس، كقانون أوم في الكهرباء. <span class="muted num">(22:57)</span></li>
+    <li><b>علم، ثم ندم، ثم فعل.</b> وهو تقسيم الغزالي: علم وحال وعمل. <span class="muted num">(27:30)</span></li>
+    <li><b>الندم (الحال).</b> شعور ينشأ تلقائيًا بعد العلم، ولا يتعلق به التكليف مباشرة. <span class="muted num">(27:30)</span></li>
+    <li><b>الوعظ شعور لحظي.</b> الوعظ تحفيز، والتصوف علم يضبط السلوك كله. <span class="muted num">(45:50)</span></li>
+    <li><b>التصوف.</b> الفقه يحكم على الظاهر، والحسد فعل نفساني باطن. <span class="muted num">(43:30)</span></li>
+    <li><b>أفكار عقدية منضبطة وأفعال فقهية مشروعة.</b> والتقنيات نفسها يجوز أخذها من أي علم. <span class="muted num">(37:30)</span></li>
+    <li><b>مجاهدة المكاشفة.</b> لأنها طريق غير مدوّن تختلط فيه الأوهام بالحقائق. <span class="muted num">(64:00)</span></li>
+    <li><b>يورث الوسواس.</b> توحيد الدافع لشيء غائب صعب، فتسبقه التوبة والخوف والزهد والرجاء والصدق. <span class="muted num">(63:00)</span></li>
+    <li><b>جمع نصوص متفرقة لإثبات رأي مسبق.</b> مثل نص من الأشعري مع نص من ابن تيمية مع نص من أحمد. <span class="muted num">(61:40)</span></li>
+    <li><b>التشابه لا يثبت الأخذ ولا الذم إلا بدليل.</b> مثال البودكاست: إنشاء برنامج مشابه لا يعني السرقة. <span class="muted num">(55:00)</span></li>
+  </ol>
+</section>
+
+<!-- SOURCES -->
+<section class="block" id="sources">
+  <div class="sec-head">
+    <h2>للتوسع</h2>
+    <p>موضوعات فتحتها الحلقة ولم تكملها، مع أهم مصادرها. ووضعت بجانب المصادر الصوفية مصادر ناقدة ومصادر أكاديمية لتكون الصورة متوازنة.</p>
+  </div>
+  <div class="src">
+    <div><h4>التصوف كعلم ومقاماته</h4>
+      <ul><li>القشيري، «الرسالة القشيرية»</li><li>أحمد زروق، «قواعد التصوف»</li><li>الغزالي، «إحياء علوم الدين»، ربع المنجيات</li><li>ابن خلدون، «شفاء السائل لتهذيب المسائل»</li></ul>
+      <p class="why">لأن الضيف بنى كلامه على أن للتصوف قوانين مدوّنة.</p></div>
+    <div><h4>أمراض القلوب وعلاجها</h4>
+      <ul><li>الحارث المحاسبي، «الرعاية لحقوق الله»</li><li>الغزالي، «الإحياء»: «كتاب ذم الغضب والحقد والحسد» و«كتاب التوبة»</li></ul>
+      <p class="why">لتطبيق «التوبة كإطار عمل» ومثال الحسد بالتفصيل.</p></div>
+    <div><h4>القلب والنفس والروح</h4>
+      <ul><li>الغزالي، «الإحياء»: «كتاب شرح عجائب القلب»</li><li>الحكيم الترمذي، «بيان الفرق بين الصدر والقلب والفؤاد واللب»</li></ul>
+      <p class="why">الخلاف الذي أشار إليه الضيف في معنى القلب.</p></div>
+    <div><h4>المنطق والتعريفات</h4>
+      <ul><li>الأخضري، «السُّلَّم المنورق» وشروحه</li><li>عبد الرحمن حبنكة الميداني، «ضوابط المعرفة»</li></ul>
+      <p class="why">للتمييز بين الحد والرسم، والمفهوم والمصداق، وكشف المغالطات.</p></div>
+    <div><h4>الرأي الآخر (نقد التصوف)</h4>
+      <ul><li>ابن تيمية، «مجموع الفتاوى»، المجلدان 10 و11 (السلوك والتصوف)</li><li>ابن القيم، «مدارج السالكين» (شرح نقدي لمنازل الهروي)</li><li>ابن الجوزي، «تلبيس إبليس»</li></ul>
+      <p class="why">لأن مسائل مثل دعاء غير الله والسماع خلافية، ويحسن أن تسمع الطرف الآخر من مصادره.</p></div>
+    <div><h4>دراسات أكاديمية</h4>
+      <ul><li>Alexander Knysh, <i>Sufism: A New History of Islamic Mysticism</i> (2017)</li><li>Ahmet Karamustafa, <i>Sufism: The Formative Period</i> (2007)</li><li>William Chittick, <i>Sufism: A Beginner's Guide</i></li></ul>
+      <p class="why">لسؤال «هل أصل التصوف يوناني أو بوذي؟» من زاوية تاريخية.</p></div>
+    <div><h4>علم النفس الإسلامي</h4>
+      <ul><li>أبو زيد البلخي، «مصالح الأبدان والأنفس»</li><li>مالك بدري، «التفكر: من المشاهدة إلى الشهود»</li><li>Abdallah Rothman, <i>Developing a Model of Islamic Psychology and Psychotherapy</i> (2021)</li></ul>
+      <p class="why">المجال الذي دخل منه الضيف إلى التصوف.</p></div>
+    <div><h4>الإدمان واليقظة الذهنية</h4>
+      <ul><li>NIDA, <i>Drugs, Brains, and Behavior: The Science of Addiction</i></li><li>Marc Lewis, <i>The Biology of Desire</i> (2015)</li><li>Jon Kabat-Zinn, <i>Full Catastrophe Living</i></li><li>Marsha Linehan, <i>DBT Skills Training Manual</i> (2014)</li></ul>
+      <p class="why">لنقاش «هل الإدمان إرادي؟»، والتقنيات التي قال الضيف إنها تُستخدم بقيد الشرع.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: حلقة «كيف نفهم التصوف بوصفه علمًا؟» على قناة سهم، 22 سبتمبر 2026. الملخص مبني على النص المفرّغ للحلقة.</p>
+  <p>الأوقات في هامش كل فصل تقريبية بفارق ثوانٍ.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY={q1:'c',q2:'b',q3:'c',q4:'a',q5:'b',q6:'b',q7:'b',q8:'b',q9:'d',q10:'b',q11:'b',q12:'b'};
+  var form=document.getElementById('quizForm');
+  var score=document.getElementById('score');
+  var total=Object.keys(KEY).length;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var s=0,answered=0;
+    Object.keys(KEY).forEach(function(q){
+      var fs=document.getElementById(q);
+      var fb=fs.querySelector('.fb');
+      var sel=fs.querySelector('input:checked');
+      fs.classList.remove('ok','bad','skip');
+      if(!sel){fs.classList.add('skip');fb.textContent='لم تُجب على هذا السؤال';return;}
+      answered++;
+      if(sel.value===KEY[q]){s++;fs.classList.add('ok');fb.textContent='إجابة صحيحة';}
+      else{fs.classList.add('bad');fb.textContent='إجابة غير صحيحة، راجع مفتاح الإجابات';}
+    });
+    score.textContent='نتيجتك: '+s+' من '+total+(answered<total?' (لم تُجب على '+(total-answered)+')':'');
+  });
+  document.getElementById('resetBtn').addEventListener('click',function(){
+    form.reset();score.textContent='';
+    form.querySelectorAll('fieldset.qz').forEach(function(fs){fs.classList.remove('ok','bad','skip');fs.querySelector('.fb').textContent='';});
+  });
+})();
+</script>

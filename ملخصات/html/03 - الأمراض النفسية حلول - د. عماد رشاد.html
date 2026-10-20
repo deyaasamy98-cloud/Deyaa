@@ -1,0 +1,679 @@
+<title>الأمراض النفسية حلول</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column; a "lantern" accent (amber) marks actions, teal marks concepts. Light through a crack: the series' own image of recovery. */
+:root{
+  --bg:#F3F5F4; --surface:#E6ECEA; --ink:#14201F; --muted:#52615F; --rule:#CFD9D6;
+  --teal:#136F63; --teal-soft:#D7EAE6; --amber:#9A5806; --amber-soft:#F5E6D0;
+  --red:#A33B3B; --red-soft:#F4DEDC; --green:#2C7650; --green-soft:#DDEFE4;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{direction:rtl;max-width:900px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.4;margin:0;font-weight:700}
+h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.1rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+
+header.top{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--amber);font-weight:600}
+h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,3.3rem)}
+.lede{font-size:1.06rem;color:var(--muted);max-width:64ch}
+.coverage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px}
+.coverage .big{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--teal);grid-row:span 2}
+.coverage .bar{height:8px;background:var(--rule);border-radius:99px;overflow:hidden}
+.coverage .bar i{display:block;height:100%;width:37.5%;background:var(--teal);border-radius:99px}
+.coverage p{font-size:.9rem;color:var(--muted)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.92rem;padding:5px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--teal);color:var(--teal)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+
+/* themes */
+.theme{border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:10px}
+.theme-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.theme-head .idx{font-family:var(--f-display);color:var(--amber);font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:.8rem;text-decoration:none;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);white-space:nowrap}
+.chips a:hover{text-decoration:underline}
+.theme ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.theme ul li::marker{color:var(--teal)}
+.key{background:var(--teal-soft);border-radius:10px;padding:10px 14px;font-weight:500;max-width:70ch}
+.key b{color:var(--teal)}
+
+/* tree */
+.tree-wrap{overflow-x:auto}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul > li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-family:var(--f-display);font-size:1.35rem;background:var(--ink);color:var(--bg);padding:6px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-family:var(--f-display);font-size:1.08rem;color:var(--teal)}
+.tree .lf{font-size:.95rem}
+.tree .lf b{color:var(--amber);font-weight:600}
+
+/* research */
+.res{display:grid;gap:12px}
+.rcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.rcard .claim{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.rcard .claim h4{flex:1 1 260px}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.mix{background:var(--amber-soft);color:var(--amber)}
+.pill.no{background:var(--red-soft);color:var(--red)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgrid > div{border-radius:8px;padding:10px 12px;font-size:.92rem;min-width:0}
+.rgrid .pro{background:var(--green-soft)}
+.rgrid .con{background:var(--red-soft)}
+.rgrid .lbl{display:block;font-weight:600;font-size:.8rem;margin-bottom:2px}
+.rgrid .pro .lbl{color:var(--green)}
+.rgrid .con .lbl{color:var(--red)}
+.rcard .bottom{font-size:.92rem}
+.rcard .bottom b{color:var(--teal)}
+@media (max-width:620px){.rgrid{grid-template-columns:1fr}}
+.cite{font-size:.82rem;color:var(--muted)}
+
+/* actions */
+.path{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.path > li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.path > li::before{content:counter(p);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--amber);color:var(--bg);font-weight:600;font-variant-numeric:tabular-nums}
+.path b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.path span{font-size:.93rem}
+.acard{border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px}
+.acard h3{display:flex;gap:10px;align-items:baseline}
+.acard h3 .tag{font-family:var(--f-body);font-size:.75rem;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:1px 8px;border-radius:999px}
+.acard ul,.acard ol{margin:0;padding-inline-start:20px;display:grid;gap:5px}
+.acard li::marker{color:var(--amber);font-variant-numeric:tabular-nums}
+.acard .src{font-size:.78rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--surface);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.old{color:var(--red)}
+td.new{color:var(--green);font-weight:500}
+td.v{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{border-radius:10px;padding:12px 14px;min-width:0}
+.two .bad{background:var(--red-soft)}
+.two .good{background:var(--green-soft)}
+.two h4{margin-bottom:4px}
+.two .bad h4{color:var(--red)}
+.two .good h4{color:var(--green)}
+.two ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.93rem}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--amber);padding-inline-start:12px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer details summary{cursor:pointer;color:var(--ink);font-weight:500}
+footer ul{margin:6px 0 0;padding-inline-start:18px;columns:2;column-gap:28px}
+@media (max-width:560px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">د. عماد رشاد عثمان · لايف أسئلة وأجوبة · ساعة ودقيقة · 4 أكتوبر 2026</span>
+  <h1>الأمراض النفسية حلول</h1>
+  <p class="lede">لايف من 11 سؤالًا، والخيط الذي يربطها: كل عرض نفسي كان في الأصل محاولة لحل مشكلة. هنا الملخص، والتشجير، وما تقوله الأبحاث مع الفكرة وضدها، ثم المطلوب منك مرتبًا.</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<!-- ============ SUMMARY ============ -->
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>بترتيب الأسئلة في اللايف. التوقيت بجانب كل عنوان يفتح الفيديو عند هذه اللحظة.</p>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>هل تبقى الحساسية الإدمانية بعد التعافي؟</h3>
+      <div class="chips"><a href="https://youtu.be/U5qAlvO2kIw?t=0" target="_blank" rel="noopener">0:00</a></div></div>
+    <p class="key"><b>الفكرة:</b> المشكلة ليست العادة السرية ولا المشاهدة في ذاتها، بل الاعتماد عليهما مصدرًا وحيدًا للتفريغ الجنسي. عندها يتحول الجنس من علاقة بين اثنين إلى علاقة مع الذات.</p>
+    <ul>
+      <li>الإباحية تعامل «اختزالي» مع الجنس: «عبودية الصورة» و«الولاء المؤقت». تحتاج صورة ثم صورة ثم صورة، فيصعب بناء علاقة حقيقية في الزواج.</li>
+      <li>يذكر أن فقهاء أجازوا الاستمناء، وأنه بلا ضرر طبي. الضرر في الاعتماد عليه.</li>
+      <li>للاعتماد أثران. الأول «قلق الأداء»: مقارنة الأداء والحجم والمدة وشكل الجسم بما في الإباحية. والثاني «التمحور حول الذات»، حتى تصير كل العلاقات «نموذجًا استمنائيًا»: كيف أستخدم الناس لإشباع احتياجاتي.</li>
+      <li>التعافي هنا مزدوج: توقف عن النمط المرضي، وتعديل للعلاقة بالمادة، كما يعدّل مدمن الطعام علاقته بالأكل ومدمن الشراء علاقته بالشراء.</li>
+      <li>باتريك كارنز: من 3 إلى 5 سنوات توقف حتى يحدث تغيير كامل. «وسيبك من كلام الـ90 يوم».</li>
+      <li>رأيه من الخبرة: المدة أقل أهمية من القدرة على علاقة صحية، كصداقة لا ترى فيها صديقك أداة لإشباعك، وعلاقة حقيقية بامرأة عبر خطوبة أو زواج لا تستخدمها فيها. هذا يرمّم أسرع بكثير. فترة توقف (تختلف بالشخص والسن) مع علاقة صحية فيها شراكة، و«الموضوع انتهى».</li>
+      <li>يختلف هنا مع الزمالات التي تقول «العمر كله». «ناس كتير بتتعافى وما بتفضلش طول عمرها لا في العلاج ولا في الزمالات».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٢</span><h3>حين يكون الإدمان عرضًا لاضطراب آخر</h3>
+      <div class="chips"><a href="https://youtu.be/U5qAlvO2kIw?t=380" target="_blank" rel="noopener">6:20</a></div></div>
+    <p class="key"><b>الفكرة:</b> كثير ممن يعدّون أنفسهم مدمني إباحية، وبالأخص المتدينون، عندهم اضطراب آخر هو المشكلة الأصلية: وسواس قهري، أو قلق، أو اضطراب شخصية (حدية أو وسواسية)، أو فرط حركة وتشتت انتباه.</p>
+    <ul>
+      <li>أحيانًا يكون الاستخدام القهري للإباحية أحد أعراض الاضطراب الأصلي، ووسيلة لتهدئة القلق أو الوسواس.</li>
+      <li>علاج الأصل يغيّر كثيرًا. يرى حالات تتحسن في الإباحية بمجرد علاج الوسواس أو القلق بالدواء، أو مع علاج اضطراب الشخصية. «نادرة بس بنشوفها».</li>
+      <li>طريقته: الاثنان معًا. السلوك القهري بالزمالات والقراءة، «بس ما تكعبلش نفسك بزيادة» ولا تتبنَّ أفكارًا متشددة. والاضطراب الأصلي بالعلاج.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٣</span><h3>التسليم: للقدرة وللسُّنّة</h3>
+      <div class="chips"><a href="https://youtu.be/U5qAlvO2kIw?t=545" target="_blank" rel="noopener">9:05</a></div></div>
+    <p class="key"><b>السؤال:</b> «التسليم الحقيقي مع النية الصادقة يكفي، أليس الله بكافٍ عبده؟». <b>جوابه:</b> لا. العبد الحقيقي يعرف أنه لا بد أن يأخذ بالأسباب.</p>
+    <ul>
+      <li>الله خلق الكون بسنن وقوانين: القلم يقع بالجاذبية. لو طار مرة ووقع مرة لصار «عالم سمسم»، أو عالم آلهة اليونان التي تغيّر القواعد محاباة للبشر.</li>
+      <li>قدرة الله في هذا العالم «كتبها على نفسه» أن تعمل من خلال قوانينه، لأن العالم قائم على التكليف والحرية والحساب. أن تدعو أن تتحول سيارتك إلى مرسيدس «تعدٍّ في الدعاء».</li>
+      <li>«سلّمت للقدرة ولم تسلّم للسنة». النجاح مربوط بالمذاكرة، والمال بالسعي. ومن تمام العبودية التسليم لقوانين النجاح والعلاقات ومناهج البحث: «أنتم أعلم بأمور دنياكم».</li>
+      <li>التسليم الحقيقي يكون للأمر الكوني (الأسباب) وللأمر التشريعي (العبادة) معًا. وبعض الناس يستخدم «التسليم» غطاءً للتواكل و«المغلوبية»، وقالها عن نفسه قديمًا: «يا كذاب».</li>
+      <li>تحفّظه: «ما تاخدوش مني دين… لو رجال الدين قالوا لكم حاجة مختلفة ارموا كلامي».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٤</span><h3>الزواج: انتظار أم سعي؟</h3>
+      <div class="chips"><a href="https://youtu.be/U5qAlvO2kIw?t=790" target="_blank" rel="noopener">13:10</a></div></div>
+    <p class="key"><b>الفكرة:</b> «المكتوب لك» يعني علم الله المحيط، لا الجبر. أنت الذي تختار («ولأمة مؤمنة خير من مشركة ولو أعجبتكم»)، فعليك السعي.</p>
+    <ul>
+      <li>فكرة «توأم الروح» الواحد الموجود في مكان ما من العالم «خرافة أفلاطونية» لا علاقة لها بالدين ولا بالواقع. تنتج رومانسية مرفرفة وانتظارًا وإحباطًا. هناك آلاف يصلحون لك.</li>
+      <li>سعي البنت هو «الإتاحة الاجتماعية» (تعبير أحمد سالم)، أو «التعرض لقدر الله»: أن تكون ظاهرة اجتماعيًا في عملها ودراستها ودوائرها، لا متجنبة تنتظر من يطرق الباب.</li>
+      <li>لا تخلط بين التعفف والحياء وبين التجنب والانعزال والخجل. يحيى الرخاوي: «قافلة الراديو وعايزة تلقطي محطة؟ افتحي الراديو».</li>
+      <li>النظام القبلي والعائلي القديم تغيّر. من ينتظر الآن لا يأتيه غالبًا إلا الأسوأ، ويتسرب إليه الشك: «فين يا رب؟ ما أنا كويسة ودعيتك كتير».</li>
+      <li>الإتاحة الآمنة المتعففة: صالونات ثقافية، ومجموعات، وأماكن يوجد فيها من يشبه ما تبحث عنه. بشرط الأدوات: أن تعرف كيف ترفض وتضع حدودًا، وألا تكون اندفاعية. «هبقى موجودة في الأماكن دي، وأسيب الباقي على ربنا»: هذا هو التسليم.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٥</span><h3>الوسواس القهري والدراسة</h3>
+      <div class="chips"><a href="https://youtu.be/U5qAlvO2kIw?t=1220" target="_blank" rel="noopener">20:20</a></div></div>
+    <p class="key"><b>الفكرة:</b> كثير من الناجحين جدًا، وبالأخص الأكاديميين والباحثين، عندهم نزعة كمالية أو وسواسية «تم التسامي بها». الوسواس يرفعك وأنت صغير، ثم يُسقطك.</p>
+    <ul>
+      <li>المسار المعتاد: تلميذ شاطر، ثم مرحلة تعثر وفشل من الكمالية والتأجيل والقلق المضني وجلد الذات.</li>
+      <li>العلاج على مستويين، والدواء «لا يقل أهمية» عن العلاج النفسي.</li>
+      <li>تشبيه الطاسة: كل الناس تأتيهم أفكار اقتحامية غريبة (عمل شيء مجنون، ضرب من أمامك في الميكروباص، شك في الدين). في الدماغ العادي تنزلق كالطاسة التيفال، وفي دماغ الوسواسي «تلزق» كالطاسة الألومنيوم ويُعاد تدويرها. الدواء لا يوقف الأفكار مباشرة، لكنه يجعلها لا تلزق ولا تسبب نفس القلق.</li>
+      <li>العلاج بالكلام يغيّر كيمياء الدماغ أيضًا. الاكتئاب البسيط أو المتوسط يمكن علاجه بالكلام وحده أو بالدواء وحده، وأفضل علاج الاثنان معًا. ويحيل إلى حلقته «التاريخ الأسود للطب النفسي».</li>
+      <li>مع العلاج تتحول الطاقة الوسواسية إلى «طاقة التزام»: مواعيد منضبطة، ودقة بحثية بدل إعادة التأكد.</li>
+      <li>الوسواسي «كنترولر» يريد أن يحلها بدماغه، ويحتاج «التواضع للدواء وللعمل العلاجي».</li>
+      <li>«لا نتحدث عن إزالة تامة للعرض، بل عن إدارة للعرض، وأحيانًا استخدامه» للنمو.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٦</span><h3>اضطراب الشخصية الحدية</h3>
+      <div class="chips"><a href="https://youtu.be/U5qAlvO2kIw?t=1620" target="_blank" rel="noopener">27:00</a></div></div>
+    <p class="key"><b>الفكرة:</b> من أصعب الاضطرابات على صاحبه وعلى من حوله. يحتاج علاجًا مع مختص، لا قراءة أو استماعًا فقط.</p>
+    <ul>
+      <li>كثيرًا ما يصاحبه اضطراب آخر (قلق، أو وسواس، أو فرط حركة، وأحيانًا ثنائي القطب)، ولهذا يحتاج أحيانًا تدخلًا دوائيًا.</li>
+      <li>خمسة علاجات موثقة:
+        <ul>
+          <li>العلاج المركّز على التحويل (TFP): علاج دينامي صممه أوتو كيرنبرج، وتدرّب هو على يده.</li>
+          <li>العلاج الجدلي السلوكي (DBT): قوي جدًا لكن يحتاج معالجًا متقنًا. يذكر «مسار» في القاهرة.</li>
+          <li>العلاج بالمخططات (Schema).</li>
+          <li>العلاج الداعم التعبيري (Supportive-Expressive): أبطأ أثرًا.</li>
+          <li>العلاج المبني على التعقّل (MBT): أن تفهم ما يدور في ذهن الآخر.</li>
+        </ul>
+      </li>
+      <li>المتاح جيدًا في مصر والعالم العربي: TFP وSchema وDBT.</li>
+      <li>الخطة: افحص الاضطرابات المصاحبة، ثم ادخل نظامًا علاجيًا مع مختص مع «مجهود غير عادي» لتخرج «بره دماغك»، ثم أضف ما يساعد: كتاب «أكرهك لا تتركني» (ترجمة دار الرواق)، والوثائقي Back from the Edge، وفيلم Girl, Interrupted، لكن لا تشاهده وأنت في أزمة.</li>
+      <li>رأيه الخاص: الحدية «الوريث الحالي للهستيريا»، ومرض هذا العصر وما بعد الحداثة. وعند كيرنبرج الحدية «تنظيم» كامل للشخصية يندرج تحته النرجسي والهستيري وغيرهما.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٧</span><h3>أعراض الانسحاب وضبابية الدماغ</h3>
+      <div class="chips"><a href="https://youtu.be/U5qAlvO2kIw?t=2040" target="_blank" rel="noopener">34:00</a></div></div>
+    <p class="key"><b>الفكرة:</b> الانسحاب من الإدمانات السلوكية (إباحية، جنس، طعام، شراء) حقيقي ومزعج، لكنه أخف بكثير من انسحاب المخدرات الذي قد يقتل. والمشكلة الأكبر هي التركيز المفرط معه.</p>
+    <ul>
+      <li>الكلام الكثير عن «الفلات لاين» و«تعفن الدماغ» و«الضبابية» عند صناع المحتوى جعل الناس مستحوذين بها. ومن عنده جزء وسواسي يلبس الفكرة ويظل يقيس دماغه.</li>
+      <li>الحلقة المفرغة: أتوقف، فيتشتت ذهني، فأراقب التشتت («النهارده يوم 22… أنا مركز ولا لا؟»)، فتستهلك المراقبة طاقة الدماغ ويزيد التشتت.</li>
+      <li>من تجربته: يقرأ كتابًا بلا امتحان فيتذكره، ويقرأه قبل امتحان فينسى. تحت التوتر يرتفع الأدرينالين، ويرى أن تثبيت الذاكرة يقل.</li>
+      <li>«المذاكرة والجنس والنوم، اللي بيركز فيهم ما بيجيبهمش». من يحسب ساعات النوم الباقية لا ينام، ومن يراقب انتصابه يفقده.</li>
+      <li>الحل: «انفض هدومك»، وركّز في دنيتك وشغلك وما تقدر تعمله النهارده، ولا تقيس كل يوم. سيعود التركيز وحده مع الوقت.</li>
+      <li>«بقينا بنعلّق على شماعة أعراض الانسحاب» للهروب من المسؤولية، والموبايل بجانبك يتنطط بالإشعارات.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٨</span><h3>كل عرض كان حلًا (ألم الخطوة السادسة)</h3>
+      <div class="chips"><a href="https://youtu.be/U5qAlvO2kIw?t=2385" target="_blank" rel="noopener">39:45</a></div></div>
+    <p class="key"><b>عنوان اللايف:</b> «كل عرض مرضي كان في الحقيقة محاولة للحل». لغة أو رمز يقول شيئًا عن مشكلة لم تستطع الذات حلها، ولهذا يصعب التخلي عنه.</p>
+    <ul>
+      <li>الكمالية والوسوسة جعلتنا من أوائل الثانوية، والقلق حسّننا، والقلق الاجتماعي جعلنا نحضّر جيدًا. ثم يتحول العرض إلى خلل وظيفي: لا نذاكر أصلًا، أو نعيد الدرس 20 مرة فنرسب.</li>
+      <li>الإدمان «زورق شلناه وعدّينا بيه» أوقاتًا كثيرة من الألم، ولولاه لتفسخت الشخصية مبكرًا. ثم صار فوق رؤوسنا ولم يعد هناك ماء نعبره.</li>
+      <li>سببا ألم الخطوة السادسة («كنا مستعدين تمامًا لأن يزيل الله كل عيوبنا»): «العِشرة» الطويلة مع العيب، و«المكسب» الذي ما زال يجلبه، كالأنانية، والكذب الذي ينجّي أحيانًا.</li>
+      <li>المدمن الذي يسمي إدمانه «قاذورات» يكذب على نفسه. هو جميل وممتع، والتسمية لا تساعد. والمرض سهل: العقاب بالصمت سهل وفيه سلطة، والمواجهة تحتاج شجاعة وقدرة على التعرض للجرح.</li>
+      <li>لهذا يحتاج المدمن والوسواسي والكمالي «حدادًا» على المرض حين يتركه.</li>
+      <li>الاستعداد قبل الدعاء، والاستعداد عمل: تكتشف ماذا كان يكسبك كل عيب لتعرف ما ستخسره. «اللي متخيل إن التعافي ما فيهوش خساير موهوم». والنظام الصحي الجديد يبدو «غربة» في البداية.</li>
+    </ul>
+    <div class="two">
+      <div class="bad"><h4>ثلاثية المرض</h4><ul><li>الحفلة: مكاسب ولذة ومتعة</li><li>ثم الصراع والحرب</li><li>ثم القاع</li></ul></div>
+      <div class="good"><h4>ثلاثية التعافي (بالعكس)</h4><ul><li>القاع: لمّ الخسائر وتحمّل العواقب</li><li>ثم الصراع: مكاسب قليلة مع آلام</li><li>ثم الحفلة، متأخرة. «مين يقدر يستحمل لحد الحفلة؟»</li></ul></div>
+    </div>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٩</span><h3>أزمة الإمام الغزالي</h3>
+      <div class="chips"><a href="https://youtu.be/U5qAlvO2kIw?t=2835" target="_blank" rel="noopener">47:15</a></div></div>
+    <p class="key"><b>السؤال:</b> لماذا انعقد لسان الغزالي في النظامية ببغداد؟ يقرأها أزمة وجودية تشبه «أزمة منتصف العمر»، ويحذّر بنفسه أنك لا تستطيع تشخيص من لم تره.</p>
+    <ul>
+      <li>الغزالي من أهم من أثّروا فيه، ويكتب رواية عنه. كان «إحياء علوم الدين» لا يفارق سريره في الثانوي.</li>
+      <li>شخصية مركبة: كمالية شديدة وجلد للذات، و«زعارة» (حدة على الخصوم واعتداد بالنفس) كما يروي عبد الغافر الفارسي.</li>
+      <li>بلغ القمة نجمًا للنظامية، ثم بدأت الأسئلة: هل هذه الحياة التي أريدها؟ هل قلبي في مكانه؟ وقال بعض الباحثين إنه مرّ بتجربة وسواسية أو «مالنخوليا» (اكتئاب).</li>
+      <li>في الدرس أمام 300 عمامة انعقد لسانه، «عرض هستيري» عجز عنه الأطباء. فخرج من هذا العالم نحو 11 سنة بين الحرمين والقدس والخليل ودمشق. وفرانك جريفل يرى أنه خرج ثم عاد ثم خرج.</li>
+      <li>عاد «بوجه غير الذي خرج به»، بتجربة روحية لا تقل عن تجربة القديس أوغسطين، وقد تحقق بما كان يقول.</li>
+      <li>قراءته: الجزء الصادق في العمق سأل الجزء الناجح الذي يعرف قواعد الدنيا: «مش ده المكان، واللي بعمله زائف، ليس لله كما أدّعي». هذا السؤال شلّه، فاحتاج أن يهدم ويبني من جديد. والقصة في كتابه «المنقذ من الضلال».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١٠</span><h3>هل أتعالج وحدي؟ وماذا يساعد خارج العلاج؟</h3>
+      <div class="chips"><a href="https://youtu.be/U5qAlvO2kIw?t=3195" target="_blank" rel="noopener">53:15</a><a href="https://youtu.be/U5qAlvO2kIw?t=3295" target="_blank" rel="noopener">54:55</a></div></div>
+    <p class="key"><b>الفكرة:</b> «كثير ممن يظن أنه لازم يتعالج لوحده ما يبقاش حقيقي». جرّب ذلك سنين وهو قارئ مطّلع، ولم يزده إلا خسارًا، لأنك «بتعقلن التعب».</p>
+    <ul>
+      <li>لمن عنده عنف أسري أو لا يملك مالًا: الأخصائي الاجتماعي في المدرسة، أو الأخصائي النفسي في الكلية، أو مستشفى حكومي أو جامعي، ولو من وراء الأهل، بتكلفة تافهة. المهم أن تعرف تشخيصك وأين أنت. وفي المستشفيات الحكومية معالجون أمناء على أعلى مستوى.</li>
+      <li>الدين والمجتمع والأصدقاء والطقوس والأوراد «مساعدة إضافية» قوية، وقد تتضافر حتى تصير علاجًا. لكن النظام العلاجي هو الأفضل في الأمراض.</li>
+      <li>المجتمعات: اثنان أو ثلاثة يجلسون يقرأون أو يذاكرون أو يتكلمون معًا («تعالوا نؤمن ساعة»)، أو جروب واتساب محترم، أو مجموعة دعم. وما تقوله بعض البودكاستات عن مجموعات الدعم «كلام فارغ» غير موجود في المجتمعات المحترمة.</li>
+      <li>القراءة علاج، و«التداوي بالقلم»: 10 دقائق كتابة صباحًا للتفريغ، و10 مساءً لجرد اليوم.</li>
+      <li>المحتوى المرئي الرصين الذي لا يعمّق دور الضحية ولا الانشغال الزائد بالذات.</li>
+      <li>التايم لاين «حياة أو موت»: احذف السام والتافه والمزيف، وأبقِ من يلهمك أو يفيدك أو يضحكك، ومن لا تقارن نفسك به. «إذا وجدت قسوة في قلبي نظرت إلى وجه محمد بن واسع، فعبدت الله أسبوعًا».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١١</span><h3>اكتئاب ما بعد الولادة</h3>
+      <div class="chips"><a href="https://youtu.be/U5qAlvO2kIw?t=3530" target="_blank" rel="noopener">58:50</a></div></div>
+    <p class="key"><b>الفكرة:</b> «بسيط ولا مش بسيط مش بتاعتك». يقيّمه طبيب نفسي، لا أخصائي ولا معالج، قبل أي كلام.</p>
+    <ul>
+      <li>خذ بجدية تامة أي تغيّر في الشخصية أو المزاج بعد الولادة، أو حديث عن الموت أو إيذاء النفس أو عدم الرغبة في الطفل. «أقسمت عليكم بالله».</li>
+      <li>الأشكال: الكآبة العابرة (blues)، واكتئاب ما بعد الولادة، وذهان ما بعد الولادة وهو خطير جدًا. يذكر 2.6 لكل ألف، وقضية ليندسي كلانسي.</li>
+      <li>العلاج حسب تقييم الطبيب: دواء، أو طرق أخرى مثل «تنظيم إيقاع المخ»، إلى جانب العلاج الكلامي.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TREE ============ -->
+<section class="block" id="tree">
+  <div class="sec-head">
+    <h2>التشجير</h2>
+    <p>اللايف كله في شجرة واحدة.</p>
+  </div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">كل عرض كان حلًا</span>
+        <ul>
+          <li><span class="br">الإدمان والتعافي</span>
+            <ul>
+              <li class="lf"><b>المشكلة:</b> الاعتماد، لا الفعل نفسه</li>
+              <li class="lf"><b>أثران:</b> قلق الأداء، وعلاقات «استمنائية» تستخدم الناس</li>
+              <li class="lf"><b>الشفاء:</b> فترة توقف + علاقة صحية فيها شراكة</li>
+              <li class="lf"><b>ابحث عن الأصل:</b> وسواس، قلق، فرط حركة، اضطراب شخصية</li>
+              <li class="lf"><b>الانسحاب:</b> حقيقي وخفيف، ومراقبته تعمّقه</li>
+            </ul>
+          </li>
+          <li><span class="br">العرض كحل</span>
+            <ul>
+              <li class="lf">كان زورقًا عبرنا به الألم</li>
+              <li class="lf">صعوبة تركه: العِشرة + المكسب</li>
+              <li class="lf">يحتاج حدادًا، واستعدادًا قبل الدعاء</li>
+              <li class="lf">المرض: حفلة ← صراع ← قاع. التعافي: قاع ← صراع ← حفلة</li>
+            </ul>
+          </li>
+          <li><span class="br">الإيمان والسعي</span>
+            <ul>
+              <li class="lf">تسليم للقدرة وللسنة معًا</li>
+              <li class="lf">المكتوب علم لا جبر، وأنت تختار</li>
+              <li class="lf">لا «توأم روح» واحد</li>
+              <li class="lf">إتاحة اجتماعية متعففة بأدوات وحدود</li>
+            </ul>
+          </li>
+          <li><span class="br">الوسواس والحدية</span>
+            <ul>
+              <li class="lf">الطاسة التيفال: الدواء يجعل الفكرة لا تلزق</li>
+              <li class="lf">دواء + كلام، وتواضع للعلاج</li>
+              <li class="lf">طاقة الوسواس ← طاقة التزام</li>
+              <li class="lf">الحدية: 5 علاجات موثقة، والمتاح عربيًا TFP وSchema وDBT</li>
+              <li class="lf">الهدف إدارة العرض لا إزالته</li>
+            </ul>
+          </li>
+          <li><span class="br">الانتباه للذات</span>
+            <ul>
+              <li class="lf">المذاكرة والجنس والنوم لا تأتي بالتركيز فيها</li>
+              <li class="lf">«انفض هدومك» وعِش يومك</li>
+            </ul>
+          </li>
+          <li><span class="br">طلب المساعدة</span>
+            <ul>
+              <li class="lf">لا تتعالج وحدك؛ مستشفى حكومي أو جامعي</li>
+              <li class="lf">الدين والمجتمع دعم إضافي، والعلاج هو الأساس</li>
+              <li class="lf">كتابة 10 دقائق صباحًا و10 مساءً، وتنظيف التايم لاين</li>
+              <li class="lf">ما بعد الولادة: طبيب نفسي فورًا</li>
+            </ul>
+          </li>
+          <li><span class="br">الغزالي</span>
+            <ul>
+              <li class="lf">الصدق الداخلي يسائل النجاح الخارجي ← شلل ← هدم وإعادة بناء</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية في اللايف: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة. الحكم في الشارة يخص الفكرة كما قالها المتحدث.</p>
+  </div>
+  <div class="res">
+
+    <div class="rcard">
+      <div class="claim"><h4>مدة التعافي، وأثر العلاقة الصحية في تقصيرها</h4><span class="pill mix">رأي خبرة، والدليل محدود</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الدعم الاجتماعي وتغيير شبكة العلاقات من أقوى ما يفسر نجاح التعافي في الإدمانات عمومًا. <span class="cite">(Kelly, 2017, Addiction)</span></div>
+        <div class="con"><span class="lbl">يعارض أو يحدّ</span>مدة «3 إلى 5 سنوات» عند كارنز مبنية على متابعة نحو ألف من مرضاه، لا على تجربة مضبوطة. <span class="cite">(Carnes, 1991, Don't Call It Love)</span> ولا توجد دراسة تقارن «فترة توقف + علاقة صحية» بغيرها، وهو نفسه قال: «ما عندناش أبحاث كتير».</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> اتجاهه، أن العلاقات الصحية تسرّع الشفاء، يتسق مع أبحاث الدعم الاجتماعي. أما الأرقام والمدد فتقديرات إكلينيكية.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الاستمناء، والإباحية، وقلق الأداء</h4><span class="pill mix">مدعوم جزئيًا</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>لا ضرر جسدي معروف للاستمناء، وهذا متفق عليه طبيًا. ودراسة على نحو 500 رجل ربطت كثرة المشاهدة بقلق أكبر حول الأداء الجنسي وصورة الجسد، وبالاعتماد على الإباحية للاستثارة أثناء العلاقة. <span class="cite">(Sun, Bridges, Johnson &amp; Ezzell, 2016, Archives of Sexual Behavior)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>دراسات متابعة لم تجد علاقة ثابتة بين كمية المشاهدة وضعف الانتصاب. <span class="cite">(Grubbs &amp; Gola, 2019, J Sex Med)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> أثر الإباحية على قلق الأداء وصورة الجسد مدعوم أكثر من أثرها المباشر على الانتصاب.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الإباحية القهرية عرضًا لاضطراب آخر</h4><span class="pill mix">مدعوم جزئيًا</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>أعراض فرط الحركة وتشتت الانتباه مرتبطة بالاستخدام الإشكالي للإباحية. <span class="cite">(Bőthe et al., 2019, J Sex Med)</span> وفي تجربة مضبوطة خفّض دواء من عائلة أدوية الاكتئاب والوسواس (سيتالوبرام) الرغبة وتكرار الاستمناء ومشاهدة الإباحية لدى من يعانون سلوكًا جنسيًا قهريًا. <span class="cite">(Wainberg et al., 2006, J Clin Psychiatry)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الوسواس القهري والسلوك الجنسي القهري مختلفان: الوسواس مرفوض من صاحبه ومرهق، والسلوك الجنسي ممتع في لحظته. وكثير من «الإحساس بالإدمان» عند المتدينين صراع أخلاقي أكثر منه اضطرابًا. <span class="cite">(Grubbs et al., 2019, Archives of Sexual Behavior)</span> والأدلة على أن علاج الاضطراب الأصلي وحده يوقف الإباحية تقارير حالات، لا تجارب كبيرة.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> فحص الاضطرابات المصاحبة مهم، وطريقته «الاثنان معًا» هي الأكثر أمانًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«التسليم للقدرة وللسنة» من زاوية نفسية</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>أبحاث «التكيف الديني»: أسلوب «التعاون» مع الله (أعمل وأتوكل) يرتبط بكفاءة شخصية أعلى، وأسلوب «التفويض» (أنتظر أن يحلها الله) يرتبط بكفاءة أقل وقدرة أضعف على حل المشكلات. <span class="cite">(Pargament et al., 1988, J for the Scientific Study of Religion)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الحكم الديني نفسه خارج العلم، وهو قال: «ما تاخدوش مني دين». ويبقى للتسليم بمعنى قبول ما لا يتغير قيمة نفسية مستقلة.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> «اعمل اللي عليك وسلّم النتيجة» هو الأقوى نفسيًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«توأم الروح» و«الإتاحة الاجتماعية»</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>من يؤمن بأن هناك شخصًا واحدًا مقدّرًا له أكثر ميلًا لإنهاء العلاقة عند أول مشكلة، ومن يرى أن العلاقة تُبنى يتعامل مع المشاكل أفضل. <span class="cite">(Knee, 1998, JPSP)</span> والقرب والتعرض المتكرر من أقوى ما يتنبأ بنشوء العلاقات. <span class="cite">(Festinger, Schachter &amp; Back, 1950)</span> وفي أمريكا صار التعارف عبر الإنترنت أشيع طريق للأزواج، وتراجع دور الأهل والأصدقاء. <span class="cite">(Rosenfeld, Thomas &amp; Hausen, 2019, PNAS)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الأبحاث غربية في معظمها، والسياق العربي مختلف في أشكال التعارف المقبولة. والإتاحة دون أدوات قد تعرّض للاستغلال، وهو نبّه لذلك.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> الفكرة مدعومة، بشرط الحدود التي ذكرها.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الوسواس: الأفكار الاقتحامية، والدواء والعلاج النفسي</h4><span class="pill mix">صحيح مع تدقيق مهم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>في دراسة في 13 دولة، 94% من الناس العاديين لديهم أفكار اقتحامية غير مرغوبة. <span class="cite">(Radomsky et al., 2014, J of Obsessive-Compulsive and Related Disorders)</span> والعلاج السلوكي والدواء غيّرا نشاط نفس المنطقة في الدماغ لدى مرضى الوسواس. <span class="cite">(Baxter et al., 1992, Archives of General Psychiatry)</span> والجمع بين الدواء والكلام أفضل من أحدهما في الاكتئاب. <span class="cite">(Cuijpers et al., 2014, World Psychiatry)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>العلاج النفسي الفعّال في الوسواس تحديدًا هو «التعرض ومنع الاستجابة» (ERP)، لا أي علاج بالكلام. وتحليل تجميعي وجده أقوى أثرًا من الأدوية وحدها. <span class="cite">(Skapinakis et al., 2016, Lancet Psychiatry)</span> وتوصيات NICE تبدأ به في الحالات الخفيفة، وتضيف الدواء في المتوسطة والشديدة.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> تشبيه الطاسة صحيح، والجمع بين العلاجين صحيح. لكن اطلب معالجًا يعمل بالتعرض ومنع الاستجابة تحديدًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الوسواس والنجاح الأكاديمي</h4><span class="pill mix">يفرّق بين السمة والمرض</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>سمة «الضمير الحي» (التنظيم والدقة والمثابرة) من أقوى السمات تنبؤًا بالتفوق الدراسي. <span class="cite">(Poropat, 2009, Psychological Bulletin)</span></div>
+        <div class="con"><span class="lbl">يعارض</span>اضطراب الوسواس القهري نفسه يرتبط بتحصيل دراسي أقل في كل المراحل، في دراسة على سجلات السويد. <span class="cite">(Pérez-Vigil et al., 2018, JAMA Psychiatry)</span> والكمالية القائمة على الخوف من الخطأ ترتبط بالتسويف والضيق، لا بالنجاح. <span class="cite">(Stoeber &amp; Otto, 2006, Personality and Social Psychology Review)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> ما يرفع الناجحين هو السمات الوسواسية المنضبطة، لا المرض. وهذا قريب من كلامه عن «التسامي» والعلاج.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الشخصية الحدية: العلاجات والانتشار</h4><span class="pill ok">العلاجات مدعومة، والانتشار رأي</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>مراجعة كوكرين وجدت أن العلاج النفسي يخفف شدة الأعراض وإيذاء النفس، وأقوى الأدلة لـDBT ثم MBT. <span class="cite">(Storebø et al., 2020)</span> وتجربة قارنت Schema وTFP فوجدت الاثنين فعّالين، وSchema أفضل. <span class="cite">(Giesen-Bloo et al., 2006, Archives of General Psychiatry)</span> ولا يوجد دواء معتمد لأعراض الحدية الأساسية، والدواء للاضطرابات المصاحبة (NICE)، وهذا يطابق كلامه.</div>
+        <div class="con"><span class="lbl">يحدّ</span>الانتشار بين نحو 1.6% و6% من الناس، ونحو 10% من مراجعي العيادات النفسية. ولا يوجد دليل قوي على أنه يزيد فعلًا مع الزمن، فقد تكون الزيادة في التشخيص. ووصف «وريث الهستيريا» رأي فكري لا نتيجة بحث.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> قائمته للعلاجات دقيقة. أما «مرض العصر» فرأي شخصي، وهو قال ذلك.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>مراقبة الأعراض تعمّقها</h4><span class="pill ok">النتيجة صحيحة، والتفسير غير دقيق</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>ماسترز وجونسون سمّيا مراقبة الأداء أثناء الجنس «المشاهدة من الخارج» (spectatoring) واعتبراها سببًا رئيسيًا لضعف الانتصاب. ومحاولة النوم بجهد تزيد الأرق، وطريقة «النية العكسية» (أن تحاول البقاء مستيقظًا) خفّضت جهد النوم والقلق منه. <span class="cite">(Broomfield &amp; Espie, 2003)</span></div>
+        <div class="con"><span class="lbl">يصحّح</span>قوله إن الأدرينالين «يقلل تثبيت الذاكرة ليحميك من الألم» غير دقيق: الأدرينالين يقوّي تثبيت الذكريات الانفعالية. <span class="cite">(McGaugh, 2004)</span> ما يضر المذاكرة أن التوتر يضعف الذاكرة العاملة والاسترجاع. <span class="cite">(Arnsten, 2009؛ de Quervain et al., 1998)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> كلما راقبت تركيزك ونومك وانتصابك قلّت. هذا مدعوم، أيًا كان التفسير.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>انسحاب الإدمانات السلوكية</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>مراجعة منهجية وجدت أعراضًا «شبيهة بالانسحاب» عند التوقف عن القمار والألعاب والإنترنت والإباحية، أغلبها مزاج سلبي وتوتر واشتياق، وهي أخف بكثير من انسحاب المواد. <span class="cite">(Fernandez, Kuss &amp; Griffiths, 2020, Clinical Psychology Review)</span> وانسحاب الكحول والمهدئات قد يكون خطيرًا ويحتاج إشرافًا طبيًا، كما قال.</div>
+        <div class="con"><span class="lbl">يحدّ</span>«الفلات لاين» وعودة «الطاقة الجنسية» بعد عدد محدد من الأيام مصطلحات من منتديات التعافي، بلا دراسات تثبتها.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> الانسحاب السلوكي حقيقي لكنه خفيف، ولا يستحق المراقبة اليومية.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«كل عرض كان حلًا»</h4><span class="pill mix">إطار مفيد، لا قانون عام</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>«فرضية العلاج الذاتي»: الإدمان محاولة لتخفيف ألم نفسي. <span class="cite">(Khantzian, 1997, Harvard Review of Psychiatry)</span> و«المقابلة التحفيزية» تسأل الشخص صراحة عن فوائد سلوكه قبل أضراره، وهو نفس فكرة «المكسب». <span class="cite">(Miller &amp; Rollnick)</span> والمدمنون يقللون من قيمة المكافآت المؤجلة أكثر من غيرهم، فيصعب عليهم انتظار «الحفلة» المتأخرة. <span class="cite">(MacKillop et al., 2011, Psychopharmacology)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>أدلة فرضية العلاج الذاتي جزئية: الناس لا يختارون دائمًا المادة التي تناسب أعراضهم. وبعض الأعراض بيولوجية أساسًا، كالذهان والهوس، ولا يفيد وصفها «حلًا».</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> أداة قوية لفهم الإدمان والعيوب الشخصية، لا تفسير لكل مرض نفسي.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الدين والمجتمع والكتابة والتايم لاين</h4><span class="pill ok">مدعوم كدعم إضافي</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الانخراط الديني يرتبط في أغلب الدراسات بمعدلات أقل للاكتئاب والانتحار. <span class="cite">(Koenig, 2012, ISRN Psychiatry)</span> وتقليل وسائل التواصل إلى 30 دقيقة يوميًا لثلاثة أسابيع خفّض الوحدة والاكتئاب. <span class="cite">(Hunt et al., 2018, J of Social and Clinical Psychology)</span> والكتابة عن المشاعر لها أثر إيجابي صغير ومتسق. <span class="cite">(Frattaroli, 2006, Psychological Bulletin)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>«التكيف الديني السلبي» (الإحساس بأن الله يعاقبني أو تخلى عني) يرتبط بنتائج أسوأ. <span class="cite">(Pargament et al., 1998)</span> والمساعدة الذاتية تنفع غالبًا في الحالات الخفيفة، وتنفع أكثر مع إشراف مختص. <span class="cite">(Cuijpers et al., 2010)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> مدعوم بالضبط بالصيغة التي قالها: مساعدة إضافية، والعلاج هو الأساس.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>اكتئاب وذهان ما بعد الولادة</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>ذهان ما بعد الولادة بين 0.89 و2.6 لكل ألف ولادة في مراجعة منهجية، فرقمه هو الحد الأعلى. <span class="cite">(VanderKruik et al., 2017, BMC Psychiatry)</span> واكتئاب ما بعد الولادة يصيب نحو أم من كل 7. وهناك علاجات حديثة، منها دواء زورانولون الذي اعتمدته هيئة الغذاء والدواء الأمريكية عام 2023.</div>
+        <div class="con"><span class="lbl">توضيح</span>الكآبة العابرة شائعة جدًا (حتى نصف الأمهات أو أكثر) وتزول عادة خلال أسبوعين دون دواء. لكن التفريق بينها وبين الاكتئاب والذهان عمل الطبيب، كما قال.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> تحذيره في محله تمامًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>رواية أزمة الغزالي تاريخيًا</h4><span class="pill mix">معظمها صحيح، مع تصحيحين</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الغزالي حكى بنفسه في «المنقذ من الضلال» أن لسانه اعتُقل عن التدريس، وضعفت شهيته، وقال الأطباء: «هذا أمر نزل بالقلب ومنه سرى إلى المزاج، فلا سبيل إليه بالعلاج». وخرج من بغداد سنة 488هـ (1095م)، وعاد للتدريس في نيسابور سنة 499هـ (1106م)، أي نحو 11 سنة.</div>
+        <div class="con"><span class="lbl">يصحّح</span>كان عمره عند الأزمة نحو 38 سنة هجرية، أما 34 فعمره حين تولى النظامية. وفرانك جريفل يرى أنه عاد إلى خراسان بعد نحو سنتين، وقضى معظم المدة معتزلًا في طوس، لا متجولًا. <span class="cite">(Griffel, 2009, Al-Ghazali's Philosophical Theology)</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ TODO ============ -->
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبها اللايف، مرتبة. ابدأ بالترتيب المقترح، ثم ارجع إلى البطاقات حسب حالتك.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <li><div><b>اعرف أين أنت</b><span>اعرض نفسك على مختص، ولو في مستشفى حكومي أو جامعي، لتعرف إن كان وراء الإدمان أو التعثر اضطراب أصلي (البطاقة 6).</span></div></li>
+    <li><div><b>اشتغل على الاثنين</b><span>السلوك نفسه بالتوقف والزمالة والقراءة دون تشدد، والاضطراب الأصلي بالعلاج (البطاقتان 2 و4).</span></div></li>
+    <li><div><b>ابنِ علاقات صحية</b><span>صداقة لا تستخدم فيها أحدًا، ثم علاقة حقيقية. هذا ما يقصّر مدة التعافي عنده (البطاقة 2).</span></div></li>
+    <li><div><b>توقف عن قياس نفسك</b><span>لا مراقبة يومية للتركيز أو النوم أو الأعراض. اشتغل وعِش يومك (البطاقة 5).</span></div></li>
+    <li><div><b>اكتب كل يوم</b><span>10 دقائق صباحًا و10 مساءً، ونظّف التايم لاين (البطاقة 7).</span></div></li>
+    <li><div><b>جهّز نفسك للتخلي</b><span>لكل عيب: ماذا كان يكسبك، وماذا ستخسر بتركه (البطاقة 3).</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>التوقيت</th></tr></thead>
+        <tbody>
+          <tr><td class="old">المشكلة في العادة السرية نفسها</td><td class="new">المشكلة في الاعتماد عليها مصدرًا وحيدًا، حتى يصير الجنس علاقة مع الذات</td><td class="v num">0:00</td></tr>
+          <tr><td class="old">لازم 90 يوم، أو لازم أفضل في الزمالة العمر كله</td><td class="new">فترة توقف تختلف من شخص لشخص، مع علاقة صحية فيها شراكة</td><td class="v num">4:30</td></tr>
+          <tr><td class="old">إدماني هو المشكلة كلها</td><td class="new">قد يكون عرضًا لوسواس أو قلق أو فرط حركة أو اضطراب شخصية</td><td class="v num">6:20</td></tr>
+          <tr><td class="old">التسليم والنية الصادقة يكفيان</td><td class="new">أسلّم للقدرة وللسنة: آخذ بالأسباب وأترك النتيجة</td><td class="v num">9:05</td></tr>
+          <tr><td class="old">اللي مكتوب لي هيجيلي لحد عندي</td><td class="new">المكتوب علم لا جبر، وأنا أختار وأسعى</td><td class="v num">13:10</td></tr>
+          <tr><td class="old">فيه شخص واحد بس مناسب لي</td><td class="new">آلاف يصلحون لي</td><td class="v num">15:10</td></tr>
+          <tr><td class="old">التعفف يعني أقفل على نفسي</td><td class="new">التعفف مع الظهور الاجتماعي، بأدوات وحدود</td><td class="v num">16:40</td></tr>
+          <tr><td class="old">الدواء النفسي ضعف، وهحلها بدماغي</td><td class="new">الدواء والكلام معًا، وتواضع للعلاج</td><td class="v num">21:10</td></tr>
+          <tr><td class="old">الوسواس والكمالية شر كله</td><td class="new">مع العلاج تتحول طاقتهما إلى التزام ودقة</td><td class="v num">24:40</td></tr>
+          <tr><td class="old">لازم أقيس أعراض انسحابي وتركيزي كل يوم</td><td class="new">المراقبة تعمّقها؛ أنفض هدومي وأعيش</td><td class="v num">35:00</td></tr>
+          <tr><td class="old">إدماني قذارة وأنا بكرهه</td><td class="new">كان حلًا ممتعًا عبرت به الألم، وتركه يحتاج حدادًا</td><td class="v num">42:20</td></tr>
+          <tr><td class="old">التعافي هيبقى مكسب على طول</td><td class="new">فيه خسائر حقيقية، ومكاسبه متأخرة</td><td class="v num">45:30</td></tr>
+          <tr><td class="old">هتعالج لوحدي بالقراءة والفيديوهات</td><td class="new">القراءة وحدها «تعقلن التعب»؛ أحتاج مختصًا</td><td class="v num">53:15</td></tr>
+          <tr><td class="old">الدين يكفي بدل العلاج</td><td class="new">الدين والمجتمع دعم قوي، والنظام العلاجي هو الأساس</td><td class="v num">54:55</td></tr>
+          <tr><td class="old">اكتئاب ما بعد الولادة دلع أو حاجة بسيطة</td><td class="new">يقيّمه طبيب نفسي فورًا</td><td class="v num">58:50</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="acard">
+    <h3>2. لو بتتعافى من الإباحية</h3>
+    <ul>
+      <li>أوقف النمط المرضي، وعدّل علاقتك بالجنس ولا تلغها.</li>
+      <li>راقب في نفسك أثرين: قلق الأداء والمقارنة بما شاهدته، واستخدام الناس لإشباع احتياجاتك.</li>
+      <li>ابنِ صداقة حقيقية لا ترى فيها صديقك أداة، ثم علاقة حقيقية عبر الخطوبة أو الزواج تكون فيها «واعي جدًا».</li>
+      <li>افحص الاضطراب الأصلي (وسواس، قلق، فرط حركة، شخصية)، وعالجه مع السلوك.</li>
+      <li>لا تتعلق بعدّاد الـ90 يومًا، ولا تتبنَّ أفكارًا متشددة تكعبلك.</li>
+    </ul>
+    <p class="src">من 0:00 إلى 9:00</p>
+  </div>
+
+  <div class="acard">
+    <h3>3. الخطوة السادسة: التخلي عن عيب <span class="tag">اكتبها لكل عيب</span></h3>
+    <ol>
+      <li><b>العِشرة:</b> منذ متى تعيش مع هذا العيب، وكيف أنقذك في مرحلة ما؟</li>
+      <li><b>المكسب:</b> ماذا يكسبك حتى اليوم؟ راحة، أو سلطة، أو هروب من مواجهة؟</li>
+      <li><b>الخسارة:</b> ماذا ستخسر حين تتركه، وماذا سيأخذ مكانه؟</li>
+      <li><b>الحداد:</b> اسمح لنفسك بالحزن عليه، ولا تسمّه «قذارة» لتهرب من هذا.</li>
+      <li><b>الغربة:</b> توقّع أن الجديد الصحي سيبدو غريبًا، وأن مكاسب التعافي ستتأخر.</li>
+      <li><b>ثم الدعاء:</b> الاستعداد أولًا، ثم «يا رب أزله».</li>
+    </ol>
+    <p class="src">من 39:45 إلى 47:00</p>
+  </div>
+
+  <div class="acard">
+    <h3>4. الوسواس والدراسة</h3>
+    <ul>
+      <li>اعرض نفسك على طبيب نفسي؛ الدواء جزء أساسي من العلاج.</li>
+      <li>علاج نفسي بالتوازي. والأفضل في الوسواس معالج يعمل بالتعرض ومنع الاستجابة (ERP)، كما في قسم الأبحاث.</li>
+      <li>لا تعيد الدرس عشرين مرة؛ ذاكر وامشِ.</li>
+      <li>تواضع للعلاج، ولا تُصر أن تحلها «بدماغك».</li>
+      <li>الهدف إدارة العرض لا إزالته، وتوجيه الطاقة الوسواسية إلى انضباط ودقة.</li>
+      <li>ولو عندك شخصية حدية: ابدأ مع مختص مدرّب على DBT أو Schema أو TFP، وافحص الاضطرابات المصاحبة، واقرأ «أكرهك لا تتركني».</li>
+    </ul>
+    <p class="src">من 20:20 إلى 33:00</p>
+  </div>
+
+  <div class="acard">
+    <h3>5. أعراض الانسحاب والتشتت</h3>
+    <ul>
+      <li>لا تعدّ الأيام ولا تقيس تركيزك كل ساعة.</li>
+      <li>«انفض هدومك»: اسأل «إيه اللي أقدر أعمله النهارده؟» واعمله.</li>
+      <li>أبعد الموبايل والإشعارات وقت المذاكرة، ولا تعلّق التشتت على «شماعة الانسحاب».</li>
+      <li>ذاكر ونَم دون مراقبة. لا تحسب ساعات النوم الباقية.</li>
+      <li>قلّل استهلاك المحتوى الذي يتكلم عن «تعفن الدماغ» و«الفلات لاين».</li>
+      <li>الانسحاب من المخدرات أو الكحول أو المهدئات قصة مختلفة، ويحتاج طبيبًا.</li>
+    </ul>
+    <p class="src">من 34:00 إلى 39:20</p>
+  </div>
+
+  <div class="acard">
+    <h3>6. طلب المساعدة بلا فلوس أو في بيت صعب</h3>
+    <ul>
+      <li>الأخصائي الاجتماعي في المدرسة، أو الأخصائي النفسي في الكلية.</li>
+      <li>العيادة النفسية في مستشفى حكومي أو جامعي، ولو دون علم الأهل، والتكلفة بسيطة.</li>
+      <li>الهدف الأول: تشخيص ومعرفة أين أنت. وبعدها معالج أمين.</li>
+    </ul>
+    <p class="src">من 53:15</p>
+  </div>
+
+  <div class="acard">
+    <h3>7. الدعم اليومي <span class="tag">بجانب العلاج</span></h3>
+    <ul>
+      <li>10 دقائق كتابة صباحًا للتفريغ، و10 دقائق مساءً لجرد اليوم.</li>
+      <li>قراءة منتظمة.</li>
+      <li>مجموعة صغيرة من اثنين أو ثلاثة تقرأون أو تذاكرون أو تتكلمون معًا، أو مجموعة دعم، أو جروب محترم تقدر تكون فيه حقيقيًا.</li>
+      <li>نظّف التايم لاين: السام والتافه والمزيف يخرج، والملهم والمفيد والمضحك يبقى. واحذف من تقارن نفسك بهم.</li>
+      <li>ممارسة دينية وأوراد ومجتمع روحي، كدعم.</li>
+      <li>اختر محتوى نفسيًا رصينًا لا يعمّق دور الضحية.</li>
+    </ul>
+    <p class="src">من 54:55 إلى 58:40</p>
+  </div>
+
+  <div class="acard">
+    <h3>8. السعي للزواج</h3>
+    <ul>
+      <li>حدّد نوع الشخص الذي تبحث عنه، واسأل: أين يوجد أمثاله؟</li>
+      <li>كن موجودًا هناك: العمل، الدراسة، الصالونات الثقافية، المجموعات، الأنشطة المناسبة لقيمك.</li>
+      <li>حافظ على التعفف والحياء، وفرّق بينهما وبين التجنب والانعزال.</li>
+      <li>تعلّم الأدوات قبل الخروج: الرفض، والحدود، وعدم الاندفاع.</li>
+      <li>بعد ذلك سلّم النتيجة، فهذا هو التسليم.</li>
+    </ul>
+    <p class="src">من 13:10 إلى 19:40</p>
+  </div>
+
+  <div class="acard">
+    <h3>9. بعد الولادة <span class="tag">لك أو لمن حولك</span></h3>
+    <ul>
+      <li>أي تغيّر في المزاج أو الشخصية، أو كلام عن الموت أو إيذاء النفس أو رفض الطفل: طبيب نفسي فورًا.</li>
+      <li>لا تحكم بنفسك أنها «بسيطة».</li>
+    </ul>
+    <p class="src">من 58:50</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: <a href="https://www.youtube.com/watch?v=U5qAlvO2kIw" target="_blank" rel="noopener">«الأمراض النفسية ليست مشكلات .. بل حلول!»</a> على قناة Emad Rashad Othman. المحتوى مبني على نص الفيديو كاملًا. التوقيتات تقريبية بفارق ثوانٍ.</p>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن طبيب أو معالج.</p>
+</footer>
+
+</div>
