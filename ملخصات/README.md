@@ -9,5 +9,6 @@
 | 05 | [مجموعات الدعم](<05 - مجموعات الدعم - التحرر من الماضي 9.pdf>) | [التحرر من الماضي 9](https://www.youtube.com/watch?v=PYJ0afqRr04) | [فتح](https://claude.ai/artifact/HdJfm1ZtgVEFYeRy9R9hw8) |
 | 06 | [الألم القديم والحرمان](<06 - الألم القديم والحرمان - التحرر من الماضي 1.pdf>) | [التحرر من الماضي 1](https://www.youtube.com/watch?v=TRF9yyryuPk) | [فتح](https://claude.ai/artifact/9p5mx74sKwvHWUScG2q9dg) |
 | 07 | [عقلية الألم وتشويه القصة](<07 - عقلية الألم وتشويه القصة - التحرر من الماضي 2.pdf>) | [التحرر من الماضي 2](https://www.youtube.com/watch?v=gnryv4mRukQ) | [فتح](https://claude.ai/artifact/JW8NUFAU61gS5JQbxoSfbN) |
+| 08 | [الاحتواء والفشل الرمزي](<08 - الاحتواء والفشل الرمزي - التحرر من الماضي 3.pdf>) | [التحرر من الماضي 3](https://www.youtube.com/watch?v=gVp1-Yzpl-Q) | [فتح](https://claude.ai/artifact/6qH8NdYNem6wLX8F11VtDy) |
 
 نسخ HTML من كل ملخص موجودة في فولدر `html/`.
