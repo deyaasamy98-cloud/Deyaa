@@ -1,0 +1,451 @@
+<title>الخزي وتحفتك الفريدة</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column; a "lantern" accent (amber) marks actions, teal marks concepts. Light through a crack: the series' own image of recovery. */
+:root{
+  --bg:#F3F5F4; --surface:#E6ECEA; --ink:#14201F; --muted:#52615F; --rule:#CFD9D6;
+  --teal:#136F63; --teal-soft:#D7EAE6; --amber:#9A5806; --amber-soft:#F5E6D0;
+  --red:#A33B3B; --red-soft:#F4DEDC; --green:#2C7650; --green-soft:#DDEFE4;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{direction:rtl;max-width:900px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.4;margin:0;font-weight:700}
+h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.1rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+
+header.top{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--amber);font-weight:600}
+h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,3.3rem)}
+.lede{font-size:1.06rem;color:var(--muted);max-width:64ch}
+.coverage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px}
+.coverage .big{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--teal);grid-row:span 2}
+.coverage .bar{height:8px;background:var(--rule);border-radius:99px;overflow:hidden}
+.coverage .bar i{display:block;height:100%;width:37.5%;background:var(--teal);border-radius:99px}
+.coverage p{font-size:.9rem;color:var(--muted)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.92rem;padding:5px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--teal);color:var(--teal)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+
+/* themes */
+.theme{border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:10px}
+.theme-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.theme-head .idx{font-family:var(--f-display);color:var(--amber);font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:.8rem;text-decoration:none;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);white-space:nowrap}
+.chips a:hover{text-decoration:underline}
+.theme ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.theme ul li::marker{color:var(--teal)}
+.key{background:var(--teal-soft);border-radius:10px;padding:10px 14px;font-weight:500;max-width:70ch}
+.key b{color:var(--teal)}
+
+/* tree */
+.tree-wrap{overflow-x:auto}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul > li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-family:var(--f-display);font-size:1.35rem;background:var(--ink);color:var(--bg);padding:6px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-family:var(--f-display);font-size:1.08rem;color:var(--teal)}
+.tree .lf{font-size:.95rem}
+.tree .lf b{color:var(--amber);font-weight:600}
+
+/* research */
+.res{display:grid;gap:12px}
+.rcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.rcard .claim{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.rcard .claim h4{flex:1 1 260px}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.mix{background:var(--amber-soft);color:var(--amber)}
+.pill.no{background:var(--red-soft);color:var(--red)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgrid > div{border-radius:8px;padding:10px 12px;font-size:.92rem;min-width:0}
+.rgrid .pro{background:var(--green-soft)}
+.rgrid .con{background:var(--red-soft)}
+.rgrid .lbl{display:block;font-weight:600;font-size:.8rem;margin-bottom:2px}
+.rgrid .pro .lbl{color:var(--green)}
+.rgrid .con .lbl{color:var(--red)}
+.rcard .bottom{font-size:.92rem}
+.rcard .bottom b{color:var(--teal)}
+@media (max-width:620px){.rgrid{grid-template-columns:1fr}}
+.cite{font-size:.82rem;color:var(--muted)}
+
+/* actions */
+.path{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.path > li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.path > li::before{content:counter(p);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--amber);color:var(--bg);font-weight:600;font-variant-numeric:tabular-nums}
+.path b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.path span{font-size:.93rem}
+.acard{border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px}
+.acard h3{display:flex;gap:10px;align-items:baseline}
+.acard h3 .tag{font-family:var(--f-body);font-size:.75rem;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:1px 8px;border-radius:999px}
+.acard ul,.acard ol{margin:0;padding-inline-start:20px;display:grid;gap:5px}
+.acard li::marker{color:var(--amber);font-variant-numeric:tabular-nums}
+.acard .src{font-size:.78rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--surface);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.old{color:var(--red)}
+td.new{color:var(--green);font-weight:500}
+td.v{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{border-radius:10px;padding:12px 14px;min-width:0}
+.two .bad{background:var(--red-soft)}
+.two .good{background:var(--green-soft)}
+.two h4{margin-bottom:4px}
+.two .bad h4{color:var(--red)}
+.two .good h4{color:var(--green)}
+.two ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.93rem}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--amber);padding-inline-start:12px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer details summary{cursor:pointer;color:var(--ink);font-weight:500}
+footer ul{margin:6px 0 0;padding-inline-start:18px;columns:2;column-gap:28px}
+@media (max-width:560px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">د. عماد رشاد عثمان · سلسلة «التحرر من الماضي» · الحلقة 7 من 10 · 48 دقيقة · 13 نوفمبر 2025</span>
+  <h1>الخزي وتحفتك الفريدة</h1>
+  <p class="lede">الخزي ليس «فعلت شيئًا خاطئًا» بل «أنا خطأ». يجعلنا نخفي لا عوراتنا فقط، بل أجمل ما فينا. الحلقة تقول: كل إنسان «ماستر بيس» له بصمة، والخزي ينمو في الظلام ويُعالج بالظهور.</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>التوقيت بجانب كل عنوان يفتح الفيديو عند هذه اللحظة.</p>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>الخزي: لب الإساءات، ومخادع</h3>
+      <div class="chips"><a href="https://youtu.be/5uzK4DpUOZU?t=0" target="_blank" rel="noopener">0:00</a><a href="https://youtu.be/5uzK4DpUOZU?t=91" target="_blank" rel="noopener">1:31</a></div></div>
+    <p class="key"><b>الفكرة:</b> «الخزي السام» (toxic shame) نواة داخلية يشعر فيها الإنسان أنه غير مستحق للحب، أو أنه «غلط»، لا أنه ارتكب غلطًا. وهو «الكور الرئيسي» في كثير من إساءات الطفولة، وكلنا أخذنا منه خبطة.</p>
+    <ul>
+      <li>كانت الحلقة «صعبة عليه»، وكان يتمنى ألا تأتي، وقضى ساعة يستعد بسبب «الرهبة المتعلقة بالخزي».</li>
+      <li>عندنا «أمية انفعالية»: كثير مما نسميه ذنبًا، أو جلد ذات، أو قلقًا، أو تقصيرًا، أو لهاثًا وراء الكمال، أو إحساسًا بالرفض، هو في أصله خزي. «الخزي دحلاب، ما تعرفش تمسكه بسهولة».</li>
+      <li>له أثر في الجسد: يقول لمعالجه إن صوته أمام بعض الناس يصير «أكثر طفولية وحدة»، وجلسته تتكوّم ولا يفرد ظهره. وفي التليفون يصير الصوت «أكثر استجداءً وتسولًا وترددًا»، كأنك تقول «أنا آسف إني موجود».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٢</span><h3>الخزي غير الذنب</h3>
+      <div class="chips"><a href="https://youtu.be/5uzK4DpUOZU?t=300" target="_blank" rel="noopener">5:00</a><a href="https://youtu.be/5uzK4DpUOZU?t=363" target="_blank" rel="noopener">6:03</a></div></div>
+    <ul>
+      <li><b>الذنب:</b> «عملت حاجة غلط». قوة محركة تدعو للإصلاح، والندم يكف صاحبه عن الفعل. ومن تفسيرات «التوبة النصوح»: التي تنصح صاحبها.</li>
+      <li><b>الخزي:</b> «أنا غلط». شعور بالعري أمام الناس. والعار والعري والعورة من نفس الجذر، كأحلام التعري ومحاولة ستر العورة. «يا أرض انشقي وابلعيني».</li>
+      <li>بدأ مرتبطًا بنظرة الآخر الانتقاصية لشيء فيك، ثم صرنا نشعر به ونحن وحدنا: «كأنك مفضوح أمام عيون غير موجودة».</li>
+      <li><b>الغضب محرك، والخوف مقعد، والخزي «أبو الإقعاد»</b>. أول ما يفعله المخزي: «وطفقا يخصفان عليهما من ورق الجنة»، يستخبى.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٣</span><h3>صوت الخزي: «انت مش جاهز»</h3>
+      <div class="chips"><a href="https://youtu.be/5uzK4DpUOZU?t=546" target="_blank" rel="noopener">9:06</a><a href="https://youtu.be/5uzK4DpUOZU?t=636" target="_blank" rel="noopener">10:36</a></div></div>
+    <ul>
+      <li>الخوف قلق مؤقت يربكك، أما الخزي فيتحول إلى «عقيدة»: «ما يصحش تبقى في الخطوة دي».</li>
+      <li>صاحب الخزي «سبع صنايع والبخت ضايع»: إمكانات ومواهب، والمحصلة صفرية. كلما احتاج الأمر ظهورًا وإعلانًا للذات، جاءت أصوات تتوعده بالرفض والنقد.</li>
+      <li>صوت الخزي «يتعقلن»: لا يقول «انت وحش»، بل «انت مش جاهز، استنى اتعلم شوية». فينتظر صاحبه كأن «جبريل هينزل يقول له انت جاهز».</li>
+      <li>يجعلنا نشعر أننا غير مستحقين للوفرة ولكرم ربنا: «المناب ده بيتوزع على اللي يستاهلوا».</li>
+      <li>اقتباسان يفتتح بهما الفصل في كتابه «أبي الذي أكره»: «ميت هو من يتخلى عن مشروع قبل أن يهمّ به...» (ينسبه لبابلو نيرودا)، و«الموت ليس الخسارة الكبرى، الخسارة الكبرى ما يموت فينا ونحن أحياء» (ينسبه لمحمد الماغوط).</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٤</span><h3>كل إنسان «ماستر بيس»</h3>
+      <div class="chips"><a href="https://youtu.be/5uzK4DpUOZU?t=817" target="_blank" rel="noopener">13:37</a><a href="https://youtu.be/5uzK4DpUOZU?t=908" target="_blank" rel="noopener">15:08</a></div></div>
+    <p class="key"><b>الفكرة:</b> البشر لهم «روائع» قليلة بين أعمال كثيرة: دافنشي له أربع أو خمس لوحات «ماستر بيس»، ومحفوظ له «أولاد حارتنا» و«الثلاثية» و«الحرافيش». أما الله فكل خلقه «ماستر بيس» في مساحة ما.</p>
+    <ul>
+      <li>كان يرى نفسه «مديوكر، نصف موهوب أو ربع موهوب»، وأن الله خلق ناسًا مميزين والباقي «تكثير سواد». هذه الفكرة تغيرت.</li>
+      <li>«لديك شيء ينبغي على العالم أن ينصت له». يقولها للقاعد في أوضته «متكوّم على نفسه وشايف إن القطر فاته».</li>
+      <li>الله لم يجعل أنملتين متشابهتين: بصمة إصبع وأذن وقزحية ووجه، تُفتح بها الأبواب الأمنية. فلماذا لا تكون هناك «بصمة نفسية» أيضًا، ومساحات في الدنيا «ما تتفتحش غير ببصمتك»؟</li>
+      <li>تميزك ليس بالضرورة إبداعًا فنيًا: قد يكون أن تكون أول أب في العائلة يربي ابنًا مستقرًا، أو في صداقة، أو كزوج، أو كرائد أعمال، أو «صينية بطاطس ما حدش بيعرف يعملها». «مش وظيفتنا نقارن».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٥</span><h3>المعنى الكلي والمعنى الشخصي</h3>
+      <div class="chips"><a href="https://youtu.be/5uzK4DpUOZU?t=1269" target="_blank" rel="noopener">21:09</a><a href="https://youtu.be/5uzK4DpUOZU?t=1450" target="_blank" rel="noopener">24:10</a></div></div>
+    <ul>
+      <li>الخزي يجعلك تشعر أنك «رقم في العداد»، حتى في عين الله: «لو حطيت كومنت عند واحد عنده 20 مليون هيشوفه فين؟».</li>
+      <li>نفهم المعنى الكلي للحياة (العبادة والإعمار)، ومع ذلك نشعر بعبث شخصي: «أنا لزمتي إيه بالخواص دي في اللحظة التاريخية دي؟». يحتاج الإنسان معنى خاصًا به: «كل ميسّر لما خُلق له».</li>
+      <li>«جزء من رضا ربنا عني أن يظهر الإمكان المخبوء فيّ الدال على إبداعه». من يرمي الموناليزا في البدروم «ينشك في حق دافنشي»، فكيف بمن يعطل ما وضعه الله فيه ويظن ذلك زهدًا؟</li>
+      <li>تربينا في توقيت «مضطرب في فهم بعض النصوص»، حتى صار الظهور «ملعونًا في ذاته» وإظهار ما لديك «رياء وعُجب»، وصارت كلمة «رغبة» نفسها مذمومة. «اقف في الطابور، استنى حد كبير يزكيك».</li>
+      <li>«ناس عندها خزي بتربي خزيك»، باسم الثقافة والدين والقضايا الكبرى.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٦</span><h3>الجماعة والفرد</h3>
+      <div class="chips"><a href="https://youtu.be/5uzK4DpUOZU?t=1633" target="_blank" rel="noopener">27:13</a><a href="https://youtu.be/5uzK4DpUOZU?t=1724" target="_blank" rel="noopener">28:44</a></div></div>
+    <ul>
+      <li>من يقول إن المعاني الإسلامية جماعية فقط «كذاب». عندنا جدلية الجماعي والفردي: الصحابة تربوا من نفس المعين، وتعرف تفرّق أبا بكر عن عمر عن عثمان عن علي، وابن مسعود عن ابن عباس. وكذلك الحواريون: بطرس غير يوحنا.</li>
+      <li>«المعاني الكبرى لا تطمس الفردانية. لا يطمسها غير مفاهيم الخزي».</li>
+      <li>«توحش الفردانية» الحالي جاء تعويضًا عن فترات طويلة من طمسها.</li>
+      <li>الإنسان «ما ينفع يعيش جندي في الصف وبس»: يحتاج أن يشعر بالمشترك مع غيره وبتفرده معًا، وإلا «مات من المقارنة».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٧</span><h3>القاعدة الأولى: الخزي ينمو في الظلام</h3>
+      <div class="chips"><a href="https://youtu.be/5uzK4DpUOZU?t=1814" target="_blank" rel="noopener">30:14</a><a href="https://youtu.be/5uzK4DpUOZU?t=1976" target="_blank" rel="noopener">32:56</a></div></div>
+    <p class="key"><b>الفكرة:</b> الخزي «عفن وطحالب» تنمو في السرية والعزلة والأماكن المكتومة المظلمة. «علاجه: هوّيها، وريها الشمس، أظهرها للعالم».</p>
+    <ul>
+      <li>خايف تكتب بوست؟ تحط كومنت؟ تكلم حد؟ تواجه؟ ترسم؟ تكتب الرواية العالقة في دماغك؟ «طلّعها».</li>
+      <li>«اللي واخد عني صورة وحشة يكبّرها ويحط لها برواز ويعلقها في الصالة».</li>
+      <li>«فأما الزبد فيذهب جفاءً، وأما ما ينفع الناس فيمكث في الأرض». ينتقد «عواجيز الفرح» الذين يقولون «كل الناس بقت تكتب»: «200 ألف كتاب، 80 ألف منهم غثاء، والباقي يمكث». «من حقهم يقولوا رأيهم ويغلطوا ويجربوا».</li>
+      <li>«وقل اعملوا فسيرى الله عملكم»: الدعوة للعمل والظهور. غطِّ العورة، لكن «أوعى تغطي الجمال».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٨</span><h3>القاعدة الثانية: نستمد استحقاقنا من قانون البصمة</h3>
+      <div class="chips"><a href="https://youtu.be/5uzK4DpUOZU?t=2268" target="_blank" rel="noopener">37:48</a><a href="https://youtu.be/5uzK4DpUOZU?t=2539" target="_blank" rel="noopener">42:19</a></div></div>
+    <ul>
+      <li>لا نستمد استحقاقنا من أنفسنا («أنا حلو ولا وحش»)، بل من قانون الله في الكون، أو «قوانين الطبيعة» لمن لا يؤمن: لكلٍّ بصمة.</li>
+      <li>رولو ماي (وجودي مؤمن): لكل إنسان غاية كبرى وغاية شخصية، وجزء من سؤاله يوم القيامة: «هل أظهرت الإمكان الذي وضعته فيك؟». سمع الفكرة في ميكروباص من محطة مصر للعجمي فغيرت رؤيته.</li>
+      <li>«أنا مجرد ناقل للرسالة» من الإمكان إلى التحقق. «طلعت وحشة؟ ده مش شغلك، دي داني».</li>
+      <li>معرفة بصمتك أو حتى السعي لمعرفتها تعطي «شعورًا غير عادي بالمعنى والاتجاه والرضا».</li>
+      <li>إعلانات: انتهى من كتابه الجديد «الجلاد تحت جلدي» عن جلد الذات والكمالية والذنب والتقصير، وفيه جزء عملي كبير، ويوصي باقتناء الطبعة الأولى. وعودة بودكاست «ونس».</li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head"><h2>التشجير</h2></div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">الخزي وتحفتك الفريدة</span>
+        <ul>
+          <li><span class="br">ما هو الخزي</span>
+            <ul>
+              <li class="lf">«أنا غلط» لا «عملت غلط»</li>
+              <li class="lf">عري وعورة أمام عيون حاضرة أو متخيلة</li>
+              <li class="lf">يظهر في الصوت والجسد</li>
+              <li class="lf">أبو الإقعاد: يدفع للاختباء</li>
+            </ul>
+          </li>
+          <li><span class="br">كيف يعمل</span>
+            <ul>
+              <li class="lf">يلبس أسماء أخرى: ذنب، قلق، تقصير، كمالية</li>
+              <li class="lf">«انت مش جاهز»</li>
+              <li class="lf">سبع صنايع والبخت ضايع</li>
+              <li class="lf">يخفي الجمال لا العورة فقط</li>
+            </ul>
+          </li>
+          <li><span class="br">المقابل</span>
+            <ul>
+              <li class="lf">كل إنسان ماستر بيس في مساحة</li>
+              <li class="lf">بصمة نفسية كبصمة الإصبع</li>
+              <li class="lf">معنى كلي + معنى شخصي</li>
+              <li class="lf">الجماعة لا تطمس الفرد</li>
+            </ul>
+          </li>
+          <li><span class="br">العلاج</span>
+            <ul>
+              <li class="lf">الظهور والمشاركة والعمل</li>
+              <li class="lf">استحقاقك من قانون البصمة</li>
+              <li class="lf">أنت ناقل للإمكان، والنتيجة ليست عليك</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة.</p>
+  </div>
+  <div class="res">
+
+    <div class="rcard">
+      <div class="claim"><h4>الخزي غير الذنب</h4><span class="pill ok">مدعوم بقوة</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الميل للخزي يرتبط بالاكتئاب والقلق والعدوانية والإدمان، أما الميل للذنب (دون خزي) فيرتبط بالتعاطف والإصلاح. <span class="cite">(Tangney, Stuewig &amp; Mashek, 2007, Annual Review of Psychology)</span> وتحليل تجميعي: الخزي أقوى ارتباطًا بالاكتئاب من الذنب بوضوح. <span class="cite">(Kim, Thibodeau &amp; Jorgensen, 2011, Psychological Bulletin)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الذنب المفرط المزمن («الذنب المعمم») مرتبط هو الآخر بالاكتئاب والوسواس. فليس كل ذنب صحيًا.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الخزي يظهر في الجسد ويدفع للاختباء</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>تعبير الخزي متشابه عبر الثقافات: رأس منخفض، وكتفان منكمشتان، وجسد يصغر، حتى عند المكفوفين منذ الولادة. <span class="cite">(Tracy &amp; Matsumoto, 2008, PNAS؛ Keltner, 1995)</span> و«النزعة الفعلية» للخزي هي الانسحاب والاختباء. <span class="cite">(Tangney, 1995)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>تغير نبرة الصوت أمام أشخاص معينين ملاحظة شخصية منه، وقد يكون لها تفسيرات أخرى كالقلق الاجتماعي.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«الخزي ينمو في الظلام»، والإفصاح يخففه</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>إخفاء الذات (self-concealment) يرتبط بصحة نفسية وجسدية أسوأ. <span class="cite">(Larson et al., 2015, Health Psychology Review)</span> والأسرار تؤذي أساسًا لأننا نظل نفكر فيها، لا لأننا نخفيها لحظيًا. <span class="cite">(Slepian, Chun &amp; Mason, 2017, JPSP)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الإفصاح لجمهور غير آمن قد يزيد الخزي (تنمر، فضيحة). الأفضل البداية مع شخص أو مجموعة آمنة.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«البصمة» والمعنى الشخصي</h4><span class="pill ok">مدعوم، مع تحذير</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>استخدام «نقاط القوة المميزة» بطرق جديدة رفع السعادة وخفض الاكتئاب لمدة 6 أشهر في تجربة مضبوطة. <span class="cite">(Seligman et al., 2005, American Psychologist)</span> والإحساس بمعنى في الحياة يرتبط بالرفاهية وانخفاض الاكتئاب. <span class="cite">(Steger et al., 2006)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>«أنا فريد ولديّ رسالة» قد تنزلق إلى استحقاق ونرجسية إذا انفصلت عن العمل والتواضع. وهو ربطها بأن تميزك قد يكون في شيء بسيط جدًا، وهذا يقي منه.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الجماعة والفرد معًا</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>نظرية «تقرير المصير»: الانتماء والاستقلالية حاجتان أساسيتان معًا، لا متعارضتان. وفي الثقافات الجماعية نموذج «الذات المستقلة المترابطة» هو الأصح نفسيًا. <span class="cite">(Kağıtçıbaşı, 2005, J of Cross-Cultural Psychology)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>تفسيره لـ«توحش الفردانية» كتعويض عن طمسها رأي ثقافي لا نتيجة بحثية.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>نسبة الاقتباسين</h4><span class="pill no">النسبة الشائعة غير دقيقة</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">ما قيل</span>«ميت هو من يتخلى عن مشروع...» لبابلو نيرودا، و«الموت ليس الخسارة الكبرى...» لمحمد الماغوط.</div>
+        <div class="con"><span class="lbl">التصحيح</span>القصيدة الأولى («يموت ببطء») للكاتبة البرازيلية مارثا ميديروس، ونُسبت خطأً لنيرودا على نطاق واسع، وأكدت مؤسسة نيرودا ذلك. والعبارة الثانية تُنسب أصلًا للكاتب الأمريكي نورمان كازنز («Death is not the greatest loss in life...»)، وانتشرت عربيًا منسوبة للماغوط.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> المعنى صحيح وجميل، والنسبة تحتاج تصحيحًا.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبتها الحلقة، مرتبة.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <li><div><b>تعرّف على خزيك</b><span>أين يتنكر عندك؟ (البطاقة 2)</span></div></li>
+    <li><div><b>ابحث عن بصمتك</b><span>ما «الماستر بيس» الخاص بك؟ (البطاقة 3)</span></div></li>
+    <li><div><b>أخرج شيئًا للنور</b><span>هذا الأسبوع، شيئًا واحدًا كنت تخبئه (البطاقة 4).</span></div></li>
+    <li><div><b>افصل الجماعة عن الطمس</b><span>(البطاقة 5)</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>التوقيت</th></tr></thead>
+        <tbody>
+          <tr><td class="old">أنا غلط</td><td class="new">قد أكون فعلت غلطًا؛ أنا لست غلطًا</td><td class="v num">4:31</td></tr>
+          <tr><td class="old">أنا آسف إني موجود</td><td class="new">لي مكان في هذا العالم، و«مناب» من الله</td><td class="v num">33:16</td></tr>
+          <tr><td class="old">أنا لسه مش جاهز</td><td class="new">هذا صوت الخزي متعقلنًا؛ أبدأ الآن</td><td class="v num">10:36</td></tr>
+          <tr><td class="old">أنا مديوكر ونص موهوب</td><td class="new">أنا ماستر بيس في مساحة ما، حتى لو صغيرة</td><td class="v num">13:37</td></tr>
+          <tr><td class="old">أنا رقم في العداد، تكثير سواد</td><td class="new">لي بصمة نفسية كبصمة إصبعي</td><td class="v num">21:09</td></tr>
+          <tr><td class="old">الظهور رياء والرغبة عيب</td><td class="new">إظهار ما وضعه الله فيّ جزء من عبوديتي</td><td class="v num">25:42</td></tr>
+          <tr><td class="old">لازم أستنى حد كبير يزكيني</td><td class="new">«وقل اعملوا»؛ أعمل وأُري عملي</td><td class="v num">36:16</td></tr>
+          <tr><td class="old">لو طلع وحش هتفضح</td><td class="new">الزبد يذهب جفاء وما ينفع يمكث؛ دوري أن أُخرج الإمكان</td><td class="v num">34:46</td></tr>
+          <tr><td class="old">المعاني الكبرى تلغي الفرد</td><td class="new">جدلية: جماعة وفرد معًا</td><td class="v num">28:44</td></tr>
+          <tr><td class="old">قيمتي من كوني حلو أو وحش</td><td class="new">قيمتي من قانون البصمة الذي وضعه الله</td><td class="v num">42:19</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="acard">
+    <h3>2. امسك الخزي <span class="tag">تمرين كتابة</span></h3>
+    <ol>
+      <li>متى يتغير صوتك أو جلستك أمام أشخاص معينين؟ من هم؟</li>
+      <li>ما الذي تسميه «ذنبًا» أو «تقصيرًا» أو «قلقًا» وهو في الحقيقة «أنا مش كفاية»؟</li>
+      <li>ما الخطوة التي يقول لك صوت داخلي «لسه مش جاهز» لها منذ مدة؟</li>
+      <li>هل عندك «سبع صنايع» لا تُكمل منها شيئًا؟ ما الذي يتوقف عنده كل منها؟</li>
+      <li>أي صوت هذا؟ من قاله لك أول مرة؟</li>
+    </ol>
+    <p class="src">من 1:31 إلى 12:06</p>
+  </div>
+
+  <div class="acard">
+    <h3>3. ابحث عن بصمتك <span class="tag">تمرين كتابة</span></h3>
+    <ul>
+      <li>ما الذي يقوله لك الناس إنك تفعله بطريقة لا يفعلها غيرك؟</li>
+      <li>ما الذي تنسى نفسك وأنت تفعله؟</li>
+      <li>ما الذي لو لم تفعله، لن يفعله أحد بطريقتك؟</li>
+      <li>لا تحصرها في الفن: أبوة، صداقة، إدارة، مطبخ، علاقة. «مش وظيفتنا نقارن».</li>
+    </ul>
+    <p class="src">من 13:37 إلى 24:10، ومن 37:48</p>
+  </div>
+
+  <div class="acard">
+    <h3>4. أخرج شيئًا للنور</h3>
+    <ul>
+      <li>اختر شيئًا واحدًا كنت تخبئه: بوست، أو رسمة، أو فكرة، أو رأي، أو طلب، أو مواجهة.</li>
+      <li>انشره أو قله هذا الأسبوع، قبل أن «تجهز».</li>
+      <li>تذكّر أن النتيجة ليست عليك: «أنا مجرد ناقل للرسالة».</li>
+      <li>لو كان سرًا مخزيًا: ابدأ بمشاركته مع شخص آمن أو مجموعة أو معالج، لا مع العامة.</li>
+      <li>غطِّ العورة، ولا تغطِّ الجمال.</li>
+    </ul>
+    <p class="src">من 30:14 إلى 37:48</p>
+  </div>
+
+  <div class="acard">
+    <h3>5. مع نفسك ومع غيرك</h3>
+    <ul>
+      <li>فرّق بين التواضع وطمس الذات، وبين الإخلاص وإخفاء كل ما لديك.</li>
+      <li>لا تكن من «عواجيز الفرح»: اسمح للناس أن يكتبوا ويجربوا ويغلطوا.</li>
+      <li>لو تربي أولادًا: لا تجعل الظهور والرغبة عيبًا عندهم. شجع تفرّدهم داخل قيم الجماعة.</li>
+    </ul>
+    <p class="src">من 25:42 إلى 30:14</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: <a href="https://www.youtube.com/watch?v=5uzK4DpUOZU" target="_blank" rel="noopener">you are a unique masterpiece</a> على قناة Emad Rashad Othman، الحلقة السابعة من سلسلة <a href="https://www.youtube.com/playlist?list=PLOjvW1C4hDCkU_l5F1sTSdo6xDHXMWBfP" target="_blank" rel="noopener">التحرر من الماضي</a>. المحتوى مبني على نص الفيديو كاملًا، والتوقيتات تقريبية.</p>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن معالج.</p>
+</footer>
+
+</div>

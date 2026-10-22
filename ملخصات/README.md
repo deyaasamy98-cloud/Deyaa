@@ -13,5 +13,6 @@
 | 09 | [جرح الهجر والذات الزائفة](<09 - جرح الهجر والذات الزائفة - التحرر من الماضي 4.pdf>) | [التحرر من الماضي 4](https://www.youtube.com/watch?v=xq5m5QHZ0NQ) | [فتح](https://claude.ai/artifact/HdSJnKRVhjDGt4M4k5w9LK) |
 | 10 | [من الاستياء إلى السلام الداخلي](<10 - من الاستياء إلى السلام الداخلي - التحرر من الماضي 5.pdf>) | [التحرر من الماضي 5](https://www.youtube.com/watch?v=hLWZ9PwfsR8) | [فتح](https://claude.ai/artifact/RNMCy6wfs9BPbDTwzKuyAz) |
 | 11 | [الخوف والأمان العميق](<11 - الخوف والأمان العميق - التحرر من الماضي 6.pdf>) | [التحرر من الماضي 6](https://www.youtube.com/watch?v=NTDvem2rTyM) | [فتح](https://claude.ai/artifact/CQ8KRjTNr89WXgKsmUGcMo) |
+| 12 | [الخزي وتحفتك الفريدة](<12 - الخزي وتحفتك الفريدة - التحرر من الماضي 7.pdf>) | [التحرر من الماضي 7](https://www.youtube.com/watch?v=5uzK4DpUOZU) | [فتح](https://claude.ai/artifact/YLryGUiVJx3LMQeXvHCXqK) |
 
 نسخ HTML من كل ملخص موجودة في فولدر `html/`.
