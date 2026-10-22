@@ -1,0 +1,497 @@
+<title>كيف يصنع الماضي علاقاتنا</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column; a "lantern" accent (amber) marks actions, teal marks concepts. Light through a crack: the series' own image of recovery. */
+:root{
+  --bg:#F3F5F4; --surface:#E6ECEA; --ink:#14201F; --muted:#52615F; --rule:#CFD9D6;
+  --teal:#136F63; --teal-soft:#D7EAE6; --amber:#9A5806; --amber-soft:#F5E6D0;
+  --red:#A33B3B; --red-soft:#F4DEDC; --green:#2C7650; --green-soft:#DDEFE4;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{direction:rtl;max-width:900px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.4;margin:0;font-weight:700}
+h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.1rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+
+header.top{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--amber);font-weight:600}
+h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,3.3rem)}
+.lede{font-size:1.06rem;color:var(--muted);max-width:64ch}
+.coverage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px}
+.coverage .big{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--teal);grid-row:span 2}
+.coverage .bar{height:8px;background:var(--rule);border-radius:99px;overflow:hidden}
+.coverage .bar i{display:block;height:100%;width:37.5%;background:var(--teal);border-radius:99px}
+.coverage p{font-size:.9rem;color:var(--muted)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.92rem;padding:5px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--teal);color:var(--teal)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+
+/* themes */
+.theme{border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:10px}
+.theme-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.theme-head .idx{font-family:var(--f-display);color:var(--amber);font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:.8rem;text-decoration:none;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);white-space:nowrap}
+.chips a:hover{text-decoration:underline}
+.theme ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.theme ul li::marker{color:var(--teal)}
+.key{background:var(--teal-soft);border-radius:10px;padding:10px 14px;font-weight:500;max-width:70ch}
+.key b{color:var(--teal)}
+
+/* tree */
+.tree-wrap{overflow-x:auto}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul > li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-family:var(--f-display);font-size:1.35rem;background:var(--ink);color:var(--bg);padding:6px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-family:var(--f-display);font-size:1.08rem;color:var(--teal)}
+.tree .lf{font-size:.95rem}
+.tree .lf b{color:var(--amber);font-weight:600}
+
+/* research */
+.res{display:grid;gap:12px}
+.rcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.rcard .claim{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.rcard .claim h4{flex:1 1 260px}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.mix{background:var(--amber-soft);color:var(--amber)}
+.pill.no{background:var(--red-soft);color:var(--red)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgrid > div{border-radius:8px;padding:10px 12px;font-size:.92rem;min-width:0}
+.rgrid .pro{background:var(--green-soft)}
+.rgrid .con{background:var(--red-soft)}
+.rgrid .lbl{display:block;font-weight:600;font-size:.8rem;margin-bottom:2px}
+.rgrid .pro .lbl{color:var(--green)}
+.rgrid .con .lbl{color:var(--red)}
+.rcard .bottom{font-size:.92rem}
+.rcard .bottom b{color:var(--teal)}
+@media (max-width:620px){.rgrid{grid-template-columns:1fr}}
+.cite{font-size:.82rem;color:var(--muted)}
+
+/* actions */
+.path{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.path > li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.path > li::before{content:counter(p);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--amber);color:var(--bg);font-weight:600;font-variant-numeric:tabular-nums}
+.path b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.path span{font-size:.93rem}
+.acard{border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px}
+.acard h3{display:flex;gap:10px;align-items:baseline}
+.acard h3 .tag{font-family:var(--f-body);font-size:.75rem;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:1px 8px;border-radius:999px}
+.acard ul,.acard ol{margin:0;padding-inline-start:20px;display:grid;gap:5px}
+.acard li::marker{color:var(--amber);font-variant-numeric:tabular-nums}
+.acard .src{font-size:.78rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--surface);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.old{color:var(--red)}
+td.new{color:var(--green);font-weight:500}
+td.v{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{border-radius:10px;padding:12px 14px;min-width:0}
+.two .bad{background:var(--red-soft)}
+.two .good{background:var(--green-soft)}
+.two h4{margin-bottom:4px}
+.two .bad h4{color:var(--red)}
+.two .good h4{color:var(--green)}
+.two ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.93rem}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--amber);padding-inline-start:12px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer details summary{cursor:pointer;color:var(--ink);font-weight:500}
+footer ul{margin:6px 0 0;padding-inline-start:18px;columns:2;column-gap:28px}
+@media (max-width:560px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">د. عماد رشاد عثمان · سلسلة «التحرر من الماضي» · الحلقة 10 من 10 · 47 دقيقة · 4 ديسمبر 2025</span>
+  <h1>كيف يصنع الماضي علاقاتنا</h1>
+  <p class="lede">لماذا ننجذب مرة بعد مرة لنفس النوع الذي يؤذينا؟ الحلقة تشرح كيف يصنع الماضي «قالبًا» لعلاقاتنا، وكيف يحررنا الفهم منه.</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>التوقيت بجانب كل عنوان يفتح الفيديو عند هذه اللحظة.</p>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>قبل البداية</h3>
+      <div class="chips"><a href="https://youtu.be/EF0BJArQCVE?t=0" target="_blank" rel="noopener">0:00</a><a href="https://youtu.be/EF0BJArQCVE?t=182" target="_blank" rel="noopener">3:02</a></div></div>
+    <ul>
+      <li>بعد هذه الحلقة إجازة لعدة أسابيع. الكلام في الأمور النفسية أمام الجمهور مرهق للمتحدث والمستمع، و«الميديا حارقة»، فخذ كل فترة إجازة منه.</li>
+      <li>مرّ في السلسلة: أثر الإساءات والصدمات، و«الرباعية» (الهجر والخزي والخوف والاستياء)، ومجموعات الدعم. وهذه الحلقة عن العلاقات، وهي الثلث الثاني من الكتاب.</li>
+      <li>اعتذار: في حلقة سابقة استشهد بآية «وطفقا يخصفان عليهما من ورق الجنة» كمثال على أن الخزي يدفعنا للتغطية، ففهمها الناس تفسيرًا. «كنت مخطئ»، وسيتوقف أكثر عند ربط النصوص الدينية بالأمور النفسية.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٢</span><h3>الفهم حرية، والوعي ليس جحيمًا</h3>
+      <div class="chips"><a href="https://youtu.be/EF0BJArQCVE?t=363" target="_blank" rel="noopener">6:03</a></div></div>
+    <p class="key"><b>الفكرة:</b> سبينوزا: «أرقى نشاط يقوم به الإنسان هو الفهم، فأن تفهم يعني أن تصبح حرًا». ويرفض عبارة «جحيم الوعي» الشائعة: الوعي نعمة، وهو مدخل الراحة والسكينة.</p>
+    <ul>
+      <li>قبل الوعي نتحرك دون أن نعرف دوافعنا الحقيقية. نفسنا «تطبّب» علينا وتخبّي ما نريده فعلًا من الفعل.</li>
+      <li>مثال «التعويض المفرط»: من يشعر بالهشاشة يصير متعاليًا، ينتزع اعتراف الآخرين، يرى في كل مميز تهديدًا، حساس جدًا للنقد. وكثير من لهاثنا وراء الإنجاز محاولة تعويض لشعور بالنقص أو الخزي.</li>
+      <li>نظن أنفسنا أحرارًا أصحاب همة عالية، والحقيقة أننا «مدفوعين» بدوافع خفية. والنية التي نتخيلها ليست النية الحقيقية.</li>
+      <li>هذه الدوافع لا ترفع المسؤولية. ليست جبرًا داخليًا، بل «لعبة نفسية» نخدع بها أنفسنا.</li>
+      <li>اكتشاف الدافع مؤلم في البداية، لكن بعده «دماغك مش هتعرف تلعب عليك اللعبة»، فتقدر تختار اختيارك الحقيقي.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٣</span><h3>إجبار التكرار: نعيد المشهد القديم لنغيّر نهايته</h3>
+      <div class="chips"><a href="https://youtu.be/EF0BJArQCVE?t=640" target="_blank" rel="noopener">10:40</a><a href="https://youtu.be/EF0BJArQCVE?t=792" target="_blank" rel="noopener">13:12</a></div></div>
+    <p class="key"><b>الفكرة:</b> ندخل علاقة بعد علاقة بنفس النمط لأننا نعيد تخليق الموقف المؤلم الأول «ابتغاء الحصول على نتيجة مختلفة». هذا ما يسمى «إجبار التكرار» (repetition compulsion).</p>
+    <ul>
+      <li>مثاله: أخت كبيرة أو أم كانت تقلل منه وتشعره أنه عاجز و«مش راجل كفاية». يكبر فيرتبط بامرأة تستعمله لاحتياجاتها، ويعيش «مستر نايس جاي» الذي يعطي بلا توقف (اعتمادية عاطفية)، ثم يُترك، ثم يدخل علاقة جديدة بنفس الشكل.</li>
+      <li>القصة التي يحكيها لنفسه: «أنا لطيف ومعطاء زيادة، ونصيبي الأسود». والحقيقة: يبحث عمّن يشبه أخته أو أمه، ويتخيل أن حبه وعطاءه سيجعلانها تعترف به أخيرًا. ما تلقاه صغيرًا عاجزًا يعيده الآن «بمزاجه» ليتحكم فيه.</li>
+      <li>نفس الشيء في من تتزوج من يشبه أباها، أو تنتقل من رجل لآخر بنفس النمط. وكلنا ننتظر لحظة يأتي فيها أحد ليعتذر: الأب، أو الأم، أو الطليق.</li>
+      <li>أثناء ذلك يكون هناك شخص طيب حاضر فعلًا، لكننا لا نراه، لأنه «ما بيكذبنيش»: لا يحقق التعويض الطفولي.</li>
+      <li>النتيجة: لا هذا يعتذر ولا ذاك، و«بنضيف خيبة جديدة لسلسلة الخيبات». ومن تربّى في حرمان يبحث عن حرمان يشبهه.</li>
+      <li>نحن نذهب «بمزاجنا» ونحن مسؤولون، لكننا لا نرى الدافع الخفي. لهذا «التحرر من الماضي»: لا ننبش لنعيش دور الضحية، بل لأن الماضي ما زال يلقي بظلاله على اختياراتنا.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٤</span><h3>لا تعوّل على الانجذاب اللحظي</h3>
+      <div class="chips"><a href="https://youtu.be/EF0BJArQCVE?t=1093" target="_blank" rel="noopener">18:13</a><a href="https://youtu.be/EF0BJArQCVE?t=1366" target="_blank" rel="noopener">22:46</a></div></div>
+    <p class="key"><b>الفكرة:</b> آلام الماضي في العلاقات تأتي على هيئة «انطباعات». «الحب من أول نظرة» غالبًا انجذاب لأكثر شخص يشبه من آذانا. والشرارة والحرارة الجارفة «حمى المرض» لا علامة الحب.</p>
+    <ul>
+      <li>«الله ده جميل!» في أول لحظة؟ اعرف أن له غالبًا علاقة بمشاكلك القديمة.</li>
+      <li>لا أمير على حصان أبيض، ولا فتاة تشفي بلمستها القلب الممزق: «الخياطة اللي انت مستنيها مش موجودة».</li>
+      <li>ينتقد خطابًا نفسيًا معاصرًا يقدّس المشاعر: «ما هو قلبي دق وجسمي اترعش». هذه غالبًا «شرارة الاعتمادية العاطفية» أو «شرارة الجوع».</li>
+      <li>الحب الحقيقي ينمو بالتعرف على الآخر، واكتشاف المساحات المشتركة والمختلفة، وأن يحسّن كل منكما جودة حياة الآخر، وفيه «سكن وسكينة» لا انفعال جارف ومضطرب.</li>
+      <li>تربينا ثقافيًا، بالأفلام والروايات والكرتون، على أن الحب الحقيقي هو الحرارة والانفعال الجارف. والانفعال حقيقي، «لكنه يعبر عن المرض، عن حرمانات وانسكيوريتيز بتتجوز بعض».</li>
+      <li>ينطبق على الصداقة أيضًا: عبارة «مفيش صاحب يتصاحب» المكتوبة على الميكروباصات علامة على نمط، ناس تصاحب من يشبه الصديق أو الأب أو الأخ القديم، ثم تحوّل التجربة إلى قاعدة: «كل الرجالة أشرار».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٥</span><h3>«نعيم الجهل» كذبة</h3>
+      <div class="chips"><a href="https://youtu.be/EF0BJArQCVE?t=1641" target="_blank" rel="noopener">27:21</a><a href="https://youtu.be/EF0BJArQCVE?t=1824" target="_blank" rel="noopener">30:24</a></div></div>
+    <p class="key"><b>الفكرة:</b> ما يسمونه «جحيم الوعي» هو أن المتعة الزائفة تتوقف عن إمتاعك. لم تكن في نعيم أصلًا: كانت هناك إدمانات واعتمادية وخذلان متكرر، وإمكانات على الرف، وأحلام مؤجلة.</p>
+    <ul>
+      <li>اللذة المصحوبة بألم ليست متعة في حقيقتها. العلاقات المؤذية «ما بتديكش حاجة»، وكل طرف فيها يعانق حرماناته هو ونموذجه الداخلي، «انتوا مش شايفين بعض أصلًا».</li>
+      <li>بعد أن تسقط اللذة الكاذبة تصير «حرًا حقيقيًا» لأول مرة: تختار المرض أو تجازف بالتعافي، وتعطي فرصة لنوعية مختلفة من الناس، تُحترم فيها وتُحب وتُقدَّر.</li>
+      <li>المفاجأة: آخر مكان كنت تتخيل أن تجد فيه ما تبحث عنه هو غالبًا ما تجده فيه. «لما فتحت الراديو لقطت إذاعة مختلفة»، بدل إذاعة المارشات العسكرية وأخبار النعي.</li>
+      <li>خرافة «القدرة المغيِّرة للحب» في أفلام ديزني (القبلة التي تحوّل الضفدع أميرًا) وفي فيلم «طريق الأمل»: «أنا هخليها تحبني وأغيّرها». لماذا تبحث عن الوردة وسط القبح، وفيه جميل موجود وحده؟ وفي هذا «لذة التروفي».</li>
+      <li>كان يظن أن من يمر بتجربة مؤلمة سيبحث بعدها عن العكس. اكتشف أن الإنسان «يجرب فيغلط فيروح يعمل الغلط تاني»، حتى يفيق من كثرة الألم أو بالوعي.</li>
+      <li>الوعي مغيِّر في ذاته: يجعلك أقدر على ترجيح رغبتك الحقيقية لا رغبة مرضك.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٦</span><h3>كيف يتكون قالب العلاقات: الثلاثية</h3>
+      <div class="chips"><a href="https://youtu.be/EF0BJArQCVE?t=2185" target="_blank" rel="noopener">36:25</a></div></div>
+    <p class="key"><b>الفكرة:</b> صورتك عن نفسك، وعن جسدك، وعن نفسك داخل العلاقات، لا تتكون مما قاله لك أهلك فقط، بل من ثلاثة تصورات معًا.</p>
+    <ol>
+      <li><b>تصوّر الآخر المهم عنك:</b> ما يراه فيك أبوك وأمك ويقولانه.</li>
+      <li><b>تصوّر الآخر المهم عن نفسه:</b> أم تقول لابنتها «أنت جميلة» وهي ترى نفسها قبيحة، فتنتقل صورة الأم عن نفسها. وأب يقول لابنه «أنت أجدع واحد» وهو مهزوز من داخله.</li>
+      <li><b>تصوّر الآخر المهم عن الآخر المهم:</b> كيف يرى أبوك أمك، وكيف ترى أمك أباك. فصورتي عن نفسي كرجل تتشكل من رؤية أبي لي، ورؤيته لنفسه كرجل، ورؤية أمي له كرجل.</li>
+    </ol>
+    <ul>
+      <li>«كانوا دايمًا يقولولي إني حلوة، بس عمري ما حسيت». غالبًا المشكلة في الطرفين الآخرين من الثلاثية.</li>
+      <li>المطلوب: نفك التشابك ونفهم، فنكف عن «سداد دين مش بتاعنا» ونشيل شيلتنا نحن فقط.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٧</span><h3>أولادنا مرآة، وتعافيك يصل إليهم</h3>
+      <div class="chips"><a href="https://youtu.be/EF0BJArQCVE?t=2367" target="_blank" rel="noopener">39:27</a><a href="https://youtu.be/EF0BJArQCVE?t=2549" target="_blank" rel="noopener">42:29</a></div></div>
+    <p class="key"><b>الفكرة:</b> التشجيع وحده («حبيبي انت جامد») لا يكفي. السؤال الحقيقي: هل أنت كأب أو كأم راضٍ عن نفسك؟ أولادنا «مرايا بتعرّي لنا نواقصنا».</p>
+    <ul>
+      <li>ثلاثة لا تستطيع تغييرها: سنن الله في الكون، والأشخاص الآخرون، والماضي. لذلك الضغط على أولادك أو زوجتك ليتغيروا لا يجدي.</li>
+      <li>الخبر المحبط: مشاكلك تنتقل لأولادك. والخبر المفرح: كثير من مشاكلهم يُحل عندك أنت، حين تشتغل على نفسك.</li>
+      <li>تقديره: صورتك عن نفسك نحو 30 إلى 35% مما يصل لأولادك، وعلاقتك بزوجتك نحو 30%. أي نحو 70% في يدك.</li>
+      <li>«التماهي هو الأساس الحقيقي للتربية». القيم والكلام مهمان، لكن الأولاد يحتاجون أبًا «سالكًا» يرى نفسه بإنصاف، لا يجلد ذاته ولا يتكبر، ويحسن عشرة زوجته.</li>
+      <li>«إذا تعافى واحد في البيت وصل أثر تعافيه للبيت كله». فإن لم يرد الآخرون أن يشتغلوا على أنفسهم: ركّز في تعافيك أنت، وسيأخذون منك بالتماهي.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٨</span><h3>خذ المؤلم واطلع بيه لفوق</h3>
+      <div class="chips"><a href="https://youtu.be/EF0BJArQCVE?t=2734" target="_blank" rel="noopener">45:34</a></div></div>
+    <ul>
+      <li>الكلام قد يكون مؤلمًا، لكن خذه واطلع به لفوق. في البداية تقول «بتعرّيني ليه؟»، ثم «الحمد لله إني شفتها».</li>
+      <li>كل عيب تكتشفه يزيد حريتك، فتصير «أكثر أصالة من امبارح حتى لو لسه فيك حاجات مزيفة». «رحم الله رجلًا أهدى إليّ عيوبي».</li>
+      <li>لمن ينبّه غيره: برحمة، لا بالقسوة الشائعة. ولمن يُنبَّه: لا تبتئس («قد كده أنا وحش؟»)، بل اشكر واعمل بها.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head">
+    <h2>التشجير</h2>
+  </div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">الماضي يصنع علاقاتنا</span>
+        <ul>
+          <li><span class="br">الدوافع الخفية</span>
+            <ul>
+              <li class="lf">التعويض المفرط عن النقص والخزي</li>
+              <li class="lf">النية الظاهرة ليست الحقيقية</li>
+              <li class="lf">لا ترفع المسؤولية</li>
+            </ul>
+          </li>
+          <li><span class="br">إجبار التكرار</span>
+            <ul>
+              <li class="lf">نختار من يشبه من آذانا</li>
+              <li class="lf">لنغيّر النهاية: اعتذار، اعتراف، تعويض</li>
+              <li class="lf">النتيجة: خيبة جديدة، وتفويت الطيبين</li>
+            </ul>
+          </li>
+          <li><span class="br">الانجذاب</span>
+            <ul>
+              <li class="lf">الحب من أول نظرة = قالب قديم</li>
+              <li class="lf">الحرارة الجارفة = حمى المرض</li>
+              <li class="lf">الحب الحقيقي = معرفة وسكن</li>
+            </ul>
+          </li>
+          <li><span class="br">الوعي</span>
+            <ul>
+              <li class="lf">ليس جحيمًا، والجهل لم يكن نعيمًا</li>
+              <li class="lf">يُسقط المتعة الزائفة</li>
+              <li class="lf">يعطي حرية الاختيار: «افتح الراديو»</li>
+            </ul>
+          </li>
+          <li><span class="br">قالب العلاقات</span>
+            <ul>
+              <li class="lf">تصور الأهل عنك</li>
+              <li class="lf">تصورهم عن أنفسهم</li>
+              <li class="lf">تصور كل منهما عن الآخر</li>
+            </ul>
+          </li>
+          <li><span class="br">الأولاد</span>
+            <ul>
+              <li class="lf">مرآة لنواقصنا</li>
+              <li class="lf">التماهي أساس التربية</li>
+              <li class="lf">تعافيك يصل للبيت كله</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة.</p>
+  </div>
+  <div class="res">
+
+    <div class="rcard">
+      <div class="claim"><h4>تكرار نفس النمط في العلاقات</h4><span class="pill mix">النمط مدعوم، والتفسير محل خلاف</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>من تعرّضوا لإساءة في الطفولة أكثر عرضة للإساءة مرة أخرى في علاقاتهم وهم كبار. <span class="cite">(Classen, Palesh &amp; Aggarwal, 2005, Trauma, Violence &amp; Abuse)</span> وأنماط التعلق المبكرة تستمر بدرجة متوسطة في علاقات البالغين. <span class="cite">(Fraley, 2002, Personality and Social Psychology Review)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>فكرة أننا نكرر المشهد «لنغيّر نهايته» (فرويد، 1920) صعبة الاختبار علميًا. وهناك تفسيرات أبسط: الألفة، وتقدير الذات المنخفض، وقلة البدائل. وكثيرون يكسرون النمط ويصلون إلى «أمان مكتسب». <span class="cite">(Roisman et al., 2002, Child Development)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> تكرار النمط حقيقي وشائع، والفكاك منه ممكن. أما سببه فقد يكون أبسط من رغبة خفية في إعادة المشهد.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«الحب من أول نظرة»، والحرارة كعلامة مرض</h4><span class="pill mix">صحيح جزئيًا، والتعميم مبالغ</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>دراسة وجدت أن ما يسميه الناس «حبًا من أول نظرة» هو في الغالب انجذاب جسدي، ونادرًا ما يتضمن حميمية أو التزامًا. <span class="cite">(Zsok et al., 2017, Personal Relationships)</span> والقلق في التعلق يرتبط بحب أكثر هوسًا واشتعالًا. <span class="cite">(Hazan &amp; Shaver, 1987, JPSP)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الحب الرومانسي الشديد غير الهوسي قد يستمر في زيجات طويلة، ويرتبط بالرضا الزوجي. <span class="cite">(Acevedo &amp; Aron, 2009, Review of General Psychology)</span> فليست كل حرارة «حمى مرض»، والانجذاب الأولي ليس مؤشرًا سيئًا في ذاته.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> لا تبنِ قرارًا على الانطباع الأول. الحرارة ليست دليل حب، لكنها أيضًا ليست دليل مرض دائمًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>التعويض المفرط: التعالي يخفي هشاشة</h4><span class="pill mix">أدلة متضاربة</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>النرجسية «الهشة» (المختبئة) ترتبط بتقدير ذات منخفض وحساسية شديدة للنقد. <span class="cite">(Miller et al., 2011, J of Personality)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>نموذج «القناع» (كل تعالٍ يخفي شعورًا بالنقص) لم يثبت بصورة متسقة. كثير من المتعالين لديهم تقدير ذات مرتفع فعلًا. <span class="cite">(Bosson et al., 2008, Social and Personality Psychology Compass)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> ينطبق على بعض الناس لا كلهم. استخدمه لفحص نفسك، لا للحكم على غيرك.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الفهم يحرر ويغيّر</h4><span class="pill ok">مدعوم، مع حدود</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>تحليل تجميعي: زيادة «البصيرة» أثناء العلاج النفسي ترتبط بتحسن النتائج. <span class="cite">(Jennissen et al., 2018, American Journal of Psychiatry)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>البصيرة وحدها غالبًا لا تكفي. تغيير السلوك يحتاج تدريبًا وتكرارًا، وهذا ما تضيفه العلاجات السلوكية. والانشغال الزائد بتحليل الذات قد يزيد الاجترار.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> اكتشاف الدافع الخفي خطوة أولى قوية، ويلزمها فعل مختلف.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>صورة الأهل عن أنفسهم تنتقل للأولاد</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>عدم رضا الأم عن جسدها وكلامها عنه يرتبط بعدم رضا ابنتها عن جسدها. <span class="cite">(Rodgers &amp; Chabrol, 2009, European Eating Disorders Review)</span> والصراع بين الوالدين من أقوى ما يؤثر في الصحة النفسية للأطفال. <span class="cite">(Harold &amp; Sellers, 2018, J of Child Psychology and Psychiatry)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>جزء من التشابه وراثي لا تربوي: تقدير الذات يورَث بنحو 30 إلى 50%. <span class="cite">(Neiss, Sedikides &amp; Stevenson, 2002)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> الثلاثية التي شرحها لها أساس علمي واضح.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«تعافيك يصل لأولادك»، ونسبة الـ70%</h4><span class="pill mix">الفكرة مدعومة، والرقم لا</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>حين تعافت الأمهات من الاكتئاب بالعلاج، قلّت الاضطرابات عند أطفالهن خلال 3 أشهر. <span class="cite">(Weissman et al., 2006, JAMA)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>نسب «30 إلى 35%» و«70%» تقديرات منه، لا أرقام بحثية. ومزاج الطفل والوراثة والمدرسة والأصدقاء تؤثر أيضًا.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> العمل على نفسك وعلى علاقتك بشريكك من أقوى ما تقدمه لأولادك، بصرف النظر عن النسبة.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبتها الحلقة، مرتبة.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <li><div><b>اكتب خريطة علاقاتك</b><span>حب، وصداقة، وعمل. ما المشترك بينها؟ (البطاقة 2)</span></div></li>
+    <li><div><b>ابحث عن الشبه</b><span>من يشبهون من أهلك أو من الماضي؟ وماذا كنت تنتظر منهم؟</span></div></li>
+    <li><div><b>فك الثلاثية</b><span>اكتب تصورات أهلك الثلاثة (البطاقة 3).</span></div></li>
+    <li><div><b>غيّر طريقة الاختيار</b><span>لا قرار على الانطباع الأول، وأعط فرصة لنوعية مختلفة (البطاقة 4).</span></div></li>
+    <li><div><b>اشتغل على نفسك قبل غيرك</b><span>لو عندك أولاد أو شريك: ابدأ بنفسك وبعلاقتك بشريكك (البطاقة 5).</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>التوقيت</th></tr></thead>
+        <tbody>
+          <tr><td class="old">الوعي جحيم، والجهل كان نعيمًا</td><td class="new">الجهل لم يكن نعيمًا؛ الوعي يسقط المتعة الزائفة ويعطيني الحرية</td><td class="v num">6:03</td></tr>
+          <tr><td class="old">أنا بسعى وطموح وعندي همة</td><td class="new">قد أكون مدفوعًا لتعويض نقص أو خزي؛ أفحص دوافعي</td><td class="v num">7:36</td></tr>
+          <tr><td class="old">أنا معطاء زيادة ونصيبي الأسود</td><td class="new">أختار من يشبه من آذاني لأغيّر النهاية القديمة</td><td class="v num">12:12</td></tr>
+          <tr><td class="old">لو حبيته كفاية هيتغير ويعترف بيّ</td><td class="new">لن يعتذر ولن يعترف؛ أنا أضيف خيبة جديدة</td><td class="v num">15:12</td></tr>
+          <tr><td class="old">قلبي دق وجسمي اترعش، يبقى ده الحب</td><td class="new">الحرارة الجارفة غالبًا «حمى» الحرمان؛ الحب ينمو بالمعرفة والسكن</td><td class="v num">22:46</td></tr>
+          <tr><td class="old">الطيبين مش بيشدوني، يبقى مش مناسبين</td><td class="new">ما يشدني فورًا هو القالب القديم؛ أعطي الطيبين فرصة</td><td class="v num">13:42</td></tr>
+          <tr><td class="old">أنا هغيّره أو هغيّرها بحبي</td><td class="new">لا أبحث عن الوردة وسط القبح؛ أختار الجميل كما هو</td><td class="v num">31:54</td></tr>
+          <tr><td class="old">مفيش صاحب يتصاحب، وكل الرجالة أشرار</td><td class="new">هذا نمط اختياري أنا، لا قانون للعالم</td><td class="v num">24:16</td></tr>
+          <tr><td class="old">اللي اتجرح هيتعلم ويختار العكس</td><td class="new">الإنسان يكرر نفس الغلط حتى يعي</td><td class="v num">34:54</td></tr>
+          <tr><td class="old">طالما أهلي قالولي إني كويس يبقى المشكلة فيّ</td><td class="new">صورتي تشكلت من ثلاثية؛ أفكها وأشيل شيلتي بس</td><td class="v num">36:25</td></tr>
+          <tr><td class="old">لازم أغيّر أولادي وشريكي</td><td class="new">لا أغيّر الآخرين؛ أغيّر نفسي فيصلهم الأثر</td><td class="v num">40:58</td></tr>
+          <tr><td class="old">مشاكلي هتبوّظ أولادي، يا ريتني ما خلّفت</td><td class="new">كثير من مشاكلهم يُحل عندي، وده في إيدي</td><td class="v num">40:58</td></tr>
+          <tr><td class="old">لما حد يوريني عيبي يبقى بيهاجمني</td><td class="new">«رحم الله رجلًا أهدى إليّ عيوبي»؛ آخذها وأطلع بيها لفوق</td><td class="v num">45:34</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="acard">
+    <h3>2. خريطة علاقاتك <span class="tag">تمرين كتابة</span></h3>
+    <ol>
+      <li>اكتب أهم 5 علاقات في حياتك: حب، وصداقة، وعمل.</li>
+      <li>لكل واحدة: كيف بدأت؟ ماذا جذبك أول مرة؟ وكيف انتهت؟</li>
+      <li>ما المشترك؟ هل يتكرر دور «المعطاء المستنزَف»، أو من يقلل منك، أو من يتخلى عنك؟</li>
+      <li>من يشبهون من أهلك أو من ماضيك؟</li>
+      <li>ماذا كنت تنتظر منهم في الحقيقة: اعتذارًا، أو اعترافًا، أو تعويضًا؟</li>
+      <li>من الشخص الطيب الذي كان موجودًا ولم تره؟</li>
+    </ol>
+    <p class="src">من 10:40 إلى 17:00</p>
+  </div>
+
+  <div class="acard">
+    <h3>3. فك الثلاثية <span class="tag">تمرين كتابة</span></h3>
+    <ol>
+      <li>ماذا كان أبي وأمي يقولان عني، وكيف كانا يريانني؟</li>
+      <li>كيف كان أبي يرى نفسه (كرجل، ونجاحه، وجسده)؟ وكيف كانت أمي ترى نفسها؟</li>
+      <li>كيف كان أبي يرى أمي؟ وكيف كانت أمي ترى أبي؟</li>
+      <li>أي جزء من صورتي عن نفسي جاء من الإجابة الثانية أو الثالثة لا من الأولى؟</li>
+      <li>ما «الدين» الذي أسدده وليس ديني؟</li>
+    </ol>
+    <p class="src">من 36:25 إلى 39:27</p>
+  </div>
+
+  <div class="acard">
+    <h3>4. عند الانجذاب لشخص جديد</h3>
+    <ul>
+      <li>لو حسيت بانجذاب قوي وفوري أو «شرارة»: توقف واسأل «يشبه مين؟».</li>
+      <li>لا تبنِ قرارًا على الانطباع الأول ولا على الانجذاب الجسدي.</li>
+      <li>اعرف الشخص وقتًا كافيًا: المساحات المشتركة والمختلفة، وهل يحسّن كل منكما حياة الآخر، وهل فيها سكينة.</li>
+      <li>أعط فرصة لنوعية مختلفة، حتى لو بدت «أقل إثارة».</li>
+      <li>لا تدخل علاقة بنية «إنقاذ» الطرف الآخر أو تغييره.</li>
+      <li>طبّق نفس الأسئلة على الصداقات.</li>
+    </ul>
+    <p class="src">من 18:13 إلى 34:54</p>
+  </div>
+
+  <div class="acard">
+    <h3>5. لو عندك أولاد أو شريك</h3>
+    <ul>
+      <li>بدل الضغط والوعظ والخناق: اسأل «اللي شايفه في ابني، هل هو عندي أنا أو عند شريكي؟».</li>
+      <li>لا تكتفِ بالتشجيع اللفظي. اشتغل على رضاك عن نفسك: لا جلد ذات ولا غرور.</li>
+      <li>اشتغل على علاقتك بشريكك وحسن العشرة أمام الأولاد.</li>
+      <li>لو شريكك لا يريد أن يشتغل على نفسه: ركّز في تعافيك أنت، فالأثر يصل.</li>
+    </ul>
+    <p class="src">من 39:27 إلى 45:00</p>
+  </div>
+
+  <div class="acard">
+    <h3>6. مع نفسك ومع غيرك</h3>
+    <ul>
+      <li>حين تكتشف عيبًا: اشكر ربنا واعمل به، ولا تبتئس.</li>
+      <li>حين تنبّه غيرك: برحمة، لا بقسوة.</li>
+      <li>خذ إجازة كل فترة من استهلاك المحتوى النفسي، وأعد سماع ما فات لتهضمه.</li>
+    </ul>
+    <p class="src">من 0:00 ومن 45:34</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: <a href="https://www.youtube.com/watch?v=EF0BJArQCVE" target="_blank" rel="noopener">relationships: how the past determine our present</a> على قناة Emad Rashad Othman، الحلقة الأخيرة في <a href="https://www.youtube.com/playlist?list=PLOjvW1C4hDCkU_l5F1sTSdo6xDHXMWBfP" target="_blank" rel="noopener">القائمة</a>. المحتوى مبني على نص الفيديو كاملًا، والتوقيتات تقريبية.</p>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن معالج.</p>
+</footer>
+
+</div>

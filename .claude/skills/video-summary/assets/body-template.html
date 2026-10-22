@@ -1,0 +1,114 @@
+<!-- Skeleton for the page body. Replace every {{...}}. Repeat blocks marked REPEAT. Classes match assets/head.html. -->
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">{{المتحدث}} · {{السلسلة/القناة}} · {{الحلقة س من ع}} · {{المدة}} · {{تاريخ النشر}}</span>
+  <h1>{{عنوان قصير 2-4 كلمات}}</h1>
+  <p class="lede">{{سطران: عن ماذا الحلقة، والفكرة التي تربطها}}</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>التوقيت بجانب كل عنوان يفتح الفيديو عند هذه اللحظة.</p>
+  </div>
+
+  <!-- REPEAT per topic (6-10 topics). idx uses Arabic-Indic digits ١ ٢ ٣ -->
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>{{عنوان الموضوع}}</h3>
+      <div class="chips"><a href="https://youtu.be/{{ID}}?t={{SECONDS}}" target="_blank" rel="noopener">{{m:ss}}</a></div></div>
+    <p class="key"><b>الفكرة:</b> {{الفكرة الرئيسية في جملتين}}</p>
+    <ul>
+      <li>{{نقطة، مع اقتباس قصير من المتحدث بين «»}}</li>
+    </ul>
+    <!-- optional comparison box:
+    <div class="two"><div class="bad"><h4>...</h4><ul><li>...</li></ul></div><div class="good"><h4>...</h4><ul><li>...</li></ul></div></div> -->
+  </div>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head"><h2>التشجير</h2></div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">{{الجذر}}</span>
+        <ul>
+          <!-- REPEAT per branch -->
+          <li><span class="br">{{فرع}}</span>
+            <ul>
+              <li class="lf">{{ورقة}}</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة.</p>
+  </div>
+  <div class="res">
+    <!-- REPEAT per claim (5-8). pill: ok = مدعوم, mix = جزئي/خلافي, no = الأبحاث تخالفه -->
+    <div class="rcard">
+      <div class="claim"><h4>{{الفكرة كما قالها}}</h4><span class="pill ok">{{الحكم}}</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>{{النتيجة}} <span class="cite">({{المؤلف، السنة، الدورية}})</span></div>
+        <div class="con"><span class="lbl">يعارض أو يحدّ</span>{{النتيجة}} <span class="cite">({{...}})</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> {{جملة}}</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبتها الحلقة، مرتبة.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <!-- REPEAT 4-6 steps -->
+    <li><div><b>{{الخطوة}}</b><span>{{شرح قصير (البطاقة س)}}</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>التوقيت</th></tr></thead>
+        <tbody>
+          <!-- REPEAT 8-15 rows -->
+          <tr><td class="old">{{القديم بالعامية}}</td><td class="new">{{الجديد}}</td><td class="v num">{{m:ss}}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- REPEAT action cards (4-7). Use <ol> for exercises/sequences, <ul> otherwise. -->
+  <div class="acard">
+    <h3>2. {{عنوان البطاقة}} <span class="tag">{{تمرين كتابة / كل يوم / ...}}</span></h3>
+    <ul>
+      <li>{{فعل محدد}}</li>
+    </ul>
+    <p class="src">من {{m:ss}} إلى {{m:ss}}</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: <a href="https://www.youtube.com/watch?v={{ID}}" target="_blank" rel="noopener">{{عنوان الفيديو}}</a> على قناة {{القناة}}. المحتوى مبني على نص الفيديو كاملًا، والتوقيتات تقريبية.</p>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن مختص.</p>
+</footer>
+
+</div>

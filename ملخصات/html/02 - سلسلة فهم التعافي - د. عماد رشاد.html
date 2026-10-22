@@ -1,0 +1,689 @@
+<title>سلسلة فهم التعافي</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column; a "lantern" accent (amber) marks actions, teal marks concepts. Light through a crack: the series' own image of recovery. */
+:root{
+  --bg:#F3F5F4; --surface:#E6ECEA; --ink:#14201F; --muted:#52615F; --rule:#CFD9D6;
+  --teal:#136F63; --teal-soft:#D7EAE6; --amber:#9A5806; --amber-soft:#F5E6D0;
+  --red:#A33B3B; --red-soft:#F4DEDC; --green:#2C7650; --green-soft:#DDEFE4;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{direction:rtl;max-width:900px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.4;margin:0;font-weight:700}
+h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.1rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+
+header.top{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--amber);font-weight:600}
+h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,3.3rem)}
+.lede{font-size:1.06rem;color:var(--muted);max-width:64ch}
+.coverage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px}
+.coverage .big{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--teal);grid-row:span 2}
+.coverage .bar{height:8px;background:var(--rule);border-radius:99px;overflow:hidden}
+.coverage .bar i{display:block;height:100%;width:37.5%;background:var(--teal);border-radius:99px}
+.coverage p{font-size:.9rem;color:var(--muted)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.92rem;padding:5px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--teal);color:var(--teal)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+
+/* themes */
+.theme{border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:10px}
+.theme-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.theme-head .idx{font-family:var(--f-display);color:var(--amber);font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:.8rem;text-decoration:none;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);white-space:nowrap}
+.chips a:hover{text-decoration:underline}
+.theme ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.theme ul li::marker{color:var(--teal)}
+.key{background:var(--teal-soft);border-radius:10px;padding:10px 14px;font-weight:500;max-width:70ch}
+.key b{color:var(--teal)}
+
+/* tree */
+.tree-wrap{overflow-x:auto}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul > li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-family:var(--f-display);font-size:1.35rem;background:var(--ink);color:var(--bg);padding:6px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-family:var(--f-display);font-size:1.08rem;color:var(--teal)}
+.tree .lf{font-size:.95rem}
+.tree .lf b{color:var(--amber);font-weight:600}
+
+/* research */
+.res{display:grid;gap:12px}
+.rcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.rcard .claim{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.rcard .claim h4{flex:1 1 260px}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.mix{background:var(--amber-soft);color:var(--amber)}
+.pill.no{background:var(--red-soft);color:var(--red)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgrid > div{border-radius:8px;padding:10px 12px;font-size:.92rem;min-width:0}
+.rgrid .pro{background:var(--green-soft)}
+.rgrid .con{background:var(--red-soft)}
+.rgrid .lbl{display:block;font-weight:600;font-size:.8rem;margin-bottom:2px}
+.rgrid .pro .lbl{color:var(--green)}
+.rgrid .con .lbl{color:var(--red)}
+.rcard .bottom{font-size:.92rem}
+.rcard .bottom b{color:var(--teal)}
+@media (max-width:620px){.rgrid{grid-template-columns:1fr}}
+.cite{font-size:.82rem;color:var(--muted)}
+
+/* actions */
+.path{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.path > li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.path > li::before{content:counter(p);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--amber);color:var(--bg);font-weight:600;font-variant-numeric:tabular-nums}
+.path b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.path span{font-size:.93rem}
+.acard{border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px}
+.acard h3{display:flex;gap:10px;align-items:baseline}
+.acard h3 .tag{font-family:var(--f-body);font-size:.75rem;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:1px 8px;border-radius:999px}
+.acard ul,.acard ol{margin:0;padding-inline-start:20px;display:grid;gap:5px}
+.acard li::marker{color:var(--amber);font-variant-numeric:tabular-nums}
+.acard .src{font-size:.78rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--surface);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.old{color:var(--red)}
+td.new{color:var(--green);font-weight:500}
+td.v{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{border-radius:10px;padding:12px 14px;min-width:0}
+.two .bad{background:var(--red-soft)}
+.two .good{background:var(--green-soft)}
+.two h4{margin-bottom:4px}
+.two .bad h4{color:var(--red)}
+.two .good h4{color:var(--green)}
+.two ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.93rem}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--amber);padding-inline-start:12px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer details summary{cursor:pointer;color:var(--ink);font-weight:500}
+footer ul{margin:6px 0 0;padding-inline-start:18px;columns:2;column-gap:28px}
+@media (max-width:560px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">د. عماد رشاد عثمان · قائمة «التعافي من إدمان مشاهدة الإباحيات»</span>
+  <h1>سلسلة فهم التعافي</h1>
+  <p class="lede">الملخص، والتشجير، وما تقوله الأبحاث مع الفكرة وضدها، ثم كل ما المطلوب منك أن تفعله وتعتقده، مرتّبًا.</p>
+  <div class="coverage">
+    <span class="big num">24/64</span>
+    <div class="bar" aria-hidden="true"><i></i></div>
+    <p>ما في هذه الصفحة مبني على النص الكامل لـ24 فيديو، وهي كل الفيديوهات المتاحة نصوصها الآن. سأضيف الباقي (40 فيديو) فور الحصول على نصوصها. القائمة في آخر الصفحة.</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<!-- ============ SUMMARY ============ -->
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>الفيديوهات مربوطة ببعضها حسب الموضوع، لا حسب ترتيب النشر. تحت كل موضوع أرقام الفيديوهات التي جاء منها، والرقم يفتح الفيديو.</p>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>ما هو الإدمان أصلًا؟</h3>
+      <div class="chips"><a href="https://youtu.be/irj9tYKD7AM" target="_blank" rel="noopener">07</a><a href="https://youtu.be/QgO6yLC6kV4" target="_blank" rel="noopener">09</a><a href="https://youtu.be/gE88nj689V8" target="_blank" rel="noopener">10</a><a href="https://youtu.be/2Nitt088xgU" target="_blank" rel="noopener">11</a><a href="https://youtu.be/3XDXVisR_ns" target="_blank" rel="noopener">05</a></div></div>
+    <p class="key"><b>الفكرة:</b> كل الإدمانات (إباحية، جنس، علاقات واعتمادية عاطفية، طعام، مخدرات، كحول، قمار، شراء) لها أساس واحد. المادة «مغيّر للحالة النفسية» يطفئ مشاعر لا تُحتمل، لا وسيلة للمتعة.</p>
+    <ul>
+      <li>تعريف الإدمان: الاستمرار في سلوك قهري رغم العواقب السلبية.</li>
+      <li>يقوم على طبيعتين. الأولى «حساسية نفسية» للمادة (ليس كل من جرّب يدمن)، وتولّد اللهفة والعجز عن التحكم في الجرعة. والثانية «هوس ذهني»: فكرة ملحّة تقول «هذا خلاصك»، وهي «القرد اللي بيتنطط». العضو المعطوب هو الدماغ، لا الأعضاء الجنسية ولا البطن.</li>
+      <li>الإدمان «مرض الانفصال»: انفصال مبكر عن الذات والآخرين والله والواقع. والمادة محاولة اتصال معطوبة، كعطشان يشرب ماءً مالحًا.</li>
+      <li>المدمن يرى العالم بـ«نظارة مشوّهة» تحوّل كلام الزوجة أو المدير إلى «أنت مش كفاية»، والتعافي «زوج جديد من النظارات».</li>
+      <li>«أنا مريض، مش فاسد أخلاقيًا». الخطاب الذي يصم المدمن («قليل الأدب»، «توب وخلاص») يعمّق الخزي. الذنب يقول «عملت حاجة غلط»، والخزي يقول «أنا غلط».</li>
+      <li>دائرة الإدمان: خزي ← ضرب (تخدير لحظي) ← إفاقة على الألم الأصلي مضافًا إليه ألم الوقعة ← خزي أعمق ← يأس («كده كده بايظ») ← «مالكش غيري» ← إنكار وتبرير ← ضرب.</li>
+      <li>في رسالة ديفيد مورا: «بذرة الإساءة تثمر الإدمان». وعائلات المدمنين يجمعها الصمت وإنكار «الفيل في الصالون». الطفل المُساء إليه يكره نفسه لا المؤذي، ويحتاج في التعافي إلى «إعادة كتابة قصته».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٢</span><h3>الإرادة والعجز والتسليم</h3>
+      <div class="chips"><a href="https://youtu.be/cxKmD5AaWYc" target="_blank" rel="noopener">08</a><a href="https://youtu.be/kLRe2dQ9Jco" target="_blank" rel="noopener">20</a><a href="https://youtu.be/N2cODgJoH3U" target="_blank" rel="noopener">58</a><a href="https://youtu.be/gE88nj689V8" target="_blank" rel="noopener">10</a></div></div>
+    <p class="key"><b>الفكرة:</b> «عبث الإرادة». لا أحد يقاوم المادة الإدمانية بإرادته («بطل العالم في الملاكمة»). الاعتراف بالعجز أمام المادة هو بوابة التحرر.</p>
+    <ul>
+      <li>أخطر فكرة مغلوطة: «محتاج شوية إرادة». تجلب الإحباط واليأس فيزيد الضرب.</li>
+      <li>العجز مشروط بالمادة وحدها، لا فقدانًا مطلقًا للإرادة. والإرادة لها دور: تذهب بها إلى الاجتماع وتقرأ وتتصل، لكنك لا تصارع بها المادة نفسها.</li>
+      <li>المعترف بعجزه لا يعرّض نفسه للمحفزات. «إرادتي الوحيدة: إرادتي في عدم التعرض».</li>
+      <li>«اليأس الخلّاق»: تيأس من التعافي بإرادتك ودماغك وحدك، لا من رحمة الله. الذبابة تظل تخبط في الزجاج، والفأر يبحث عن باب آخر.</li>
+      <li>ثمار هذا اليأس: التواضع، والتسليم (وهو غير الاستسلام)، والتفتح الذهني (كسر «أنا مختلف»)، وتحويل الطاقة إلى ما يمكن تغييره، أي المشاعر والضغوط والخزي.</li>
+      <li>التوقف يكون فجأة وكاملًا، والتحرر تدريجي. «الهندلة» والتدريج إنكار، باستثناء المهدئات والكحول التي تحتاج إشرافًا طبيًا.</li>
+      <li>قصته: دعا «أني مغلوب فانتصر» أمام مسجد مغلق، ثم قابل متسولًا مدمنًا قال له «عندما هُزمنا أصبحنا عازمين».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٣</span><h3>المعتقدات التي تشغّل ماكينة الإدمان</h3>
+      <div class="chips"><a href="https://youtu.be/5ViiFNCV8ms" target="_blank" rel="noopener">12</a><a href="https://youtu.be/eOfhT8_tt_s" target="_blank" rel="noopener">13</a></div></div>
+    <p class="key"><b>الفكرة:</b> الماكينة هي الحساسية والهوس والانفصال، والوقود معتقدات. والإدمان «كيان ذكي» يستخدم ذكاء المدمن نفسه في التبرير والعقلنة.</p>
+    <ul>
+      <li><b>الكمالية:</b> إما كامل أو فاشل، والتسعون في المئة تساوي صفرًا («نص الدرجة راحت فين؟»). تنتج تسويفًا وجلدًا للذات وخزيًا دائمًا.</li>
+      <li><b>التحكم في كل شيء:</b> جذره الخوف. يظهر في تفتيش موبايل الشريك، وفي تنزيل كل الكتب عن المشكلة دون العمل بها. والإدمان نفسه «تحكم بديل».</li>
+      <li><b>الإشباع الفوري:</b> «طفولة ممتدة». أريد كل شيء وفورًا، وأؤجل المطلوب مني. ومعه رفض «تكدير الحياة وتأقيتها» والتنقل بحثًا عن العمل المثالي والشريك المثالي.</li>
+      <li><b>«أقل أو أعلى»:</b> لا يرى نفسه بمقاسه، ولا يستطيع «أنا كويس وأنت كويس». مثاله شعيب في سورة هود: «ليس بي سفاهة… إني أراكم بخير».</li>
+      <li><b>«المشاعر ضعف»</b>، و«لو عرفوا حقيقتي سيستغلونني أو يتركونني».</li>
+      <li>خلاط المشاعر الناتج: إحباط وخزي واغتراب وذنب وخوف. هذا هو «الجحيم الداخلي» الذي يدفع إلى العالم البديل.</li>
+      <li>العلاج: قبول الحياة بشروطها، و«أن تعاني بشجاعة» (فرانكل)، و«دعاء السكينة»: اقبل ما لا يتغير، وغيّر ما يمكن تغييره، واطلب حكمة التمييز بينهما.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٤</span><h3>الإدمان حالة ذهنية، والتعافي تذكّر</h3>
+      <div class="chips"><a href="https://youtu.be/hO-0SsxWOsw" target="_blank" rel="noopener">50</a><a href="https://youtu.be/zEW5dM83qJk" target="_blank" rel="noopener">53</a><a href="https://youtu.be/XPS8U33oMlg" target="_blank" rel="noopener">67</a></div></div>
+    <p class="key"><b>الفكرة:</b> الإدمان ليس «الضرباية»، والتعافي ليس عدّ الأيام. كلاهما «نسق» من معتقدات ومشاعر وسلوك. من ضرب منذ ساعة بعقلية متعافٍ أفضل من مبطّل منذ سنة بعقلية مدمن (dry drunk).</p>
+    <ul>
+      <li>اقرأ ما يحدث بعد الضرب على أنه «لزوميات الفعل» (الضرباية تستدعي النسق الإدماني)، لا «شؤم المعصية وغضب الله». فهذه القراءة تزيد الانفصال والخزي.</li>
+      <li>كل محاولة وقراءة ومشاركة ودعاء «طوبة» في بناء التعافي، ولا شيء يضيع. سمِّ المدمن والمتعافي اللذين بداخلك، والبس عقلية المتعافي ولو تكلّفًا.</li>
+      <li>الإدمان «مرض النسيان»: تنسى رغبتك الحقيقية وهويتك. أول جملة في كتاب SA: «أتمنى ألا أنسى».</li>
+      <li>كل الأدوات (الدعاء، العلاج، التأمل…) لا تعمل إلا تحت «مظلة التذكّر». فاشحن يومك بالمذكّرات، على الأقل في السنة الأولى.</li>
+      <li>التعافي لا يعلّمك جديدًا، بل يفعّل ما تعلمته. يصنع مسافة بينك وبين الإدمان (إطلاق سراح مشروط لمدة 24 ساعة) فتظهر ذاتك الأصيلة.</li>
+      <li>الشك في الذات مع خوف الانكشاف يشلّانك. وقول «أنا فلان، مدمن» في اجتماع يخفض خوف الانكشاف فتعود قدرتك. أثر الاجتماع لا علاقة له بجودة محتواه.</li>
+      <li>«هذه السلسلة لا تغني أبدًا عن الاجتماعات والخطوات ورفيق التعافي». ولا تمنطق التعافي، فالإدمان مرض المفارقات.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٥</span><h3>الألم والجذور والحكاية الرمزية</h3>
+      <div class="chips"><a href="https://youtu.be/HV_qB12ts1Y" target="_blank" rel="noopener">59</a><a href="https://youtu.be/bJ3D4_09edE" target="_blank" rel="noopener">61</a><a href="https://youtu.be/N2cODgJoH3U" target="_blank" rel="noopener">58</a></div></div>
+    <p class="key"><b>الفكرة:</b> السلوك الإدماني لغة رمزية لألم مبكر لم يجد كلامًا. هو «مرثية» تعيد تمثيل مشهد الحرمان الأول. حين يُحكى الألم ويُسمع تسقط وظيفة الإدمان.</p>
+    <ul>
+      <li>الألم حقيقي لكنه «كذّاب»: يوهمك بأنه دائم. وكل ألم مرّ في حياتك يشهد بغير ذلك. «خليك مع إحباطك شوية… شوف هيعلمك إيه».</li>
+      <li>طبقات الجرح: صدمة مبكرة (تخلٍّ، أو حرمان، أو فقد، أو حتى تدليل) قبل أن توجد اللغة، فتتكوّن «نواة خزي» و«نواة استياء».</li>
+      <li>مثال الإباحية: نظرة الإغواء والتشفّي على الشاشة تقول «لن تنالني، أنت صغير»، فتعيد الحرمان من نظرة تقدير الأب أو الأم الموجهة لغيرك. تصاعد العنف في المحتوى هو الغضب المكبوت.</li>
+      <li>مثال الطعام: بنت مع أم ضعيفة مُهانة؛ النهم احتواء، والقيء والدايت لفظ لصفاتها.</li>
+      <li>ما يشاهده كل شخص يختلف لأن حكايته مختلفة. لذلك يقول إن الاختزال في «الدوبامين وصيام الدوبامين» لا يكفي.</li>
+      <li>جلد الذات بعد الضرب جزء من الدورة: ألم «مفهوم» أهون من الألم الأصلي الذي لا اسم له.</li>
+      <li>تسمية الشعور تهدّئه، ومعرفة ما في الداخل تجعل الفعل الصحيح أسهل (مثل الاعتذار للزوجة بعد فهم أنك أسقطت عليها غضبك من غيرها).</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٦</span><h3>بداية التعافي وآلامها</h3>
+      <div class="chips"><a href="https://youtu.be/R6ISV1nt85I" target="_blank" rel="noopener">14</a><a href="https://youtu.be/_jLEgA0ZTp8" target="_blank" rel="noopener">57</a></div></div>
+    <ul>
+      <li>أثناء المرض النشط يكون السلوك منسجمًا مع الذات، ولا تساؤل. «القاع» والخسائر هي التي توقظ، «لا الفضيلة».</li>
+      <li>بعد الإفاقة ينشأ «مراقب» داخلي، فيتصادم صوت التعافي مع صوت المرض. وأصعب لحظة حين يتشابه الصوتان كتوأمين، وعندها اسأل شخصًا تثق به.</li>
+      <li>المقامات بالترتيب: توبة واعتراف وتعويض، ثم مراقبة، ثم مجاهدة. وفي الطريق مرحلة «التقزز الساخر من الذات».</li>
+      <li>«السحابة الوردية» في البداية، ثم انزعاج «ماكر»: قلق بلا سبب، أرق، إحساس بكارثة قادمة حين تستقر الحياة.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٧</span><h3>الانتكاسة</h3>
+      <div class="chips"><a href="https://youtu.be/YTB28oYoIz0" target="_blank" rel="noopener">60</a><a href="https://youtu.be/hO-0SsxWOsw" target="_blank" rel="noopener">50</a><a href="https://youtu.be/N2cODgJoH3U" target="_blank" rel="noopener">58</a></div></div>
+    <p class="key"><b>الفكرة:</b> الأيام «النظيفة» بين ضربات بنفس المعدل ليست تعافيًا، بل «امتناع هوسي» يشحن للضربة التالية. الفارق الحقيقي: هل تحلّل انتكاستك أم تجلد نفسك؟</p>
+    <ul>
+      <li>داخل كل مدمن انخراط هوسي وامتناع هوسي (أكل ثم دايت عنيف؛ إباحية ثم شتم «العادة القذرة» وكتب التبتل)، وهذا في التوقيت الخطأ جزء من الدورة.</li>
+      <li>الطقوس الدينية بعد الضرب (غُسل، بكاء، كره للذات) قد تصير جزءًا من طقس الإدمان، فتفقد فعاليتها و«تيئّسك من الدين».</li>
+      <li>«كل شيء ضاع» صوت إدمان. العداد يُصفَّر رقميًا لا داخليًا. و«قاعدة العُشر»: إن لم تُلحِق الانتكاسة بأخرى، تستعيد ما بنيته في عُشر المدة.</li>
+      <li>القرارات الحماسية الكبيرة الفردية بعد الانتكاسة (بيع الشقة، عمرة بفلوس الجواز، الزواج فورًا) تخدير للخزي، لا تعافٍ.</li>
+      <li>الحساسية تبقى بدرجات «كورم حميد خامل». والانتكاس بعد تعافٍ طويل أخطر. أما «هل سأعود طبيعيًا؟» فقد يكون حنين الإدمان إلى المادة.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٨</span><h3>العلاقات والزواج والبوح</h3>
+      <div class="chips"><a href="https://youtu.be/bjollOkgYQo" target="_blank" rel="noopener">63</a><a href="https://youtu.be/N2cODgJoH3U" target="_blank" rel="noopener">58</a><a href="https://youtu.be/XPS8U33oMlg" target="_blank" rel="noopener">67</a></div></div>
+    <ul>
+      <li>الزواج ليس حلًا لإدمان متحقق، وقد يعقّده: ترتفع «عتبة الاستثارة» بالتجديد المستمر، فلا يكفي الشريك الواحد.</li>
+      <li>في البداية لا يفرّق المدمن بين العلاقة والضرباية. والحب جدلية: انصهار في الآخر وعودة إلى الذات، دون استخدامه أداة إشباع أو طمأنة.</li>
+      <li>«لا يوجد شريك لمدمن غير متأثر» (اعتمادية مشتركة). وإذا تعافى واحد في البيت تعافى البيت كله، بشرط ألا يفرض تعافيه أو يسوّق له.</li>
+      <li>المنهي عنه هو «المجاهرة» (الحكي بتلذذ ومفاخرة)، لا «الجهر» لغاية علاجية مع معالج أو مشرف أو صديق أو في زمالة. و«إذا بليتم فاستتروا» لا تعني ترك العلاج.</li>
+      <li>الاعتراف الاندفاعي بالتفاصيل للزوجة لتريح نفسك من الذنب نوع من الإيذاء. التعويض المقنّن مكانه الخطوتان 8 و9.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٩</span><h3>الخطوة الرابعة: الجرد بالكتابة</h3>
+      <div class="chips"><a href="https://youtu.be/Jx6plSPEIDs" target="_blank" rel="noopener">56</a><a href="https://youtu.be/_jLEgA0ZTp8" target="_blank" rel="noopener">57</a><a href="https://youtu.be/xKPd8fbJo4A" target="_blank" rel="noopener">62</a><a href="https://youtu.be/IIOL1f1IRmI" target="_blank" rel="noopener">64</a><a href="https://youtu.be/lfbMs6Hb8-Q" target="_blank" rel="noopener">65</a><a href="https://youtu.be/Bn7MQr2er1U" target="_blank" rel="noopener">66</a></div></div>
+    <p class="key"><b>نص الخطوة:</b> «قمنا بعمل جرد أخلاقي متفحّص وبلا خوف لأنفسنا». وهي البوابة بين «وضع النجاة» (الخطوات 1 إلى 3) و«وضع النمو». ومن لا يعمل بها «عاجلًا أو آجلًا ينتكس».</p>
+    <ul>
+      <li>«قمنا» تعني إقامة واستعدادًا واستعانة. و«متفحّص» تعني ورقة وقلمًا، فالكتابة العفوية بلا فلترة تكشف ما لا يكشفه التفكير. و«بلا خوف» أن تكمل وأنت خائف. و«لأنفسنا» لام حصر: لا جرد للآخرين ولا نميمة.</li>
+      <li>الهدف اكتشاف 10 إلى 12 «نمطًا»: موقف معين يثير أفكارًا ومشاعر واستجابات تنتهي بخسارات. وينتج عن ذلك توجّه «المسؤولية»، أي «مساحتي من الطريق»، بدل اللوم و«المغلوبية».</li>
+      <li>الإنكار «جهل مركّب»: لا ترى، ولا ترى أنك لا ترى. ومن الإنكار الإسقاط، ولوم الآخرين والمؤامرة والسحر والأبراج، والشفقة على الذات. والنظام الإدماني مغلق لا ينفتح إلا بعنصر خارجي، كالمشرف والزمالة.</li>
+      <li>«جرد لا جلد»: الجرد متحنّن «كأب لطيف». «الرابعة العرجاء» عيوب فقط، و«الرابعة المبتورة» استعجال في الإنهاء.</li>
+      <li>«الخوف الناتج عن التمحور حول الذات هو لب المرض»: كر أو فر أو تجمد أمام تهديد داخلي، وتحكّم وتلاعب وكذب، ووسواس الفقر والفقد. و«الخوف نقص إيمان»، والمقصود شرخ وجداني في الثقة بعناية الله لا نقص في العقيدة.</li>
+      <li>الصداقة في التعافي أهم من علاقات الحب. والمدمنون «نجوم مشاكل الالتزام».</li>
+      <li>«لن تكشف لنا قوتنا العظمى شيئًا أكبر مما نستطيع التعامل معه الآن».</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TREE ============ -->
+<section class="block" id="tree">
+  <div class="sec-head">
+    <h2>التشجير</h2>
+    <p>كل ما سبق في شجرة واحدة.</p>
+  </div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">التعافي عند د. عماد رشاد</span>
+        <ul>
+          <li><span class="br">الإدمان = ماكينة + وقود</span>
+            <ul>
+              <li class="lf"><b>الماكينة:</b> حساسية نفسية (لهفة + عجز عن الجرعة) + هوس ذهني + انفصال (ذات، آخرين، الله، واقع)</li>
+              <li class="lf"><b>الوقود:</b> معتقدات: الكمالية، التحكم، الإشباع الفوري، أقل أو أعلى، المشاعر ضعف</li>
+              <li class="lf"><b>الجذر:</b> صدمة مبكرة بلا لغة، ثم نواة خزي واستياء وخوف</li>
+              <li class="lf"><b>الوظيفة:</b> مغيّر للحالة النفسية، و«مرثية» رمزية للألم</li>
+              <li class="lf"><b>الدائرة:</b> خزي، ضرب، يأس، إنكار، ضرب</li>
+            </ul>
+          </li>
+          <li><span class="br">الأساس: تغيير النظرة</span>
+            <ul>
+              <li class="lf">مريض لا فاسد أخلاقيًا</li>
+              <li class="lf">لا تعويل على الإرادة: عجز أمام المادة فقط</li>
+              <li class="lf">يأس خلّاق ← تواضع، تسليم، تفتح ذهني</li>
+              <li class="lf">حالة ذهنية لا عدّاد أيام</li>
+              <li class="lf">تذكّر مستدام (مرض النسيان)</li>
+            </ul>
+          </li>
+          <li><span class="br">جناحا البرنامج</span>
+            <ul>
+              <li class="lf"><b>التقفيل:</b> منع التعرض، قطع حاسم، لا أنصاف حلول</li>
+              <li class="lf"><b>البرنامج:</b> اتصال بالناس والزمالة، أمانة، خطوات، مشاركة، تسليم</li>
+            </ul>
+          </li>
+          <li><span class="br">العمل على الداخل (الخطوة 4)</span>
+            <ul>
+              <li class="lf">جرد بالكتابة 30 دقيقة يوميًا</li>
+              <li class="lf">استياءات، مخاوف، مشاعر، علاقات وجنس، أسرار وخزي، عقلية ضحية، عيوب، مزايا</li>
+              <li class="lf">اكتشاف الأنماط ← المسؤولية</li>
+              <li class="lf">جرد متحنّن لا جلد</li>
+            </ul>
+          </li>
+          <li><span class="br">الانتكاسة</span>
+            <ul>
+              <li class="lf">امتناع هوسي ≠ تعافٍ</li>
+              <li class="lf">تحليل الانتكاسة لا جلد الذات</li>
+              <li class="lf">«كل شيء ضاع» كذبة، وقاعدة العُشر</li>
+              <li class="lf">لا قرارات حماسية فردية</li>
+            </ul>
+          </li>
+          <li><span class="br">العلاقات</span>
+            <ul>
+              <li class="lf">الزواج ليس علاجًا</li>
+              <li class="lf">6 إلى 12 شهرًا قبل علاقة جديدة</li>
+              <li class="lf">جهر علاجي لا مجاهرة</li>
+              <li class="lf">الصداقة أولوية</li>
+            </ul>
+          </li>
+          <li><span class="br">الثمرة</span>
+            <ul>
+              <li class="lf">ظهور الإرادة والحرية، والرغبة الحقيقية والدور والمعنى، وسكينة يقل معها الخوف</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية في السلسلة: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة. الحكم في الشارة يخص الفكرة كما قالها المتحدث.</p>
+  </div>
+  <div class="res">
+
+    <div class="rcard">
+      <div class="claim"><h4>هل إدمان الإباحية «إدمان» فعلًا؟</h4><span class="pill mix">خلاف علمي قائم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>دراسات تصوير الدماغ وجدت عند من يعانون سلوكًا جنسيًا قهريًا استجابة في مناطق المكافأة للمثيرات الجنسية تشبه استجابة مدمني المواد للمثيرات المرتبطة بالمخدر. <span class="cite">(Voon et al., 2014, PLoS ONE؛ Gola et al., 2017, Neuropsychopharmacology)</span></div>
+        <div class="con"><span class="lbl">يعارض أو يحدّ</span>الدليل التشخيصي DSM-5 رفض تشخيص «اضطراب فرط الجنسية» عام 2013. وتصنيف ICD-11 أدرج «اضطراب السلوك الجنسي القهري» (6C72) ضمن اضطرابات التحكم في الاندفاع، لا الإدمان. ودراسة Prause وزملائها (2015) وجدت نتائج لا تتسق مع نموذج الإدمان.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> المعاناة حقيقية ومعترف بها عالميًا كاضطراب، لكن تسميتها «إدمانًا» بالمعنى الطبي محل خلاف. ويتفق هذا مع قول المتحدث نفسه: «التسميات لا تهم، المهم أنك تريد التوقف ولا تستطيع».</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الإحساس بالإدمان والخزي الأخلاقي</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد كلامه عن الخزي</span>مراجعة منهجية وتحليل تجميعي وجدا أن الإحساس بـ«أنا مدمن إباحية» يرتبط بالرفض الأخلاقي والتدين أكثر من ارتباطه بكمية المشاهدة الفعلية، وأن هذا الإحساس نفسه مرتبط بالضيق النفسي. <span class="cite">(Grubbs, Perry, Wilt &amp; Reid, 2019, Archives of Sexual Behavior)</span></div>
+        <div class="con"><span class="lbl">ما ينبّه إليه</span>ICD-11 ينص على أن الضيق الناتج فقط عن حكم أخلاقي على السلوك لا يكفي للتشخيص. أي إن بعض من يرون أنفسهم مدمنين يعانون صراعًا أخلاقيًا وخزيًا، لا قهرًا بالمعنى الإكلينيكي، ويستفيدون من تخفيف الخزي أكثر من غيره.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> رسالته «مريض مش فاسد» وتقليل خطاب الوصم تتفق مع هذه الأبحاث. وقبل الحكم على نفسك، اسأل: هل هو فقدان سيطرة متكرر مع عواقب، أم صراع بين السلوك وقيمي؟</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الإدمان «مرض في الدماغ»</h4><span class="pill mix">نموذج سائد مع نقد قوي</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>المعهد الأمريكي لأبحاث المخدرات (NIDA) يتبنى «النموذج الدماغي»: تغيرات في دوائر المكافأة والضغط والتحكم الذاتي. <span class="cite">(Volkow, Koob &amp; McLellan, 2016, NEJM)</span> وأبحاث مادة ΔFosB التي ذكرها موجودة، لكنها في الأغلب على الحيوانات. <span class="cite">(Pitchers et al., 2013)</span></div>
+        <div class="con"><span class="lbl">يعارض أو يحدّ</span>نماذج «التعلّم» و«الاختيار» ترى تغيرات الدماغ تعلّمًا عميقًا لا مرضًا. <span class="cite">(Lewis, 2018, NEJM؛ Heyman, 2009)</span> وتحليل تجميعي وجد أن التفسير البيولوجي يقلل اللوم، لكنه يزيد التشاؤم بإمكانية الشفاء. <span class="cite">(Kvaale, Haslam &amp; Gottdiener, 2013)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> «مريض» مفيدة لتخفيف الخزي، وقد نبّه هو نفسه إلى أنها قد تثير التبرير. خذ منها نزع العار، لا «خلاص أنا مش مسؤول».</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الخزي غير الذنب، والخزي يغذي الإدمان</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>أبحاث Tangney وزملائها: الميل إلى الخزي («أنا سيء») يرتبط بمشكلات الكحول والمخدرات، والميل إلى الذنب («فعلت شيئًا سيئًا») يرتبط بالتصحيح والإصلاح. <span class="cite">(Dearing, Stuewig &amp; Tangney, 2005, Addictive Behaviors)</span></div>
+        <div class="con"><span class="lbl">حدود</span>الأبحاث ارتباطية في معظمها. والذنب الصحي مفيد، وهو لم ينكره («التوبة مهمة»).</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> التفريق بين «أخطأتُ» و«أنا خطأ» من أقوى أفكار السلسلة علميًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«الإرادة لا تكفي» و«منع التعرض»</h4><span class="pill ok">مدعوم بقوة</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>أبحاث ضبط النفس وجدت أن أصحاب الانضباط العالي يواجهون إغراءات أقل لأنهم يرتبون حياتهم لتجنبها، لا لأنهم يقاومون أكثر. <span class="cite">(Hofmann et al., 2012, JPSP)</span> والاستراتيجيات الموقفية (تغيير البيئة) أقوى من مقاومة اللحظة. <span class="cite">(Duckworth, Gendler &amp; Gross, 2016)</span> ونظرية «استنزاف الإرادة» نفسها فشلت في تجربة إعادة كبرى. <span class="cite">(Hagger et al., 2016)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>برامج مثل SMART Recovery تركز على «تمكين الذات»، والكفاءة الذاتية (الثقة بقدرتك) تتنبأ بتعافٍ أفضل. فالمقصود ليس «أنا بلا قدرة» بل «لا أصارع المادة».</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> «إرادتي الوحيدة في عدم التعرض» تتفق تمامًا مع علم ضبط النفس الحديث.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الزمالات (12 خطوة) والاتصال بالناس</h4><span class="pill ok">مدعوم للكحول، أقل للإباحية</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>مراجعة كوكرين (2020) وجدت أن زمالة AA وبرامج تيسير الخطوات تساوي العلاجات الأخرى أو تتفوق عليها في الامتناع عن الكحول. <span class="cite">(Kelly, Humphreys &amp; Ferri)</span> وآلية عملها الأساسية تغيير الشبكة الاجتماعية والدعم، أكثر من الجانب الروحي وحده. <span class="cite">(Kelly, 2017, Addiction)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الأدلة على زمالات الجنس والإباحية (SA وغيرها) قليلة ووصفية. و«التعافي الطبيعي» دون علاج أو زمالة شائع في الكحول والمخدرات حسب الدراسات السكانية. <span class="cite">(Sobell et al., 2000؛ Dawson et al., 2005)</span> فعبارة «لا أحد يتعافى وحده» مبالغة، لكن الدعم الاجتماعي يرفع الفرص كثيرًا.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> ركّز على وجود بشر حقيقيين في تعافيك، وهذا أقوى ما في كلامه علميًا، حتى لو لم تكن الزمالة طريقك الوحيد.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الانتكاسة: «كل شيء ضاع» وتحليل الانتكاسة</h4><span class="pill ok">مدعوم بقوة</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>نموذج «الوقاية من الانتكاس» يصف «أثر انتهاك الامتناع»: من يفسّر الزلّة بأنها فشل كلي وعيب شخصي يتحول من زلّة إلى انتكاسة كاملة. وتحليل المواقف عالية الخطورة والمحفزات والقرارات «البريئة» هو قلب العلاج. <span class="cite">(Marlatt &amp; Gordon, 1985)</span> وبرامج اليقظة الذهنية للوقاية من الانتكاس قللت الانتكاس على 12 شهرًا. <span class="cite">(Bowen et al., 2014, JAMA Psychiatry)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>«قاعدة العُشر» (تستعيد ما بنيته في عُشر المدة) ملاحظة إكلينيكية لا رقمًا مثبتًا بالبحث.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> ورقة تحليل الانتكاسة التي شرحها تطبيق مباشر لأقوى نموذج علمي في هذا الباب.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«بذرة الإساءة تثمر الإدمان»</h4><span class="pill mix">صحيح جزئيًا، والتعميم مبالغ</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>دراسة «تجارب الطفولة السلبية» (ACE): كلما زادت الإساءة والإهمال واضطراب البيت، زاد خطر الإدمان تدريجيًا. <span class="cite">(Felitti et al., 1998؛ Dube et al., 2003)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الوراثة تفسر نحو 40 إلى 60% من قابلية الإدمان. <span class="cite">(Goldman, Oroszi &amp; Ducci, 2005)</span> وكثيرون يدمنون بلا إساءة واضحة. فعبارة «لا إدمان إلا وله جذر إساءة» تعميم.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> ابحث في جذورك دون أن تُجبر قصتك على قالب الصدمة إن لم يكن موجودًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الكتابة وتسمية المشاعر</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>تسمية الشعور بالكلمات تخفض نشاط اللوزة المخية. <span class="cite">(Lieberman et al., 2007, Psychological Science)</span> والكتابة التعبيرية عن التجارب المؤلمة لها أثر إيجابي صغير ومتسق على الصحة النفسية. <span class="cite">(Pennebaker &amp; Beall, 1986؛ Frattaroli, 2006)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>رقم «60%» الذي ذكره لأثر التسمية غير موجود في الأبحاث. والأثر حقيقي لكنه متوسط، وكتابة الصدمات الكبيرة وحدك قد تهيّج، فالأفضل مع مشرف أو معالج كما نصح هو.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> «الجرد بالكتابة» له أساس علمي جيد.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>ضعف الانتصاب المرتبط بالإباحية وتأثيرها على الدماغ</h4><span class="pill mix">أدلة متضاربة</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>تقارير حالات ومراجعة تربط الإفراط في الإباحية بصعوبات جنسية تتحسن بالامتناع. <span class="cite">(Park et al., 2016, Behavioral Sciences)</span> ودراسة ربطت ساعات المشاهدة بحجم أقل للمادة الرمادية في «النواة المذنّبة». <span class="cite">(Kühn &amp; Gallinat, 2014, JAMA Psychiatry)</span></div>
+        <div class="con"><span class="lbl">يعارض أو يحدّ</span>دراسة على عينات كبيرة لم تجد علاقة واضحة بين المشاهدة وضعف الانتصاب لدى الشباب. <span class="cite">(Landripet &amp; Štulhofer, 2015, J Sex Med)</span> ودراسة Kühn ارتباطية لا تثبت السبب. والصحيح أنها النواة المذنّبة، لا «القشرة المخية» كما قال.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> لا تبنِ تعافيك على التخويف بالأضرار، وهو نفسه يقول إنه لا يجدي.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>رقم «90 يومًا»، و«3 إلى 5 سنوات»</h4><span class="pill no">بلا أساس بحثي محدد</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">ما له أصل</span>«90 اجتماعًا في 90 يومًا» تقليد في زمالة AA. و«3 إلى 5 سنوات» من الملاحظات الإكلينيكية لباتريك كارنز (مسح لمرضاه، لا تجربة مضبوطة).</div>
+        <div class="con"><span class="lbl">التحفظ</span>لا توجد دراسة تثبت أن الدماغ «يتعافى» من الإباحية في 90 يومًا. وهو نفسه يقول: «وهم الـ90… ما بيعافيش».</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> استخدم المدد للتحفيز، لا كمعيار للتعافي.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>التوقف المفاجئ، و«جسمه فاضي فمات»</h4><span class="pill ok">صحيح، مع تنبيه طبي</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>بعد فترة امتناع تقل القدرة على تحمّل المخدر، فيرتفع خطر الجرعة الزائدة القاتلة عند العودة إلى نفس الكمية. <span class="cite">(Merrall et al., 2010, Addiction)</span></div>
+        <div class="con"><span class="lbl">تنبيه</span>التوقف المفاجئ عن الكحول أو المهدئات (البنزوديازيبينات) لمن يعتمد عليها جسديًا قد يسبب نوبات تشنج خطيرة، فلا بد من إشراف طبي. وهذا لا ينطبق على الإباحية والطعام.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ TODO ============ -->
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبتها السلسلة، مرتبة. ابدأ بالترتيب المقترح، ثم ارجع إلى البطاقات عند الحاجة.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <li><div><b>اعترف وقفّل</b><span>اعترف لنفسك ولشخص واحد على الأقل بأنك عاجز أمام المادة. ونفّذ «التقفيل» فورًا (البطاقة 3). القطع كامل وفوري.</span></div></li>
+    <li><div><b>ادخل في اتصال</b><span>ابحث عن الزمالة المناسبة واحضر (البطاقة 9). الهدف 90 اجتماعًا في 90 يومًا، وقل في كل اجتماع ولو «أنا فلان مدمن». واختر مشرفًا عنده ما تريده.</span></div></li>
+    <li><div><b>غيّر المعتقدات</b><span>ردّد البدائل في الجدول (البطاقة 1) كل يوم، ولو تكلّفًا: «إنما الصبر بالتصبّر».</span></div></li>
+    <li><div><b>اشحن يومك بالمذكّرات</b><span>نفّذ الروتين اليومي (البطاقة 2)، على الأقل طوال السنة الأولى.</span></div></li>
+    <li><div><b>ابدأ الكتابة</b><span>نصف ساعة يوميًا في جرد الخطوة الرابعة بالترتيب (البطاقة 7)، ومعك مشرف أو رفيق تعافي.</span></div></li>
+    <li><div><b>عند الزلّة</b><span>بروتوكول ما بعد الانتكاسة (البطاقة 5)، لا جلد ولا قرارات كبيرة.</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>المصدر</th></tr></thead>
+        <tbody>
+          <tr><td class="old">أنا فاسد أخلاقيًا، قليل الأدب، شهواني، مزيف</td><td class="new">أنا مريض، وده اختباري ومعركتي، والمرض له علاج</td><td class="v num">11</td></tr>
+          <tr><td class="old">محتاج شوية إرادة وشد حيل</td><td class="new">إرادتي لا تكفي لمقاومة المادة؛ إرادتي في عدم التعرض وفي طلب المساعدة</td><td class="v num">08 · 20 · 58</td></tr>
+          <tr><td class="old">أقدر أهندلها (مرة كل أسبوعين، بصّة بس)</td><td class="new">أنا عاجز عن التحكم في الجرعة، فلا أبدأ أصلًا</td><td class="v num">07 · 10</td></tr>
+          <tr><td class="old">أقدر أتعافى لوحدي بالقراءة والفيديوهات</td><td class="new">لا تعافي بلا بشر يعرفون حقيقتي</td><td class="v num">09 · 67</td></tr>
+          <tr><td class="old">لازم أبقى كامل؛ 90% فشل</td><td class="new">لا كمال في الدنيا؛ 90% حلوة؛ الحمد لله عدّيت نظيف</td><td class="v num">12</td></tr>
+          <tr><td class="old">لازم أتحكم في كل حاجة وكل الناس</td><td class="new">لن أتحكم في الآخرين والماضي والحقائق؛ أسلّم ما ليس لي، وأفعل ما عليّ</td><td class="v num">12 · 66</td></tr>
+          <tr><td class="old">لازم آخد كل اللي عايزه وفورًا</td><td class="new">الحياة فيها تكدير وتأقيت؛ أقبلها بشروطها وأعاني بشجاعة</td><td class="v num">13</td></tr>
+          <tr><td class="old">يا أنا أحسن منهم يا أنا أقل منهم</td><td class="new">أنا كويس وأنت كويس؛ الخير يكفي الجميع</td><td class="v num">13</td></tr>
+          <tr><td class="old">المشاعر ضعف، ولو عرفوا حقيقتي هيستغلوني أو يسيبوني</td><td class="new">مشاعري تُقال لمن أثق بهم؛ الكشف يخفف الشلل</td><td class="v num">13 · 67</td></tr>
+          <tr><td class="old">اللي حصل لي النهارده شؤم معصيتي وربنا غضبان عليّ</td><td class="new">ده من لزوميات الفعل (النسق الإدماني اتفعّل)، والله يتفهم معركتي</td><td class="v num">50</td></tr>
+          <tr><td class="old">وقعت، كل شيء ضاع، العداد اتصفّر</td><td class="new">زللت خطوة من عشرين؛ لا شيء في التعافي يضيع</td><td class="v num">60 · 50</td></tr>
+          <tr><td class="old">الألم ده هيفضل للأبد</td><td class="new">الألم حقيقي لكنه كذّاب؛ هيعدّي وهيعلمني</td><td class="v num">59</td></tr>
+          <tr><td class="old">هم السبب: أهلي، مراتي، الغرب، السحر، المطاعم</td><td class="new">ما هي مساحتي من الطريق؟ أنا مسؤول عن تعافيّ</td><td class="v num">62 · 64</td></tr>
+          <tr><td class="old">الجواز هيحل المشكلة</td><td class="new">الزواج لا يعالج إدمانًا متحققًا</td><td class="v num">58</td></tr>
+          <tr><td class="old">البوح بستر ربنا مجاهرة محرمة</td><td class="new">الجهر لغاية علاجية مطلوب؛ المحرم هو المجاهرة بتلذذ</td><td class="v num">63</td></tr>
+          <tr><td class="old">أنا عارف نفسي كويس وشايف عيوبي</td><td class="new">أنا لا أرى، ولا أرى أني لا أرى؛ أحتاج عينًا من الخارج</td><td class="v num">62</td></tr>
+          <tr><td class="old">ربنا معايا بس هيتخلى عني لو وقعت</td><td class="new">عنايته دائمة حتى وأنا مذنب؛ مشيئته أفضل من تحكمي</td><td class="v num">66</td></tr>
+          <tr><td class="old">الإدمان ما كانش ليه فايدة، أنا بكرهه</td><td class="new">كان حلًا خرج عن السيطرة؛ أفهم ما كان يقوله عني</td><td class="v num">60 · 61</td></tr>
+          <tr><td class="old">لما أوصل لـ90 يوم هبقى خفيت</td><td class="new">المعيار حالتي الذهنية اليوم، لا عدد الأيام</td><td class="v num">50 · 65</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="acard">
+    <h3>2. الروتين اليومي <span class="tag">على الأقل السنة الأولى</span></h3>
+    <ul>
+      <li>أول الصباح: سجدة ودعاء «يا رب ساعدني، أنا مش قدها» (تسليم يومي).</li>
+      <li>ذكّر نفسك مرات خلال اليوم بأنك مدمن تتعافى، وبماذا تريد فعلًا من حياتك: في البريك، وقبل الأكل وبعده، وقبل النوم. «أتمنى ألا أنسى».</li>
+      <li>اجتماع زمالة يوميًا إن أمكن، وتكلّم فيه ولو بجملة.</li>
+      <li>مكالمة أو تواصل حقيقي مع مشرف أو رفيق تعافي: «أنا تعبان النهارده».</li>
+      <li>نصف ساعة كتابة: جرد الخطوة الرابعة أو جرد اليوم.</li>
+      <li>عِش «لليوم فقط» (24 ساعة). اسأل: ما الفعل الصحيح التالي؟</li>
+      <li>أمانة كاملة طوال اليوم، فلا كذب ولو هزارًا، لأن «كل كذبة انفصال وهتضرب». جرّب أن تعلّم على كذباتك يومين.</li>
+      <li>إن غفلت عن البرنامج يومًا، فاعتبره ثغرة تحتاج إغلاقًا، لا «ما فرقتش».</li>
+    </ul>
+    <p class="src">من الفيديوهات 08، 09، 53، 58، 64، 65، 66</p>
+  </div>
+
+  <div class="acard">
+    <h3>3. التقفيل ومنع التعرض <span class="tag">من اليوم الأول</span></h3>
+    <ul>
+      <li>اللابتوب في الصالة، لا في غرفتك ولا خلف باب مغلق.</li>
+      <li>أول شهور: لا سمارت فون (موبايل «حديدة بتقول ألو»)، أو برنامج حجب لا تعرف كلمة سره.</li>
+      <li>امسح «المخزون» كله: الملفات والحسابات والأرقام. ولمدمن الطعام: لا مخزون في الثلاجة.</li>
+      <li>بلوك وتغيير رقم و«خروج كارثي» من العلاقات الإدمانية، لا «هكلمه بس من غير ما نتقابل».</li>
+      <li>لا «بس أغنية على يوتيوب» ولا نتفليكس كبديل. لا «بصّة على الفضيحة».</li>
+      <li>ابتعد عن الأشخاص والأماكن والأشياء المرتبطة بالضرب. وكُل في بيتك قبل الخروج مع الأصحاب.</li>
+      <li>لا تقعد وحدك فترات طويلة في أول سنتين أو ثلاث، و«حمية نفسية» من الناس المؤذين والمتنمرين.</li>
+      <li>لا أنصاف حلول: «قضمة أجدع من نحتة». والتقفيل يكسبك وقتًا في اللحظات التي لا يشتغل فيها شيء.</li>
+      <li>بعد سنوات قد يأتي «تعرض مع منع استجابة»، لكن البداية «منع تعرض».</li>
+    </ul>
+    <p class="src">من الفيديوهات 07، 08، 10، 60</p>
+  </div>
+
+  <div class="acard">
+    <h3>4. لحظة اللهفة والفكرة الملحّة</h3>
+    <ul>
+      <li>لا تصارع المادة ولا تجادل الفكرة. افعل شيئًا يفصلك عنها: مكالمة، اجتماع، خروج من المكان.</li>
+      <li>اتصل بشخص وقل: «أنا فلان مدمن، وعندي دلوقتي فكرة ضرب». قول هذا وحده يخفض الرغبة.</li>
+      <li>سمِّ ما تشعر به بالضبط (إحباط، رفض، وحدة، خزي، غضب، ملل، تعب جسدي)، بدل «مخنوق».</li>
+      <li>اسأل: إيه اللي وداني هنا؟ أي موقف استفزني في آخر 48 ساعة؟ وإيه اللي بحاول أقوله لنفسي وللعالم؟</li>
+      <li>تذكّر ماذا تريد فعلًا: الرياضة، العلاقة بالزوجة، الموهبة، الأحلام المؤجلة.</li>
+      <li>تذكّر أن الألم سيمر، وأن «أصعب يوم في التعافي أفضل من أجمل يوم في الإدمان».</li>
+      <li>إن قال لك صوت «ارتاح النهارده ومتروحش الاجتماع/ما تقابلش صحابك»، فهذا صوت المرض لأنه يعمّق الانفصال. أي صوت يقودك إلى اتصال صحي هو صوت التعافي.</li>
+      <li>إن لم تعرف أي الصوتين هو الصحيح، اسأل شخصًا تثق به: «أنت شايف الإشارة حمرا ولا خضرا؟».</li>
+    </ul>
+    <p class="src">من الفيديوهات 07، 08، 09، 14، 20، 53، 59، 61، 67</p>
+  </div>
+
+  <div class="acard">
+    <h3>5. بعد الانتكاسة <span class="tag">الأيام الثلاثة التالية هي الأهم</span></h3>
+    <ol>
+      <li>«انفض هدومك وقوم»: لا تسمح للنسق الإدماني بالتفعيل، ولا تُلحِق الانتكاسة بأخرى أو باليأس أو بجلد الذات.</li>
+      <li>لا تجعل الطقوس (غُسل، بكاء، شتم النفس) بديلًا عن التحليل. التوبة معها تحليل.</li>
+      <li>اكتب «ورقة تحليل الانتكاسة»:
+        <ul>
+          <li>المواقف ذات القيمة الانفعالية في آخر 48 ساعة، سلبية أو إيجابية (نجاح، مديح، حلم)، ومن كان فيها، ومشاعرك وأفكارك.</li>
+          <li>المحفزات: أشخاص وأماكن وأشياء، تعرضت لها بمجازفة أو دون قصد.</li>
+          <li>ثغرات البرنامج: رقم لم تحظره، مفتاح ما زال معك، وحدة طويلة، ترك المشاركة. وكيف تغلقها.</li>
+          <li>مسار الانتكاسة: علامات التحذير الأولى، وأفكار التبرير والتسويف، وطقوس التحضير، والوقت بين أول علامة والوقوع.</li>
+          <li>نظام الخداع: اكتب الفكرة الإدمانية وأمامها الحقيقة.</li>
+          <li>الخسائر الواقعية فقط (ثقة الزوجة، صحتك)، لا «كل شيء ضاع».</li>
+          <li>مكاسب التعافي التي لم تأخذها الانتكاسة، وهذا أهم بند.</li>
+          <li>3 أنشطة ممتعة الآن، و3 أشخاص تتواصل معهم تواصلًا حقيقيًا خلال 24 ساعة.</li>
+          <li>راقب اللهفة يوميًا من 1 إلى 9، والمشاعر غير المريحة ودرجتها (خزي، خوف)، واسترخِ وادعُ واخرج.</li>
+        </ul>
+      </li>
+      <li>لا قرارات كبيرة حماسية فردية. القرار الصحي يُتخذ بعد التحليل، ومع شخص آخر، ولنمط تكرر، ويتضمن ناسًا (الزوجة، الأولاد، اجتماعات أكثر).</li>
+      <li>حلّل كل انتكاسة ولو وقعت كل يوم: «هتلضم معاك في يوم».</li>
+    </ol>
+    <p class="src">من الفيديوهات 50، 58، 60</p>
+  </div>
+
+  <div class="acard">
+    <h3>6. علامات تحذير قبل الانتكاسة</h3>
+    <div class="two">
+      <div class="bad"><h4>سلوك</h4><ul><li>كذب صغير، لف ودوران، كلام بمعنيين</li><li>التخطيط لقعدة وحدك، فلوس زائدة في جيبك</li><li>ترك المشاركة أو الكتابة، وفوضى في الحضور</li><li>خناقات وتسرّع ومشاكل في التعليقات</li><li>لا إجازة ولا راحة منذ فترة</li></ul></div>
+      <div class="bad"><h4>تفكير</h4><ul><li>«الكلام ده ما ينطبقش عليّ»</li><li>«المرة دي هتحكم في الجرعة»</li><li>شيطنة الناس والتعافي والزوجة</li><li>غضب لم يُعبَّر عنه، وتوجه عدواني تجاه العالم</li><li>«أنا مختلف عنهم»</li></ul></div>
+    </div>
+    <p class="src">من الفيديوهات 09، 20، 60، 62</p>
+  </div>
+
+  <div class="acard">
+    <h3>7. الكتابة: الخطوة الرابعة بالترتيب <span class="tag">نصف ساعة يوميًا</span></h3>
+    <p class="note">ابدأ اليوم. اكتب عفويًا بلا فلترة، في مكان آمن (موبايل بكلمة سر أو كراسة مخبأة). اكتب نحو 12 بندًا لكل جرد، فـ20% من العيوب تصنع 80% من الخراب. شارك ما كتبته مع مشرف، ثم صوّره وتخلّص من الورق. ولا تنسَ الهدف: اكتشاف الأنماط، لا كتابة سيرة ذاتية.</p>
+    <ol>
+      <li><b>قبل البدء:</b> اسأل نفسك «ماذا أريد من التعافي؟» لا «كيف أتخلص من الخسائر».</li>
+      <li><b>الاستياءات:</b> الأشخاص (منذ الطفولة)، والمؤسسات (المدرسة، الجامع أو الكنيسة، الجامعة، العمل)، والمفاهيم (مثل «البنت مكسورة الجناح»، و«حب الكلمة الحلوة رياء»). ولكلٍّ منها: هل جُرحت بسبب كبري أو تضخم الأنا؟ هل كنت مهددًا؟ هل سبّب طموحي أو طمعي صراعًا؟ ما توقعاتي المبالغ فيها؟ أين عدم أمانتي؟ أي شعور لم أحتمله (الانتظار، الرفض)؟ كيف أثّر الاستياء على علاقتي بنفسي والناس والله؟</li>
+      <li><b>المخاوف (16 أو أكثر):</b> من الظلمة إلى الهجر والرفض والفقر. ولكلٍّ: أسبابه، وكيف يشكّل حياتي، وكيف أتعامل معه حين يأتي.</li>
+      <li><b>المشاعر:</b> الذنب، الخزي، الحيرة، اليأس، الغرور، الوحدة، الاكتئاب، الشفقة على الذات، الخوف. لكلٍّ: 6 مواقف تستدعيه، هل كنت «دائمًا على حق»؟ هل أصررت على طريقتي؟ هل كان الشعور متناسبًا مع الموقف؟ بماذا يذكّرني من طفولتي؟</li>
+      <li><b>العلاقات المؤثرة:</b> العاطفية، والمعلمون ورموز السلطة، والأصدقاء (الأصدقاء يكشفون الأنماط أكثر). الإيجابيات، والسلبيات مني أنا: الاستعلاء، والاستغلال، والتهكم، والتلاعب، ونوبات الغضب والتخويف، والشفقة على الذات للحصول على ما أريد، والكذب.</li>
+      <li><b>العلاقات الجنسية وشبه الجنسية:</b> هل كذبت أو تلاعبت؟ هل رعيت الطرف الآخر؟ كم مرة قلت «نعم» وأنا أريد «لا»؟ هل اعتقدت أن الجنس أو الحضن سيداويني؟ كيف كنت أختار شركائي في فترة المرض؟</li>
+      <li><b>الأسرار والخزي:</b> ما لم أقله لأحد قط. لماذا أخفيته؟ ماذا يخدم خزيي (التلميع الاجتماعي مثلًا)؟ هل ألوم نفسي على أخطاء غيري؟ «لا شيء يذهب معك إلى القبر».</li>
+      <li><b>عقلية الضحية (12 موقفًا):</b> هل كنت ضحية فعلًا؟ ما توقعاتي من أهلي؟ وما مسؤوليتي عن استمرار النمط؟ وكيف أكسره؟</li>
+      <li><b>الإساءات التي ارتكبتها:</b> تعليق الناس ثم تركهم، الوعود المنقوضة، إيذاء من هم تحت يدي. اعمل عليها مع مشرف، والصدمات الكبيرة (تحرش، اغتصاب) مع معالج متخصص.</li>
+      <li><b>العيوب الشخصية:</b> 12 عيبًا، ومع كل عيب أمثلة وتأثيره.</li>
+      <li><b>الأصول الإيجابية</b>، وإلا صارت «الخطوة العرجاء»: النية الطيبة، الاتصال بالله، الشجاعة، التعاطف، اللطف، الصبر، الرعاية، الأمانة، القبول، الامتنان، الكرم، التفتح الذهني، والأحلام والطموحات التي تاهت منك.</li>
+      <li><b>بعد الكتابة:</b> استخرج مع مشرفك 10 إلى 12 نمطًا («العلاقات تبدأ مرفرفة وتنتهي بخروج كارثي»، «لا أضع حدودًا فأُستغل»). وكرر الجرد كل فترة على الشهر الماضي: «الكسر اللي يقيمني».</li>
+    </ol>
+    <p class="src">من الفيديوهات 56، 57، 62، 64، 65، 66</p>
+  </div>
+
+  <div class="acard">
+    <h3>8. العلاقات والزواج</h3>
+    <ul>
+      <li>لا علاقة جديدة قبل 6 إلى 12 شهرًا من التعافي (سنة إلى سنة ونصف في إدمان الجنس أو العلاقات، وأقل مع تقدّم العمر).</li>
+      <li>لو أنت متزوج: لا أحد يطلب منك الانفصال. ركّز على تعافيك ولا تفرضه على شريكك، وفكّر في علاج الأزواج.</li>
+      <li>«التنشيف»: فترة امتناع عن الجنس بين الزوجين (شهر على الأقل) لإعادة الجنس إلى وظيفته الطبيعية، على طريقة «التركيز الحسي» عند ماسترز وجونسون. لا تفعله وحدك بلا زمالة أو مشرف. ويمكن تقديمه للشريك كـ«تجديد ونركّز على الحميمية».</li>
+      <li>الإفصاح: لا اعتراف اندفاعي بالتفاصيل لتريح نفسك. الإفصاح والتعويض المقنّن مكانهما الخطوتان 8 و9، ومع مشرف.</li>
+      <li>الاعتذار على طريقة الزمالات: «أنا غلطت في حقك في كذا… أنا آسف»، بلا تبرير.</li>
+      <li>اجعل الصداقة أولوية، ولا تتشنّج في صنعها.</li>
+    </ul>
+    <p class="src">من الفيديوهات 63، 65، 66، 67</p>
+  </div>
+
+  <div class="acard">
+    <h3>9. كيف تجد زمالة</h3>
+    <ul>
+      <li>ابحث على جوجل عن «زمالة مدمني الجنس المجهولين المنطقة العربية» (SA)، وستجد إيميلًا يدخلك الاجتماعات. هذه الزمالة تغطي الإباحية والجنس والعلاقات.</li>
+      <li>الاعتمادية العاطفية: CoDA. الطعام: OA. الكحول: AA. المخدرات: NA (خط ساخن 24 ساعة في مصر). أبناء العائلات المضطربة: ACA.</li>
+      <li>احضر الزمالة الخاصة بمشكلتك. لا تحضر NA لمشكلة جنس.</li>
+      <li>الاجتماعات بالعربية أونلاين ومجانية، ولا تُطلب منك إلا اسمك الأول. ويمكنك استخدام حساب باسم مستعار.</li>
+      <li>مجموعات واتساب والرسائل مساعدة فقط، والتعافي يحتاج اجتماعات بصوت على الأقل، ووجهًا لوجه أفضل.</li>
+      <li>إن لم توجد زمالة، ابدأ واحدة باثنين أو ثلاثة، كما بدأت NA في مصر.</li>
+      <li>كتب الزمالات (الكتاب الأبيض، و«إنه ينجح: كيف ولماذا») تُطلب أو تُشترى من الزمالات نفسها.</li>
+    </ul>
+    <p class="src">من الفيديوهات 61، 62، 65، 66</p>
+  </div>
+
+  <div class="acard">
+    <h3>10. هل أنا في تعافٍ حقيقي أم امتناع فارغ؟</h3>
+    <div class="two">
+      <div class="bad"><h4>امتناع هوسي (جزء من الإدمان)</h4><ul><li>أيام «نظيفة» بنفس معدل الضرب</li><li>شتم الإباحية وقراءة كتب التبتل بعد السقوط</li><li>جلد ذات بلا تحليل</li><li>«كل شيء ضاع» بعد الزلّة</li><li>قرارات كبيرة حماسية وحدك</li><li>عبودية المدة: «أنا أحسن عشان عامل 6 شهور»</li><li>مبطّل لكن متمحور حول ذاتك، مرتاب، دوني (dry drunk)</li></ul></div>
+      <div class="good"><h4>تعافٍ حقيقي</h4><ul><li>تحلّل كل انتكاسة بأمانة</li><li>«زللت، وما بنيته لم يضع»</li><li>قرارات بعد تحليل، ومع آخرين</li><li>أمانة صارمة في كل حياتك</li><li>تسليم، وعيش في اليوم، والفعل الصحيح التالي</li><li>اتصال بالناس وبالله وبنفسك</li><li>تعرف أنماطك ومساحتك من الطريق</li></ul></div>
+    </div>
+    <p class="src">من الفيديوهات 50، 60، 65</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: قائمة «التعافي من إدمان مشاهدة الإباحيات» على قناة Emad Rashad Othman (64 فيديو متاح، وفيديو واحد غير متاح، ومكرران). المحتوى مبني على نصوص الفيديوهات نفسها.</p>
+  <details>
+    <summary>الفيديوهات المغطاة هنا (24)</summary>
+    <ul>
+      <li>05 الأسى الذكوري 5</li><li>07 فهم السلوك القهري</li><li>08 عبث الإرادة</li><li>09 هل يمكنني التعافي وحدي؟</li><li>10 فجأة أم بالتدريج؟</li><li>11 المدمن مريض وليس فاسدًا</li><li>12 المعتقدات المحركة للإدمان</li><li>13 أنا والحياة الصعبة</li><li>14 آلام التعافي الأولى</li><li>20 اليأس والإحباط</li><li>50 التعافي حالة ذهنية</li><li>53 مذكرات التعافي</li><li>56 النظر لأنفسنا</li><li>57 اكتشاف ما بداخلنا</li><li>58 بودكاست روتين التسعين</li><li>59 الألم حقيقي وكذاب</li><li>60 تحليل الانتكاسة</li><li>61 الحكاية الرمزية</li><li>62 الإسقاط والجرد والأمل</li><li>63 الجاهزية للعلاقة والمجاهرة</li><li>64 الجرد والمسؤولية</li><li>65 جرد عملي (الخطوة 4)</li><li>66 الخوف والتعافي</li><li>67 كيف يعمل التعافي؟</li>
+    </ul>
+  </details>
+  <details>
+    <summary>فيديوهات لم تُضف بعد (40)</summary>
+    <ul>
+      <li>01 إلى 04، 06 الأسى الذكوري</li><li>15 علاج أنماطنا الإدمانية</li><li>16 الزمالات وأنواعها</li><li>17 لليوم فقط</li><li>18 أولوية التعافي</li><li>19 الانتكاس والزلل والارتداد</li><li>21، 22 خداع الذات</li><li>23 أعراض الانسحاب</li><li>25 أصوات التشكيك</li><li>26 الاصطدام بالقاع</li><li>27 الفوضى في حياتنا</li><li>28 الله الذي لا يشبه أبي</li><li>30 لماذا لا يساعدني الله؟</li><li>31، 32، 34 إجابة أسئلة</li><li>33 الخروج من الجنون الشخصي</li><li>35 التسليم والجرد اليومي</li><li>36 لا أفهم التسليم</li><li>37 الندم والشعور بالذنب</li><li>38 حين تخدعنا الألفة</li><li>39 التخلي والإفلات والتسليم</li><li>40 الجرد والعناية بالذات</li><li>41 فقه الانتكاس</li><li>42 الخيالات وأحلام اليقظة</li><li>43 الاستياء</li><li>44 اللهفة قبل الانتكاس</li><li>45 جلد الذات</li><li>46 الكمالية</li><li>47 غياب الحافز</li><li>48 التحرر الصحي من الماضي</li><li>49 السكينة والسلام الداخلي</li><li>51 تعلّم كيف تنتكس</li><li>52 الذنب وعدم الاستحقاق</li><li>54 القاعدة الأهم في التعافي</li>
+    </ul>
+  </details>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن طبيب أو معالج. التوقف عن الكحول أو المهدئات يحتاج إشرافًا طبيًا.</p>
+</footer>
+
+</div>

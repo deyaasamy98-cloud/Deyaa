@@ -1,0 +1,485 @@
+<title>الاحتواء والفشل الرمزي</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column; a "lantern" accent (amber) marks actions, teal marks concepts. Light through a crack: the series' own image of recovery. */
+:root{
+  --bg:#F3F5F4; --surface:#E6ECEA; --ink:#14201F; --muted:#52615F; --rule:#CFD9D6;
+  --teal:#136F63; --teal-soft:#D7EAE6; --amber:#9A5806; --amber-soft:#F5E6D0;
+  --red:#A33B3B; --red-soft:#F4DEDC; --green:#2C7650; --green-soft:#DDEFE4;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{direction:rtl;max-width:900px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.4;margin:0;font-weight:700}
+h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.1rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+
+header.top{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--amber);font-weight:600}
+h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,3.3rem)}
+.lede{font-size:1.06rem;color:var(--muted);max-width:64ch}
+.coverage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px}
+.coverage .big{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--teal);grid-row:span 2}
+.coverage .bar{height:8px;background:var(--rule);border-radius:99px;overflow:hidden}
+.coverage .bar i{display:block;height:100%;width:37.5%;background:var(--teal);border-radius:99px}
+.coverage p{font-size:.9rem;color:var(--muted)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.92rem;padding:5px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--teal);color:var(--teal)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+
+/* themes */
+.theme{border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:10px}
+.theme-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.theme-head .idx{font-family:var(--f-display);color:var(--amber);font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:.8rem;text-decoration:none;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);white-space:nowrap}
+.chips a:hover{text-decoration:underline}
+.theme ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.theme ul li::marker{color:var(--teal)}
+.key{background:var(--teal-soft);border-radius:10px;padding:10px 14px;font-weight:500;max-width:70ch}
+.key b{color:var(--teal)}
+
+/* tree */
+.tree-wrap{overflow-x:auto}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul > li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-family:var(--f-display);font-size:1.35rem;background:var(--ink);color:var(--bg);padding:6px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-family:var(--f-display);font-size:1.08rem;color:var(--teal)}
+.tree .lf{font-size:.95rem}
+.tree .lf b{color:var(--amber);font-weight:600}
+
+/* research */
+.res{display:grid;gap:12px}
+.rcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.rcard .claim{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.rcard .claim h4{flex:1 1 260px}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.mix{background:var(--amber-soft);color:var(--amber)}
+.pill.no{background:var(--red-soft);color:var(--red)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgrid > div{border-radius:8px;padding:10px 12px;font-size:.92rem;min-width:0}
+.rgrid .pro{background:var(--green-soft)}
+.rgrid .con{background:var(--red-soft)}
+.rgrid .lbl{display:block;font-weight:600;font-size:.8rem;margin-bottom:2px}
+.rgrid .pro .lbl{color:var(--green)}
+.rgrid .con .lbl{color:var(--red)}
+.rcard .bottom{font-size:.92rem}
+.rcard .bottom b{color:var(--teal)}
+@media (max-width:620px){.rgrid{grid-template-columns:1fr}}
+.cite{font-size:.82rem;color:var(--muted)}
+
+/* actions */
+.path{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.path > li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.path > li::before{content:counter(p);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--amber);color:var(--bg);font-weight:600;font-variant-numeric:tabular-nums}
+.path b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.path span{font-size:.93rem}
+.acard{border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px}
+.acard h3{display:flex;gap:10px;align-items:baseline}
+.acard h3 .tag{font-family:var(--f-body);font-size:.75rem;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:1px 8px;border-radius:999px}
+.acard ul,.acard ol{margin:0;padding-inline-start:20px;display:grid;gap:5px}
+.acard li::marker{color:var(--amber);font-variant-numeric:tabular-nums}
+.acard .src{font-size:.78rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--surface);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.old{color:var(--red)}
+td.new{color:var(--green);font-weight:500}
+td.v{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{border-radius:10px;padding:12px 14px;min-width:0}
+.two .bad{background:var(--red-soft)}
+.two .good{background:var(--green-soft)}
+.two h4{margin-bottom:4px}
+.two .bad h4{color:var(--red)}
+.two .good h4{color:var(--green)}
+.two ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.93rem}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--amber);padding-inline-start:12px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer details summary{cursor:pointer;color:var(--ink);font-weight:500}
+footer ul{margin:6px 0 0;padding-inline-start:18px;columns:2;column-gap:28px}
+@media (max-width:560px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">د. عماد رشاد عثمان · سلسلة «التحرر من الماضي» · الحلقة 3 من 10 · 48 دقيقة · 16 أكتوبر 2025</span>
+  <h1>الاحتواء والفشل الرمزي</h1>
+  <p class="lede">ما الذي يحتاجه الطفل كي يكبر نفسيًا؟ «الاحتواء». وحين يُجهَض نتجمد هناك. الحلقة تشرح كيف نستعيده، ولماذا التعافي عملية تلقائية، وكيف يكون الفشل والاكتئاب أحيانًا «شاهدًا» رمزيًا على ما حدث.</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>التوقيت بجانب كل عنوان يفتح الفيديو عند هذه اللحظة.</p>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>لماذا القواعد أولًا، ومراجعة</h3>
+      <div class="chips"><a href="https://youtu.be/gVp1-Yzpl-Q?t=0" target="_blank" rel="noopener">0:00</a></div></div>
+    <ul>
+      <li>الحلقات الثلاث الأولى «تقعيد»: وضع قواعد قبل الخوض في الصدمات. بدونها «هتحتار» بين دور الضحية وإنكار ألمك.</li>
+      <li>من الحلقة السابقة: ألمك اليوم نتاج «عوامل» لا سبب واحد: جينات، وكيمياء المخ، وما تعرضت له، وتأويلك له، وأحداث وإساءات حقيقية. وتغيير بعض العوامل التي في يدك يغير النتيجة، «ربما بدون اعتذار أو اعتراف من آخر».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٢</span><h3>الطفل الإنساني والاحتواء</h3>
+      <div class="chips"><a href="https://youtu.be/gVp1-Yzpl-Q?t=186" target="_blank" rel="noopener">3:06</a><a href="https://youtu.be/gVp1-Yzpl-Q?t=370" target="_blank" rel="noopener">6:10</a></div></div>
+    <p class="key"><b>الفكرة:</b> الطفل الإنساني أطول الكائنات اعتمادًا على غيره، حتى 16 أو 18 سنة أحيانًا. وأهم وظيفة في هذه الفترة هي <b>الاحتواء</b> (containment): أن يكون هناك من «يحضن» هذا المخلوق المزعج حتى تقوى عظامه نفسيًا ويواجه العالم.</p>
+    <ul>
+      <li>الاحتواء ليس «النحنحة» ولا «لازم يطبطبوا عليك». هو مساحة تخرج فيها لخبطتك ومشاعرك باريحية، وتُحتوى «ولو بالصمت، ولو بالسماح فقط».</li>
+      <li>جسديًا: الرضيع لا يقدر حتى أن يضع يده في فمه. الأم تجمع جسده المتشظي بين ذراعيها («قالب» يتشكل فيه)، فيهدأ ويأكل ويلعب، فتقوى عضلاته تدريجيًا.</li>
+      <li>نفسيًا: بالتدليل والمناغشة واللعب والقانون والتربية وبث القيم. والطفل يرى نفسه أولًا في عين أمه: «أنا الشيء المنظور إليه بمحبة».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٣</span><h3>القاعدة: احتواء يؤدي إلى «تخلٍّ» و«تحلٍّ»</h3>
+      <div class="chips"><a href="https://youtu.be/gVp1-Yzpl-Q?t=554" target="_blank" rel="noopener">9:14</a><a href="https://youtu.be/gVp1-Yzpl-Q?t=738" target="_blank" rel="noopener">12:18</a></div></div>
+    <p class="key"><b>الفكرة:</b> حين يُحتوى احتياج طفلي ويُشبع، يتخلى الطفل عنه، كما يسقط شعر الولادة. وفي نفس الوقت يتحلى بقدرات جديدة.</p>
+    <ul>
+      <li><b>التخلي:</b> لما يشبع من اعتماديته يكبر عنها («أنا عايز ألبس لوحدي» في سن السنتين). ولما يشبع بالطمأنينة يتخلى عن خوفه، وبالفخر والتشجيع عن تردده، وبالتحفيز عن خزيه قبل المبادرة.</li>
+      <li><b>التحلي:</b> اتخاذ القرار، وحل المشكلات، والقدرات الحسابية، والكلام.</li>
+      <li>أزمة الاحتواء تؤدي إلى أحد أمرين: إنسان كبير يتمسك بصفات طفلية لم تشبع، أو نقص في نمو قدرات معينة.</li>
+      <li>مثال: الطفل يطمئن نفسه بمص إصبعه، ومع الطمأنينة يتركه. ومن لم يُحتوَ يظل يحتاج «حاجة في فمه» ليطمئن: مخدر، إباحية، طعام، سيجارة.</li>
+      <li>الاحتواء لا يعني غياب الحرمان. الاحتواء «يحتوي الإحباط»: «لا، هتخش تنام»، «معيش فلوس». فيتعلم الطفل تحمل إحباطات العالم.</li>
+      <li>المعادلة: احتواء + حرمان خفيف = الشخص «السوي» الأسطوري. حرمان أكثر قليلًا = شخص عنده أشياء تؤلمه ويبحث عن رفيق. حرمان كثير واحتواء قليل = اضطرابات وتعثر، حتى الدمار.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٤</span><h3>التجمد، والنفس الفسيفساء، والنكوص تحت الضغط</h3>
+      <div class="chips"><a href="https://youtu.be/gVp1-Yzpl-Q?t=980" target="_blank" rel="noopener">16:20</a><a href="https://youtu.be/gVp1-Yzpl-Q?t=1193" target="_blank" rel="noopener">19:53</a></div></div>
+    <p class="key"><b>الفكرة:</b> حيث فشل الاحتواء نتجمد. فقد يكون الرجل «بشنباته» رضيعًا في الاعتمادية، وطالب خامسة ابتدائي في الثقة بنفسه. وتحت الضغط نرجع لهذه المنطقة بالذات.</p>
+    <ul>
+      <li>من أُجهضت اعتماديته مبكرًا يظل يبحث عن «المنقذ» والشخص القوي الذي يستند عليه.</li>
+      <li>النمو النفسي لا يمشي مع العمر ولا مع العقل: قد تكون حكيمًا ومحللًا ممتازًا، وفي العلاقات تخاف الناس كطفل في الشهر التاسع يخاف الغرباء.</li>
+      <li>تخيل وجهًا: لحية رجل، وعين طفل، وشنب إعدادي، ويد في خامسة ابتدائي وأخرى في أولى ثانوي. «هو ده شكل النفس».</li>
+      <li>تحت الضغط: الخائف يزيد خوفه، والاعتمادي يبحث عن من يأخذ باله منه، والغضوب يذهب للغضب، ومن عنده خزي يقول «أنا وحش وأنا السبب».</li>
+      <li>الجانب المفرح: تقدر ترسم «خريطة لألمك». ما يطلع منك تحت الضغط يدلك على المنطقة التي تحتاج احتواءً بديلًا.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٥</span><h3>التعافي استعادة احتواء أُجهض: الشاهد والمؤرخ</h3>
+      <div class="chips"><a href="https://youtu.be/gVp1-Yzpl-Q?t=1370" target="_blank" rel="noopener">22:50</a><a href="https://youtu.be/gVp1-Yzpl-Q?t=1557" target="_blank" rel="noopener">25:57</a></div></div>
+    <p class="key"><b>الفكرة:</b> العلاج النفسي في النهاية «عملية احتواء» (ويلفريد بيون). وأول طرق ترميم الاحتواء أن تتحدث عن المؤرق «في نور شخص آخر»: أذن تسمع بدون أحكام.</p>
+    <ul>
+      <li>لست بحاجة لمن يطبطب أو يقدم حلولًا. الأم في البداية لم تكن «تعمل تمارين» للطفل، كانت موجودة فقط.</li>
+      <li>«كل ما يحتاجه المرء أحيانًا من المعالج أن يكون شاهدًا ومؤرخًا لقصة لم تُروَ». بالرواية مرة واثنتين وثلاثًا تعيد تأطير قصتك وترمم شروخ الاحتواء القديم.</li>
+      <li>لهذا يكرر: كوّنوا مجموعات، وهاتوا خوفكم وترددكم وشككم وخزيكم وضعوه في نور الآخرين.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٦</span><h3>البذرة لا اللوح الأبيض</h3>
+      <div class="chips"><a href="https://youtu.be/gVp1-Yzpl-Q?t=1648" target="_blank" rel="noopener">27:28</a></div></div>
+    <p class="key"><b>الفكرة:</b> الإنسان ليس «لوحًا أبيض» كتب فيه أهله والعالم. هو بذرة فيها إمكاناتها «بالقوة» (أرسطو وعلماء المسلمين). البيئة إما تيسّر تفتحها أو تعطله.</p>
+    <ul>
+      <li>بذرة الطماطم وبذرة المانجا بنفس الماء والسماد والشمس: ستطلع كل منهما بطعمها.</li>
+      <li>المعالج والصديق والشيخ والمنتور «ما بيعملوش حاجة»: يزيلون «الآفة» والحجب لتكمل نموك أنت. «كلٌّ ميسّر لما خُلق له».</li>
+      <li>التعافي ليس وضع شيء جديد فيك، بل إزالة الحجب التي تمنعك أن تكون نفسك.</li>
+      <li>أحيانًا يكفي الإنصات، أو نظرة، أو «عاش، الله ينور، شد حيلك».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٧</span><h3>القاعدة: التعافي عملية تلقائية</h3>
+      <div class="chips"><a href="https://youtu.be/gVp1-Yzpl-Q?t=1921" target="_blank" rel="noopener">32:01</a><a href="https://youtu.be/gVp1-Yzpl-Q?t=2122" target="_blank" rel="noopener">35:22</a></div></div>
+    <p class="key"><b>الفكرة:</b> «بطّل تحزق». كما يلتئم جرح ذراعك دون أن تصنع القشرة بنفسك، وكما يجبر طبيب العظام الكسر ليسهّل التئامًا «مبرمجًا»، تلتئم النفس. دورك فقط: نظّف الجرح، وأزل «الطوبة» من داخله، وهيئ الظروف.</p>
+    <ul>
+      <li>«أنت مش مسؤول عن تعافيك غير في حاجة واحدة: أن تهيئ له التربة المواتية والسياق الملائم، والله سيفعل فعله». «ثق في العملية».</li>
+      <li>«ما أنزلنا عليك القرآن لتشقى». التعافي ليس بؤسًا ومشقة، ولا تتصرف «كأنك إله الكون المسؤول عن القوانين».</li>
+      <li>الطفل يبصق تلقائيًا ما هو سيئ، ويضع الحلو في فمه («يتحلى»). نحن فقط نرفع «كتمة البُق».</li>
+      <li>«الصوبة الزراعية»: نخلة مهددة تُوضع مع نخل يشبهها في تربة مواتية. هذه المجموعة.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٨</span><h3>الألم دليلنا الوحيد، والفشل «شاهد»</h3>
+      <div class="chips"><a href="https://youtu.be/gVp1-Yzpl-Q?t=2283" target="_blank" rel="noopener">38:03</a><a href="https://youtu.be/gVp1-Yzpl-Q?t=2373" target="_blank" rel="noopener">39:33</a><a href="https://youtu.be/gVp1-Yzpl-Q?t=2465" target="_blank" rel="noopener">41:05</a></div></div>
+    <p class="key"><b>الفكرة:</b> «التأوّه فعل كي يسمعه آخر». الطفل الذي يقع يبكي حتى تأتي أمه وتقول «معلش، قوم لِم الحمص»، فيقوم ويكمل. ونحن نتمسك بآلامنا لأنها «الشاهد الوحيد» على ما حدث.</p>
+    <ul>
+      <li>«لو بطلت أتألم يبقى ما حصلش حاجة، ويبقى هم نفدوا بفعلتهم». فحين تروي ألمك ويصدقك أحد، توجد «نسخة أخرى» منه في عقل شخص آخر، فيقل احتياجك للتمسك به.</li>
+      <li>شباب عندهم إمكانات غير عادية يفشلون مرة بعد مرة، خاصة قبل التخرج أو الامتحانات. ليس قلة ذكاء، بل غضب: الفشل «قصاص رمزي» يحرم الأب أو الأم من فرحة نجاح الابن، وطريقة لاستعادة بعض السيطرة، ولو بتدمير نفسه.</li>
+      <li>حين يُروى الألم ويجد من يسمعه ويصدقه، يتوقف الفشل عن القيام بدور «الشاهد والدليل»، فيبدأ الشخص يتحرك في حياته.</li>
+      <li>كثير من أعراضنا «قصص رمزية» وطقوس (راجع حلقة 59 من سلسلة التعافي، وهي في ملخص رقم 02). والطرق: الحكي لآخر، والكتابة، والإبداع والتسامي، ومجموعات الدعم.</li>
+      <li>«والله العظيم الإجابات كلها عندك، وكل ما تحتاجه لتنجح موجود جواك»، لكن عليه عوائق وكبح.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٩</span><h3>المطلوب عمليًا</h3>
+      <div class="chips"><a href="https://youtu.be/gVp1-Yzpl-Q?t=2736" target="_blank" rel="noopener">45:36</a></div></div>
+    <ul>
+      <li>مجموعات من 3 إلى 5: اسمعوا الفيديو معًا أو قبلها، وناقشوا القواعد، ارفضوا ووافقوا.</li>
+      <li>مثال لجلسة: نكتب أول 5 سنين من حياتنا، ثم الخمس التالية، ونتكلم عنها.</li>
+      <li>«سيبكم من فكرة الكونتنت كريتور واللايكات». المهم أربعة يقولون «جمعنا بعضنا وبدأنا».</li>
+      <li>وعد بفيديو وورقة عن إدارة المجموعات بعدل، دون أن يتكلم واحد نصف ساعة وآخر لا يتكلم. (وهي حلقة «مجموعات الدعم»، ملخص رقم 05.)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head"><h2>التشجير</h2></div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">الاحتواء والفشل الرمزي</span>
+        <ul>
+          <li><span class="br">الاحتواء</span>
+            <ul>
+              <li class="lf">أطول طفولة في الكائنات</li>
+              <li class="lf">مساحة تخرج فيها اللخبطة وتُحتوى</li>
+              <li class="lf">يحتوي الإحباط أيضًا</li>
+            </ul>
+          </li>
+          <li><span class="br">النتيجة</span>
+            <ul>
+              <li class="lf">تخلٍّ: عن الاعتمادية والخوف والتردد والخزي</li>
+              <li class="lf">تحلٍّ: بالقرار وحل المشكلات</li>
+            </ul>
+          </li>
+          <li><span class="br">فشل الاحتواء</span>
+            <ul>
+              <li class="lf">تجمد في المرحلة</li>
+              <li class="lf">نفس فسيفساء من أعمار مختلفة</li>
+              <li class="lf">النكوص لها تحت الضغط</li>
+              <li class="lf">خريطة الألم</li>
+            </ul>
+          </li>
+          <li><span class="br">التعافي</span>
+            <ul>
+              <li class="lf">استعادة الاحتواء</li>
+              <li class="lf">شاهد ومؤرخ، وأذن بلا أحكام</li>
+              <li class="lf">بذرة لا لوح أبيض</li>
+              <li class="lf">عملية تلقائية: هيّئ التربة</li>
+            </ul>
+          </li>
+          <li><span class="br">الأعراض الرمزية</span>
+            <ul>
+              <li class="lf">الألم دليلنا الوحيد</li>
+              <li class="lf">الفشل قصاص وشاهد</li>
+              <li class="lf">حين يُسمع يتوقف</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة.</p>
+  </div>
+  <div class="res">
+
+    <div class="rcard">
+      <div class="claim"><h4>الاحتواء أساس النمو النفسي</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>حساسية الأم واستجابتها لإشارات الطفل تتنبأ بالتعلق الآمن. <span class="cite">(De Wolff &amp; van IJzendoorn, 1997, Child Development)</span> والطفل يتعلم تنظيم مشاعره أولًا عبر تنظيم الكبار لها («التنظيم المشترك») ثم يستقل به. <span class="cite">(Sroufe, 1996؛ Kopp, 1989)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الأثر متوسط لا حاسم، ومزاج الطفل الفطري يؤثر في الاستجابة أيضًا. ومفهوم «الاحتواء» عند بيون نظري من التحليل النفسي.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> فكرة «طفل يُحتوى فيكبر عن احتياجه» لها سند قوي في أبحاث التعلق.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>تحت الضغط نرجع للقديم</h4><span class="pill ok">مدعوم جزئيًا</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الضغط ينقل الدماغ من السلوك المرن الموجه بالأهداف إلى العادات القديمة. <span class="cite">(Schwabe &amp; Wolf, 2009, J of Neuroscience)</span> ونمط التعلق يظهر أكثر ما يظهر في المواقف الضاغطة. <span class="cite">(Mikulincer &amp; Shaver, 2007)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>«النكوص لمرحلة عمرية محددة» تحديدًا مفهوم تحليلي صعب القياس.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> «خريطة الألم» بمراقبة ما يطلع منك تحت الضغط أداة عملية جيدة.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الحكي لشاهد يرمم</h4><span class="pill mix">مدعوم بشرط</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>ردود الفعل الداعمة عند الإفصاح عن صدمة ترتبط بتعافٍ أفضل، والسلبية (التكذيب واللوم) بأعراض أسوأ. <span class="cite">(Ullman, 2003؛ Ullman &amp; Peter-Hagene, 2014)</span> والعلاقة العلاجية من أقوى ما يتنبأ بنجاح العلاج أيًا كان نوعه. <span class="cite">(Flückiger et al., 2018, Psychotherapy)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>أبحاث «المشاركة الاجتماعية للمشاعر» وجدت أن الحكي وحده يقوي العلاقات، لكنه لا يخفف أثر الذكرى ما لم يصاحبه إعادة فهم للمعنى. <span class="cite">(Rimé, 2009, Emotion Review)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> الشاهد مهم، والسامع الخطأ يضر. ومع الحكي يلزم «إعادة التأطير» التي يتكلم عنها.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>البذرة لا اللوح الأبيض</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>تحليل تجميعي لدراسات التوائم على مدى 50 سنة: نحو نصف التباين في السمات النفسية وراثي. <span class="cite">(Polderman et al., 2015, Nature Genetics)</span> و«البيئة المشتركة» (نفس البيت) أثرها أصغر مما نتصور في معظم السمات. <span class="cite">(Plomin, 2011)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>النصف الآخر بيئي، والإساءة والإهمال الشديدان يتركان أثرًا كبيرًا. فالبيئة ليست «لا شيء».</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> أنت لست صنيعة أهلك وحدهم، ولست حرًا من أثرهم تمامًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«التعافي عملية تلقائية»</h4><span class="pill mix">صحيح لكثيرين، لا للجميع</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>أغلب الناس بعد الأحداث الصادمة يتعافون أو يظهرون مرونة دون علاج، وأعراض الصدمة تقل عند معظمهم خلال أشهر. <span class="cite">(Bonanno, 2004, American Psychologist؛ Rothbaum et al., 1992)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>حين تصبح الأعراض مزمنة (كرب ما بعد الصدمة المزمن، اكتئاب شديد) يقل التحسن التلقائي، ويحتاج الشخص علاجًا منظمًا. وهذا يقابل «الطوبة في الجرح» في تشبيهه.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> لا تتشنج، لكن لو الجرح لا يلتئم منذ مدة فهذه علامة أن فيه «طوبة» تحتاج مختصًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الفشل كقصاص رمزي، والتمسك بالألم كدليل</h4><span class="pill mix">ملاحظة إكلينيكية، ودليل غير مباشر</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>«الإعاقة الذاتية»: يخرّب الناس أداءهم أحيانًا ليحموا صورتهم من فشل حقيقي. <span class="cite">(Berglas &amp; Jones, 1978, JPSP)</span> والضحايا يحتاجون «الاعتراف» بما حدث قبل أن يتقدموا للمصالحة. <span class="cite">(Shnabel &amp; Nadler, 2008, JPSP)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>تفسير الفشل بأنه «انتقام لا واعٍ من الأهل» تفسير تحليلي لم يُختبر تجريبيًا. وللتعثر الدراسي أسباب أخرى كثيرة: فرط حركة، اكتئاب، صعوبات تعلم، ظروف.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> افحص الاحتمال الرمزي، وافحص معه الأسباب الطبية والعملية.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبتها الحلقة، مرتبة.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <li><div><b>ارسم خريطة ألمك</b><span>ماذا يطلع منك تحت الضغط؟ (البطاقة 2)</span></div></li>
+    <li><div><b>ابحث عن شاهد</b><span>صديق، أو مجموعة، أو معالج يسمع بلا أحكام (البطاقة 3).</span></div></li>
+    <li><div><b>اكتب قصتك على مراحل</b><span>أول 5 سنين، ثم الخمس التالية (البطاقة 4).</span></div></li>
+    <li><div><b>افحص تعثرك</b><span>هل له وظيفة رمزية؟ (البطاقة 5)</span></div></li>
+    <li><div><b>هيّئ التربة وثق في العملية</b><span>بدون تشنج (البطاقة 6).</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>التوقيت</th></tr></thead>
+        <tbody>
+          <tr><td class="old">مستني اعتذار أو اعتراف عشان أتعافى</td><td class="new">تغيير العوامل التي في يدي يغيّر النتيجة</td><td class="v num">1:33</td></tr>
+          <tr><td class="old">الاحتواء يعني يطبطبوا عليّ</td><td class="new">الاحتواء مساحة تخرج فيها لخبطتي وتُستقبل</td><td class="v num">4:38</td></tr>
+          <tr><td class="old">أنا كبير وناضج في كل حاجة</td><td class="new">نفسي فسيفساء: ناضج في مناطق ومتجمد في أخرى</td><td class="v num">18:20</td></tr>
+          <tr><td class="old">لما بضغط بطلع أوحش ما فيّ</td><td class="new">ما يطلع مني تحت الضغط خريطة لما يحتاج احتواء</td><td class="v num">21:24</td></tr>
+          <tr><td class="old">محتاج حد يحللني ويديني حلول</td><td class="new">أحتاج شاهدًا ومؤرخًا يسمع</td><td class="v num">25:57</td></tr>
+          <tr><td class="old">أنا صنيعة تربيتي وما تعرضت له</td><td class="new">أنا بذرة لها إمكاناتها، والبيئة تيسّر أو تعطّل</td><td class="v num">27:28</td></tr>
+          <tr><td class="old">التعافي صعب وجحيم ولازم أحزق</td><td class="new">التعافي تلقائي؛ أهيئ التربة وأثق في العملية</td><td class="v num">32:01</td></tr>
+          <tr><td class="old">لو بطلت أتألم يبقى هم نفدوا بفعلتهم</td><td class="new">لما يسمعني أحد ويصدق، لا أحتاج ألمي دليلًا</td><td class="v num">39:33</td></tr>
+          <tr><td class="old">أنا فاشل وقليل الإمكانات</td><td class="new">قد يكون فشلي رسالة غضب لم تُقل</td><td class="v num">41:05</td></tr>
+          <tr><td class="old">الإجابات عند الكتب والخبراء</td><td class="new">الإجابات عندي، وعليها حجب أزيلها</td><td class="v num">44:05</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="acard">
+    <h3>2. خريطة الألم <span class="tag">تمرين كتابة</span></h3>
+    <ol>
+      <li>تذكر آخر 3 مواقف ضغط شديد. ماذا طلع منك؟ خوف، أم بحث عن من يسندك، أم غضب، أم «أنا وحش وأنا السبب»؟</li>
+      <li>ما الاحتياج القديم الذي لم يُحتوَ وراء ذلك؟ (طمأنينة، اعتماد، فخر وتشجيع، قبول للغضب)</li>
+      <li>في أي مجالات أنا ناضج؟ وفي أيها أتصرف كطفل في سن معينة؟</li>
+      <li>ما «الشيء في فمي» الذي أطمئن به نفسي؟ (أكل، سجائر، شاشة، إباحية)</li>
+    </ol>
+    <p class="src">من 12:18 إلى 22:54</p>
+  </div>
+
+  <div class="acard">
+    <h3>3. ابحث عن احتواء بديل</h3>
+    <ul>
+      <li>صديق أو مجموعة أو معالج «يسمع فقط» دون أحكام.</li>
+      <li>احكِ القصة أكثر من مرة: كل رواية تعيد تأطيرها.</li>
+      <li>اختر سامعًا آمنًا: من يكذبك أو يلومك يزيد الجرح.</li>
+      <li>لو مشكلتك في الانتماء: احضر زمالة أو مجموعة دعم.</li>
+    </ul>
+    <p class="src">من 18:20 إلى 27:28</p>
+  </div>
+
+  <div class="acard">
+    <h3>4. اكتب قصتك على مراحل <span class="tag">للكتابة أو للمجموعة</span></h3>
+    <ol>
+      <li>أول 5 سنين: ما الذي تعرفه أو حُكي لك؟ من كان يحتويك؟</li>
+      <li>من 5 إلى 10: الأمان، والتشجيع، والخوف، والخزي.</li>
+      <li>ثم كل خمس سنوات حتى اليوم.</li>
+      <li>شاركها مع شخص أو مجموعة، واسمع قصصهم.</li>
+    </ol>
+    <p class="src">من 45:36</p>
+  </div>
+
+  <div class="acard">
+    <h3>5. لو عندك تعثر متكرر</h3>
+    <ul>
+      <li>هل تتعثر في نفس النقطة دائمًا (قبل التخرج، قبل الامتحان، قبل النجاح)؟</li>
+      <li>اسأل: هل فيه غضب من أحد لم يُقل؟ من الذي سيحزن أو «يتحرم» من نجاحي؟</li>
+      <li>احكِ هذا الغضب لشاهد، واكتبه، أو عبّر عنه بعمل إبداعي.</li>
+      <li>وافحص أيضًا الأسباب الأخرى عند مختص: اكتئاب، فرط حركة، صعوبات تعلم.</li>
+    </ul>
+    <p class="src">من 39:33 إلى 44:05</p>
+  </div>
+
+  <div class="acard">
+    <h3>6. هيّئ التربة</h3>
+    <ul>
+      <li>سماع، وكتابة، وكلام مع ناس، و«خش نام». لا تحمّل نفسك أكثر.</li>
+      <li>ابحث عن «الطوبة في الجرح»: ما الذي يمنع الالتئام؟ (علاقة سامة، إدمان، سر لم يُحكَ) وأزله، ولو بمساعدة.</li>
+      <li>ابتعد عن ما يكتم «البق»: الوحدة والكتمان.</li>
+      <li>ثق في العملية: التحسن يأتي وحده حين تتوفر الظروف.</li>
+    </ul>
+    <p class="src">من 32:01 إلى 38:03</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: <a href="https://www.youtube.com/watch?v=gVp1-Yzpl-Q" target="_blank" rel="noopener">حين يكون الاكتئاب والفشل موقفًا رمزيًا</a> على قناة Emad Rashad Othman، الحلقة الثالثة من سلسلة <a href="https://www.youtube.com/playlist?list=PLOjvW1C4hDCkU_l5F1sTSdo6xDHXMWBfP" target="_blank" rel="noopener">التحرر من الماضي</a>. المحتوى مبني على نص الفيديو كاملًا، والتوقيتات تقريبية.</p>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن معالج.</p>
+</footer>
+
+</div>
