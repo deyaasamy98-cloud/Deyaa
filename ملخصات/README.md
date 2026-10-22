@@ -11,5 +11,6 @@
 | 07 | [عقلية الألم وتشويه القصة](<07 - عقلية الألم وتشويه القصة - التحرر من الماضي 2.pdf>) | [التحرر من الماضي 2](https://www.youtube.com/watch?v=gnryv4mRukQ) | [فتح](https://claude.ai/artifact/JW8NUFAU61gS5JQbxoSfbN) |
 | 08 | [الاحتواء والفشل الرمزي](<08 - الاحتواء والفشل الرمزي - التحرر من الماضي 3.pdf>) | [التحرر من الماضي 3](https://www.youtube.com/watch?v=gVp1-Yzpl-Q) | [فتح](https://claude.ai/artifact/6qH8NdYNem6wLX8F11VtDy) |
 | 09 | [جرح الهجر والذات الزائفة](<09 - جرح الهجر والذات الزائفة - التحرر من الماضي 4.pdf>) | [التحرر من الماضي 4](https://www.youtube.com/watch?v=xq5m5QHZ0NQ) | [فتح](https://claude.ai/artifact/HdSJnKRVhjDGt4M4k5w9LK) |
+| 10 | [من الاستياء إلى السلام الداخلي](<10 - من الاستياء إلى السلام الداخلي - التحرر من الماضي 5.pdf>) | [التحرر من الماضي 5](https://www.youtube.com/watch?v=hLWZ9PwfsR8) | [فتح](https://claude.ai/artifact/RNMCy6wfs9BPbDTwzKuyAz) |
 
 نسخ HTML من كل ملخص موجودة في فولدر `html/`.

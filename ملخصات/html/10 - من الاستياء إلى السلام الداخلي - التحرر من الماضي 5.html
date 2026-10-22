@@ -1,0 +1,490 @@
+<title>من الاستياء إلى السلام الداخلي</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column; a "lantern" accent (amber) marks actions, teal marks concepts. Light through a crack: the series' own image of recovery. */
+:root{
+  --bg:#F3F5F4; --surface:#E6ECEA; --ink:#14201F; --muted:#52615F; --rule:#CFD9D6;
+  --teal:#136F63; --teal-soft:#D7EAE6; --amber:#9A5806; --amber-soft:#F5E6D0;
+  --red:#A33B3B; --red-soft:#F4DEDC; --green:#2C7650; --green-soft:#DDEFE4;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{direction:rtl;max-width:900px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.4;margin:0;font-weight:700}
+h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.1rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+
+header.top{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--amber);font-weight:600}
+h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,3.3rem)}
+.lede{font-size:1.06rem;color:var(--muted);max-width:64ch}
+.coverage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px}
+.coverage .big{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--teal);grid-row:span 2}
+.coverage .bar{height:8px;background:var(--rule);border-radius:99px;overflow:hidden}
+.coverage .bar i{display:block;height:100%;width:37.5%;background:var(--teal);border-radius:99px}
+.coverage p{font-size:.9rem;color:var(--muted)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.92rem;padding:5px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--teal);color:var(--teal)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+
+/* themes */
+.theme{border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:10px}
+.theme-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.theme-head .idx{font-family:var(--f-display);color:var(--amber);font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:.8rem;text-decoration:none;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);white-space:nowrap}
+.chips a:hover{text-decoration:underline}
+.theme ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.theme ul li::marker{color:var(--teal)}
+.key{background:var(--teal-soft);border-radius:10px;padding:10px 14px;font-weight:500;max-width:70ch}
+.key b{color:var(--teal)}
+
+/* tree */
+.tree-wrap{overflow-x:auto}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul > li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-family:var(--f-display);font-size:1.35rem;background:var(--ink);color:var(--bg);padding:6px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-family:var(--f-display);font-size:1.08rem;color:var(--teal)}
+.tree .lf{font-size:.95rem}
+.tree .lf b{color:var(--amber);font-weight:600}
+
+/* research */
+.res{display:grid;gap:12px}
+.rcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.rcard .claim{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.rcard .claim h4{flex:1 1 260px}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.mix{background:var(--amber-soft);color:var(--amber)}
+.pill.no{background:var(--red-soft);color:var(--red)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgrid > div{border-radius:8px;padding:10px 12px;font-size:.92rem;min-width:0}
+.rgrid .pro{background:var(--green-soft)}
+.rgrid .con{background:var(--red-soft)}
+.rgrid .lbl{display:block;font-weight:600;font-size:.8rem;margin-bottom:2px}
+.rgrid .pro .lbl{color:var(--green)}
+.rgrid .con .lbl{color:var(--red)}
+.rcard .bottom{font-size:.92rem}
+.rcard .bottom b{color:var(--teal)}
+@media (max-width:620px){.rgrid{grid-template-columns:1fr}}
+.cite{font-size:.82rem;color:var(--muted)}
+
+/* actions */
+.path{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.path > li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.path > li::before{content:counter(p);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--amber);color:var(--bg);font-weight:600;font-variant-numeric:tabular-nums}
+.path b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.path span{font-size:.93rem}
+.acard{border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px}
+.acard h3{display:flex;gap:10px;align-items:baseline}
+.acard h3 .tag{font-family:var(--f-body);font-size:.75rem;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:1px 8px;border-radius:999px}
+.acard ul,.acard ol{margin:0;padding-inline-start:20px;display:grid;gap:5px}
+.acard li::marker{color:var(--amber);font-variant-numeric:tabular-nums}
+.acard .src{font-size:.78rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--surface);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.old{color:var(--red)}
+td.new{color:var(--green);font-weight:500}
+td.v{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{border-radius:10px;padding:12px 14px;min-width:0}
+.two .bad{background:var(--red-soft)}
+.two .good{background:var(--green-soft)}
+.two h4{margin-bottom:4px}
+.two .bad h4{color:var(--red)}
+.two .good h4{color:var(--green)}
+.two ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.93rem}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--amber);padding-inline-start:12px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer details summary{cursor:pointer;color:var(--ink);font-weight:500}
+footer ul{margin:6px 0 0;padding-inline-start:18px;columns:2;column-gap:28px}
+@media (max-width:560px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">د. عماد رشاد عثمان · سلسلة «التحرر من الماضي» · الحلقة 5 من 10 · 53 دقيقة · 30 أكتوبر 2025</span>
+  <h1>من الاستياء إلى السلام الداخلي</h1>
+  <p class="lede">الغضب وسيلة حماية، لكن الغضب المكبوت يتعتّق ويتحول إلى «استياء». الحلقة تشرح خمس سماته (مفخخ، منقول، منقلب، مقنّع، مجسَّد)، وطريقتين لعلاجه: الاحتواء والتنفيس.</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>التوقيت بجانب كل عنوان يفتح الفيديو عند هذه اللحظة.</p>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>الغضب غير الاستياء</h3>
+      <div class="chips"><a href="https://youtu.be/hLWZ9PwfsR8?t=60" target="_blank" rel="noopener">1:00</a><a href="https://youtu.be/hLWZ9PwfsR8?t=244" target="_blank" rel="noopener">4:04</a></div></div>
+    <p class="key"><b>الفكرة:</b> الغضب طبيعي وله هدف: «التصحيح». تجاوز أحدٌ حدودك، أو انتهك ملكيتك، أو لم يكتمل توقع، فتُحبط فتغضب فتتحرك لتعدّل الوضع وترسم حدودك. أما <b>الاستياء</b> فهو «غضب معتّق ومكبّل بالعجز»: غضب قديم لم تقدر أن تعدّل به شيئًا أمام سلطة أقوى منك.</p>
+    <ul>
+      <li>الطاقة لا تفنى: الغضب المكبوت لا يختفي، بل «يتخلل» في الداخل كالمخلل، فيزداد تركيزه كالعطر المعتّق. والغضب العادي يهدأ بالمراضاة، والمعتّق لا.</li>
+      <li>الغضب لحظي، «فقاعة» تجعجع ثم تهدأ. والاستياء حالة كاملة دائمة: «روحه في مناخيره»، يشم ريحة وحشة في العالم كله.</li>
+      <li>الغضب يتعامل مع تهديد حقيقي، والاستياء يرى كل شيء تهديدًا. لهذا تحذّر الزمالات من الاستياء تحديدًا.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٢</span><h3>«طفل منزوع الغضب»</h3>
+      <div class="chips"><a href="https://youtu.be/hLWZ9PwfsR8?t=336" target="_blank" rel="noopener">5:36</a><a href="https://youtu.be/hLWZ9PwfsR8?t=457" target="_blank" rel="noopener">7:37</a></div></div>
+    <ul>
+      <li>في مجتمعاتنا نربي الأطفال «بتقليم أظافر الغضب»: كاللبن منزوع الدسم والقهوة منزوعة الكافيين، نريد «طفلًا منزوع الغضب»، خاصة لو كانت بنتًا، وخاصة أمام الكبار. «انت ولد مش متربي».</li>
+      <li>تعلمنا كيف نقمع الغضب، لا كيف نروّضه. ولا نعرف التعامل مع غضب أولادنا لأننا لا نعرف التعامل مع غضبنا.</li>
+      <li>الغضب الذي يُقمع يترك مكانه لـ«الخوف». والاثنان يتبادلان: «اللي يبطل يغضب يخاف، واللي يخاف يغضب».</li>
+      <li>بعض فهمنا لنصوص دينية جعل شعور الغضب نفسه «خطيئة»، بينما المقصود التعبير المجنون المؤذي عنه. فأضفنا «التدنيس» إلى العجز.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٣</span><h3>القاعدة: خمس سمات للاستياء</h3>
+      <div class="chips"><a href="https://youtu.be/hLWZ9PwfsR8?t=825" target="_blank" rel="noopener">13:45</a><a href="https://youtu.be/hLWZ9PwfsR8?t=1280" target="_blank" rel="noopener">21:20</a><a href="https://youtu.be/hLWZ9PwfsR8?t=1680" target="_blank" rel="noopener">28:00</a></div></div>
+    <ol>
+      <li><b>مفخّخ:</b> لغم جاهز للانفجار. حساسية مفرطة، وعتبة ألم وعصبية منخفضة، ورد فعل مبالغ («عطس جنبي»). يكتمه أمام السلطة، وينفجر مع الأولاد والزوجة والأصدقاء والغرباء. ويزيد التأويل: «ما ردّتش عليا؟ يبقى أنا مش فارق»، و«ممكن تكون في التويلت!». «أنا غضبان من قبل ما أتصل، ومستني حاجة تمنح غضبي شرعية».</li>
+      <li><b>منقول:</b> «اللي ما يقدرش على الحمار يقدر على البردعة». حمار الأمس تدفع ثمنه كل برادع اليوم: الأولاد، والموظفون تحت المدير، والصديق «الحيطة المايلة». أم عندها مشكلة مع أمها تظهر مشكلتها مع ابنتها. والاستياء «لا يشبع»: لو عُدّل الوضع اليوم سيجد غدًا انتهاكًا جديدًا.</li>
+      <li><b>منقلب:</b> لو لم يجد من يُفرغ فيه ينقلب على صاحبه. كثير من نوبات الاكتئاب «غضب أُسيء توجيهه نحو الذات»: جلد شديد، تخريب الذات، إدمان، إيذاء الجسد، ضرب اليد في الحيطة. «الاستياء أن تتجرع السم وتتوهم أن الآخر سيموت». كالطفل الذي يكسر لعبته حين يُمنع منها.</li>
+      <li><b>مقنّع:</b> يلبس أشكالًا أخرى: سخرية لاذعة وتنمر وتهكم، أو العكس: لطف مفرط و«ابتسامة صفراء»، «مستر نايس جاي» و«البنت السنيدة» بوجه «مليان دباديب وفراشات» وهو يسب الدنيا من الداخل. فيميّع حدوده أكثر، ويعبّي استياءً أكثر، حتى ينفجر. «اعمل من قفاك سجادة الكل يدوس عليه».</li>
+      <li><b>مجسَّد:</b> يتحول إلى أعراض جسدية لا يجد الأطباء لها سببًا: صداع، قولون عصبي، تهيج معدة، آلام عظام، «فايبرومايالجيا». «في ناس ما بتسمعش نفسها غير لما تمرض».</li>
+    </ol>
+    <ul>
+      <li>جرامشي: «تكمن الأزمة في أن القديم لم يمت بعد، والجديد لم يولد». وكثيرون يقفون في الوسط.</li>
+      <li>الإزاحة: نختار «كبش فداء» بعد الآخر، ونلعن الهاتف المعطل وحر الظهيرة أكثر من المعتاد، «فقد تحمّلت الشمس بعض فاتورة الغضب الداخلية».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٤</span><h3>لماذا نفتح الماضي؟ «ديون الماضي لا تسقط بالتقادم»</h3>
+      <div class="chips"><a href="https://youtu.be/hLWZ9PwfsR8?t=1007" target="_blank" rel="noopener">16:47</a><a href="https://youtu.be/hLWZ9PwfsR8?t=1189" target="_blank" rel="noopener">19:49</a></div></div>
+    <ul>
+      <li>من يقول «ما تنبشوش في الماضي، ركّزوا في النهارده» لا يرى أنه «النهارده مطلّع عين اللي حواليه»، ويظن أن عصبيته بسبب أفعالهم.</li>
+      <li>صابر الرباعي: «طفّي نارك من اللي شفته قبل مني». كثيرًا ما نحوّل من نحبهم إلى «أكياس رمل».</li>
+      <li>نفتح الماضي لنعمل معه «قطيعة»، لنعيش اليوم باليوم. «لو نسيته، هو مش ناسيني». ولا يوجد نسيان «بالحزق».</li>
+      <li>مثال الشيك القديم: كلما مررت بكمين أوقفوك. «طب ما تروح تدفع وتخلص».</li>
+      <li>وفي المقابل يرفض «شغل الانهيارات»: البعض يضخّم الماضي حتى يبدو التحرر منه مستحيلًا، والبعض يضخمه حتى يخاف أن يفتحه. والتعافي أبسط من الاثنين.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٥</span><h3>درس «المنسق الطبي»: المصادقة تهدّئ</h3>
+      <div class="chips"><a href="https://youtu.be/hLWZ9PwfsR8?t=2095" target="_blank" rel="noopener">34:55</a></div></div>
+    <ul>
+      <li>بعد تخرجه عمل «منسقًا طبيًا» في مستشفى: وظيفته الحقيقية «امتصاص غضب الناس» أمام العيادات. رأى «أطفالًا كبارًا بشنبات» غاضبين ينفعلون على الممرضة والطبيب والاستقبال، «وأنا زيهم لما أكون في الموضع التاني».</li>
+      <li>حلّان فقط: أن تزيل الظلم أو تعطيه ما يريد إن كان هناك خطأ حقيقي. أو أن تراضيه: «حقك عليا، امسحها فيا، متفهم قلقك على ابنك». «مصادقة على مشاعره» (validation) حتى لو لم يكن هناك ظلم. أما «هو ده اللي عندنا» فكانت تهيّجه.</li>
+      <li>كثيرًا ما كان يكفي: «تيجي تشرب قهوة في مكتبي؟».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٦</span><h3>العلاج (1): احتواء الطفل الغاضب</h3>
+      <div class="chips"><a href="https://youtu.be/hLWZ9PwfsR8?t=2277" target="_blank" rel="noopener">37:57</a><a href="https://youtu.be/hLWZ9PwfsR8?t=2367" target="_blank" rel="noopener">39:27</a></div></div>
+    <p class="key"><b>الفكرة:</b> نفس الحلّين مع «الطفل الغاضب» بداخلك (ولا يحب مصطلح «الطفل الداخلي»: هي «مناطق مختلفة من ذكراك»): امنحه ما كان يريده، أو بديلًا عنه، أو ربتة ومصادقة.</p>
+    <ul>
+      <li><b>ما كان يريده بالضبط:</b> كثير من الحرمانات في الطفولة نستطيع أن نحققها لأنفسنا كبارًا: هواية، أو شغف حُرمنا منه.</li>
+      <li><b>بديل تعويضي:</b> كطفل لا تستطيع أن تتركه يلعب حتى الثانية ليلًا، فتعطيه شوكولاتة فيرضى. مثل أن تشتري «الميكانو» أو «الليجو» أو «الكوتشي» الذي كنت تتمناه، وأنت تعي أنك تقوم بـ«إعادة الوالدية» (reparenting) والتعويض.</li>
+      <li><b>ربتة ومصادقة:</b> «يا عم حقك علينا». كما تطبطب الأم على ابنها بعد أن يزعق له أبوه، حتى لو لم تكن هي السبب.</li>
+      <li>«ما حدش جاي يعتذر». بدل أن نظل نقول «عملوا وعملوا» ونكرر نفس الغضب على أولادنا، «تعالوا نكسر الحلقة»، ونستدعي «المنسق الطبي» بداخلنا: «مالك يا عم؟ تشرب قهوة؟».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٧</span><h3>العلاج (2): التنفيس</h3>
+      <div class="chips"><a href="https://youtu.be/hLWZ9PwfsR8?t=2610" target="_blank" rel="noopener">43:30</a><a href="https://youtu.be/hLWZ9PwfsR8?t=2790" target="_blank" rel="noopener">46:30</a><a href="https://youtu.be/hLWZ9PwfsR8?t=2905" target="_blank" rel="noopener">48:25</a></div></div>
+    <p class="key"><b>الفكرة:</b> التعبير عن الغضب لا يعني شتيمة وصراخًا وتكسيرًا. هناك ثلاث طرق.</p>
+    <ol>
+      <li><b>المواجهة:</b> كلام هادئ مباشر مع الشخص نفسه. «يا سلام لو تنفع»، لكن كثيرًا لا يكون الشخص موجودًا، أو لا يملك قدرة على التفاهم فتعرّض نفسك لمزيد من الأذى. «ما بحبش الكلام الحمصي بتاع روح واجه».</li>
+      <li><b>التفريغ:</b> رسالة تكتبها ولا ترسلها، أو فويس لا تبعته، أو كاميرا تكلمه أمامها، أو «الكرسي الفارغ» من العلاج الجشطالتي. والكتابة «معالجة ثانوية»: مخك يلحّ عليك بالذكرى ليحميك («اللي اتلسع من الشوربة ينفخ في الزبادي»)، فحين تكتبها تصله رسالة «خلاص اتعلمت الدرس»، فيتوقف الاجترار. ومنه «لحظة الفصل» في التراث: إن كنت واقفًا فاجلس، وإن كنت جالسًا فاضطجع، أو توضأ.</li>
+      <li><b>التسامي:</b> تحويل الطاقة لشيء مقبول اجتماعيًا: رياضة عنيفة كالملاكمة «بدل ما يضرب ابنه»، أو فن (رسم، موسيقى، قصص، أفلام: «كوينتن تارانتينو شخص غاضب»)، أو ألعاب فيديو تنافسية: «سيبي جوزك يلعب كول أوف ديوتي، مهم لصحته النفسية».</li>
+    </ol>
+    <ul>
+      <li>تذكير في الآخر: المجموعات للتعبير بلا تعليق ولا نصح، ولا تغني عن مختص أو دواء، وقد لا تكفي في الصدمات الكبرى.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head"><h2>التشجير</h2></div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">من الاستياء إلى السلام</span>
+        <ul>
+          <li><span class="br">الغضب</span>
+            <ul>
+              <li class="lf">طبيعي، هدفه التصحيح والحماية</li>
+              <li class="lf">لحظي يهدأ بالمراضاة</li>
+            </ul>
+          </li>
+          <li><span class="br">الاستياء</span>
+            <ul>
+              <li class="lf">غضب معتّق مكبّل بالعجز</li>
+              <li class="lf">من قمع غضب الطفل وتدنيسه</li>
+              <li class="lf">يفسح المكان للخوف</li>
+              <li class="lf">لا يشبع</li>
+            </ul>
+          </li>
+          <li><span class="br">سماته الخمس</span>
+            <ul>
+              <li class="lf">مفخّخ: حساسية وانفجار</li>
+              <li class="lf">منقول: على البردعة</li>
+              <li class="lf">منقلب: اكتئاب وتخريب ذات</li>
+              <li class="lf">مقنّع: سخرية أو لطف مفرط</li>
+              <li class="lf">مجسَّد: أعراض جسدية</li>
+            </ul>
+          </li>
+          <li><span class="br">العلاج: احتواء</span>
+            <ul>
+              <li class="lf">امنحه ما أراد</li>
+              <li class="lf">أو بديلًا تعويضيًا</li>
+              <li class="lf">أو ربتة ومصادقة</li>
+            </ul>
+          </li>
+          <li><span class="br">العلاج: تنفيس</span>
+            <ul>
+              <li class="lf">مواجهة، إن أمكنت</li>
+              <li class="lf">تفريغ: كتابة، كرسي فارغ، لحظة فصل</li>
+              <li class="lf">تسامٍ: رياضة، فن، لعب</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة.</p>
+  </div>
+  <div class="res">
+
+    <div class="rcard">
+      <div class="claim"><h4>قمع المشاعر، وتعليم الأطفال التعامل مع الغضب</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>كبت التعبير عن المشاعر يرتبط بمشاعر سلبية أكثر، وعلاقات أضعف، ورفاهية أقل. <span class="cite">(Gross &amp; John, 2003, JPSP)</span> والأهل الذين يتقبلون غضب الطفل ويعلّمونه تسميته وتنظيمه («تدريب المشاعر») يرتبط أطفالهم بتنظيم انفعالي أفضل. <span class="cite">(Gottman, Katz &amp; Hooven, 1996, J of Family Psychology)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>العكس ليس «أطلق الغضب بلا ضابط». المطلوب تقبل الشعور مع تعليم التعبير المناسب، وهذا ما قاله.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الغضب «المنقول» (البردعة)</h4><span class="pill ok">مدعوم بقوة</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>تحليل تجميعي أكد «العدوان المُزاح»: من يُستفز ولا يستطيع الرد يوجّه عدوانه لهدف أضعف أو بريء. <span class="cite">(Marcus-Newhall et al., 2000, JPSP)</span> والمديرون الذين تعرضوا لإساءة من رؤسائهم أكثر إساءة لمرؤوسيهم. <span class="cite">(Mawritz et al., 2012, Personnel Psychology)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>لا اعتراض جوهري. فقط أن ليس كل عصبية «منقولة» من الماضي؛ بعضها من ضغوط اليوم.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الاكتئاب «غضب منقلب على الذات»</h4><span class="pill mix">صحيح جزئيًا</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>كبت الغضب ونقد الذات يرتبطان بالاكتئاب، و«إسكات الذات» في العلاقات يرتبط به أيضًا. <span class="cite">(Busch, 2009, Psychodynamic Psychiatry؛ Jack, 1991)</span> وكثير ممن يؤذون أنفسهم يفعلون ذلك لتفريغ غضب أو غضب من الذات. <span class="cite">(Klonsky, 2007, Clinical Psychology Review)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>كتفسير عام لكل اكتئاب لم يثبت. للاكتئاب عوامل بيولوجية ووراثية وظروف حياة. وكثير من المكتئبين يعبّرون عن غضبهم أكثر لا أقل.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> «أحيانًا» كما قال، لا دائمًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الاستياء «المجسَّد» في أعراض الجسد</h4><span class="pill ok">مدعوم، مع تحذير</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>تحليل تجميعي: التعرض للصدمات يرتبط بزيادة خطر «المتلازمات الجسدية الوظيفية» (الفايبرومايالجيا، القولون العصبي، التعب المزمن) بنحو 2.7 مرة. <span class="cite">(Afari et al., 2014, Psychosomatic Medicine)</span> والغضب والعدائية يرتبطان بأمراض القلب. <span class="cite">(Chida &amp; Steptoe, 2009, J of the American College of Cardiology)</span></div>
+        <div class="con"><span class="lbl">التحذير</span>الفايبرومايالجيا والقولون العصبي أمراض حقيقية لها آليات في الجهاز العصبي والأمعاء. لا تعني «إنه نفسي وخلاص»، ولا تغني عن متابعة طبية.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>المصادقة تهدّئ الغاضب</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>المصادقة على المشاعر أداة أساسية في العلاج الجدلي السلوكي لتهدئة الانفعال. <span class="cite">(Linehan, 1993)</span> وفي التجارب، الاستجابة المصادِقة لمشاعر شخص منزعج خفّضت انفعاله ومعدل ضربات قلبه، بعكس الاستجابة الناقدة. <span class="cite">(Shenk &amp; Fruzzetti, 2011, J of Social and Clinical Psychology)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>المصادقة على الشعور ليست موافقة على كل ما يطلبه الشخص أو يفعله.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الكتابة، والكرسي الفارغ، ولحظة الفصل</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>العلاج المركّز على المشاعر باستخدام «الكرسي الفارغ» فعّال في حل الغضب والجروح القديمة تجاه شخص مهم. <span class="cite">(Paivio &amp; Greenberg, 1995, J of Consulting and Clinical Psychology)</span> وتأجيل الرد والابتعاد عن الموقف يقللان العدوان. والكتابة التعبيرية لها أثر صغير ومتسق. <span class="cite">(Frattaroli, 2006)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الكتابة التي تتحول إلى اجترار متكرر للمظلومية دون إعادة فهم قد تزيد الغضب. اكتب لتفهم، لا لتعيد الإشعال.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«اضرب كيس رمل»، والألعاب العنيفة لتفريغ الغضب</h4><span class="pill no">الأبحاث تخالفه</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">ما قاله</span>الملاكمة وضرب الكيس وألعاب الشوتر تفرّغ الغضب «بدل ما يضرب ابنه».</div>
+        <div class="con"><span class="lbl">يعارض</span>في تجربة شهيرة، ضرب كيس الملاكمة أثناء التفكير في من أغضبك <b>زاد</b> الغضب والعدوان بدل أن يقللهما، وكان الأفضل عدم فعل شيء. <span class="cite">(Bushman, 2002, Personality and Social Psychology Bulletin)</span> ومراجعة لأكثر من 150 دراسة: الأنشطة التي ترفع الإثارة (كالجري والملاكمة) لا تقلل الغضب، والتي تخفضها (تنفس، يوجا، استرخاء) تقلله. <span class="cite">(Kjærvik &amp; Bushman, 2024, Clinical Psychology Review)</span> أما الألعاب العنيفة فالأبحاث متضاربة: أثر صغير يزيد العدوان عند بعضها، وأثر لا يُذكر عند غيرها. <span class="cite">(Anderson et al., 2010؛ Ferguson, 2015)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> التسامي بالفن والكتابة مدعوم. أما «تفريغ» الغضب بالعنف الرمزي فلا. الرياضة مفيدة للمزاج عمومًا، لكن الأفضل للغضب تحديدًا ما يهدّئ الجسم.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>تعويض الطفل الداخلي (الليجو والكوتشي)</h4><span class="pill mix">رأي إكلينيكي، بلا أبحاث مباشرة</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">قريب منه</span>تمارين «إعادة الوالدية» و«إعادة التخيل» في العلاج بالمخططات تستهدف تلبية احتياجات الطفولة رمزيًا، وهي جزء من علاج مدعوم بالأبحاث. والرحمة بالذات ترتبط بغضب واجترار أقل. <span class="cite">(Neff, 2003)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>شراء الأشياء تحديدًا كوسيلة تعافٍ لم يُدرس. لو تحول إلى شراء متكرر لتهدئة المشاعر، صار «مغيّرًا للمزاج» آخر.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> فكرة لطيفة إن تمت بوعي ومرة، لا كعادة.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبتها الحلقة، مرتبة.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <li><div><b>حدّد سمة استيائك</b><span>أي السمات الخمس تنطبق عليك؟ (البطاقة 2)</span></div></li>
+    <li><div><b>اكتب رسالة لا ترسلها</b><span>لأول من أغضبك قديمًا (البطاقة 3).</span></div></li>
+    <li><div><b>راضِ الطفل الغاضب</b><span>بما أراد، أو ببديل، أو بربتة (البطاقة 4).</span></div></li>
+    <li><div><b>درّب لحظة الفصل</b><span>قبل أن تنفجر على «البردعة» (البطاقة 5).</span></div></li>
+    <li><div><b>لو عندك أولاد</b><span>علّمهم الغضب بدل قمعه (البطاقة 6).</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>التوقيت</th></tr></thead>
+        <tbody>
+          <tr><td class="old">الغضب في ذاته عيب وقلة أدب وخطيئة</td><td class="new">الغضب شعور طبيعي هدفه الحماية؛ المذموم التعبير المؤذي عنه</td><td class="v num">8:00</td></tr>
+          <tr><td class="old">الطفل المؤدب ما بيغضبش</td><td class="new">الطفل يحتاج من يعلّمه التعبير عن غضبه لا كبته</td><td class="v num">6:06</td></tr>
+          <tr><td class="old">عصبيتي بسببهم هم</td><td class="new">أنا غضبان قبل ما يعملوا حاجة؛ أبحث عن سند لغضب قديم</td><td class="v num">16:00</td></tr>
+          <tr><td class="old">ما تنبشش في الماضي، عيش النهارده</td><td class="new">أفتح الماضي لأقطعه وأعيش النهارده فعلًا</td><td class="v num">18:18</td></tr>
+          <tr><td class="old">مع الوقت هنسى</td><td class="new">ديون الماضي لا تسقط بالتقادم؛ أدفعها مرة</td><td class="v num">19:49</td></tr>
+          <tr><td class="old">أنا لطيف ومش بزعل من حد</td><td class="new">لطفي المفرط قد يكون غضبًا مقنّعًا</td><td class="v num">27:23</td></tr>
+          <tr><td class="old">الصداع والقولون مالهمش علاقة بمشاعري</td><td class="new">أحيانًا يتكلم الجسد بما لا أقوله، مع متابعة طبية</td><td class="v num">30:23</td></tr>
+          <tr><td class="old">لازم ييجوا يعتذروا</td><td class="new">«ما حدش جاي»؛ أراضي نفسي وأكسر الحلقة</td><td class="v num">40:57</td></tr>
+          <tr><td class="old">التعبير عن الغضب يعني زعيق وتكسير</td><td class="new">مواجهة هادئة، أو تفريغ بالكتابة، أو تسامٍ</td><td class="v num">42:27</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="acard">
+    <h3>2. شخّص استياءك <span class="tag">تمرين كتابة</span></h3>
+    <ol>
+      <li><b>مفخّخ؟</b> متى انفجرت آخر مرة على شيء صغير؟ ومع من؟</li>
+      <li><b>منقول؟</b> على من أُفرغ؟ أولادي، أم زوجتي، أم من هم تحت يدي، أم صديق «حيطة مايلة»؟ ومن «الحمار» الأصلي؟</li>
+      <li><b>منقلب؟</b> هل أجلد نفسي أو أخرّب حياتي أو أؤذي جسدي حين أغضب؟</li>
+      <li><b>مقنّع؟</b> هل أسخر كثيرًا؟ أم أبتسم وأوافق وأنا أغلي؟</li>
+      <li><b>مجسَّد؟</b> أي أعراض جسدية تأتي مع الضغط؟</li>
+      <li>ما الغضب القديم وراء هذا كله؟ ممن؟ ولماذا لم أستطع التعبير عنه وقتها؟</li>
+    </ol>
+    <p class="src">من 13:45 إلى 31:53</p>
+  </div>
+
+  <div class="acard">
+    <h3>3. التفريغ</h3>
+    <ul>
+      <li>اكتب رسالة لمن أغضبك قديمًا، بكل ما لم تقله، ولا ترسلها.</li>
+      <li>أو سجّل فويس لا تبعته، أو تكلم أمام كرسي فارغ تتخيله عليه.</li>
+      <li>اكتب يومياتك حين تغضب: من ماذا؟ وما الذي آلمك؟</li>
+      <li>المواجهة الهادئة فقط حين يكون الشخص قادرًا على التفاهم ولن تتعرض لمزيد من الأذى.</li>
+    </ul>
+    <p class="src">من 43:59 إلى 47:01</p>
+  </div>
+
+  <div class="acard">
+    <h3>4. راضِ الطفل الغاضب</h3>
+    <ul>
+      <li>ماذا كنت محرومًا منه صغيرًا ويمكن أن تعطيه لنفسك الآن؟ هواية، أو شغف، أو شيء تمنيته.</li>
+      <li>أعطه لنفسك مرة، بوعي أنك تعوّض، لا كعادة شراء.</li>
+      <li>قل لنفسك ما كنت تحتاج سماعه: «حقك عليا»، «متفهم إنك اتظلمت».</li>
+    </ul>
+    <p class="src">من 37:57 إلى 42:27</p>
+  </div>
+
+  <div class="acard">
+    <h3>5. في لحظة الغضب</h3>
+    <ul>
+      <li>اعمل «لحظة فصل»: إن كنت واقفًا فاجلس، وإن كنت جالسًا فاضطجع، أو اغسل وجهك أو توضأ.</li>
+      <li>اسأل: هل هذا تهديد حقيقي، أم أن «اللغم» القديم انفجر؟</li>
+      <li>هل أنا على وشك أن أُفرغ في «بردعة»؟</li>
+      <li>حين يغضب أحد أمامك: صادق على مشاعره أولًا قبل أي حل.</li>
+      <li>لتهدئة الجسم: تنفس بطيء، أو مشي، أو استرخاء أفضل من ضرب أشياء.</li>
+    </ul>
+    <p class="src">من 34:55 ومن 47:01</p>
+  </div>
+
+  <div class="acard">
+    <h3>6. مع أولادك</h3>
+    <ul>
+      <li>لا تعامل غضبهم كعيب يجب نزعه.</li>
+      <li>سمِّ لهم ما يشعرون به، واسمح به، وعلّمهم طريقة مقبولة للتعبير عنه، خاصة مع الكبار.</li>
+      <li>لا تُفرغ فيهم غضبك من أهلك أو عملك.</li>
+      <li>لو بنتك تثير فيك توترًا غير مفهوم، افحص علاقتك أنت بأمك وبجسدك.</li>
+    </ul>
+    <p class="src">من 5:36 ومن 21:20</p>
+  </div>
+
+  <div class="acard">
+    <h3>7. التسامي</h3>
+    <ul>
+      <li>حوّل الطاقة لعمل فني: كتابة، قصة، رسم، موسيقى.</li>
+      <li>مارس رياضة بانتظام للمزاج عمومًا.</li>
+      <li>لا تعتمد على ضرب الأشياء أو العنف الرمزي لتفريغ الغضب، فهو يزيده عند كثيرين (انظر قسم الأبحاث).</li>
+    </ul>
+    <p class="src">من 48:32 إلى 51:35</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: <a href="https://www.youtube.com/watch?v=hLWZ9PwfsR8" target="_blank" rel="noopener">from resentment .. towards inner peace</a> على قناة Emad Rashad Othman، الحلقة الخامسة من سلسلة <a href="https://www.youtube.com/playlist?list=PLOjvW1C4hDCkU_l5F1sTSdo6xDHXMWBfP" target="_blank" rel="noopener">التحرر من الماضي</a>. المحتوى مبني على نص الفيديو كاملًا، والتوقيتات تقريبية.</p>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن معالج أو طبيب.</p>
+</footer>
+
+</div>
