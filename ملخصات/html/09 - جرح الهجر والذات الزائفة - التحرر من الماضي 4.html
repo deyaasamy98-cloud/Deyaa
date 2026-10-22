@@ -1,0 +1,457 @@
+<title>جرح الهجر والذات الزائفة</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column; a "lantern" accent (amber) marks actions, teal marks concepts. Light through a crack: the series' own image of recovery. */
+:root{
+  --bg:#F3F5F4; --surface:#E6ECEA; --ink:#14201F; --muted:#52615F; --rule:#CFD9D6;
+  --teal:#136F63; --teal-soft:#D7EAE6; --amber:#9A5806; --amber-soft:#F5E6D0;
+  --red:#A33B3B; --red-soft:#F4DEDC; --green:#2C7650; --green-soft:#DDEFE4;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{direction:rtl;max-width:900px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.4;margin:0;font-weight:700}
+h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.1rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+
+header.top{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--amber);font-weight:600}
+h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,3.3rem)}
+.lede{font-size:1.06rem;color:var(--muted);max-width:64ch}
+.coverage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px}
+.coverage .big{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--teal);grid-row:span 2}
+.coverage .bar{height:8px;background:var(--rule);border-radius:99px;overflow:hidden}
+.coverage .bar i{display:block;height:100%;width:37.5%;background:var(--teal);border-radius:99px}
+.coverage p{font-size:.9rem;color:var(--muted)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.92rem;padding:5px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--teal);color:var(--teal)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+
+/* themes */
+.theme{border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:10px}
+.theme-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.theme-head .idx{font-family:var(--f-display);color:var(--amber);font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:.8rem;text-decoration:none;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);white-space:nowrap}
+.chips a:hover{text-decoration:underline}
+.theme ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.theme ul li::marker{color:var(--teal)}
+.key{background:var(--teal-soft);border-radius:10px;padding:10px 14px;font-weight:500;max-width:70ch}
+.key b{color:var(--teal)}
+
+/* tree */
+.tree-wrap{overflow-x:auto}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul > li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-family:var(--f-display);font-size:1.35rem;background:var(--ink);color:var(--bg);padding:6px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-family:var(--f-display);font-size:1.08rem;color:var(--teal)}
+.tree .lf{font-size:.95rem}
+.tree .lf b{color:var(--amber);font-weight:600}
+
+/* research */
+.res{display:grid;gap:12px}
+.rcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.rcard .claim{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.rcard .claim h4{flex:1 1 260px}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.mix{background:var(--amber-soft);color:var(--amber)}
+.pill.no{background:var(--red-soft);color:var(--red)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgrid > div{border-radius:8px;padding:10px 12px;font-size:.92rem;min-width:0}
+.rgrid .pro{background:var(--green-soft)}
+.rgrid .con{background:var(--red-soft)}
+.rgrid .lbl{display:block;font-weight:600;font-size:.8rem;margin-bottom:2px}
+.rgrid .pro .lbl{color:var(--green)}
+.rgrid .con .lbl{color:var(--red)}
+.rcard .bottom{font-size:.92rem}
+.rcard .bottom b{color:var(--teal)}
+@media (max-width:620px){.rgrid{grid-template-columns:1fr}}
+.cite{font-size:.82rem;color:var(--muted)}
+
+/* actions */
+.path{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.path > li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.path > li::before{content:counter(p);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--amber);color:var(--bg);font-weight:600;font-variant-numeric:tabular-nums}
+.path b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.path span{font-size:.93rem}
+.acard{border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px}
+.acard h3{display:flex;gap:10px;align-items:baseline}
+.acard h3 .tag{font-family:var(--f-body);font-size:.75rem;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:1px 8px;border-radius:999px}
+.acard ul,.acard ol{margin:0;padding-inline-start:20px;display:grid;gap:5px}
+.acard li::marker{color:var(--amber);font-variant-numeric:tabular-nums}
+.acard .src{font-size:.78rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--surface);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.old{color:var(--red)}
+td.new{color:var(--green);font-weight:500}
+td.v{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{border-radius:10px;padding:12px 14px;min-width:0}
+.two .bad{background:var(--red-soft)}
+.two .good{background:var(--green-soft)}
+.two h4{margin-bottom:4px}
+.two .bad h4{color:var(--red)}
+.two .good h4{color:var(--green)}
+.two ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.93rem}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--amber);padding-inline-start:12px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer details summary{cursor:pointer;color:var(--ink);font-weight:500}
+footer ul{margin:6px 0 0;padding-inline-start:18px;columns:2;column-gap:28px}
+@media (max-width:560px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">د. عماد رشاد عثمان · سلسلة «التحرر من الماضي» · الحلقة 4 من 10 · 51 دقيقة · 23 أكتوبر 2025</span>
+  <h1>جرح الهجر والذات الزائفة</h1>
+  <p class="lede">أربعة تأثيرات للإساءة أصلها كلها «الهجر». كيف يفقد الطفل الثقة والانتماء ومركز الثبات، فيلبس «ذاتًا زائفة» ليُقبل، فيهجر نفسه. والطريق: انتماء حقيقي يعيدك إلى ذاتك.</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>التوقيت بجانب كل عنوان يفتح الفيديو عند هذه اللحظة.</p>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>التأثيرات الأربعة، وأصلها الهجر</h3>
+      <div class="chips"><a href="https://youtu.be/xq5m5QHZ0NQ?t=93" target="_blank" rel="noopener">1:33</a><a href="https://youtu.be/xq5m5QHZ0NQ?t=276" target="_blank" rel="noopener">4:36</a></div></div>
+    <p class="key"><b>الفكرة:</b> أي إساءة أو حرمان مؤثر من «الآخر المهم» (أب، أم، أو غيرهما) يترك أربعة تأثيرات: <b>الهجر، والخزي، والخوف، والاستياء</b>. وفي قراءته الآن: الأصل هو الهجر، والثلاثة تابعة له.</p>
+    <ul>
+      <li>السلسلة تشرح كتابه «أبي الذي أكره»، ويقول إن فهمه تطور منذ صدوره، وإن بعض صياغاته «لم تكن محترزة» فأدت لسوء فهم، ويتحمل مسؤوليتها.</li>
+      <li>الاستياء غير الغضب: «غضب معتّق ومغلف بالعجز». غضب قديم محتقن لم تقدر أن تعبر عنه، وهو ما تتكلم عنه الزمالات كثيرًا لأنه يغذي الإدمان.</li>
+      <li>الهجر هنا لا يعني أن الطفل تُرك وحيدًا، بل أنه لم يجد من «يستخبى في جلابيته» من عالم مخيف.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٢</span><h3>من الاستناد إلى الثقة ومركز الثبات</h3>
+      <div class="chips"><a href="https://youtu.be/xq5m5QHZ0NQ?t=368" target="_blank" rel="noopener">6:08</a><a href="https://youtu.be/xq5m5QHZ0NQ?t=551" target="_blank" rel="noopener">9:11</a></div></div>
+    <p class="key"><b>الفكرة:</b> الطفل «طفيلي» بالمعنى الحرفي: يرمي على الآخر جوعه وعطشه وحمايته. حين يستقر هذا العطاء، «يستدمج» الثبات داخله، فيرى العالم «يستحق الثقة» (إريكسون: الثقة مقابل عدم الثقة).</p>
+    <ul>
+      <li>العالم ما زال مخيفًا، لكن «عندي من العتاد ما يكفي». فيقل القلق، ويعامل العالم بالفضول والاستكشاف لا بالتوجس.</li>
+      <li>يتكون «مركز الضبط» (locus of control) داخله: «رمانة الميزان تخش جوه».</li>
+      <li>الأهل يقومون بدور «المعالِج» للعالم: يمضغونه ليصير قابلًا للهضم، كالطيور مع صغارها. «بابا، إحنا بنيجي إزاي؟ ليه في مشاكل في غزة؟». ويقولون «اطلع لقدام» مرة، و«هات إيدك» مرة.</li>
+      <li>حين تأتي الإساءة من القريب نفسه، «الطعنة جت من القريب»: فلا أثق في العالم، ولا في من يفترض أن يحميني، ولا يتكون عندي ثبات. خاصة مع أهل لا يمكن توقعهم، يغضبون من لا شيء ويهدؤون أمام ما يجنن.</li>
+      <li>فيستدمج الطفل «السيولة»: العالم غير مفهوم، «أي حاجة ممكن تحصل في أي وقت»، ومركز الضبط يبقى برّه: تنتظر من يطمئنك ويقول لك إنك كويس وماذا تعمل، وتخاف أن يسلبك شيء ما لديك حتى في أوقات النعمة.</li>
+      <li>يحدث هذا أيضًا مع الطلاق والتنقل بين البيوت، أو مرض نفسي غير معالج عند أحد الأبوين، أو العيش في منطقة منكوبة لا أكل فيها غدًا.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٣</span><h3>الانتماء، و«الرجم»</h3>
+      <div class="chips"><a href="https://youtu.be/xq5m5QHZ0NQ?t=706" target="_blank" rel="noopener">11:46</a><a href="https://youtu.be/xq5m5QHZ0NQ?t=917" target="_blank" rel="noopener">15:17</a></div></div>
+    <ul>
+      <li>الطفل يحتاج أن يشعر أنه قطعة «بازل» لها مكانها: «مكاني مقبول ومقدّر ومحفوظ وعلى مقاسي». وإلا شعر بالاغتراب: «أنا منبوذ، ملفوظ».</li>
+      <li>أقسى عقاب في الثقافات القديمة لم يكن السجن ولا القتل، بل الطرد: «الرجم»، ومنه «الشيطان الرجيم». والشعراء الصعاليك طُردوا من القبيلة.</li>
+      <li>الطفل غير المرغوب فيه (كان يُنتظر ذكرًا فجاءت أنثى، أو حمل غير مرغوب) يستدمج أنه «زائد عن الحاجة»: «أنا الـ15% الزيادة اللي على علبة اللبن».</li>
+      <li>لهذا نرى الناس يستجدون الانتماء، يتحزبون، وكل فرد داخل كل جماعة يرتعب أن يُلفظ: «انت ما بقتش زينا».</li>
+      <li>من حمل جرح الهجر يدخل كل علاقة متوقعًا أن يُهجر ثانية، ويشعر أنه ثقيل على الناس وأن «قعدته مش شيقة».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٤</span><h3>«التعافي لا يحدث في الغرف المغلقة»</h3>
+      <div class="chips"><a href="https://youtu.be/xq5m5QHZ0NQ?t=1042" target="_blank" rel="noopener">17:22</a><a href="https://youtu.be/xq5m5QHZ0NQ?t=1464" target="_blank" rel="noopener">24:24</a></div></div>
+    <p class="key"><b>الفكرة:</b> مركز الضبط لم يدخل لأن الانتماء أُجهض، فلن تسترده إلا من الخارج أولًا: علاقة، ومجموعة، وانتماء. فتستدمج العلاقة الشافية وتصير «سندًا» لغيرك.</p>
+    <ul>
+      <li>لا تكرر الاعتمادية القديمة على شخص واحد: «تاخد من هنا علم، ومن هنا قبول، ومن هنا مشاعر». ولذلك الانتماء لمجموعة أجمل.</li>
+      <li>جوع الانتماء يجعل البعض يدخل أي جماعة متطرفة أو حزب أو جمعية: «لعّبوني معاكم».</li>
+      <li>«صلاة الجماعة خير من صلاة الفذ»، و«إنما يأكل الذئب من الغنم القاصية». «نفسي أقول لك اقفل الباب وقول تعويذة خمس مرات، بس والله ما بيخففش لوحده».</li>
+      <li>التعافي: علاقة مع الله، ومع آخرين، ومع كتاب، ومع نفسك. مرة في نوبة اكتئاب لم يغادر غرفته 79 يومًا، ولم يتغير شيء رغم الكتب. التغيير بدأ حين خرج «يتخبط» في العالم.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٥</span><h3>«ما حدش بيصوم من غير سحور»: أشبِع الاحتياج أولًا</h3>
+      <div class="chips"><a href="https://youtu.be/xq5m5QHZ0NQ?t=1644" target="_blank" rel="noopener">27:24</a><a href="https://youtu.be/xq5m5QHZ0NQ?t=1824" target="_blank" rel="noopener">30:24</a></div></div>
+    <p class="key"><b>الفكرة:</b> لن تستغني عن احتياجك لأن تُرى وتُسمع وتُقدَّر إلا بعد أن تأخذ منه «حد الكفاف». الخطاب النفسي الذي يقول «تحرر من اعتراف الآخرين» فورًا يتجاهل أن الناس «جعانة».</p>
+    <ul>
+      <li>شاب يريد أن يُرى، ويكره نفسه لأن هذا يحركه. الرد: لن تستعلي على حاجتك لأن تُرى إلا حين تُرى فعلًا، فيصير مركز الضبط جواك.</li>
+      <li>«ماتقالوش عفارم من سنة 54»، من أيام رسمة حرب أكتوبر في خامسة ابتدائي، ومن أيام الفستان البينك. الناس جعانة للنظرة والقبول والتشجيع والفخر.</li>
+      <li>«يحبون أن يُحمدوا بما لم يفعلوا»: المذموم أن تُحمد بما لم تفعل. أما حب الحمد بما فعلت بحقيقتك فاحتياج إنساني طبيعي.</li>
+      <li>مثال الغيرة في الزواج: في البداية غيرة مجنونة من الطرفين لأنهما «مش شبعانين». حين يستقران ويشعران بالتقدير يهدأ جزء كبير منها. «كتير من غيرتنا رجولة مرتعشة».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٦</span><h3>الذات الحقيقية والذات الزائفة</h3>
+      <div class="chips"><a href="https://youtu.be/xq5m5QHZ0NQ?t=2009" target="_blank" rel="noopener">33:29</a><a href="https://youtu.be/xq5m5QHZ0NQ?t=2371" target="_blank" rel="noopener">39:31</a></div></div>
+    <p class="key"><b>الفكرة:</b> البذرة «ذات حقيقية في طور الإمكان». بالمحبة والاحتواء تصير «ذاتًا محققة» أصيلة، «ما اتلعبش في أساسها». ومن لم يجد التربة يلبس «ذاتًا زائفة» اجتماعية ليُقبل.</p>
+    <ul>
+      <li>«تحقيق الذات» ليس كلمة مخيفة: هو تفتّح الإمكانات التي وضعها الله فيك. «كلٌّ ميسّر لما خُلق له». الصحابة وحواريو المسيح لكل منهم نمطه.</li>
+      <li>زميله في الثانوية «اللي أبوه وأمه حبوه»: لا يتكسف من مدرس، ويتكلم في أي مكان، وطموحه أبعد من كلية الطب، واختار الحقوق رغم مجموعه لأنه يحبها. بينما هو كان يعيش «أحنا مجرد أرقام في تعداد السكان».</li>
+      <li>الباقون «اتسقوا بمية مالحة»: مدرسون وشيوخ ومدربون وأطباء ومثقفون «مخبوطين» و«انسكيور». «رحنا نتغطى، لقينا الكل عريان».</li>
+      <li>فتتحول الذات من طور «التفعيل» إلى طور «النجاة»: «بتحبوا الشاطر؟ هبقى شاطر. المؤدب؟ هبقى مؤدب. الصايع؟ هبقى صايع». ذات «خدمة عملاء»: «أهلًا يا فندم».</li>
+      <li>تتكون «سلطة غير مرئية» داخلنا تحاكمنا طول الوقت. والذات الزائفة غير مستقرة لأنها «مش بتاعتنا، سلفينها».</li>
+      <li><b>اغتراب مضاعف:</b> عن الأهل أولًا، ثم عن أنفسنا. «من حيث أردت أن أحميها من الهجر، هجرتها».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٧</span><h3>القاعدة: مساران، والتعافي استنقاذ الذات</h3>
+      <div class="chips"><a href="https://youtu.be/xq5m5QHZ0NQ?t=2560" target="_blank" rel="noopener">42:40</a><a href="https://youtu.be/xq5m5QHZ0NQ?t=2646" target="_blank" rel="noopener">44:06</a></div></div>
+    <ol>
+      <li><b>مسار السواء:</b> ذات ممكنة أخذت انتماء ومحبة واحتواء، فدخل مركز الضبط داخلها، فواجهت العالم. ومعها «ذات زائفة لطيفة» تستخدمها عند الحاجة: مع سائق تاكسي يشتم في السياسة («ربنا يصلح الحال، عندك حق»)، أو في تفاوض أو خناقة.</li>
+      <li><b>مسار الاغتراب:</b> يحتقر صاحبه ذاته الحقيقية ويتخلى عنها ليتبنى ذاتًا كاذبة ويُقبل. وحتى حين يجد الانتماء «ما بيشبعهوش»، لأن القبول يذهب للذات الزائفة، والحقيقية تظل جائعة.</li>
+    </ol>
+    <ul>
+      <li>«أول التعافي مش إن أبوك ييجي يحضنك، أول التعافي إنك ترجع لذاتك الحقيقية وتحضنها»: تعيد تبنيها، وتستنقذها، وتسأل ماذا تريد، وتمشي وراء رغبتها.</li>
+      <li>المتعافي أقوى ممن لم يُجرح: عنده الذاتان، ويعرف متى يُخرج الزائفة «لكي ينجو».</li>
+      <li>تحتاج سندًا خارجيًا أولًا لتفعل هذا: «اتنين مكاسيح يسندوا على بعض».</li>
+      <li>في آخر الحلقة يطلب: علّقوا ولو «مسا مسا»، واعملوا المجموعات، واسمعوا مقطعًا 5 دقائق في أول القعدة وكل واحد يقول ماذا لمس فيه. وأوراق القواعد تنزل على تيليجرام.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head"><h2>التشجير</h2></div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">جرح الهجر والذات الزائفة</span>
+        <ul>
+          <li><span class="br">التأثيرات الأربعة</span>
+            <ul>
+              <li class="lf">الهجر (الأصل)</li>
+              <li class="lf">الخزي، والخوف، والاستياء</li>
+              <li class="lf">الاستياء = غضب معتّق بالعجز</li>
+            </ul>
+          </li>
+          <li><span class="br">السواء</span>
+            <ul>
+              <li class="lf">استناد مستقر ← ثقة بالعالم</li>
+              <li class="lf">الأهل يمضغون العالم</li>
+              <li class="lf">مركز الضبط يدخل</li>
+            </ul>
+          </li>
+          <li><span class="br">الهجر</span>
+            <ul>
+              <li class="lf">الطعنة من القريب</li>
+              <li class="lf">سيولة وعدم توقع</li>
+              <li class="lf">مركز الضبط برّه</li>
+              <li class="lf">جوع للانتماء وخوف من النبذ</li>
+            </ul>
+          </li>
+          <li><span class="br">الذات</span>
+            <ul>
+              <li class="lf">حقيقية في طور الإمكان ← محققة</li>
+              <li class="lf">أو زائفة للنجاة والقبول</li>
+              <li class="lf">اغتراب مضاعف: عن الأهل وعن النفس</li>
+            </ul>
+          </li>
+          <li><span class="br">التعافي</span>
+            <ul>
+              <li class="lf">ليس في الغرف المغلقة</li>
+              <li class="lf">انتماء لمجموعة لا لشخص واحد</li>
+              <li class="lf">أشبع الاحتياج أولًا</li>
+              <li class="lf">استنقذ ذاتك الحقيقية</li>
+              <li class="lf">الزائفة أداة عند الحاجة</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة.</p>
+  </div>
+  <div class="res">
+
+    <div class="rcard">
+      <div class="claim"><h4>عدم التوقع في الطفولة يهز الثقة</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>عدم قابلية الرعاية للتوقع (إشارات متقلبة من الأم) يرتبط بضعف في الوظائف المعرفية والتنظيم الانفعالي لاحقًا، حتى مع ثبات كمية الرعاية. <span class="cite">(Glynn &amp; Baram, 2019, Frontiers in Neuroendocrinology)</span> والبيئات غير المتوقعة ترتبط بسلوك أكثر اندفاعًا وأقل تخطيطًا. <span class="cite">(Ellis et al., 2009, Human Nature)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>جزء من الأثر يعود لعوامل مصاحبة (فقر، ضغوط)، والأبحاث على الإنسان ما زالت أقل من أبحاث الحيوان.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> «السيولة» التي يصفها لها أساس علمي واضح.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>مركز الضبط الخارجي</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>في دراسة متابعة بريطانية كبيرة، مركز الضبط الخارجي في الطفولة تنبأ بالاكتئاب في سن البلوغ. <span class="cite">(Culpin et al., 2015, J of Affective Disorders)</span> والشدائد المبكرة ترتبط بإحساس أقل بالسيطرة على الحياة.</div>
+        <div class="con"><span class="lbl">يحدّ</span>مركز الضبط الداخلي المفرط قد يجلب لومًا زائدًا للذات حين تكون الظروف فعلًا خارج السيطرة. المطلوب واقعية، لا أن «كل شيء بيدي».</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الحاجة للانتماء، وألم النبذ</h4><span class="pill ok">مدعوم بقوة</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الحاجة للانتماء من الحاجات الإنسانية الأساسية. <span class="cite">(Baumeister &amp; Leary, 1995, Psychological Bulletin)</span> والإقصاء الاجتماعي ينشّط مناطق في الدماغ تتداخل مع مناطق الألم الجسدي. <span class="cite">(Eisenberger et al., 2003, Science)</span> والبحث عن المعنى والأهمية بعد الإذلال أو النبذ من عوامل الانجذاب للجماعات المتطرفة. <span class="cite">(Kruglanski et al., 2014, Political Psychology)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>نتائج تداخل الألم الجسدي والاجتماعي في الدماغ نوقشت لاحقًا وقد تكون أقل تخصصًا مما بدا.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> «الرجم» أقسى العقوبات فعلًا، وجوع الانتماء يدفع لأماكن خطرة.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«التعافي لا يحدث في الغرف المغلقة»</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>العزلة الاجتماعية والوحدة ترفعان خطر الاكتئاب والوفاة المبكرة. <span class="cite">(Holt-Lunstad et al., 2015, Perspectives on Psychological Science)</span> و«التنشيط السلوكي» (العودة للأنشطة والناس) علاج فعال للاكتئاب بقدر العلاج المعرفي. <span class="cite">(Ekers et al., 2014, PLoS ONE)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>علاقات اجتماعية سيئة أو ناقدة قد تزيد الأعراض. المطلوب علاقات آمنة، لا أي ناس.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«أشبِع الاحتياج أولًا»</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>نظرية «تقرير المصير»: حين تُحبط الحاجة للانتماء والتقدير، يلجأ الإنسان لسلوكيات تعويضية وقيم خارجية (شهرة، صورة). وحين تُشبع يصير أكثر استقلالًا وأقل تعلقًا باعتراف الآخرين. <span class="cite">(Vansteenkiste &amp; Ryan, 2013, J of Psychotherapy Integration)</span> والتعلق القلق يرتبط بغيرة أشد في العلاقات. <span class="cite">(Guerrero, 1998, Personal Relationships)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>لا يكفي «الإشباع» من الخارج وحده عند البعض: من يعاني تقديرًا للذات معلقًا بالآخرين قد لا يشبع مهما أخذ، ويحتاج عملًا داخليًا معه.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الذات الحقيقية والذات الزائفة</h4><span class="pill mix">مدعوم، مع تحفظ على المفهوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>المراهقون الذين يشعرون أن دعم أهلهم «مشروط» يمارسون سلوك «الذات الزائفة» أكثر، وهذا يرتبط بالاكتئاب واليأس. <span class="cite">(Harter et al., 1996, Child Development)</span> والإحساس بالأصالة يرتبط بالرفاهية النفسية. <span class="cite">(Wood et al., 2008؛ Sutton, 2020, Personality and Individual Differences)</span> والمفهوم أصله عند وينيكوت.</div>
+        <div class="con"><span class="lbl">يحدّ</span>الناس يميلون لاعتبار «ذاتهم الحقيقية» هي الجانب الأخلاقي الجيد فيهم فقط. <span class="cite">(Strohminger, Knobe &amp; Newman, 2017)</span> فلا تبرر كل اندفاع بأنه «ذاتي الحقيقية». والمرونة في التكيف مع المواقف مفيدة، كما قال هو.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> عش من ذاتك الحقيقية، واستخدم «الكياسة الاجتماعية» أداةً لا قناعًا دائمًا.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبتها الحلقة، مرتبة.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <li><div><b>اخرج من الغرفة</b><span>انتمِ لمجموعة أو أكثر (البطاقة 3).</span></div></li>
+    <li><div><b>افحص مركز ضبطك</b><span>متى تنتظر من برّه أن يطمئنك أو يقرر لك؟ (البطاقة 2)</span></div></li>
+    <li><div><b>اكتشف ذاتك الزائفة</b><span>ومتى تلبسها (البطاقة 4).</span></div></li>
+    <li><div><b>استنقذ ذاتك الحقيقية</b><span>ماذا تريد فعلًا؟ (البطاقة 5)</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>التوقيت</th></tr></thead>
+        <tbody>
+          <tr><td class="old">العالم مش مفهوم وأي حاجة ممكن تحصل</td><td class="new">هذا ما استدمجته من بيت غير متوقع؛ أستطيع بناء ثبات جديد</td><td class="v num">9:11</td></tr>
+          <tr><td class="old">لازم حد من برّه يطمني ويقولي أعمل إيه</td><td class="new">أدخل مركز الضبط جوايا تدريجيًا</td><td class="v num">20:00</td></tr>
+          <tr><td class="old">أنا زيادة عن الحاجة وتقيل على الناس</td><td class="new">هذا جرح الهجر يتكلم، لا الحقيقة</td><td class="v num">16:48</td></tr>
+          <tr><td class="old">هتعافى لوحدي في أوضتي بالكتب</td><td class="new">التعافي لا يحدث في الغرف المغلقة</td><td class="v num">25:54</td></tr>
+          <tr><td class="old">هعتمد على شخص واحد يسندني</td><td class="new">آخذ من أكثر من مصدر: مجموعة، أصدقاء، معالج، الله</td><td class="v num">23:00</td></tr>
+          <tr><td class="old">عيب إني عايز اتشاف وأتشكر</td><td class="new">احتياج طبيعي؛ آخذ حد الكفاف منه ثم أستغني</td><td class="v num">27:24</td></tr>
+          <tr><td class="old">لازم أبقى اللي الناس عايزاه عشان اتقبل</td><td class="new">القبول الذي يذهب لذات زائفة لا يشبعني</td><td class="v num">46:00</td></tr>
+          <tr><td class="old">مستني أبويا ييجي يحضني</td><td class="new">أول التعافي أن أرجع لذاتي وأحضنها</td><td class="v num">42:34</td></tr>
+          <tr><td class="old">الوش الاجتماعي كذب لازم أتخلص منه</td><td class="new">أستخدمه أداة عند الحاجة، لا هوية</td><td class="v num">45:37</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="acard">
+    <h3>2. افحص جرح الهجر <span class="tag">تمرين كتابة</span></h3>
+    <ol>
+      <li>هل كان بيتي متوقعًا؟ هل كنت أعرف متى يغضب أبي أو أمي ولماذا؟</li>
+      <li>من كان «يمضغ» لي العالم ويجيب أسئلتي؟</li>
+      <li>هل شعرت أن لي مكانًا «على مقاسي» في البيت؟ أم أني زائد؟</li>
+      <li>في أي مواقف اليوم أنتظر من برّه أن يطمئنني أو يقرر لي؟</li>
+      <li>هل أدخل العلاقات متوقعًا أن أُهجر؟</li>
+    </ol>
+    <p class="src">من 4:36 إلى 22:53</p>
+  </div>
+
+  <div class="acard">
+    <h3>3. الانتماء</h3>
+    <ul>
+      <li>اخرج من الغرفة: مجموعة دعم من 3 إلى 5، أو زمالة، أو صحبة صادقة.</li>
+      <li>وزّع احتياجك: علم من مكان، وقبول من مكان، ومشاعر من مكان. لا شخص واحد.</li>
+      <li>احذر الجماعات التي تمنحك انتماءً مقابل أفكار متطرفة أو التخلي عن نفسك.</li>
+      <li>اسمح لنفسك أن تُرى وتُشكر بما فعلت فعلًا، ولا تخجل من ذلك.</li>
+      <li>في المجموعة: اسمعوا 5 دقائق من الحلقة، وكل واحد يقول ماذا لمس فيه.</li>
+    </ul>
+    <p class="src">من 22:53 إلى 33:29، ومن 47:07</p>
+  </div>
+
+  <div class="acard">
+    <h3>4. اكتشف ذاتك الزائفة <span class="tag">تمرين كتابة</span></h3>
+    <ol>
+      <li>ماذا كانوا يحبون في البيت والمدرسة؟ الشاطر؟ المؤدب؟ الهادي؟ المضحك؟ وماذا صرت لأجله؟</li>
+      <li>أين ألبس «وش خدمة العملاء» دون أن أحتاجه؟</li>
+      <li>ما «السلطة غير المرئية» التي تحاكمني داخليًا؟ صوت من هي؟</li>
+      <li>متى أشعر أني مقبول لكن جائع من الداخل؟</li>
+    </ol>
+    <p class="src">من 37:00 إلى 43:00</p>
+  </div>
+
+  <div class="acard">
+    <h3>5. استنقذ ذاتك الحقيقية</h3>
+    <ul>
+      <li>اسأل: ماذا أحب فعلًا؟ ماذا كنت أريد قبل أن أتعلم ما يحبه الناس؟</li>
+      <li>خذ خطوة صغيرة وراء هذه الرغبة هذا الأسبوع.</li>
+      <li>تكلّم برأيك الحقيقي في مكان آمن.</li>
+      <li>استخدم الذات الاجتماعية بوعي فقط حيث تحتاجها: تفاوض، أو موقف عابر، أو خناقة.</li>
+    </ul>
+    <p class="src">من 42:34 إلى 47:07</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: <a href="https://www.youtube.com/watch?v=xq5m5QHZ0NQ" target="_blank" rel="noopener">من فقدان الثقة إلى التعافي</a> على قناة Emad Rashad Othman، الحلقة الرابعة من سلسلة <a href="https://www.youtube.com/playlist?list=PLOjvW1C4hDCkU_l5F1sTSdo6xDHXMWBfP" target="_blank" rel="noopener">التحرر من الماضي</a>. المحتوى مبني على نص الفيديو كاملًا، والتوقيتات تقريبية.</p>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن معالج.</p>
+</footer>
+
+</div>
