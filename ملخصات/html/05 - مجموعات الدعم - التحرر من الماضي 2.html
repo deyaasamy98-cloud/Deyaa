@@ -1,0 +1,468 @@
+<title>مجموعات الدعم</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column; a "lantern" accent (amber) marks actions, teal marks concepts. Light through a crack: the series' own image of recovery. */
+:root{
+  --bg:#F3F5F4; --surface:#E6ECEA; --ink:#14201F; --muted:#52615F; --rule:#CFD9D6;
+  --teal:#136F63; --teal-soft:#D7EAE6; --amber:#9A5806; --amber-soft:#F5E6D0;
+  --red:#A33B3B; --red-soft:#F4DEDC; --green:#2C7650; --green-soft:#DDEFE4;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{direction:rtl;max-width:900px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.4;margin:0;font-weight:700}
+h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.1rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+
+header.top{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--amber);font-weight:600}
+h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,3.3rem)}
+.lede{font-size:1.06rem;color:var(--muted);max-width:64ch}
+.coverage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px}
+.coverage .big{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--teal);grid-row:span 2}
+.coverage .bar{height:8px;background:var(--rule);border-radius:99px;overflow:hidden}
+.coverage .bar i{display:block;height:100%;width:37.5%;background:var(--teal);border-radius:99px}
+.coverage p{font-size:.9rem;color:var(--muted)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.92rem;padding:5px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--teal);color:var(--teal)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+
+/* themes */
+.theme{border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:10px}
+.theme-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.theme-head .idx{font-family:var(--f-display);color:var(--amber);font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:.8rem;text-decoration:none;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);white-space:nowrap}
+.chips a:hover{text-decoration:underline}
+.theme ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.theme ul li::marker{color:var(--teal)}
+.key{background:var(--teal-soft);border-radius:10px;padding:10px 14px;font-weight:500;max-width:70ch}
+.key b{color:var(--teal)}
+
+/* tree */
+.tree-wrap{overflow-x:auto}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul > li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-family:var(--f-display);font-size:1.35rem;background:var(--ink);color:var(--bg);padding:6px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-family:var(--f-display);font-size:1.08rem;color:var(--teal)}
+.tree .lf{font-size:.95rem}
+.tree .lf b{color:var(--amber);font-weight:600}
+
+/* research */
+.res{display:grid;gap:12px}
+.rcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.rcard .claim{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.rcard .claim h4{flex:1 1 260px}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.mix{background:var(--amber-soft);color:var(--amber)}
+.pill.no{background:var(--red-soft);color:var(--red)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgrid > div{border-radius:8px;padding:10px 12px;font-size:.92rem;min-width:0}
+.rgrid .pro{background:var(--green-soft)}
+.rgrid .con{background:var(--red-soft)}
+.rgrid .lbl{display:block;font-weight:600;font-size:.8rem;margin-bottom:2px}
+.rgrid .pro .lbl{color:var(--green)}
+.rgrid .con .lbl{color:var(--red)}
+.rcard .bottom{font-size:.92rem}
+.rcard .bottom b{color:var(--teal)}
+@media (max-width:620px){.rgrid{grid-template-columns:1fr}}
+.cite{font-size:.82rem;color:var(--muted)}
+
+/* actions */
+.path{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.path > li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.path > li::before{content:counter(p);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--amber);color:var(--bg);font-weight:600;font-variant-numeric:tabular-nums}
+.path b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.path span{font-size:.93rem}
+.acard{border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px}
+.acard h3{display:flex;gap:10px;align-items:baseline}
+.acard h3 .tag{font-family:var(--f-body);font-size:.75rem;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:1px 8px;border-radius:999px}
+.acard ul,.acard ol{margin:0;padding-inline-start:20px;display:grid;gap:5px}
+.acard li::marker{color:var(--amber);font-variant-numeric:tabular-nums}
+.acard .src{font-size:.78rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--surface);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.old{color:var(--red)}
+td.new{color:var(--green);font-weight:500}
+td.v{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{border-radius:10px;padding:12px 14px;min-width:0}
+.two .bad{background:var(--red-soft)}
+.two .good{background:var(--green-soft)}
+.two h4{margin-bottom:4px}
+.two .bad h4{color:var(--red)}
+.two .good h4{color:var(--green)}
+.two ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.93rem}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--amber);padding-inline-start:12px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer details summary{cursor:pointer;color:var(--ink);font-weight:500}
+footer ul{margin:6px 0 0;padding-inline-start:18px;columns:2;column-gap:28px}
+@media (max-width:560px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">د. عماد رشاد عثمان · سلسلة «التحرر من الماضي» · الحلقة 2 من 10 · 38 دقيقة · 27 نوفمبر 2025</span>
+  <h1>مجموعات الدعم</h1>
+  <p class="lede">دعوة إلى أن تجلس أربعة أو خمسة معًا ليتعافوا دون «كبير» يقودهم، ومعها القواعد التي تحمي المجموعة وطريقة إدارة الاجتماع خطوة بخطوة.</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>التوقيت بجانب كل عنوان يفتح الفيديو عند هذه اللحظة.</p>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>لماذا نحتاج ثقافة المجموعات؟</h3>
+      <div class="chips"><a href="https://youtu.be/PYJ0afqRr04?t=0" target="_blank" rel="noopener">0:00</a></div></div>
+    <p class="key"><b>الفكرة:</b> «العقل العربي عقل يخاف أن يأخذ خطوة وحده». شعوب مصدومة من الاستعمار والصراعات، تبحث دائمًا عن «كبير» أو «أخ كبير» أو قائد ملهم تمشي وراءه، فاستغلتها تنظيمات وأحزاب كثيرة. الدعوة هنا مختلفة: اقعدوا أنتم مع بعض.</p>
+    <ul>
+      <li>الهدف تعافٍ شخصي: أن نلمّ مساحاتنا المتعبة، وننتج ونشتغل أحسن، ونوقف «الكفّ والتكبيل الداخلي» الذي تسببه آلام الماضي. لا أحلام كبرى ولا قضايا.</li>
+      <li>الشرط الأول قبل أي شيء: <b>لا سياسة، لا دين، لا علاقات غير منضبطة.</b> «الثالوث المحرم» الذي يفسد أي مجموعة.</li>
+      <li>نفس الفكرة تصلح لأي شيء: نادي كتاب، أو صالون ثقافي، أو مجموعة تتعلم الرسم أو البرمجة أو تقرأ في العلاج النفسي معًا.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٢</span><h3>كيف بدأت الزمالات</h3>
+      <div class="chips"><a href="https://youtu.be/PYJ0afqRr04?t=120" target="_blank" rel="noopener">2:00</a><a href="https://youtu.be/PYJ0afqRr04?t=363" target="_blank" rel="noopener">6:03</a></div></div>
+    <ul>
+      <li>زمالة المدمنين المجهولين بدأت بمدمنَي كحول، بيل ويلسون ودكتور بوب، لم يجدا علاجًا فجلسا يتكلمان، فساعد كل منهما الآخر. ثم انتشرت في العالم، ولم تصطدم أبدًا بحكومات أو أحزاب أو جماعات دينية لأنها تتبنى «الخطاب الأبيض» غير المتحيز.</li>
+      <li>ثم ظهرت زمالات للمخدرات والجنس والإباحية والقمار، وللاكتئاب، ولمن لا يتحكم في مشاعره، وللوسواس القهري. ومنها خرج نظام «مجموعات الدعم» دون اشتراط برنامج الـ12 خطوة.</li>
+      <li>في كل مكان في العالم تجتمع مجموعات صغيرة (من فقدوا أطفالهم، مرضى السرطان، التصلب المتعدد) دون مختصين ولا مدير، كلهم يعانون نفس الشيء. وتجمعهم مبادئ متشابهة أيًا كانت اللغة والدين والبلد.</li>
+      <li>قصة متداولة (لا يعرف صحتها) عن بداية زمالة المخدرات في مصر: شخصان ترجما أوراق الزمالة الأمريكية «ومصّروها». لم يأت أحد. فظل أحدهم يجلس في الموعد ثلاث مرات أسبوعيًا ساعة كاملة يقرأ وحده، شهورًا، حتى جاء ثانٍ وثالث، ثم صار الأطباء والمستشفيات يرسلون المرضى. والزمالة اليوم واسعة في مصر والعالم العربي، وفي إيران من أكبرها.</li>
+      <li>«في المخدرات من العبث أن نتحدث عن مدى نجاعة مجموعات الدعم». أما في الإباحية فالموضوع ما زال جديدًا.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٣</span><h3>زمالة الأطفال الراشدين (ACA)</h3>
+      <div class="chips"><a href="https://youtu.be/PYJ0afqRr04?t=520" target="_blank" rel="noopener">8:40</a></div></div>
+    <ul>
+      <li>زمالة تساعد جدًا في «التحرر من الماضي»: للناجين من عائلات «معطوبة»، كأب مدمن كحول أو مخدرات، أو أم مضطربة نفسيًا، أو بيت مفكك.</li>
+      <li>صارت زمالة عربية قوية، بدأها شخص أو اثنان قررا ألا ينتظرا من يأتي ليعالجهما، لأن العلاج صعب وغالٍ، وزمالات الخارج تحتاج إنجليزية. «لسه بتقوم وتقع»، لكنها موجودة: دوروا عليها.</li>
+      <li>وهناك زمالات جاهزة للإباحية، والطعام، والاعتمادية العاطفية، والقمار. ولمن لا ينتمي لأي منها: كوّن مجموعة صغيرة.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٤</span><h3>شكل المجموعة</h3>
+      <div class="chips"><a href="https://youtu.be/PYJ0afqRr04?t=600" target="_blank" rel="noopener">10:00</a><a href="https://youtu.be/PYJ0afqRr04?t=818" target="_blank" rel="noopener">13:38</a></div></div>
+    <ul>
+      <li><b>العدد:</b> 4 إلى 6، يفضّل ألا يكونوا أصدقاء من قبل، أو يتعارفوا في البداية. يحكمهم «إطار» واحد.</li>
+      <li><b>القائد:</b> ليس أعلم ولا متقدمًا في المعرفة، ربما «كانت إيده مكسورة قبلهم بسنة» فيعرف الطريق. دوره «تكليفي لا تشريفي»: يفتح اللقاء، ويرسل اللينك، ويقرأ القواعد. تختاره المجموعة، ويدور الدور بعد مرة أو اثنتين، حتى لا تتكرر مشاكل «الكبير»: سطوته، أو انقلاب المجموعة عليه، أو الصراع على مكانه.</li>
+      <li><b>المدة:</b> ساعة بالضبط، من 8 إلى 9، بلا زيادة إلا دقيقتين. الدماغ يستثقل اللقاء المفتوح، وكثير من الزمالات بدأت بساعة ثم زادت.</li>
+      <li><b>التكرار:</b> يوم في الأسبوع أفضل، ويومان جيد، وثلاثة كثير في البداية. «أحب الأعمال إلى الله أدومها وإن قل».</li>
+      <li><b>المكان:</b> زوم، أو قهوة، أو أي مكان.</li>
+      <li><b>جروب الواتساب:</b> للمواعيد ومشاركة المادة فقط. «الهزار والكلام» فيه يصنع صراعات، وكلنا لنا تجربة سيئة في جروب واتساب.</li>
+      <li>القواعد للاستلهام، لا «نصوص مقدسة». المجموعات ستطور قواعدها، وتعترض، وتضيف بالأغلبية، وهذا مفرح.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٥</span><h3>المشاركة لا النقاش</h3>
+      <div class="chips"><a href="https://youtu.be/PYJ0afqRr04?t=880" target="_blank" rel="noopener">14:40</a></div></div>
+    <p class="key"><b>الفكرة:</b> «ما فيش حاجة اسمها نصائح، ولا قولولي أعمل إيه». المجموعة تقوم على «المشاركة»: أذن تسمع، وفم يروي ما لديه.</p>
+    <ul>
+      <li>لو تحول الكلام إلى رايح جاي سيصير جدالًا. ولو صار «أقول مشكلتي وتقولولي الحل» ستنشأ اعتمادية ويتأذى الناس.</li>
+      <li>من يتكلم بعدك يحكي تجربته هو: ما ذاقه، وما فرق معه، وما تعلمه. أقصى ما يقوله عنك أن يكون «صدى»: «عندي من اللي عندك».</li>
+      <li>لا أحد يقول «بتفكر غلط»، ولا «انت حمار»، ولا حتى «انت عظيم».</li>
+      <li>المشاركة من 5 إلى 10 دقائق حسب اتفاق المجموعة. يمكن أن تشارك مرة ثانية بعد أن يلف الدور على الجميع.</li>
+      <li>أول مرة صعبة جدًا («يا أرض انشقي وابلعيني»)، وبعدها لا شيء يقف أمامك. «سلّم لي على الرهاب الاجتماعي».</li>
+      <li>ستظهر مشاكل طبيعية: من يستعرض، ومن يريد أن يتحكم، ومن يتباهى. ومع الوقت تلفظها المجموعة. اسمحوا للناس أن تغلط وتتعثر وتكبر بالتجربة.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٦</span><h3>القواعد التي لا نتعداها</h3>
+      <div class="chips"><a href="https://youtu.be/PYJ0afqRr04?t=1159" target="_blank" rel="noopener">19:19</a><a href="https://youtu.be/PYJ0afqRr04?t=1452" target="_blank" rel="noopener">24:12</a></div></div>
+    <ol>
+      <li><b>ما يُقال هنا يبقى هنا.</b> لا تعليق على مشاركة أحد بعد الاجتماع، ولا نقل ما قيل لأحد، ولا تصوير شاشة ولا تسجيل. «المجموعات بتقوم على الأمانة».</li>
+      <li><b>المجموعة ليست علاجًا.</b> هدفها دعم المسار العلاجي والتعليمي: «مدرسة» ورفقة نمو. لا تغني عن مختص ولا دواء ولا مشرف.</li>
+      <li><b>لا نصارع أي شيء.</b> أي موضوع يثير خلافًا نغلقه: دين، أو سياسة، أو أحزاب، أو طائفية، أو عنصرية، «حتى رونالدو وميسي». «كسب القلوب مقدم على كسب المواقف». ونذكّر من يخرج عنها برفق، دون هجوم.</li>
+      <li><b>لا تعليق على المشاركات</b>، ولا إجابة عن أسئلة طُرحت فيها، ولا نصائح ولا توجيهات. «انصح برّه».</li>
+      <li><b>ضوابط المشاركة:</b> لا صراحة جنسية، ولا ألفاظ بذيئة، ولا ذكر أشخاص بأسمائهم، ولا ذكر أماكن أو مواقع فيها أذى (مخدرات، إباحية).</li>
+      <li><b>موضوعات للمختصين فقط:</b> الانتحار، وإيذاء النفس، والصدمات الكبيرة الحديثة، والتهديد بإيذاء أحد. ولا تشخيصات: لا «أبويا نرجسي» ولا «أنا متشخص». «بنتكلم هنا كبني آدمين».</li>
+      <li><b>لا خلط في العلاقات بين الأعضاء:</b> لا علاقة عاطفية أو جنسية، ولا عمل أو بيزنس مشترك، ولا سلف، ولا هدايا. حتى على القهوة «كل واحد بيحاسب لنفسه».</li>
+    </ol>
+    <ul>
+      <li>والأفضل أن تكون مشاركتك تحت مظلة معالجك: أخبره بما حدث، وقد يقول لك إن المجموعة لا تناسبك الآن.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٧</span><h3>سير الاجتماع خطوة بخطوة</h3>
+      <div class="chips"><a href="https://youtu.be/PYJ0afqRr04?t=1634" target="_blank" rel="noopener">27:14</a><a href="https://youtu.be/PYJ0afqRr04?t=1993" target="_blank" rel="noopener">33:13</a></div></div>
+    <ol>
+      <li><b>الافتتاح:</b> «بسم الله، النهارده كذا. أهلًا بكم في اجتماع مجموعة كذا، مجموعة دعم غير مختصة وغير علاجية، تهدف للمساعدة في التعافي والنمو والتحرر من آلام الماضي». ويُكرر كل مرة من أجل الأعضاء الجدد.</li>
+      <li><b>الدعاء:</b> يقترح دعاء السكينة: «اللهم امنحنا السكينة لنتقبل الأشياء التي لا نستطيع تغييرها، والشجاعة لنغير الأشياء التي نستطيع تغييرها، والحكمة لمعرفة الفرق بينهما». ومن يريد يبدأ بالبسملة فقط. وقبل المشاركات: «ربنا يجري على لساني ما أحتاج قوله ويحتاج غيري سماعه».</li>
+      <li><b>قراءة القواعد</b> كل مرة، ويقرؤها أحد الأعضاء في دقيقة.</li>
+      <li><b>الموضوع:</b> قاعدة من حلقة في السلسلة، أو صفحة من كتاب، أو تأمل. مثلًا «الألم الذي لا يتحول إلى سردية يتحول إلى هوية».</li>
+      <li><b>المشاركات:</b> «لا تخافوا من الصمت». لو سكتت المجموعة استنوا دقيقتين أو ثلاثة. وبعد كل مشاركة يقال: «شكرًا» فقط.</li>
+      <li><b>3 دقائق صمت</b> في النهاية: كل واحد يحاول يطلع برسالة واحدة اليوم، رسالة نفسه أو ربنا أو التعافي.</li>
+      <li><b>الختام:</b> دعاء السكينة لمن أراد، ثم تحديد الموعد القادم، و«روح لأمك» (أي ارجع لحياتك).</li>
+    </ol>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٨</span><h3>ضد «الغربوفوبيا»، ولماذا يحلم بهذا</h3>
+      <div class="chips"><a href="https://youtu.be/PYJ0afqRr04?t=1814" target="_blank" rel="noopener">30:14</a><a href="https://youtu.be/PYJ0afqRr04?t=2179" target="_blank" rel="noopener">36:19</a></div></div>
+    <ul>
+      <li>من يرفض الفكرة لأنها «جاية من الغرب»: «واصبر نفسك مع الذين يدعون ربهم بالغداة والعشي»، و«أن تقوموا لله مثنى وفرادى». نأخذ «الشكل» أداة كالترام والموبايل، والمحتوى من هويتنا.</li>
+      <li>المجموعات لا تدوس لأحد على شيء: لا تدخل في الدين ولا تميّعه ولا تشدده، ولا تدعو لحزب.</li>
+      <li>ظهرت الفكرة في مسلسلات مثل «تحت السيطرة» و«كتالوج».</li>
+      <li>حلمه: بدل الجزر المعزولة والجسور الافتراضية على مواقع التواصل، أن يجد الموهوبون الواقعون «على هامش الحياة» من التشتت والتسويف والآلام وعقلية الضحية رفقة، فينفضوا هدومهم ويرجعوا لركب الحياة. «في يوم من الأيام كان ده موقعي».</li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head"><h2>التشجير</h2></div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">مجموعات الدعم</span>
+        <ul>
+          <li><span class="br">لماذا</span>
+            <ul>
+              <li class="lf">نخرج من انتظار «الكبير»</li>
+              <li class="lf">تعافٍ شخصي، لا قضايا كبرى</li>
+              <li class="lf">الزمالات أنقذت الملايين</li>
+            </ul>
+          </li>
+          <li><span class="br">الشكل</span>
+            <ul>
+              <li class="lf">4 إلى 6 أشخاص، وقائد بالتناوب</li>
+              <li class="lf">ساعة، مرة أو مرتين أسبوعيًا</li>
+              <li class="lf">واتساب للمواعيد فقط</li>
+            </ul>
+          </li>
+          <li><span class="br">المشاركة</span>
+            <ul>
+              <li class="lf">لا نصائح ولا تعليق ولا جدال</li>
+              <li class="lf">«صدى» فقط، و«شكرًا»</li>
+              <li class="lf">5 إلى 10 دقائق لكل واحد</li>
+            </ul>
+          </li>
+          <li><span class="br">القواعد</span>
+            <ul>
+              <li class="lf">الثالوث المحرم: سياسة، دين، علاقات</li>
+              <li class="lf">ما يقال هنا يبقى هنا</li>
+              <li class="lf">ليست علاجًا</li>
+              <li class="lf">الانتحار والصدمات للمختصين</li>
+              <li class="lf">لا تشخيصات، ولا أسماء</li>
+              <li class="lf">لا هدايا ولا سلف ولا بيزنس</li>
+            </ul>
+          </li>
+          <li><span class="br">الاجتماع</span>
+            <ul>
+              <li class="lf">افتتاح، دعاء، قواعد، موضوع</li>
+              <li class="lf">مشاركات، 3 دقائق صمت، ختام</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة.</p>
+  </div>
+  <div class="res">
+
+    <div class="rcard">
+      <div class="claim"><h4>فعالية الزمالات في الإدمان</h4><span class="pill ok">مدعوم بقوة للكحول</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>مراجعة كوكرين: زمالة AA وبرامج تيسير الانضمام إليها تساوي العلاجات الأخرى أو تتفوق عليها في الامتناع عن الكحول، وتوفر التكاليف الصحية. <span class="cite">(Kelly, Humphreys &amp; Ferri, 2020)</span> وزمالة NA في إيران من أكبر الزمالات في العالم، كما قال.</div>
+        <div class="con"><span class="lbl">يحدّ</span>الأدلة على زمالات الجنس والإباحية والأطفال الراشدين (ACA) قليلة ووصفية، وهو قال إن الموضوع «لسه جديد». وAA فيها نحو مليوني عضو في أكثر من 100 ألف مجموعة، لا «ملايين المجموعات».</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> في الكحول والمخدرات الفكرة مثبتة. وفي غيرها واعدة لكن دليلها أضعف.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>مجموعات الأقران بلا مختصين</h4><span class="pill mix">مفيدة غالبًا، والأدلة متفاوتة</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>مراجعة لدراسات مجموعات المساعدة المتبادلة في مشكلات نفسية مختلفة وجدت أثرًا إيجابيًا في أغلبها، خاصة في الإحساس بالدعم والقدرة على التكيف. <span class="cite">(Pistrang, Barker &amp; Humphreys, 2008, American J of Community Psychology)</span> والدعم من الأقران في الصحة النفسية يحسّن الأمل والتمكين. <span class="cite">(Lloyd-Evans et al., 2014, BMC Psychiatry)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>نفس المراجعات وجدت أن أثرها على الأعراض نفسها أقل وضوحًا، وأن جودة الدراسات ضعيفة غالبًا.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> تتفق مع قوله إنها دعم ورفقة لا علاج.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«لا نصائح»، والمشاركة بدل النقاش</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>النصائح غير المطلوبة كثيرًا ما تُشعر المتلقي بالنقص وتقلل رضاه، حتى لو كانت صحيحة. <span class="cite">(Goldsmith &amp; Fitch, 1997, Human Communication Research)</span> ومن أسباب تحسّن الناس في المجموعات «الشمولية»: أن تكتشف أنك لست وحدك، ورواية التجربة نفسها. <span class="cite">(Yalom, The Theory and Practice of Group Psychotherapy)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>تكرار الكلام عن المشكلات مع الآخرين دون اتجاه للحل («الاجترار المشترك») قد يزيد القلق والاكتئاب. <span class="cite">(Rose, 2002, Child Development)</span> لذلك تهم القاعدة التي ذكرها: موضوع محدد، ووقت محدد، ورسالة واحدة في آخر الاجتماع.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> «المشاركة لا النصيحة» قاعدة سليمة، بشرط ألا تتحول إلى شكوى متكررة.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>منع الكلام عن الانتحار وإيذاء النفس في المجموعة</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>مراجعة منهجية وجدت أن إيذاء النفس ينتقل اجتماعيًا بين الأقران، خاصة بين الشباب. <span class="cite">(Jarvi et al., 2013, Archives of Suicide Research)</span> ومن هنا تحويل هذه الموضوعات للمختصين.</div>
+        <div class="con"><span class="lbl">توضيح</span>السؤال المباشر عن الأفكار الانتحارية من مختص لا يزيدها. <span class="cite">(Dazzi et al., 2014, Psychological Medicine)</span> فالمطلوب ألا تسكت عنها، بل أن تذهب بها للمكان الصحيح.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> القاعدة في محلها. ومن عنده هذه الأفكار يكلم مختصًا أو خطًا ساخنًا فورًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>معلومات واقعية في الحلقة</h4><span class="pill ok">صحيحة في معظمها</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">صحيح</span>AA بدأت سنة 1935 بلقاء بيل ويلسون والدكتور بوب سميث. و«نادي القتال» رواية تشاك بولانيك، ترجمها د. أحمد خالد توفيق. والآيتان صحيحتان (الكهف 28، وسبأ 46).</div>
+        <div class="con"><span class="lbl">ضبط</span>نص الآية «بالغداة والعشي» لا «والعشاء». ودعاء السكينة كتبه اللاهوتي الأمريكي راينهولد نيبور، وأصله مسيحي، فمن يتحرج منه يستبدله كما اقترح هو.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبتها الحلقة، مرتبة.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <li><div><b>دوّر على زمالة جاهزة</b><span>لو مشكلتك إدمان أو اعتمادية أو أسرة مضطربة: ابحث عن الزمالة المناسبة (ACA، SA، OA، CoDA...).</span></div></li>
+    <li><div><b>أو كوّن مجموعة</b><span>3 إلى 5 أشخاص، وإطار واحد، وموعد ثابت (البطاقة 2).</span></div></li>
+    <li><div><b>اتفقوا على القواعد</b><span>اكتبوها واقرؤوها في أول كل اجتماع (البطاقة 3).</span></div></li>
+    <li><div><b>امشِ على سير الاجتماع</b><span>من الافتتاح حتى الصمت والختام (البطاقة 4).</span></div></li>
+    <li><div><b>استمر</b><span>ولو جلست وحدك في الموعد في البداية.</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>التوقيت</th></tr></thead>
+        <tbody>
+          <tr><td class="old">لازم حد كبير يقودنا وينظمنا</td><td class="new">نقدر نقعد مع بعض من غير كبير، والقائد دوره تكليف بالتناوب</td><td class="v num">0:00</td></tr>
+          <tr><td class="old">مستني حد ييجي يعالجني</td><td class="new">أبدأ أنا، ولو قعدت لوحدي في الأول</td><td class="v num">6:03</td></tr>
+          <tr><td class="old">الدعم يعني أنصح وأتنصح</td><td class="new">الدعم مشاركة: أسمع وأحكي تجربتي بس</td><td class="v num">14:40</td></tr>
+          <tr><td class="old">لازم أكسب النقاش</td><td class="new">كسب القلوب مقدم على كسب المواقف</td><td class="v num">22:41</td></tr>
+          <tr><td class="old">المجموعة كفاية بدل العلاج</td><td class="new">المجموعة دعم إضافي، والعلاج عند مختص</td><td class="v num">21:11</td></tr>
+          <tr><td class="old">أبويا نرجسي وأنا متشخص كذا</td><td class="new">أتكلم كبني آدم عن تجربتي، من غير تشخيصات</td><td class="v num">24:12</td></tr>
+          <tr><td class="old">الصمت محرج ولازم حد يكسره</td><td class="new">الصمت مع الناس مفيد؛ أقعد معاه</td><td class="v num">33:17</td></tr>
+          <tr><td class="old">الفكرة دي جاية من الغرب يبقى وحشة</td><td class="new">نأخذ الشكل أداة، والمحتوى من هويتنا</td><td class="v num">30:14</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="acard">
+    <h3>2. تكوين المجموعة</h3>
+    <ul>
+      <li>4 إلى 6 أشخاص يجمعهم إطار واحد (التحرر من الماضي، إدمان معين، قلق...).</li>
+      <li>أحدكم «النحلة»: يجمع ويفتح الزوم ويرسل اللينك ويقرأ القواعد. ويتغير بعد مرة أو اثنتين.</li>
+      <li>ساعة واحدة بموعد بداية ونهاية ثابتين. يوم في الأسبوع، أو يومان.</li>
+      <li>جروب واتساب للمواعيد والمادة فقط، بلا هزار ولا نقاش.</li>
+      <li>المادة: قاعدة من حلقة، أو صفحة من كتاب، أو تأمل.</li>
+    </ul>
+    <p class="src">من 10:00 إلى 19:39</p>
+  </div>
+
+  <div class="acard">
+    <h3>3. القواعد التي تُقرأ في كل اجتماع</h3>
+    <ol>
+      <li>ما يُقال هنا يبقى هنا: لا نقل، ولا تصوير، ولا تسجيل، ولا تعليق بعد الاجتماع.</li>
+      <li>هذه مجموعة دعم غير مختصة وغير علاجية، ولا تغني عن مختص.</li>
+      <li>لا سياسة، ولا دين، ولا خلافات طائفية أو عنصرية. نغلق أي موضوع يثير خلافًا.</li>
+      <li>لا تعليق على المشاركات، ولا نصائح، ولا توجيهات.</li>
+      <li>لا صراحة جنسية، ولا ألفاظ بذيئة، ولا أسماء أشخاص، ولا ذكر أماكن أو مواقع مؤذية.</li>
+      <li>الانتحار وإيذاء النفس والصدمات الكبيرة الحديثة للمختصين، ولا تشخيصات.</li>
+      <li>لا علاقات عاطفية، ولا بيزنس، ولا سلف، ولا هدايا بين الأعضاء.</li>
+    </ol>
+    <p class="src">من 19:39 إلى 27:14</p>
+  </div>
+
+  <div class="acard">
+    <h3>4. سير الاجتماع</h3>
+    <ol>
+      <li>الافتتاح: التاريخ واسم المجموعة وأنها غير علاجية.</li>
+      <li>دعاء السكينة، أو البسملة فقط.</li>
+      <li>أحد الأعضاء يقرأ القواعد.</li>
+      <li>قراءة الموضوع.</li>
+      <li>دعاء: «ربنا يجري على لساني ما أحتاج قوله ويحتاج غيري سماعه».</li>
+      <li>المشاركات: 5 إلى 10 دقائق لكل واحد، و«شكرًا» فقط بعد كل مشاركة. لا تخافوا من الصمت.</li>
+      <li>3 دقائق صمت: كل واحد يطلع برسالة واحدة لنفسه.</li>
+      <li>الختام: دعاء لمن أراد، والموعد القادم.</li>
+    </ol>
+    <p class="src">من 27:14 إلى 36:19</p>
+  </div>
+
+  <div class="acard">
+    <h3>5. وأنت تشارك</h3>
+    <ul>
+      <li>اتكلم عن نفسك وتجربتك فقط.</li>
+      <li>لو لمست مشاركة غيرك شيئًا فيك: احكِ تجربتك الشبيهة كـ«صدى»، لا كتعليق عليه.</li>
+      <li>لو حد خرج عن القواعد: نبّهوه برفق من غير هجوم.</li>
+      <li>لو عندك معالج: احكِ له عن المجموعة واسأله إن كانت تناسبك الآن.</li>
+    </ul>
+    <p class="src">من 14:40 ومن 27:14</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: <a href="https://www.youtube.com/watch?v=PYJ0afqRr04" target="_blank" rel="noopener">حول مجموعات الدعم</a> على قناة Emad Rashad Othman، الحلقة الثانية في <a href="https://www.youtube.com/playlist?list=PLOjvW1C4hDCkU_l5F1sTSdo6xDHXMWBfP" target="_blank" rel="noopener">القائمة</a>. المحتوى مبني على نص الفيديو كاملًا، والتوقيتات تقريبية.</p>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن معالج.</p>
+</footer>
+
+</div>
