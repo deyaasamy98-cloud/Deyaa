@@ -14,5 +14,8 @@
 | 10 | [من الاستياء إلى السلام الداخلي](<10 - من الاستياء إلى السلام الداخلي - التحرر من الماضي 5.pdf>) | [التحرر من الماضي 5](https://www.youtube.com/watch?v=hLWZ9PwfsR8) | [فتح](https://claude.ai/artifact/RNMCy6wfs9BPbDTwzKuyAz) |
 | 11 | [الخوف والأمان العميق](<11 - الخوف والأمان العميق - التحرر من الماضي 6.pdf>) | [التحرر من الماضي 6](https://www.youtube.com/watch?v=NTDvem2rTyM) | [فتح](https://claude.ai/artifact/CQ8KRjTNr89WXgKsmUGcMo) |
 | 12 | [الخزي وتحفتك الفريدة](<12 - الخزي وتحفتك الفريدة - التحرر من الماضي 7.pdf>) | [التحرر من الماضي 7](https://www.youtube.com/watch?v=5uzK4DpUOZU) | [فتح](https://claude.ai/artifact/YLryGUiVJx3LMQeXvHCXqK) |
+| 13 | [التحرر من الخزي السام](<13 - التحرر من الخزي السام - التحرر من الماضي 8.pdf>) | [التحرر من الماضي 8](https://www.youtube.com/watch?v=0BcsLkEoQKc) | [فتح](https://claude.ai/artifact/7i23NzpnZgHjrHDpbcEtH7) |
+
+سلسلة «التحرر من الماضي» كاملة (10 حلقات): بالترتيب من 06 إلى 13، ثم 05 (الحلقة 9)، ثم 04 (الحلقة 10).
 
 نسخ HTML من كل ملخص موجودة في فولدر `html/`.
