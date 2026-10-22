@@ -1,0 +1,457 @@
+<title>عقلية الألم وتشويه القصة</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column; a "lantern" accent (amber) marks actions, teal marks concepts. Light through a crack: the series' own image of recovery. */
+:root{
+  --bg:#F3F5F4; --surface:#E6ECEA; --ink:#14201F; --muted:#52615F; --rule:#CFD9D6;
+  --teal:#136F63; --teal-soft:#D7EAE6; --amber:#9A5806; --amber-soft:#F5E6D0;
+  --red:#A33B3B; --red-soft:#F4DEDC; --green:#2C7650; --green-soft:#DDEFE4;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{direction:rtl;max-width:900px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.4;margin:0;font-weight:700}
+h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.1rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+
+header.top{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--amber);font-weight:600}
+h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,3.3rem)}
+.lede{font-size:1.06rem;color:var(--muted);max-width:64ch}
+.coverage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px}
+.coverage .big{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--teal);grid-row:span 2}
+.coverage .bar{height:8px;background:var(--rule);border-radius:99px;overflow:hidden}
+.coverage .bar i{display:block;height:100%;width:37.5%;background:var(--teal);border-radius:99px}
+.coverage p{font-size:.9rem;color:var(--muted)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.92rem;padding:5px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--teal);color:var(--teal)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+
+/* themes */
+.theme{border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:10px}
+.theme-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.theme-head .idx{font-family:var(--f-display);color:var(--amber);font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:.8rem;text-decoration:none;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);white-space:nowrap}
+.chips a:hover{text-decoration:underline}
+.theme ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.theme ul li::marker{color:var(--teal)}
+.key{background:var(--teal-soft);border-radius:10px;padding:10px 14px;font-weight:500;max-width:70ch}
+.key b{color:var(--teal)}
+
+/* tree */
+.tree-wrap{overflow-x:auto}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul > li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-family:var(--f-display);font-size:1.35rem;background:var(--ink);color:var(--bg);padding:6px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-family:var(--f-display);font-size:1.08rem;color:var(--teal)}
+.tree .lf{font-size:.95rem}
+.tree .lf b{color:var(--amber);font-weight:600}
+
+/* research */
+.res{display:grid;gap:12px}
+.rcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.rcard .claim{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.rcard .claim h4{flex:1 1 260px}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.mix{background:var(--amber-soft);color:var(--amber)}
+.pill.no{background:var(--red-soft);color:var(--red)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgrid > div{border-radius:8px;padding:10px 12px;font-size:.92rem;min-width:0}
+.rgrid .pro{background:var(--green-soft)}
+.rgrid .con{background:var(--red-soft)}
+.rgrid .lbl{display:block;font-weight:600;font-size:.8rem;margin-bottom:2px}
+.rgrid .pro .lbl{color:var(--green)}
+.rgrid .con .lbl{color:var(--red)}
+.rcard .bottom{font-size:.92rem}
+.rcard .bottom b{color:var(--teal)}
+@media (max-width:620px){.rgrid{grid-template-columns:1fr}}
+.cite{font-size:.82rem;color:var(--muted)}
+
+/* actions */
+.path{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.path > li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.path > li::before{content:counter(p);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--amber);color:var(--bg);font-weight:600;font-variant-numeric:tabular-nums}
+.path b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.path span{font-size:.93rem}
+.acard{border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px}
+.acard h3{display:flex;gap:10px;align-items:baseline}
+.acard h3 .tag{font-family:var(--f-body);font-size:.75rem;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:1px 8px;border-radius:999px}
+.acard ul,.acard ol{margin:0;padding-inline-start:20px;display:grid;gap:5px}
+.acard li::marker{color:var(--amber);font-variant-numeric:tabular-nums}
+.acard .src{font-size:.78rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--surface);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.old{color:var(--red)}
+td.new{color:var(--green);font-weight:500}
+td.v{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{border-radius:10px;padding:12px 14px;min-width:0}
+.two .bad{background:var(--red-soft)}
+.two .good{background:var(--green-soft)}
+.two h4{margin-bottom:4px}
+.two .bad h4{color:var(--red)}
+.two .good h4{color:var(--green)}
+.two ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.93rem}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--amber);padding-inline-start:12px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer details summary{cursor:pointer;color:var(--ink);font-weight:500}
+footer ul{margin:6px 0 0;padding-inline-start:18px;columns:2;column-gap:28px}
+@media (max-width:560px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">د. عماد رشاد عثمان · سلسلة «التحرر من الماضي» · الحلقة 2 من 10 · 52 دقيقة · 9 أكتوبر 2025</span>
+  <h1>عقلية الألم وتشويه القصة</h1>
+  <p class="lede">قصتك عن ماضيك ليست هي ما حدث بالضبط. الحلقة تشرح كيف نضيف للألم الأصلي ألمًا «مجانيًا»، ولماذا يقسم صوت الصدمة العالم إلى جناة وضحايا ومنقذين، وكيف تحوّل السلسلة إلى عمل.</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>التوقيت بجانب كل عنوان يفتح الفيديو عند هذه اللحظة.</p>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>تنبيه ومراجعة</h3>
+      <div class="chips"><a href="https://youtu.be/gnryv4mRukQ?t=0" target="_blank" rel="noopener">0:00</a><a href="https://youtu.be/gnryv4mRukQ?t=91" target="_blank" rel="noopener">1:31</a></div></div>
+    <ul>
+      <li>السلسلة عن الصدمات والفقد والحرمان بكل أشكالها، لا عن الأسرة فقط، وقد تفيد في الإدمان والاكتئاب والقلق. لكنها قد تستفز آلامًا عند البعض: «لو حسيت بكده اقفلها وخد بالك من نفسك».</li>
+      <li>القواعد السابقة: الألم الذي لا يصير سردية يصير هوية؛ في كل علاقة فجوة؛ فجوة الأبوين تؤسس الرغبة؛ والرضا ألا يشغلك ما تريد عما بين يديك.</li>
+      <li>«ضروري المرة دي تكمل الفيديو للآخر»: في آخره طريقة عملية للاستفادة.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٢</span><h3>القاعدة الخامسة: هناك دائمًا نسختان من القصة</h3>
+      <div class="chips"><a href="https://youtu.be/gnryv4mRukQ?t=181" target="_blank" rel="noopener">3:01</a><a href="https://youtu.be/gnryv4mRukQ?t=365" target="_blank" rel="noopener">6:05</a></div></div>
+    <p class="key"><b>الفكرة:</b> نسختك أنت، والواقع. «من أقسى القواعد». ونسختك تتكون من ثلاثة مستويات: <b>الحدث الواقعي</b>، و<b>تأويلك</b> له (ماذا يعني)، و<b>التخييل</b> (عالم كامل تحمله مسبقًا عن الأطراف وما «ينبغي» أن يكون).</p>
+    <ul>
+      <li>لا يعني هذا أنه يجحد قصتك أو يشكك في إدراكك. لكن كل تعافٍ هو إعادة بناء السردية بتقريب الفجوة بين ما حدث فعلًا ونسختك منه.</li>
+      <li>الجملة الواحدة يسمعها واحد مسيئة، وآخر طبطبة، وثالث تعديًا على الدين، ورابع موافقة للدين. العدسة فيها المتحدث والسامع والسياق والتاريخ بينهما.</li>
+      <li>فولتير: «أعطني ثلاث جمل لشخص، وسأمنحك من الأسباب ما يكفي لقتله». إن أردت أن تكره أو تحب أو تعفو أو تشعر بالمظلومية، ستجد ما يكفي.</li>
+      <li>الصورة الداخلية للآخرين اسمها «الإيماجو». حين تقول «أبويا» فأنت تتكلم عن الأب الواقعي، وتأويلك لأفعاله، وتخييلك عن الأب والرجل والاحتياجات التي لم تُسد. ونفس الشيء في «التمثيل النفسي لله»: أخوان درسا نفس العقيدة، أحدهما يراه سريع العقاب والآخر حليمًا، بحسب علاقاتهما بالأب وأول شيخ ومدرس.</li>
+      <li>أحيانًا الحدث نفسه متخيَّل: ذكرى لا تعرف إن كانت حدثت أم حلمًا، ومع ذلك تؤثر فيك. وليس كل ما أثر فيك وراءه بالضرورة «جانٍ».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٣</span><h3>«كان بيحبك، بس كان أحمق»: الألم المجاني</h3>
+      <div class="chips"><a href="https://youtu.be/gnryv4mRukQ?t=765" target="_blank" rel="noopener">12:45</a><a href="https://youtu.be/gnryv4mRukQ?t=915" target="_blank" rel="noopener">15:15</a></div></div>
+    <p class="key"><b>الفكرة:</b> كثير من آبائنا وأمهاتنا أخطؤوا وتخبطوا وارتكبوا حماقات، لكننا أضفنا على أفعالهم منطلقًا لم يكن عندهم: «ما كانش بيحبني، بيكرهني، بيفضل فلان عليا». هذا يضيف للألم الأصلي «معاناة مجانية» لا علاقة لها بالواقع.</p>
+    <ul>
+      <li>«نحن نفسر ولا نبرر». الفعل كان خاطئًا ومؤذيًا ومؤلمًا، و«النية الطيبة لا تصلح العمل الفاسد». لكن المنطلق لم يكن كما تصورته.</li>
+      <li>لم يكن عندهم كتب تربية إيجابية ولا يوتيوب، فاستخدموا الطريقة التي تربوا بها: ضرب، إهانة، تخويف، مقارنة، ظنًا أنها «التحفيز».</li>
+      <li>الطفل يقرأ العالم بالحب والكره والخير والشر فقط، فيرى غضبة مؤقتة دليلًا على أنه سيئ. «الحدث 30 فولت لك حق فيهم، بس في 10 فولت تأويل و10 فولت تخييل».</li>
+      <li>مثال «الزغدة»: نفس الدفعة من صاحبك وهو مشتاق لك «جميلة»، ومن رجل كسر عليك بالعربية تبدأ بها خناقة. الفرق في المنطلق الذي نقرؤه.</li>
+      <li>السردية المشوهة أحيانًا «تخدم حاجة»: التنصل من مسؤولية التعافي والتغيير. «ماذا تريدون من شخص مرّ بما مررت به؟». «اتألمت آه، بس قوم نفض هدومك، انت اتحبيت».</li>
+      <li>المطلوب: احترم ألمك وصادق عليه، واحتوِ طفلك الداخلي. لكن انتبه: الطفل المصدوم هو «صوت الصدمة»، وقد يبحث في ذكرياتك عن أدلة لخوفه (من الرفض أو النبذ أو العار)، فيقرأ الماضي بعدسة الخوف.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٤</span><h3>فولدران فقط: الطيبين والأشرار</h3>
+      <div class="chips"><a href="https://youtu.be/gnryv4mRukQ?t=1012" target="_blank" rel="noopener">16:52</a><a href="https://youtu.be/gnryv4mRukQ?t=1552" target="_blank" rel="noopener">25:52</a></div></div>
+    <ul>
+      <li>تريندات السوشيال ميديا: شخص كان في «إيماجو الطيبين» يفعل شيئًا لا يناسب الصورة، فيُنقل فورًا إلى «الأشرار». ولأن «الفترة اللي قضاها في الطيبين ما دفعش إيجارها»، نضيف سردية: «كان مخادع، كداب كبير».</li>
+      <li>لم يكن في هذا ولا ذاك. هذا تمثيلك النفسي المرتبط بأهلك وتوقعاتك وجماعتك وسياقك.</li>
+      <li>نكبر حين نكتشف المناطق الرمادية: «الحلال بيّن والحرام بيّن وبينهما أمور متشابهات». لكن تمثيلاتنا الأولى تظل منقسمة.</li>
+      <li>رينيه جيرار و«كبش الفداء»: نحتاج دائمًا من نُفرغ فيه طاقة الغضب والكراهية، وإلا اتجهت إلينا أو لأحبابنا. على السوشيال ميديا «لا نرى بشرًا، نرى إيماجوهات طالعة برّه».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٥</span><h3>القاعدة السادسة: «جانٍ وضحية ومنقذ» صوت الصدمة</h3>
+      <div class="chips"><a href="https://youtu.be/gnryv4mRukQ?t=1645" target="_blank" rel="noopener">27:25</a><a href="https://youtu.be/gnryv4mRukQ?t=1827" target="_blank" rel="noopener">30:27</a></div></div>
+    <p class="key"><b>الفكرة:</b> البحث عن «سبب» واحد ومخطئ واحد، وتقسيم العالم إلى جناة وضحايا ومنقذين، «عقلية مريضة» نتجت عن الصدمة نفسها. والبديل: تفكير شمولي يبحث عن «العوامل»، ولا يستخدم الماضي للتنصل من مسؤولية التعافي.</p>
+    <ul>
+      <li>«سندريلا» تختصر الثلاثية: الطيبة، وزوجة الأب الشريرة، والأمير المنقذ.</li>
+      <li>حتى الشعوب المصدومة (من الاستعمار والمؤامرات) تقسم العالم وتنتظر «المخلّص»، كما تنتظر البنت الشخص الذي «يخلي كل حاجة تمام».</li>
+      <li>لماذا نقسم؟ الصدمة تقول «العالم مش موثوق فيه»، فنحافظ على وجود الخير بأن نجعل الشر واضحًا والخير مستخبيًا.</li>
+      <li>«الدفاع الأخلاقي» عند فيربيرن: بنت كسرت أمها ذراعها، فلما عرضوا عليها بيتًا آخر قالت: «لا، أنا اللي كنت شقية». «من الأسهل على الطفل أن يرى نفسه سيئًا في حماية أشخاص جيدين، من أن يرى نفسه جيدًا في حماية أشخاص سيئين».</li>
+      <li>حين يكبر وتقوى نفسه، ينقلب: «ماما أسوأ شخص وأنا الضحية». فيتأرجح بين خزيه الداخلي وإلقاء الخزي على العالم.</li>
+      <li>لذلك يتراشق الزوجان بالاتهام في كل خلاف. «في الآخر لازم حد يتشاف وحش». ومن يسمع هذه السلسلة بنفس العقلية سيراه إما «منقذًا» أو «بيدافع عن الأهل».</li>
+      <li>العقل المصدوم يفكر بالأسباب لا بالعوامل. والحقيقة عوامل متعددة: حساسيتك النفسية، والبيولوجيا، والسياق الاجتماعي، والضغوط. و«لك مساحة من الطريق، وله مساحة».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٦</span><h3>كيف تستفيد من السلسلة: أربع توصيات</h3>
+      <div class="chips"><a href="https://youtu.be/gnryv4mRukQ?t=2255" target="_blank" rel="noopener">37:35</a><a href="https://youtu.be/gnryv4mRukQ?t=2648" target="_blank" rel="noopener">44:08</a><a href="https://youtu.be/gnryv4mRukQ?t=2830" target="_blank" rel="noopener">47:10</a></div></div>
+    <ol>
+      <li><b>كوّنوا مجموعات دعم:</b> 3 إلى 5، ساعة واحدة فقط حتى لا تثقل، على زوم أو جوجل ميت. اقرؤوا القواعد، ارفضوها أو اقبلوها، واطمئنوا على بعض حين يتفعّل صوت الصدمة: «حسيت بخوف من مديري وفكرني بأبويا». «التعافي الذي لا يمر بالآخر لا يُعوّل عليه». ومن يقول «مفيش ناس»: طالما في نت في ناس.</li>
+      <li><b>اشتغل واكتب:</b> بعد كل حلقة 5 إلى 10 دقائق بورقة وقلم: ماذا أثار فيك، ماذا تذكرت، اكتب القواعد وشخبط حولها، ارفضها. «من غير ورقة وقلم ما تضيعش وقتك ووقتي».</li>
+      <li><b>خذها واطلع بيها لفوق:</b> نفس الكلمة يأخذها واحد للتعافي، وآخر لـ«الدوامة السفلية»: الشفقة على الذات ولعق الجراح و«الموضوع أسود». «ولو شئنا لرفعناه بها». اعتبرها رسالة: أنت لست وحدك، وفي تعافٍ.</li>
+      <li><b>موعد ثابت وتفاعل:</b> حدد وقتًا تسمع فيه لتشعر بالانتماء، ثم علّق ولو «مسا مسا». يضايقه أن 70% من جمهوره رجال، ومعظم التعليقات من النساء.</li>
+    </ol>
+    <ul>
+      <li>ينتقد «غرفة الصدى» في الخطاب النفسي: ناس تتغنى بـ«جحيم الوعي» و«البودكاست ده قطّع شراييني» ولا أحد يشتغل على نفسه، وتستخدمه للإحساس بالاستعلاء والانتماء لـ«بتوع الوعي».</li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head"><h2>التشجير</h2></div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">عقلية الألم وتشويه القصة</span>
+        <ul>
+          <li><span class="br">القاعدة 5: نسختان</span>
+            <ul>
+              <li class="lf">الحدث + التأويل + التخييل</li>
+              <li class="lf">الإيماجو: صورة داخلية لا الشخص</li>
+              <li class="lf">التعافي = تقريب الفجوة</li>
+            </ul>
+          </li>
+          <li><span class="br">الألم المجاني</span>
+            <ul>
+              <li class="lf">الفعل خاطئ، والمنطلق لم يكن كراهية</li>
+              <li class="lf">نفسر ولا نبرر</li>
+              <li class="lf">عدسة الخوف تبحث عن أدلة</li>
+              <li class="lf">السردية المشوهة تعفي من المسؤولية</li>
+            </ul>
+          </li>
+          <li><span class="br">الانقسام</span>
+            <ul>
+              <li class="lf">فولدر الطيبين / فولدر الأشرار</li>
+              <li class="lf">كبش الفداء على السوشيال ميديا</li>
+              <li class="lf">المناطق الرمادية</li>
+            </ul>
+          </li>
+          <li><span class="br">القاعدة 6: صوت الصدمة</span>
+            <ul>
+              <li class="lf">جانٍ، ضحية، منقذ</li>
+              <li class="lf">الدفاع الأخلاقي: «أنا اللي وحش»</li>
+              <li class="lf">ثم الانقلاب: «هم الوحشين»</li>
+              <li class="lf">البديل: عوامل لا أسباب</li>
+            </ul>
+          </li>
+          <li><span class="br">العمل</span>
+            <ul>
+              <li class="lf">مجموعات دعم</li>
+              <li class="lf">كتابة بعد كل حلقة</li>
+              <li class="lf">«اطلع بيها لفوق»</li>
+              <li class="lf">موعد ثابت وتفاعل</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة.</p>
+  </div>
+  <div class="res">
+
+    <div class="rcard">
+      <div class="claim"><h4>نسختك من الماضي ليست الماضي</h4><span class="pill mix">مدعوم، مع تحذير مهم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الذاكرة «إعادة بناء» لا تسجيل. <span class="cite">(Bartlett, 1932؛ Loftus, 2005, Learning &amp; Memory)</span> وتحليل تجميعي وجد اتفاقًا ضعيفًا جدًا بين تقارير الإساءة في الطفولة المسجلة وقتها، وما يتذكره الناس وهم كبار. <span class="cite">(Baldwin et al., 2019, JAMA Psychiatry)</span></div>
+        <div class="con"><span class="lbl">التحذير</span>الخطأ الأشيع في الذاكرة هو <b>نسيان</b> الإساءة أو التقليل منها، لا اختراعها. <span class="cite">(Hardt &amp; Rutter, 2004, J of Child Psychology and Psychiatry)</span> فلا تستخدم هذه القاعدة لتكذيب نفسك أو غيرك في إساءة حقيقية.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> طبّق القاعدة على «التأويل» (لماذا فعلوا)، أكثر من «الحدث» نفسه.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>عدسة الخوف تقرأ الماضي والحاضر</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الأطفال الذين تعرضوا لإساءة جسدية يميلون لتفسير مواقف غامضة على أنها عدائية («تحيز الإسناد العدائي»)، وهذا يفسر جزءًا من عدوانيتهم لاحقًا. <span class="cite">(Dodge, Bates &amp; Pettit, 1990, Science)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>هذه العدسة كانت «تكيفًا» في بيئة خطرة فعلًا. المطلوب تحديثها، لا لوم صاحبها عليها.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> الخوف يضيف «فولت» فعلًا لقراءتنا للأحداث.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«كان بيحبك بس كان أحمق»</h4><span class="pill mix">صحيح كثيرًا، لا دائمًا</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الأهل الذين يستخدمون العقاب القاسي كثيرًا ما يؤمنون بأنه مفيد ومن مصلحة الطفل، وهذه المعتقدات تنتقل بين الأجيال. <span class="cite">(Gershoff, 2002, Psychological Bulletin)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الرفض الأبوي الحقيقي موجود، وهو من أقوى ما يرتبط بالمشكلات النفسية. <span class="cite">(Rohner &amp; Khaleque, 2010, نظرية القبول والرفض الوالدي)</span> فقد يكون إحساس «ما كانش بيحبني» دقيقًا عند البعض.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> افحص التأويل بأمانة: أحيانًا كان حبًا بطريقة غبية، وأحيانًا كان رفضًا فعلًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الطفل يلوم نفسه («الدفاع الأخلاقي»)</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>لوم الذات شائع جدًا بعد الإساءة. ولوم «الشخصية» («أنا سيئ») يرتبط بأعراض أسوأ من لوم «السلوك» («فعلت كذا»). <span class="cite">(Janoff-Bulman, 1979, JPSP؛ Filipas &amp; Ullman, 2006, J of Interpersonal Violence)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>مفهوم فيربيرن نظري من التحليل النفسي، والقصة التي ذكرها توضيحية لا دراسة.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> «أنا اللي كنت وحش» غالبًا دفاع طفل، لا حقيقة.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«جانٍ وضحية ومنقذ»، والتفكير بالأبيض والأسود</h4><span class="pill mix">مفهوم مفيد، دليله محدود</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الثلاثية معروفة باسم «مثلث الدراما» (Karpman, 1968)، وتُستخدم كثيرًا في العلاج. والتفكير الثنائي (كل شيء أو لا شيء) من «التشوهات المعرفية» المرتبطة بالاكتئاب والقلق. <span class="cite">(Beck)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>مثلث الدراما أداة وصفية بلا أبحاث تجريبية كثيرة. وفي بعض المواقف يوجد فعلًا جانٍ وضحية واضحان (عنف أو اعتداء)، و«المناطق الرمادية» لا تنطبق عليها.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> فكّر بالعوامل في الخلافات اليومية، ولا تميّع المسؤولية في الإساءة الصريحة.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>كبش الفداء على السوشيال ميديا</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>المنشورات التي فيها كلمات أخلاقية وعاطفية تنتشر أكثر. <span class="cite">(Brady et al., 2017, PNAS)</span> والمنصات تكافئ الغضب الأخلاقي فيزيد مع الوقت. <span class="cite">(Brady et al., 2021, Science Advances؛ Crockett, 2017, Nature Human Behaviour)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>تفسيره بأننا «نُخرج الكراهية كما نخرج الفضلات» استعارة نفسية، لا نتيجة بحثية.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الكتابة بعد الاستماع، والمجموعات</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الكتابة التعبيرية عن المشاعر والذكريات لها أثر إيجابي صغير ومتسق. <span class="cite">(Frattaroli, 2006, Psychological Bulletin)</span> والانعزال من أقوى ما يرتبط بتدهور الصحة النفسية. <span class="cite">(Holt-Lunstad et al., 2015)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الاستماع للمحتوى النفسي وحده لا يغيّر كثيرًا دون تطبيق، وهذا بالضبط ما حذّر منه.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبتها الحلقة، مرتبة.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <li><div><b>اكتب بعد الحلقة</b><span>10 دقائق بورقة وقلم (البطاقة 3).</span></div></li>
+    <li><div><b>افصل ذكرى واحدة</b><span>إلى حدث وتأويل وتخييل (البطاقة 2).</span></div></li>
+    <li><div><b>راقب «الفولدرين»</b><span>متى تنقل شخصًا من «الطيبين» إلى «الأشرار»؟ (البطاقة 4).</span></div></li>
+    <li><div><b>كوّن مجموعة</b><span>3 إلى 5، ساعة أسبوعيًا (البطاقة 5).</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>التوقيت</th></tr></thead>
+        <tbody>
+          <tr><td class="old">أنا شايف اللي حصل زي ما حصل بالظبط</td><td class="new">عندي نسخة: حدث + تأويل + تخييل</td><td class="v num">3:01</td></tr>
+          <tr><td class="old">أبويا ما كانش بيحبني</td><td class="new">ربما كان بيحبني لكنه كان متخبط وأحمق؛ الفعل غلط والمنطلق مختلف</td><td class="v num">13:45</td></tr>
+          <tr><td class="old">لو فهمت أهلي يبقى أنا ببررلهم</td><td class="new">أفسر ولا أبرر؛ الفعل كان خاطئًا ومؤذيًا</td><td class="v num">13:45</td></tr>
+          <tr><td class="old">مستني إيه من واحد مرّ باللي مريت بيه؟</td><td class="new">اتألمت، وأنا مسؤول عن تعافيّ</td><td class="v num">16:45</td></tr>
+          <tr><td class="old">الناس يا طيبين يا أشرار</td><td class="new">في مناطق رمادية؛ الطيب يغلط والصعب فيه خير</td><td class="v num">24:21</td></tr>
+          <tr><td class="old">كان طيب واتضح إنه مخادع</td><td class="new">هو لم يكن في هذا ولا ذاك؛ هذه صورتي عنه</td><td class="v num">25:52</td></tr>
+          <tr><td class="old">لازم ألاقي السبب والمخطئ</td><td class="new">أبحث عن العوامل، ولكل طرف مساحته من الطريق</td><td class="v num">27:25</td></tr>
+          <tr><td class="old">أنا اللي وحش، أو هم اللي وحشين</td><td class="new">هذا صوت الصدمة الذي يقسم العالم</td><td class="v num">33:30</td></tr>
+          <tr><td class="old">مستني المنقذ اللي يخلي كل حاجة تمام</td><td class="new">لا منقذ؛ أشتغل على نفسي مع ناس</td><td class="v num">28:56</td></tr>
+          <tr><td class="old">سمعت الحلقة، يبقى خلاص اشتغلت على نفسي</td><td class="new">بدون كتابة ومجموعة «ما تضيعش وقتك»</td><td class="v num">41:05</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="acard">
+    <h3>2. افصل ذكرى مؤلمة <span class="tag">تمرين كتابة</span></h3>
+    <ol>
+      <li><b>الحدث:</b> ماذا حدث بالضبط، كما ستصفه كاميرا؟</li>
+      <li><b>التأويل:</b> ماذا فهمت منه وأنت صغير؟ («ما بيحبنيش»، «أنا وحش»، «بيفضل أخويا»)</li>
+      <li><b>التخييل:</b> ما الصورة التي كنت أحملها عن الأب أو الأم أو «ما كان ينبغي أن يكون»؟</li>
+      <li>ما البدائل الممكنة للمنطلق؟ (جهل، تعب، طريقة تربوا بها، ضغط)</li>
+      <li>كم من ألمي يعود للحدث، وكم للتأويل والتخييل؟</li>
+      <li>هل يبحث خوفي (من الرفض، النبذ، العار) عن أدلة في ذكرياتي؟</li>
+      <li>هل تخدمني هذه القصة في التهرب من مسؤولية ما؟</li>
+    </ol>
+    <p class="src">من 3:01 إلى 23:00</p>
+  </div>
+
+  <div class="acard">
+    <h3>3. بعد كل حلقة <span class="tag">5 إلى 10 دقائق</span></h3>
+    <ul>
+      <li>ورقة وقلم: ماذا أثار فيك؟ ماذا تذكرت؟ أين لمسك الكلام؟</li>
+      <li>اكتب القواعد وشخبط حولها، واقبلها أو ارفضها.</li>
+      <li>انتبه: هل تأخذ الكلام «لفوق» (لست وحدي، في تعافٍ)، أم «لتحت» (الشفقة على الذات، الموضوع أسود)؟</li>
+      <li>حدد موعدًا ثابتًا للسماع، وعلّق ولو بكلمة.</li>
+    </ul>
+    <p class="src">من 44:08 إلى 51:43</p>
+  </div>
+
+  <div class="acard">
+    <h3>4. في الخلافات وعلى السوشيال ميديا</h3>
+    <ul>
+      <li>في الخلاف مع شريكك: بدل «انت اللي غلطان»، اسأل «إيه مساحتي من الطريق؟».</li>
+      <li>حين تجد نفسك تنقل شخصًا من «الطيبين» إلى «الأشرار»، توقف: ما الذي في صورتي أنا؟</li>
+      <li>لا تشارك في حملات «كبش الفداء». لاحظ الغضب الذي تريد تفريغه، وابحث عن مصدره.</li>
+      <li>لو حد كلمك عن مشكلتك فسمعته «اتهامًا»، تذكر أن هذا صوت الصدمة.</li>
+    </ul>
+    <p class="src">من 16:52 إلى 38:05</p>
+  </div>
+
+  <div class="acard">
+    <h3>5. مجموعة صغيرة</h3>
+    <ul>
+      <li>3 إلى 5 أشخاص يمرون بآلام شبيهة. «في كل شلة واحد على السخان»: كن أنت.</li>
+      <li>ساعة واحدة فقط أسبوعيًا، على زوم أو جوجل ميت.</li>
+      <li>بعد الحلقة: ناقشوا القواعد واحكوا ما تفعّل فيكم خلال الأسبوع.</li>
+      <li>بعيدًا عن الدين والسياسة والعلاقات غير المنضبطة.</li>
+      <li>التفاصيل الكاملة في ملخص حلقة «مجموعات الدعم» (رقم 05 في الفولدر).</li>
+    </ul>
+    <p class="src">من 37:35 إلى 44:08</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: <a href="https://www.youtube.com/watch?v=gnryv4mRukQ" target="_blank" rel="noopener">عقلية الألم وتشويه قصة حياتك</a> على قناة Emad Rashad Othman، الحلقة الثانية من سلسلة <a href="https://www.youtube.com/playlist?list=PLOjvW1C4hDCkU_l5F1sTSdo6xDHXMWBfP" target="_blank" rel="noopener">التحرر من الماضي</a>. المحتوى مبني على نص الفيديو كاملًا، والتوقيتات تقريبية.</p>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن معالج.</p>
+</footer>
+
+</div>
