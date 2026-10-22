@@ -1,0 +1,492 @@
+<title>الألم القديم والحرمان</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column; a "lantern" accent (amber) marks actions, teal marks concepts. Light through a crack: the series' own image of recovery. */
+:root{
+  --bg:#F3F5F4; --surface:#E6ECEA; --ink:#14201F; --muted:#52615F; --rule:#CFD9D6;
+  --teal:#136F63; --teal-soft:#D7EAE6; --amber:#9A5806; --amber-soft:#F5E6D0;
+  --red:#A33B3B; --red-soft:#F4DEDC; --green:#2C7650; --green-soft:#DDEFE4;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{direction:rtl;max-width:900px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.4;margin:0;font-weight:700}
+h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.1rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+
+header.top{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--amber);font-weight:600}
+h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,3.3rem)}
+.lede{font-size:1.06rem;color:var(--muted);max-width:64ch}
+.coverage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px}
+.coverage .big{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--teal);grid-row:span 2}
+.coverage .bar{height:8px;background:var(--rule);border-radius:99px;overflow:hidden}
+.coverage .bar i{display:block;height:100%;width:37.5%;background:var(--teal);border-radius:99px}
+.coverage p{font-size:.9rem;color:var(--muted)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.92rem;padding:5px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--teal);color:var(--teal)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+
+/* themes */
+.theme{border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:10px}
+.theme-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.theme-head .idx{font-family:var(--f-display);color:var(--amber);font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:.8rem;text-decoration:none;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);white-space:nowrap}
+.chips a:hover{text-decoration:underline}
+.theme ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.theme ul li::marker{color:var(--teal)}
+.key{background:var(--teal-soft);border-radius:10px;padding:10px 14px;font-weight:500;max-width:70ch}
+.key b{color:var(--teal)}
+
+/* tree */
+.tree-wrap{overflow-x:auto}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul > li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-family:var(--f-display);font-size:1.35rem;background:var(--ink);color:var(--bg);padding:6px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-family:var(--f-display);font-size:1.08rem;color:var(--teal)}
+.tree .lf{font-size:.95rem}
+.tree .lf b{color:var(--amber);font-weight:600}
+
+/* research */
+.res{display:grid;gap:12px}
+.rcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.rcard .claim{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.rcard .claim h4{flex:1 1 260px}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.mix{background:var(--amber-soft);color:var(--amber)}
+.pill.no{background:var(--red-soft);color:var(--red)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgrid > div{border-radius:8px;padding:10px 12px;font-size:.92rem;min-width:0}
+.rgrid .pro{background:var(--green-soft)}
+.rgrid .con{background:var(--red-soft)}
+.rgrid .lbl{display:block;font-weight:600;font-size:.8rem;margin-bottom:2px}
+.rgrid .pro .lbl{color:var(--green)}
+.rgrid .con .lbl{color:var(--red)}
+.rcard .bottom{font-size:.92rem}
+.rcard .bottom b{color:var(--teal)}
+@media (max-width:620px){.rgrid{grid-template-columns:1fr}}
+.cite{font-size:.82rem;color:var(--muted)}
+
+/* actions */
+.path{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.path > li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.path > li::before{content:counter(p);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--amber);color:var(--bg);font-weight:600;font-variant-numeric:tabular-nums}
+.path b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.path span{font-size:.93rem}
+.acard{border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px}
+.acard h3{display:flex;gap:10px;align-items:baseline}
+.acard h3 .tag{font-family:var(--f-body);font-size:.75rem;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:1px 8px;border-radius:999px}
+.acard ul,.acard ol{margin:0;padding-inline-start:20px;display:grid;gap:5px}
+.acard li::marker{color:var(--amber);font-variant-numeric:tabular-nums}
+.acard .src{font-size:.78rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--surface);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.old{color:var(--red)}
+td.new{color:var(--green);font-weight:500}
+td.v{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{border-radius:10px;padding:12px 14px;min-width:0}
+.two .bad{background:var(--red-soft)}
+.two .good{background:var(--green-soft)}
+.two h4{margin-bottom:4px}
+.two .bad h4{color:var(--red)}
+.two .good h4{color:var(--green)}
+.two ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.93rem}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--amber);padding-inline-start:12px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer details summary{cursor:pointer;color:var(--ink);font-weight:500}
+footer ul{margin:6px 0 0;padding-inline-start:18px;columns:2;column-gap:28px}
+@media (max-width:560px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">د. عماد رشاد عثمان · سلسلة «التحرر من الماضي» · الحلقة 1 من 10 · ساعة و3 دقائق · 2 أكتوبر 2025</span>
+  <h1>الألم القديم والحرمان</h1>
+  <p class="lede">الحلقة التأسيسية: لماذا نتكلم عن الماضي أصلًا، وثلاث قواعد عن الحرمان، ومقياس من أربع درجات يفرّق بين الحرمان الطبيعي والإساءة المدمرة.</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>التوقيت بجانب كل عنوان يفتح الفيديو عند هذه اللحظة.</p>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>أشباح الماضي: حكاية مدرب البيانو</h3>
+      <div class="chips"><a href="https://youtu.be/TRF9yyryuPk?t=0" target="_blank" rel="noopener">0:00</a><a href="https://youtu.be/TRF9yyryuPk?t=276" target="_blank" rel="noopener">4:36</a></div></div>
+    <p class="key"><b>الفكرة:</b> «لا نمارس حياتنا بحرية كما نتوهم». تتحكم في تصرفاتنا «ديون قديمة» من احتياجات لم تُسدد وآلام لم تُشفَ.</p>
+    <ul>
+      <li>من تأمل في إحدى الزمالات: صديق يحكي لمتعافٍ عن أب ناقد متهكم كان يسخر مما يحبه. يمر مدرب البيانو الخاص بالمتعافي، فيبدأ الصديق نفسه يسخر منه: «فاكر نفسك رحمانينوف في سنك ده؟». «كنت شايف أبوه مخيّم على القعدة».</li>
+      <li>هذا «التماهي مع المعتدي»: نتلبس من آذانا. وأحيانا العكس: نقضي العمر هاربين مما مورس علينا، أو نبحث عن تعويض، فنعيش منسحقين نطلب القبول والموافقة.</li>
+      <li>وراء بوست عادي رغبة في القبول، ووراء تعليق خوف أو جرح فقد. اختيار الزوجة، والتعلق بشخص، والعلاقة بالمدير، كلها قد تحكمها طبقة أعمق.</li>
+      <li>«لا يوجد منا من ليس متجمدًا في منطقة ما». تختلف الدرجة بقدر التعافي: 100% أو 60% أو 30%، لكن في كل منا جزء ما زال هناك، ينتظر نظرة أو طبطبة أو شيئًا فاته.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٢</span><h3>القاعدة الأولى: الألم الذي لا يتحول إلى سردية يتحول إلى هوية</h3>
+      <div class="chips"><a href="https://youtu.be/TRF9yyryuPk?t=540" target="_blank" rel="noopener">9:00</a></div></div>
+    <p class="key"><b>الفكرة:</b> الألم الذي لا يُحكى ولا يُفهم ولا تُستخلص منه الدروس ويُعاد تأطير القصة به، يتحول إلى شخصية تحيط بك وتمنع نموك. فإما «شخص مرّ بألم فتعلّم»، وإما «متألم يعرف نفسه بالألم».</p>
+    <ul>
+      <li>أنت البطل في قصتك، لا «ممثل مساعد». البطل يضع الصدمة والفقد والحرمان في حكاية: لماذا حدث، وما تبعاته ودلالاته، وكيف أمرّ منه.</li>
+      <li>من صار الألم هويته يشعر بالغربة خارجه: لو ارتاح قال «يا غربتي»، ولو احتُرم في علاقة شك أن فيها شيئًا غلط. ويعيد بلا وعي تخليق قصة الألم في كل علاقة.</li>
+      <li>كثير ممن تعرضوا لإساءات حقيقية يتحولون إلى «مدمني تعاسة»: لا يعرفون أنفسهم إلا كضحايا.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٣</span><h3>بين «نحيب الضحايا» و«وصم الناس بالهشاشة»</h3>
+      <div class="chips"><a href="https://youtu.be/TRF9yyryuPk?t=462" target="_blank" rel="noopener">7:42</a><a href="https://youtu.be/TRF9yyryuPk?t=733" target="_blank" rel="noopener">12:13</a></div></div>
+    <ul>
+      <li>خطابان متطرفان: الأول متجمد في دور الضحية («لماذا فعلت يا أبي ما فعلت؟»). والثاني يلبس «قناع الصلابة» ويهاجم كل كلام عن الصدمات: «جيل هش وطري، كل واحد بقى عنده ADHD وتروما».</li>
+      <li>في كل منهما «قدر من الوجاهة»، لكن الأول واقف عند الألم، والثاني لا يرى ما وراء النحيب. «الحقيقة راحت ما بين الاتنين».</li>
+      <li>الاثنان يجلبان تصفيقًا: موسيقى حزينة على «يا اللي اتبهدلت»، أو شتيمة للخطاب النفسي كله بصبغة دينية أحيانًا.</li>
+      <li>لهذا السلسلة: أن يقدم «قراءة متوازنة» للماضي، دون انتظار بودكاست يسأله السؤال الصحيح. «كان عندي قدر من التحكمية، ما فيش تسليم».</li>
+      <li>هدفها أيضًا شخصي: «إرث لابني»، معالم في الطريق، لا إجابات معلبة.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٤</span><h3>القاعدة الثانية: في كل علاقة فجوة لا يمكن عبورها</h3>
+      <div class="chips"><a href="https://youtu.be/TRF9yyryuPk?t=1277" target="_blank" rel="noopener">21:17</a></div></div>
+    <p class="key"><b>الفكرة:</b> بينك وبين صديقك وزوجتك وابنك وأبيك فجوة من الحرمان. بقدر اتساعها يكون الاغتراب في العلاقة، وكلما ضاقت كانت العلاقة أريح وأثبت. لكنها لا تختفي أبدًا.</p>
+    <ul>
+      <li>زوجتك لم تعش حياتك، فهناك منطقة لن تفهمك فيها تمامًا، ومنطقة لن تفهمها فيها. «ما حكّ جلدك مثل ظفرك».</li>
+      <li>قبول هذه الاستحالة مؤلم، لكنه يحسّن العلاقات ويرفع جودتها. واحتياجاتك في هذه المنطقة تحتاج أن تعلنها وتطلبها صراحة.</li>
+      <li>أفضل صديق هو من الفجوة معه قليلة، لا من لا فجوة معه. فهذا «مجرد تابع، شبه ضلك».</li>
+      <li>الكمالي الذي يريد علاقة بلا فجوة مع أولاده يتهم نفسه أو ابنه كلما ظهرت فجوة، بدل أن يسأل: هل ما زلنا في الحدود الطبيعية؟</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٥</span><h3>القاعدة الثالثة: حرمان العلاقة الأولى يؤسس الإنسان</h3>
+      <div class="chips"><a href="https://youtu.be/TRF9yyryuPk?t=1550" target="_blank" rel="noopener">25:50</a><a href="https://youtu.be/TRF9yyryuPk?t=2283" target="_blank" rel="noopener">38:03</a></div></div>
+    <p class="key"><b>الفكرة:</b> «المشبَع راكد». قدر من الحرمان في العلاقة بالأبوين ضروري، لأنه يؤسس مستويين: <b>الرغبة</b> (التوق للحركة)، و<b>القدرة على العلاقة</b> (أن تفهم أن الآخر إنسان مستقل له احتياجاته، لا «علبة ميك أب»).</p>
+    <ul>
+      <li>«الطفل المشبَع بإفراط مؤهَّل للاكتئاب»، لأن حواس التوق والرغبة لم تنمُ فيه. والتوق مضاد الاكتئاب: المكتئب لا يرغب، وأول علامات شفائه أن يعود يرغب ويقول «أنا عايز».</li>
+      <li>الطفل يكتشف أن أمه ليست له طول الوقت، عندها مطبخ وزوج وعمل، فيتعلم «حبًا بدون ابتلاع». ومن لم يتعلم هذا يصير جائعًا في العلاقات لا يُرضى، لا يحتمل أن للآخر حياة خارجه.</li>
+      <li>دعاء جدته: «ربنا يحط في طريقك عيل شبعان من صدر أمه يطلع عينك»: من شبع بزيادة لا يفكر إلا في نفسه.</li>
+      <li>الحرمان الصغير يعلّم تحمّل الإحباط: «بابا معهوش فلوس للأتاري» في رابعة ابتدائي هي نفسها «الـBMW اللي عدت جنبك» وأنت كبير.</li>
+      <li>رمز «الشجرة الممنوعة» في الجنة الأولى: لا بد من جزء ممنوع في البداية لتنمو حواس التوق. (ويؤكد أنه لا يفسر القرآن.)</li>
+      <li>«وظيفة الأب أن يمثل القانون»: ليس كل شيء يُؤخذ في كل وقت، ولكل شيء ثمن. لذلك أحد الأبوين يمثل «الرغد» والآخر «المنع»، والثاني غالبًا «مكروه أكثر». «الطفل اللي ما اتحبش بما فيه الكفاية هيطلع تعبان، واللي ما اتحبطش بما فيه الكفاية هيطلع تعبان».</li>
+      <li>كل أب يعطي أولاده خطوات أكثر مما أخذ، وسيظل عندهم نقص، وهذا ما يحركهم ليصنعوا «أبوة ببصمتهم».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٦</span><h3>الرضا غير الطمع</h3>
+      <div class="chips"><a href="https://youtu.be/TRF9yyryuPk?t=1620" target="_blank" rel="noopener">27:00</a><a href="https://youtu.be/TRF9yyryuPk?t=2010" target="_blank" rel="noopener">33:30</a></div></div>
+    <ul>
+      <li>«الرضا مش إنك ما تشوفش اللي ناقصك، الرضا إن اللي ناقصك ما يخليكش تنسى اللي معاك».</li>
+      <li>التوق مشروع ولا عيب فيه: «طاقت نفسي إلى فاطمة، ثم إلى الإمارة، ثم إلى الخلافة» (عمر بن عبد العزيز).</li>
+      <li>الطمع يعمي عن النعمة، ويجعلك تدفع ما معك ثمنًا لما تفتقده، وحياتك «مؤجلة» دائمًا. فتصير «عبدًا لما تفتقد».</li>
+      <li>«لا يملأ عين ابن آدم إلا التراب»: لا إنسان حي عينه مليانة. كلما وصلت لمستوى تكونت فجوة جديدة. السؤال: هل فجوتك في نظام «التوق» أم «الطمع»؟</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٧</span><h3>مقياس الحرمان: أربع درجات</h3>
+      <div class="chips"><a href="https://youtu.be/TRF9yyryuPk?t=2588" target="_blank" rel="noopener">43:08</a><a href="https://youtu.be/TRF9yyryuPk?t=2828" target="_blank" rel="noopener">47:08</a><a href="https://youtu.be/TRF9yyryuPk?t=3101" target="_blank" rel="noopener">51:41</a></div></div>
+    <p class="key"><b>الفكرة:</b> يشبّهها بالعربية. والأرقام «حمصي خالص» للتوضيح: لو 30 فولت حرمان تصنع ذاتًا سوية، فأقل إنسان أخذ 40.</p>
+    <ol>
+      <li><b>حرمان طبيعي:</b> لا انفكاك عنه، في كل علاقة. «أعظم أب في الدنيا هيحرم عياله». لم يرَ صاحبه إلا مرة واحدة: زميل في المدرسة صار أستاذًا في هارفارد. ومن يرفض هذا القدر ويتهم أهله به «قاعد في victimization».</li>
+      <li><b>حرمان مؤثر:</b> حرمان مما كان يمكن تسديده: نظرة فخر، تعاطف، قبول، تشجيع، ثقة. يترك «خبطات في البيبان والعربية ماشية»: حساسية زائدة لكلمة أو هزار، رغبة زائدة في إثبات الذات أو الاعتراف، كمالية، خوف من الفقد، غيرة. «جنوننا الوسطي الجميل». يُشتغل عليه بتزكية النفس والقراءة وبعض الفيديوهات. وهو أيضًا ما يصنع الإبداع والكتابة والفنون.</li>
+      <li><b>حرمان معطِّل (مؤذٍ):</b> «الكاوتش فرقع والعربية ماشية على العجل». أعراض: قلق، أرق، عصبية وعنف، ارتياب، تعثر في الدراسة والعمل والعلاقات، صعوبة في وضع الحدود أو طلب ما تريد. حتى يصل إلى عطل: اكتئاب، خوف من الأماكن العامة، ترك كل علاقة. يحتاج رحلة تعافٍ: علاج، دواء، رفيق تعافٍ، وإعادة قراءة الماضي. ويمكن أن يعود بها للدرجة الثانية.</li>
+      <li><b>حرمان مدمِّر:</b> إساءات وصدمات حقيقية طويلة أو عميقة (مثل اعتداء جنسي متكرر من أحد الوالدين). يحتاج خطوات طويلة وتدخلات عميقة، وأحيانًا دواء ودخول مستشفى وأكثر من نموذج علاجي، ورغبة حقيقية وصبرًا.</li>
+    </ol>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٨</span><h3>أشكال الإساءة</h3>
+      <div class="chips"><a href="https://youtu.be/TRF9yyryuPk?t=3372" target="_blank" rel="noopener">56:12</a><a href="https://youtu.be/TRF9yyryuPk?t=3553" target="_blank" rel="noopener">59:13</a></div></div>
+    <ul>
+      <li><b>بدنية:</b> الضرب والصفع واللكم، والربط والتكتيف. يفرّق بين «شبشب ماما» الذي «بيعدّي»، والضرب «المجنون» الذي يحول الطفل لكيس رمل يُفرَّغ فيه الغل والإحباط.</li>
+      <li><b>نفسية:</b> الأكثر شيوعًا، لأن أهالينا لم يتعلموا إلا التربية بالذنب والخوف. المقارنات، والطرد، والإهمال، والتفرقة بين الذكور والإناث والإخوة، والألقاب والتنمر، وخناقات الأبوين أمام الطفل وإجباره على الانحياز، والتركيز على السلبيات وغياب التشجيع، والسباب والصراخ ونوبات الغضب، وقمع الحرية، والتخويف بالعفاريت، وخذلان الوعود المتكرر، وأيضًا الحماية المفرطة والتدليل المبالغ فيه.</li>
+      <li><b>روحية:</b> فرض الشعائر بالتهديد بالنار، واستخدام «العقوق»، وربط غضب الأب في أمور بسيطة بغضب الله، وقصص القبر والعذاب قبل أوانها، وقصص الجن والحسد والسحر لعقل لا يفهمها. وتأثيرها يصل للعلاقة بالله نفسها.</li>
+      <li><b>جنسية:</b> التحرش المباشر، والتعري أمام الطفل، وإهمال حدود العلاقة بين الأبوين أمامه، وختان الإناث.</li>
+      <li>نفس الفعل يختلف وزنه حسب درجته ومنطلقه: شتيمة من أم منهَكة «بتستنجد» غير شتيمة من أم «بتتشفى» وتكره.</li>
+      <li>الحلقات القادمة: تأثيرات كل نوع على تكوين الشخصية، ثم كيف نتعافى.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head"><h2>التشجير</h2></div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">الألم القديم والحرمان</span>
+        <ul>
+          <li><span class="br">لماذا الماضي؟</span>
+            <ul>
+              <li class="lf">ديون قديمة تحكم اختياراتنا</li>
+              <li class="lf">التماهي مع المعتدي، أو الهروب منه</li>
+              <li class="lf">كلنا متجمدون بدرجة ما</li>
+            </ul>
+          </li>
+          <li><span class="br">القاعدة 1</span>
+            <ul>
+              <li class="lf">ألم بلا سردية = هوية</li>
+              <li class="lf">أنت بطل قصتك</li>
+              <li class="lf">لا نحيب الضحايا، ولا قسوة «الجيل الهش»</li>
+            </ul>
+          </li>
+          <li><span class="br">القاعدة 2</span>
+            <ul>
+              <li class="lf">في كل علاقة فجوة</li>
+              <li class="lf">ضيقها = راحة، وغيابها وهم</li>
+            </ul>
+          </li>
+          <li><span class="br">القاعدة 3</span>
+            <ul>
+              <li class="lf">حرمان الأبوين يؤسس الرغبة والعلاقة</li>
+              <li class="lf">المشبَع راكد ومؤهل للاكتئاب</li>
+              <li class="lf">الطفل يحتاج أن يُحَب ويُحبَط</li>
+              <li class="lf">الرضا ≠ الطمع</li>
+            </ul>
+          </li>
+          <li><span class="br">درجات الحرمان</span>
+            <ul>
+              <li class="lf">طبيعي: لا انفكاك عنه</li>
+              <li class="lf">مؤثر: حساسيات، يُعالج بتزكية وقراءة</li>
+              <li class="lf">معطِّل: أعراض، يحتاج رحلة تعافٍ</li>
+              <li class="lf">مدمِّر: علاج طويل وعميق</li>
+            </ul>
+          </li>
+          <li><span class="br">أشكال الإساءة</span>
+            <ul>
+              <li class="lf">بدنية، نفسية، روحية، جنسية</li>
+              <li class="lf">الوزن حسب الدرجة والمنطلق</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة.</p>
+  </div>
+  <div class="res">
+
+    <div class="rcard">
+      <div class="claim"><h4>«الألم الذي لا يتحول إلى سردية يتحول إلى هوية»</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>من يحكون تجاربهم الصعبة بقصة متماسكة فيها معنى وتعلّم («قصة خلاص») يتمتعون بصحة نفسية أفضل، وتحسّن هذا النوع من السرد يسبق تحسن الأعراض في العلاج. <span class="cite">(Adler, 2012, JPSP؛ McAdams &amp; McLean, 2013)</span> وسمة «الضحية في العلاقات» (الحاجة للاعتراف بالمعاناة، والاجترار) ترتبط بالانتقام وصعوبة المسامحة. <span class="cite">(Gabay et al., 2020, Personality and Individual Differences)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>إعادة سرد الصدمة بدون إطار علاجي قد تزيد الألم عند البعض. الأثر يأتي من بناء المعنى، لا من مجرد الحكي.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> من أقوى قواعد السلسلة علميًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>بين «كله تروما» و«جيل هش»</h4><span class="pill ok">موقفه المتوازن مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>مفاهيم مثل «الصدمة» و«الإساءة» اتسعت حتى صارت تشمل تجارب عادية («زحف المفاهيم»). <span class="cite">(Haslam, 2016, Psychological Inquiry)</span> وتحذيرات المحتوى المزعج لم تقلل القلق، بل زادت تصوّر الناجين للصدمة كجزء محوري من هويتهم. <span class="cite">(Jones, Bellet &amp; McNally, 2020, Clinical Psychological Science)</span></div>
+        <div class="con"><span class="lbl">ويؤيد الطرف الآخر</span>الإساءة النفسية في الطفولة حقيقية وضارة بقدر الإساءة الجسدية والجنسية في بعض المقاييس. <span class="cite">(Spinazzola et al., 2014, Psychological Trauma)</span> فوصف المتألمين بالهشاشة غير منصف.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> الألم حقيقي، والتجمد فيه مشكلة. وهذا بالضبط ما قاله.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>التماهي مع المعتدي وتكرار الإساءة</h4><span class="pill mix">صحيح جزئيًا</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>دراسة متابعة على أطفال موثقة إساءتهم وجدت انتقالًا بين الأجيال للإهمال والإساءة الجنسية. <span class="cite">(Widom, Czaja &amp; DuMont, 2015, Science)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>نفس الدراسة لم تجد انتقالًا واضحًا للإساءة الجسدية. وأغلب من تعرضوا للإساءة لا يسيئون لأولادهم (تقدير قديم: نحو 30% فقط). <span class="cite">(Kaufman &amp; Zigler, 1987)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> التكرار احتمال لا قدر، والوعي من أهم ما يكسره.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«المشبَع راكد»: ضرورة قدر من الحرمان</h4><span class="pill mix">مدعوم كفكرة، مبالغ في صياغته</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الفكرة قريبة من «الأم الجيدة بما يكفي» عند وينيكوت، و«الإحباط الأمثل» عند كوهوت. والتربية المفرطة في الحماية والتلبية («الهليكوبتر») ترتبط بقلق واكتئاب أكثر، وقدرة أقل على التكيف، وإحساس بالاستحقاق. <span class="cite">(Segrin et al., 2013؛ Schiffrin et al., 2014, J of Child and Family Studies)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>جملة «المشبَع بإفراط مؤهل للاكتئاب» تعميم. والمعروف أكثر أن الإهمال والحرمان العاطفي أقوى ارتباطًا بالاكتئاب من الإشباع.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> الطفل يحتاج حبًا وحدودًا معًا، والإفراط في أي منهما ضار.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«يُحَب ويُحبَط»، والأب يمثل القانون</h4><span class="pill mix">المبدأ مدعوم، وتوزيع الأدوار ثقافي</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>أفضل النتائج مع الأسلوب «الحازم الدافئ»: دفء عالٍ مع حدود واضحة، مقارنة بالمتسلط أو المتساهل. <span class="cite">(Baumrind, 1966؛ Pinquart, 2016, Educational Psychology Review)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الأبحاث تفضّل أن يجمع كل والد الدفء والحدود، لا أن يكون أحدهما «الرغد» والآخر «المنع». ولا دليل على أن الأطفال يجب أن يحبوا أحد الوالدين أكثر.</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> الحب والحدود معًا: صحيح. «الأب المكروه» ليس قدرًا.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>درجات الحرمان وأثرها</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>دراسة «تجارب الطفولة السلبية»: كلما زادت التجارب السلبية زادت المشكلات الصحية والنفسية بشكل تدريجي، أي علاقة «جرعة واستجابة» تشبه مقياسه. <span class="cite">(Felitti et al., 1998)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>الأرقام بالفولت للتوضيح كما قال. وكثيرون يمرون بإساءات صعبة دون اضطراب دائم بفضل عوامل حماية (علاقة داعمة واحدة على الأقل، مثلًا). <span class="cite">(Masten, 2001, American Psychologist)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> المقياس مفيد لتحديد ما تحتاجه: قراءة، أم رحلة تعافٍ، أم علاج طويل.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«شبشب ماما بيعدّي»</h4><span class="pill no">الأبحاث تخالفه</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">ما قاله</span>فرّق بين الضرب «المجنون» المؤذي، والضرب الخفيف الذي «ساعات بيعدّي».</div>
+        <div class="con"><span class="lbl">يعارض</span>تحليل تجميعي على أكثر من 160 ألف طفل: حتى الضرب الخفيف («spanking») يرتبط بنتائج أسوأ (عدوانية، مشكلات نفسية، علاقة أضعف بالوالدين)، ولم يرتبط بأي فائدة. <span class="cite">(Gershoff &amp; Grogan-Kaylor, 2016, J of Family Psychology)</span></div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> الضرب الخفيف ليس «إساءة مدمرة» بالضرورة، لكنه ليس محايدًا. البديل: حدود بلا عنف.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبتها الحلقة، مرتبة.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <li><div><b>اكتب القواعد الثلاث</b><span>هو طلب ذلك صراحة، ليجمعها في آخر السلسلة (البطاقة 2).</span></div></li>
+    <li><div><b>حدّد درجتك</b><span>في أي درجة من الأربع أنت؟ وما الذي تحتاجه (البطاقة 3)؟</span></div></li>
+    <li><div><b>اكتب قصتك كسردية</b><span>لا كقائمة جروح (البطاقة 4).</span></div></li>
+    <li><div><b>راجع علاقاتك بالفجوة</b><span>اقبل الفجوة الطبيعية، واطلب احتياجاتك صراحة (البطاقة 5).</span></div></li>
+    <li><div><b>لو عندك أولاد</b><span>حب وحدود، ولا كمالية (البطاقة 6).</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>التوقيت</th></tr></thead>
+        <tbody>
+          <tr><td class="old">أنا اخترت حياتي وعلاقاتي بحرية كاملة</td><td class="new">جزء من اختياراتي تحكمه ديون قديمة لم تُسدد</td><td class="v num">4:36</td></tr>
+          <tr><td class="old">أنا عدّيت الماضي خلاص</td><td class="new">جزء مني ما زال متجمدًا هناك، والسؤال: بأي درجة؟</td><td class="v num">6:09</td></tr>
+          <tr><td class="old">أنا ضحية، وده تعريفي لنفسي</td><td class="new">أنا بطل قصة مرّ بألم وتعلّم منه</td><td class="v num">9:12</td></tr>
+          <tr><td class="old">الكلام عن الصدمات دلع وجيل هش</td><td class="new">الألم حقيقي، والمهم ألا نتجمد فيه</td><td class="v num">12:13</td></tr>
+          <tr><td class="old">العلاقة الصح: يفهمني من غير ما أتكلم</td><td class="new">في كل علاقة فجوة؛ أعلن احتياجاتي وأطلبها</td><td class="v num">22:50</td></tr>
+          <tr><td class="old">لازم أبقى أب مثالي وعلاقتي بولادي من غير أي نقص</td><td class="new">سأحرمهم من أشياء حتمًا، وهذا يؤسسهم</td><td class="v num">25:50</td></tr>
+          <tr><td class="old">الرضا إني ما أطلبش حاجة</td><td class="new">الرضا إني أشوف اللي معايا وأنا بتوق للي بعده</td><td class="v num">27:20</td></tr>
+          <tr><td class="old">لو كانوا إدوني الحتة الناقصة كنت هبقى كويس</td><td class="new">قدر من الحرمان طبيعي، وهو ما حرّكني</td><td class="v num">39:33</td></tr>
+          <tr><td class="old">أي سلبية في أهلي يعني أنا اتشوهت</td><td class="new">أفرّق: طبيعي، أم مؤثر، أم معطِّل، أم مدمِّر</td><td class="v num">45:37</td></tr>
+          <tr><td class="old">كل اللي حصل لي إساءة</td><td class="new">أحط الحاجة في مكانها حسب درجتها ومنطلقها</td><td class="v num">59:13</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="acard">
+    <h3>2. قواعد الحلقة <span class="tag">اكتبها واحفظها</span></h3>
+    <ol>
+      <li>الألم الذي لا يتحول إلى سردية يتحول إلى هوية.</li>
+      <li>داخل كل علاقة فجوة لا يمكن عبورها، وبقدر اتساعها يكون الاغتراب.</li>
+      <li>أهم علاقة فيها حرمان هي العلاقة بالأبوين، وهذا القدر منه مؤسس للرغبة وللقدرة على العلاقة.</li>
+      <li>الرضا ألا يمنعك ما ينقصك من رؤية ما تملك.</li>
+    </ol>
+  </div>
+
+  <div class="acard">
+    <h3>3. حدّد درجتك وما تحتاجه</h3>
+    <ul>
+      <li><b>مؤثر</b> (حساسيات، كمالية، خوف من الفقد، والحياة ماشية): تزكية نفس، وقراءة، ومحتوى رصين.</li>
+      <li><b>معطِّل</b> (قلق، أرق، عصبية، تعثر في الدراسة أو العمل أو العلاقات، صعوبة في الحدود): رحلة تعافٍ مع معالج، وربما دواء، ورفيق تعافٍ.</li>
+      <li><b>مدمِّر</b> (إساءات وصدمات كبيرة طويلة): علاج متخصص طويل، وصبر، ورغبة حقيقية.</li>
+      <li>لا تتهم أهلك بالحرمان الطبيعي، ولا تهوّن من الإساءة الحقيقية.</li>
+    </ul>
+    <p class="src">من 43:08 إلى 56:12</p>
+  </div>
+
+  <div class="acard">
+    <h3>4. حوّل ألمك إلى سردية <span class="tag">تمرين كتابة</span></h3>
+    <ol>
+      <li>ماذا حدث؟ اكتبه كقصة أنت بطلها.</li>
+      <li>لماذا حدث؟ ما ظروف من آذاك، وما منطلقه؟</li>
+      <li>ما تبعاته عليّ حتى اليوم؟ وأين أكرره في علاقاتي؟</li>
+      <li>ماذا تعلمت؟ وماذا صنع فيّ من قوة أو إبداع؟</li>
+      <li>من أنا خارج هذا الألم؟</li>
+    </ol>
+  </div>
+
+  <div class="acard">
+    <h3>5. في علاقاتك</h3>
+    <ul>
+      <li>اقبل أن هناك منطقة لن يفهمك فيها أقرب الناس، وأن عندك منطقة لن تفهمهم فيها.</li>
+      <li>أعلن احتياجاتك واطلبها صراحة.</li>
+      <li>لا تطلب علاقة بلا فجوة، ولا تثق في من لا فجوة معه.</li>
+      <li>تقبّل أن للآخر حياة واحتياجات ورغبات مختلفة. العلاقة صفقة ضمنية: تسديد احتياجات متبادل وتحمّل بعض الإحباط.</li>
+      <li>راقب: هل تتماهى مع من آذاك (تسخر كما سخر منك)؟ أم تعيش هاربًا منه تطلب القبول؟</li>
+    </ul>
+  </div>
+
+  <div class="acard">
+    <h3>6. لو عندك أولاد</h3>
+    <ul>
+      <li>أحبهم بما يكفي، وأحبطهم بما يكفي: حدود واضحة، و«لا» أحيانًا، وأشياء لن تقدر عليها.</li>
+      <li>لا تلبِّ كل شيء ولا تمنع كل شيء.</li>
+      <li>اترك لهم «نقصًا» يحرّكهم ليصنعوا حياتهم ببصمتهم.</li>
+      <li>ابتعد عن التربية بالذنب والخوف: المقارنات، والسباب، والتهديد بالنار، وربط غضبك بغضب الله، وقصص الجن، والخناق أمامهم، وإجبارهم على الانحياز.</li>
+      <li>لا تعِد بما لا تقدر عليه، ولا تفرط في الحماية.</li>
+    </ul>
+    <p class="src">من 38:03 إلى 61:00</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: <a href="https://www.youtube.com/watch?v=TRF9yyryuPk" target="_blank" rel="noopener">عن الألم القديم والفقد والحرمان</a> على قناة Emad Rashad Othman، الحلقة الأولى من سلسلة <a href="https://www.youtube.com/playlist?list=PLOjvW1C4hDCkU_l5F1sTSdo6xDHXMWBfP" target="_blank" rel="noopener">التحرر من الماضي</a>. المحتوى مبني على نص الفيديو كاملًا، والتوقيتات تقريبية.</p>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن معالج.</p>
+</footer>
+
+</div>
