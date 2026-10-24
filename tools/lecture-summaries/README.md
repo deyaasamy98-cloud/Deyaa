@@ -13,3 +13,13 @@ Used for «ملخصات تراث ابن تيمية - الشيخ حسين عبد 
 Style decisions requested by the user: large font, green/gold/cream palette suited to a sharia lesson, one PDF per lecture
 with a descriptive name, high-resolution maps (readable after Telegram compression), academic-style review questions grouped by type
 with model answers, expansion topics, and never the words «حقيبة/حزمة مذاكرة».
+
+## Parallel transcription workers
+Each worker session runs, one lecture per invocation (each run stays well under the 2-hour background limit):
+
+```
+pip install faster-whisper
+python3 -I tools/lecture-summaries/transcribe_queue.py tools/lecture-summaries/queue.tsv /tmp/tx /tmp/audio <COMMA_KEYS> 1
+```
+then copies `/tmp/tx/<KEY>.txt` to `tools/lecture-summaries/transcripts/`, commits, `git pull --rebase`, and pushes.
+`L011.txt` covers playlist videos 11+12 (split at [068:14]); `L074.txt` + `L074b.txt` together are video 74.
