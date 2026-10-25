@@ -1,0 +1,389 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Core 4</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<style>
+/* Layout: two columns — the assessment (20 factors) and a sticky result panel drawn as four pillars */
+:root{
+  --bg:#eef1f0; --surface:#ffffff; --sunk:#e3e8e6; --line:#d2d9d6;
+  --ink:#16252a; --muted:#5b6b6f; --accent:#0e6b66; --accent-ink:#ffffff;
+  --p1:#0e6b66; --p2:#8a4f7d; --p3:#3d63a8; --p4:#a8691f;
+  --good:#2f7d4a; --warn:#b07a12; --bad:#b3372e; --bad-bg:#f8e3e0; --warn-bg:#f6ecd4;
+  --f-display:"Reem Kufi","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --f-body:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1719; --surface:#172225; --sunk:#1f2c30; --line:#2c3b3f;
+  --ink:#e4ecea; --muted:#94a5a8; --accent:#4fb8ae; --accent-ink:#06201e;
+  --p1:#4fb8ae; --p2:#c98bbb; --p3:#7fa3e3; --p4:#dba25a;
+  --good:#6cc28a; --warn:#e0b04e; --bad:#ec7a6f; --bad-bg:#3a1f1c; --warn-bg:#352b14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1719; --surface:#172225; --sunk:#1f2c30; --line:#2c3b3f;
+  --ink:#e4ecea; --muted:#94a5a8; --accent:#4fb8ae; --accent-ink:#06201e;
+  --p1:#4fb8ae; --p2:#c98bbb; --p3:#7fa3e3; --p4:#dba25a;
+  --good:#6cc28a; --warn:#e0b04e; --bad:#ec7a6f; --bad-bg:#3a1f1c; --warn-bg:#352b14; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:2.2rem;font-weight:700}
+h2{font-size:1.35rem;font-weight:700}
+h3{font-size:1.05rem;font-weight:500}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.small{font-size:.85rem}
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:end;justify-content:space-between;margin-bottom:24px}
+header.top p{max-width:62ch}
+.meta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.meta label{display:flex;gap:8px;align-items:center;font-size:.9rem}
+select,input[type=date],input[type=text],textarea{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
+textarea{width:100%;min-height:58px;resize:vertical;box-sizing:border-box}
+input[type=text]{width:100%;box-sizing:border-box}
+button{font:inherit;cursor:pointer;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+button:disabled{opacity:.5;cursor:not-allowed}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.notice{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;background:var(--warn-bg);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);display:flex;flex-direction:column;gap:16px}
+@media (max-width:960px){aside{position:static;order:-1}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+/* scale legend */
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:24px}
+@media (max-width:640px){.scale{grid-template-columns:minmax(0,1fr)}}
+.scale div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-width:0}
+.scale b{font-family:var(--f-display);font-size:1.3rem;display:block}
+/* domains */
+.domain{margin-bottom:28px}
+.dhead{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between;padding-bottom:10px;border-bottom:3px solid var(--dc);margin-bottom:6px}
+.dhead .w{font-family:var(--f-display);color:var(--dc);font-size:1.05rem}
+.factor{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 20px;padding:14px 0;border-bottom:1px solid var(--line)}
+@media (max-width:700px){.factor{grid-template-columns:minmax(0,1fr)}}
+.fname{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.fname .fw{font-size:.8rem;color:var(--muted);background:var(--sunk);border-radius:4px;padding:0 6px}
+.seg{display:flex;flex-wrap:wrap;gap:4px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{min-width:38px;text-align:center;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface);cursor:pointer;font-variant-numeric:tabular-nums;font-weight:600}
+.seg label.na{font-weight:400;font-size:.85rem}
+.seg input:checked+label{background:var(--dc);border-color:var(--dc);color:var(--bg)}
+.seg input:focus-visible+label{outline:2px solid var(--accent);outline-offset:2px}
+details.more{grid-column:1/-1}
+details.more summary{cursor:pointer;color:var(--muted);font-size:.85rem;width:max-content}
+.morebody{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px 14px;align-items:end;margin-top:10px}
+@media (max-width:640px){.morebody{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.morebody .ev{grid-column:1/-1}}
+.morebody label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;color:var(--muted)}
+/* pillars */
+.score{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.score .big{font-family:var(--f-display);font-size:3.2rem;font-weight:700;line-height:1}
+.band{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.82rem;font-weight:600;background:var(--sunk)}
+.pillars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px;align-items:end}
+.pillar{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+.shaft{position:relative;width:100%;height:150px;background:var(--sunk);border-radius:4px 4px 0 0;overflow:hidden}
+.shaft .fill{position:absolute;inset:auto 0 0 0;background:var(--pc);transition:height .4s ease}
+.shaft .line40{position:absolute;inset:auto 0 40% 0;border-top:1px dashed var(--bad);opacity:.7}
+.base{width:100%;height:6px;background:var(--ink);opacity:.8;border-radius:1px}
+.pillar .pv{font-family:var(--f-display);font-size:1.25rem;font-variant-numeric:tabular-nums}
+.pillar .pn{font-size:.78rem;text-align:center;line-height:1.35;color:var(--muted)}
+.cov{font-size:.78rem;color:var(--muted);margin-top:8px}
+.alerts{display:flex;flex-direction:column;gap:6px}
+.alert{background:var(--bad-bg);border-inline-start:4px solid var(--bad);border-radius:4px;padding:6px 10px;font-size:.88rem}
+ol.list,ul.list{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:4px}
+.list li span.v{color:var(--muted);font-variant-numeric:tabular-nums}
+.chip{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--pc);margin-inline-end:6px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.ptable{width:100%;border-collapse:collapse;font-size:.88rem}
+.ptable th,.ptable td{text-align:start;padding:5px 4px;border-bottom:1px solid var(--line)}
+.ptable td.n{font-variant-numeric:tabular-nums;text-align:end}
+.ptable th{font-weight:500;color:var(--muted);font-size:.78rem}
+/* lower sections */
+section.block{margin-top:36px}
+section.block>h2{margin-bottom:6px}
+section.block>p{margin-bottom:14px;max-width:70ch}
+.plan{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:700px){.plan{grid-template-columns:minmax(0,1fr)}}
+.plan .panel{display:flex;flex-direction:column;gap:10px}
+.plan label{display:flex;flex-direction:column;gap:4px;font-size:.88rem}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.status{font-size:.88rem;color:var(--muted)}
+.hist{overflow-x:auto}
+.hist table{width:100%;min-width:560px;border-collapse:collapse}
+.hist th,.hist td{padding:8px;border-bottom:1px solid var(--line);text-align:start}
+.hist td.n{font-variant-numeric:tabular-nums}
+.d-up{color:var(--good)} .d-down{color:var(--bad)}
+.foot{margin-top:40px;font-size:.82rem;color:var(--muted);max-width:75ch}
+@media (prefers-reduced-motion:reduce){.shaft .fill{transition:none}}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+  <header class="top">
+    <div>
+      <h1>Core 4</h1>
+      <p class="muted">أربعة أعمدة لحياتك. قيّم كل عامل من 0 إلى 4 بناءً على أدلة الفترة المختارة، مش على الصورة اللي تتمناها. النتيجة بتطلع أقوى وأضعف نقطة، والإنذارات، وأولوية التدخل.</p>
+    </div>
+    <div class="meta">
+      <label>الفترة
+        <select id="period"><option value="7">آخر 7 أيام</option><option value="30">آخر 30 يومًا</option><option value="90">آخر 90 يومًا</option></select>
+      </label>
+      <label>تاريخ التقييم <input type="date" id="adate"></label>
+    </div>
+  </header>
+
+  <div class="notice" id="exampleNotice" hidden>
+    <span>القيم المعروضة حاليًا <b>مثال توضيحي</b> وليست تقييمك. امسحها وابدأ تقييمك الفعلي.</span>
+    <button class="primary" id="clearExample">امسح المثال وابدأ</button>
+  </div>
+
+  <div class="scale" aria-label="مقياس الدرجات">
+    <div><b>0</b>غائب أو متعطل: مشكلة شديدة أو لا أستطيع حاليًا.</div>
+    <div><b>1</b>ضعيف: أحيانًا، والمشاكل متكررة.</div>
+    <div><b>2</b>متوسط: الأساسيات جزئيًا مع فجوات واضحة.</div>
+    <div><b>3</b>جيد: باستمرار مع بعض التعثرات.</div>
+    <div><b>4</b>قوي ومستقر: بكفاءة وأحافظ على النتائج.</div>
+  </div>
+
+  <div class="grid">
+    <main id="domains"></main>
+    <aside id="results"></aside>
+  </div>
+
+  <section class="block">
+    <h2>خطة التدخل لأسبوعين</h2>
+    <p class="muted">اختار عامل أو اتنين بس من أعلى قائمة الأولوية. لكل واحد: سلوك محدد تعمله، ومؤشر نجاح تقدر تقيسه.</p>
+    <div class="plan" id="plan"></div>
+    <div class="actions">
+      <button class="primary" id="save">احفظ التقييم</button>
+      <button id="copy">انسخ الملخص</button>
+      <span class="status" id="status" role="status"></span>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>سجل التقييمات</h2>
+    <p class="muted">أعد التقييم كل شهر بنفس الطريقة، وقارن الأرقام والأدلة مش الانطباعات.</p>
+    <div class="hist" id="history"><p class="muted">جاري التحميل…</p></div>
+  </section>
+
+  <p class="foot">الأوزان والحدود هنا نموذج عملي لإدارة تطورك الشخصي، وليست اختبارًا نفسيًا معتمدًا. الدرجة لا تقيس قيمتك كإنسان ولا تكفي لتشخيص أي مشكلة نفسية. لو في ضيق شديد أو مستمر، كلم مختص.</p>
+</div>
+
+<script>
+const DOMAINS=[
+ {key:'S',name:'الذات والاتزان',w:30,c:'--p1',factors:[
+  {id:'s1',name:'الصحة والطاقة',w:20,what:'النوم، النشاط، العناية بالجسم',I:3,L:3},
+  {id:'s2',name:'التنظيم الانفعالي',w:20,what:'التعامل مع الضيق والغضب والضغط',I:3,L:3},
+  {id:'s3',name:'المهارات التنفيذية',w:25,what:'البدء، التركيز، الاستمرار وإكمال المهام',I:3,L:3},
+  {id:'s4',name:'العادات وضبط الاندفاع',w:20,what:'السوشيال ميديا، التجنب، السلوكيات المتكررة',I:2,L:3},
+  {id:'s5',name:'المرونة والتعافي',w:15,what:'العودة بعد التعثر والتعامل مع التغيير',I:2,L:2}]},
+ {key:'R',name:'العلاقات والشخصية',w:20,c:'--p2',factors:[
+  {id:'r1',name:'الوعي بالمشاعر والتعاطف',w:20,what:'فهم مشاعرك ومشاعر الآخرين',I:2,L:2},
+  {id:'r2',name:'التواصل والتعبير',w:20,what:'الاستماع، التعبير عن الاحتياجات، المشاركة الوجدانية',I:2,L:2},
+  {id:'r3',name:'الحدود والاستقلال',w:20,what:'قول لا، طلب المساعدة، احترام احتياجات الطرفين',I:2,L:2},
+  {id:'r4',name:'إدارة الخلافات والإصلاح',w:20,what:'حل المشكلات، الاعتذار، إصلاح العلاقة',I:2,L:1},
+  {id:'r5',name:'الموثوقية والاتساق القيمي',w:20,what:'الصدق، الوفاء بالالتزامات، تحمل المسؤولية',I:2,L:2}]},
+ {key:'K',name:'المعرفة والنمو',w:20,c:'--p3',factors:[
+  {id:'k1',name:'انتظام التعلم',w:15,what:'الاستمرارية والالتزام بمسار واضح',I:2,L:1},
+  {id:'k2',name:'عمق الفهم',w:25,what:'الشرح بلغتك، الربط بين المفاهيم، التذكر',I:2,L:1},
+  {id:'k3',name:'التفكير والبحث',w:25,what:'نقد الادعاءات، فحص المصادر، الاستدلال',I:2,L:1},
+  {id:'k4',name:'التطبيق ونقل المعرفة',w:25,what:'حل المشكلات واستخدام المعرفة في مواقف جديدة',I:2,L:2},
+  {id:'k5',name:'اللغة والتعبير',w:10,what:'القراءة والكتابة ووضوح عرض الأفكار',I:1,L:2}]},
+ {key:'W',name:'العمل وبناء الحياة',w:30,c:'--p4',factors:[
+  {id:'w1',name:'التنفيذ والاعتمادية',w:25,what:'إنجاز الالتزامات في وقتها وبجودة مقبولة',I:3,L:2},
+  {id:'w2',name:'المهارة المهنية',w:20,what:'مستوى المهارات وجودة المخرجات',I:2,L:1},
+  {id:'w3',name:'النتائج والأثر',w:20,what:'النتائج القابلة للقياس والقيمة المقدمة',I:2,L:1},
+  {id:'w4',name:'الاستقرار المالي',w:20,what:'إدارة المال، الادخار، الاستعداد للطوارئ',I:3,L:2},
+  {id:'w5',name:'الأنظمة والتخطيط',w:15,what:'إدارة الأولويات وبناء أنظمة قابلة للاستمرار',I:2,L:2}]}
+];
+const FACTORS=DOMAINS.flatMap(d=>d.factors.map(f=>({...f,d})));
+const BYID=Object.fromEntries(FACTORS.map(f=>[f.id,f]));
+const BANDS=[[85,'أداء قوي ومستقر نسبيًا','--good'],[70,'أداء جيد مع فرص تحسين محددة','--good'],[55,'تقدم جزئي مع فجوات مؤثرة','--warn'],[40,'أساسيات غير مستقرة','--warn'],[0,'تعثر واضح يحتاج تدخلًا مركزًا','--bad']];
+const EXAMPLE={s1:1,s2:2,s3:1,s4:1,s5:2,r1:3,r2:2,r3:2,r4:3,r5:3,k1:2,k2:3,k3:3,k4:2,k5:3,w1:1,w2:2,w3:1,w4:0,w5:1};
+const today=()=>new Date().toISOString().slice(0,10);
+const blank=()=>({period:'30',date:today(),ratings:{},notes:{},I:{},L:{},plan:[{f:'',b:'',m:''},{f:'',b:'',m:''}],example:false});
+
+let state=blank();
+try{const s=JSON.parse(localStorage.getItem('core4-draft')||'null');if(s&&s.ratings)state={...blank(),...s};else{state.ratings={...EXAMPLE};state.example=true}}catch(e){state.ratings={...EXAMPLE};state.example=true}
+const persist=()=>{try{localStorage.setItem('core4-draft',JSON.stringify(state))}catch(e){}};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const r1=x=>Math.round(x);
+const getI=f=>+(state.I[f.id]??f.I), getL=f=>+(state.L[f.id]??f.L);
+
+function compute(st=state){
+  const dom={};let tw=0,ts=0;
+  for(const d of DOMAINS){
+    let w=0,s=0;for(const f of d.factors){const r=st.ratings[f.id];if(typeof r==='number'){w+=f.w;s+=r/4*100*f.w}}
+    const score=w?s/w:null;dom[d.key]={score,cov:w};
+    if(score!=null){tw+=d.w;ts+=score*d.w}
+  }
+  const total=tw?ts/tw:null;
+  const rated=FACTORS.filter(f=>typeof st.ratings[f.id]==='number').map(f=>{const x=st.ratings[f.id]/4*100;return{f,x,P:(100-x)*(+(st.I?.[f.id]??f.I))*(+(st.L?.[f.id]??f.L))}});
+  const alerts=[];
+  for(const d of DOMAINS){const s=dom[d.key].score;if(s!=null&&s<40)alerts.push(`مجال «${d.name}» كله تحت 40 (${r1(s)})`)}
+  for(const r of rated)if(r.x<25)alerts.push(`عامل «${r.f.name}» متعطل (درجة 0)`);
+  const rank=(a,b)=>(b.f.w*b.f.d.w)-(a.f.w*a.f.d.w);
+  const strong=[...rated].sort((a,b)=>b.x-a.x||rank(a,b)).slice(0,3);
+  const weak=[...rated].sort((a,b)=>a.x-b.x||rank(a,b)).slice(0,3);
+  const prio=[...rated].filter(r=>r.x<100).sort((a,b)=>b.P-a.P).slice(0,5);
+  const unanswered=FACTORS.filter(f=>st.ratings[f.id]==null).length;
+  const na=FACTORS.filter(f=>st.ratings[f.id]==='na').length;
+  return{dom,total,alerts,strong,weak,prio,unanswered,na,rated:rated.length};
+}
+const band=t=>BANDS.find(b=>t>=b[0]);
+
+function renderDomains(){
+  document.getElementById('domains').innerHTML=DOMAINS.map(d=>`
+  <section class="domain" style="--dc:var(${d.c})">
+    <div class="dhead"><h2>${d.name}</h2><span class="w num">${d.w}% من النتيجة</span></div>
+    ${d.factors.map(f=>{const r=state.ratings[f.id];return`
+    <div class="factor">
+      <div><div class="fname"><h3>${f.name}</h3><span class="fw num">${f.w}%</span></div><p class="muted small">${f.what}</p></div>
+      <div class="seg" role="radiogroup" aria-label="${f.name}">
+        ${[0,1,2,3,4].map(v=>`<input type="radio" name="r-${f.id}" id="r-${f.id}-${v}" value="${v}" ${r===v?'checked':''}><label for="r-${f.id}-${v}">${v}</label>`).join('')}
+        <input type="radio" name="r-${f.id}" id="r-${f.id}-na" value="na" ${r==='na'?'checked':''}><label class="na" for="r-${f.id}-na">غير كافٍ</label>
+      </div>
+      <details class="more"><summary>الدليل وتأثير المشكلة</summary>
+        <div class="morebody">
+          <label class="ev">دليل من الفترة (موقف، رقم، تكرار)<input type="text" id="n-${f.id}" data-note="${f.id}" value="${esc(state.notes[f.id])}" placeholder="مثال: نمت أقل من 6 ساعات 4 أيام في الأسبوع"></label>
+          <label>شدة التأثير<select id="i-${f.id}" data-i="${f.id}">${[1,2,3].map(v=>`<option ${getI(f)===v?'selected':''}>${v}</option>`).join('')}</select></label>
+          <label>امتداده لمجالات أخرى<select id="l-${f.id}" data-l="${f.id}">${[1,2,3].map(v=>`<option ${getL(f)===v?'selected':''}>${v}</option>`).join('')}</select></label>
+        </div>
+      </details>
+    </div>`}).join('')}
+  </section>`).join('');
+}
+
+function renderResults(){
+  const c=compute(),b=c.total!=null?band(c.total):null;
+  const li=r=>`<li><span class="chip" style="--pc:var(${r.f.d.c})"></span>${r.f.name} <span class="v">${r1(r.x)}</span></li>`;
+  document.getElementById('results').innerHTML=`
+  <div class="panel">
+    <p class="muted small">درجة Core 4${state.example?' (مثال)':''}</p>
+    <div class="score"><span class="big num">${c.total!=null?r1(c.total):'—'}</span><span class="muted">/ 100</span></div>
+    ${b?`<span class="band" style="color:var(${b[2]})">${b[1]}</span>`:'<span class="band">قيّم عامل واحد على الأقل</span>'}
+    <div class="pillars">${DOMAINS.map(d=>{const s=c.dom[d.key].score;return`
+      <div class="pillar" style="--pc:var(${d.c})"><span class="pv">${s!=null?r1(s):'—'}</span>
+        <div class="shaft"><div class="fill" style="height:${s??0}%"></div><div class="line40" title="حد الإنذار 40"></div></div><div class="base"></div>
+        <span class="pn">${d.name}<br><span class="num">${d.w}%</span></span></div>`}).join('')}</div>
+    <p class="cov num">تم تقييم ${c.rated} من 20 عامل${c.na?` · ${c.na} غير كافٍ للتقييم`:''}${c.unanswered?` · ${c.unanswered} بدون إجابة`:''}. الخط المتقطع = حد الإنذار 40.</p>
+  </div>
+  ${c.alerts.length?`<div class="panel"><h3 style="margin-bottom:8px">إنذارات لا يخفيها المتوسط</h3><div class="alerts">${c.alerts.map(a=>`<div class="alert">${a}</div>`).join('')}</div></div>`:''}
+  <div class="panel cols">
+    <div><h3 style="margin-bottom:6px">أقوى 3</h3><ol class="list">${c.strong.map(li).join('')||'<li class="muted">—</li>'}</ol></div>
+    <div><h3 style="margin-bottom:6px">أضعف 3</h3><ol class="list">${c.weak.map(li).join('')||'<li class="muted">—</li>'}</ol></div>
+  </div>
+  <div class="panel">
+    <h3 style="margin-bottom:4px">أولوية التدخل</h3>
+    <p class="muted small" style="margin-bottom:8px">P = (100 − الدرجة) × شدة التأثير × الامتداد. عدّل الشدة والامتداد من «الدليل وتأثير المشكلة».</p>
+    <table class="ptable"><thead><tr><th>العامل</th><th>الدرجة</th><th>I×L</th><th>P</th></tr></thead>
+    <tbody>${c.prio.map(r=>`<tr><td><span class="chip" style="--pc:var(${r.f.d.c})"></span>${r.f.name}</td><td class="n">${r1(r.x)}</td><td class="n">${getI(r.f)}×${getL(r.f)}</td><td class="n"><b>${r1(r.P)}</b></td></tr>`).join('')||'<tr><td colspan="4" class="muted">—</td></tr>'}</tbody></table>
+  </div>`;
+  document.getElementById('exampleNotice').hidden=!state.example;
+  renderPlanOptions(c);
+}
+
+function renderPlan(){
+  document.getElementById('plan').innerHTML=state.plan.map((p,i)=>`
+  <div class="panel">
+    <label>العامل ${i===0?'الأساسي':'الثاني (اختياري)'}<select id="pf-${i}" data-pf="${i}"></select></label>
+    <label>السلوك المحدد<textarea id="pb-${i}" data-pb="${i}" placeholder="مثال: أقفل الموبايل الساعة 12 بالليل وأنام قبل 1">${esc(p.b)}</textarea></label>
+    <label>مؤشر النجاح<input type="text" id="pm-${i}" data-pm="${i}" value="${esc(p.m)}" placeholder="مثال: 10 من 14 ليلة نوم 7 ساعات"></label>
+  </div>`).join('');
+}
+function renderPlanOptions(c){
+  const ids=new Set(c.prio.map(r=>r.f.id));
+  state.plan.forEach((p,i)=>{const sel=document.getElementById('pf-'+i);if(!sel)return;
+    const order=[...c.prio.map(r=>r.f),...FACTORS.filter(f=>!ids.has(f.id))];
+    sel.innerHTML='<option value="">— اختر —</option>'+order.map(f=>`<option value="${f.id}" ${p.f===f.id?'selected':''}>${f.name}${ids.has(f.id)?' ★':''}</option>`).join('')});
+}
+
+function renderAll(){document.getElementById('period').value=state.period;document.getElementById('adate').value=state.date;renderDomains();renderPlan();renderResults()}
+
+function leaveExample(){if(state.example){state.example=false}}
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.name&&t.name.startsWith('r-')){leaveExample();const id=t.name.slice(2);state.ratings[id]=t.value==='na'?'na':+t.value}
+  else if(t.dataset.i){state.I[t.dataset.i]=+t.value}
+  else if(t.dataset.l){state.L[t.dataset.l]=+t.value}
+  else if(t.dataset.pf){state.plan[+t.dataset.pf].f=t.value}
+  else if(t.id==='period'){state.period=t.value}
+  else if(t.id==='adate'){state.date=t.value}
+  else return;
+  persist();renderResults();
+});
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.dataset.note){state.notes[t.dataset.note]=t.value}
+  else if(t.dataset.pb){state.plan[+t.dataset.pb].b=t.value}
+  else if(t.dataset.pm){state.plan[+t.dataset.pm].m=t.value}
+  else return;persist();
+});
+document.getElementById('clearExample').onclick=()=>{state=blank();persist();renderAll()};
+
+function summary(){
+  const c=compute(),p={7:'آخر 7 أيام',30:'آخر 30 يومًا',90:'آخر 90 يومًا'}[state.period];
+  const L=[`Core 4 — ${state.date} (${p})`,`النتيجة الكلية: ${c.total!=null?r1(c.total):'—'}/100${c.total!=null?' — '+band(c.total)[1]:''}`];
+  for(const d of DOMAINS){const s=c.dom[d.key].score;L.push(`\n${d.name} (${d.w}%): ${s!=null?r1(s):'—'}`);
+    for(const f of d.factors){const r=state.ratings[f.id];L.push(`  - ${f.name}: ${r==null?'بدون إجابة':r==='na'?'غير كافٍ':r+'/4'}${state.notes[f.id]?' — '+state.notes[f.id]:''}`)}}
+  if(c.alerts.length)L.push('\nإنذارات:',...c.alerts.map(a=>'  - '+a));
+  L.push('\nأقوى 3: '+c.strong.map(r=>r.f.name).join('، '),'أضعف 3: '+c.weak.map(r=>r.f.name).join('، '));
+  L.push('أولوية التدخل: '+c.prio.map(r=>`${r.f.name} (P=${r1(r.P)})`).join('، '));
+  const pl=state.plan.filter(x=>x.f);if(pl.length){L.push('\nخطة أسبوعين:');pl.forEach(x=>L.push(`  - ${BYID[x.f].name}: ${x.b||'—'} | مؤشر: ${x.m||'—'}`))}
+  return L.join('\n');
+}
+const status=m=>{document.getElementById('status').textContent=m};
+document.getElementById('copy').onclick=async()=>{
+  const txt=summary();
+  try{await navigator.clipboard.writeText(txt);status('اتنسخ الملخص.')}
+  catch(e){const ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='width:100%;min-height:200px;margin-top:10px';document.querySelector('.actions').after(ta);ta.select();status('النسخ التلقائي مش متاح هنا، الملخص ظاهر تحت ومتحدد.')}
+};
+
+/* ---- saved history (private per person, via db) ---- */
+let db=null,col=null,history=[],pendingDel=null;
+function renderHistory(){
+  const el=document.getElementById('history');
+  if(!col){el.innerHTML='<p class="muted">السجل يحتاج تكون مسجل دخول في claude.ai. التقييم الحالي محفوظ كمسودة في المتصفح بس.</p>';return}
+  if(!history.length){el.innerHTML='<p class="muted">لسه مفيش تقييمات محفوظة. خلّص تقييمك واضغط «احفظ التقييم»، وده هيبقى خط الأساس اللي تقارن بيه الشهر الجاي.</p>';return}
+  const delta=(a,b)=>{if(a==null||b==null)return'';const d=r1(a-b);return d?` <span class="${d>0?'d-up':'d-down'}">${d>0?'+':''}${d}</span>`:''};
+  el.innerHTML=`<table><thead><tr><th>التاريخ</th><th>الكلي</th>${DOMAINS.map(d=>`<th>${d.name}</th>`).join('')}<th></th></tr></thead><tbody>${
+    history.map((h,i)=>{const prev=history[i+1];const s=h.scores||{};const ps=prev?.scores||{};return`<tr>
+      <td class="n">${esc(h.date)}</td><td class="n"><b>${s.total!=null?r1(s.total):'—'}</b>${delta(s.total,ps.total)}</td>
+      ${DOMAINS.map(d=>`<td class="n">${s[d.key]!=null?r1(s[d.key]):'—'}${delta(s[d.key],ps[d.key])}</td>`).join('')}
+      <td style="white-space:nowrap"><button data-load="${h.id}">افتح</button> ${pendingDel===h.id?`<button data-delok="${h.id}">تأكيد الحذف</button> <button data-delno="1">إلغاء</button>`:`<button data-del="${h.id}">احذف</button>`}</td></tr>`}).join('')}</tbody></table>`;
+}
+document.getElementById('history').addEventListener('click',async e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if(t.dataset.load){const h=history.find(x=>x.id===t.dataset.load);if(h){state={...blank(),...JSON.parse(JSON.stringify(h.state)),example:false};persist();renderAll();status(`فتحت تقييم ${h.date}. أي حفظ جديد هيتسجل كتقييم منفصل.`);window.scrollTo({top:0,behavior:'smooth'})}}
+  else if(t.dataset.del){pendingDel=t.dataset.del;renderHistory()}
+  else if(t.dataset.delno){pendingDel=null;renderHistory()}
+  else if(t.dataset.delok){try{await col.doc(t.dataset.delok).delete();history=history.filter(x=>x.id!==t.dataset.delok);status('اتحذف التقييم.')}catch(err){status('الحذف ما نجحش: '+(err.message||err.code))}pendingDel=null;renderHistory()}
+});
+async function loadHistory(){
+  try{const snap=await col.get();history=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.date+b.savedAt).localeCompare(a.date+a.savedAt))}
+  catch(e){history=[];status('تعذر تحميل السجل: '+(e.message||e.code))}
+  renderHistory();
+}
+document.getElementById('save').onclick=async()=>{
+  if(state.example){status('دي قيم المثال. امسحها وقيّم نفسك الأول.');return}
+  const c=compute();if(!c.rated){status('قيّم عامل واحد على الأقل قبل الحفظ.');return}
+  if(!col){status('الحفظ في السجل يحتاج تسجيل دخول. استخدم «انسخ الملخص» بدلًا منه.');return}
+  const btn=document.getElementById('save');btn.disabled=true;
+  const scores={total:c.total};for(const d of DOMAINS)scores[d.key]=c.dom[d.key].score;
+  const savedAt=new Date().toISOString();const id=state.date+'_'+Date.now().toString(36);
+  const doc={date:state.date,period:state.period,savedAt,scores,state:JSON.parse(JSON.stringify({...state,example:false}))};
+  try{await col.doc(id).set(doc);history.unshift({id,...doc});history.sort((a,b)=>(b.date+b.savedAt).localeCompare(a.date+a.savedAt));renderHistory();status('اتحفظ التقييم في السجل.')}
+  catch(e){status('الحفظ ما نجحش: '+(e.message||e.code))}
+  btn.disabled=false;
+};
+
+renderAll();renderHistory();
+(async()=>{
+  try{
+    db=await window.claude?.use?.('db');const user=await window.claude?.use?.('user');
+    const uid=user?await user.id():null;
+    if(db&&uid){col=db.collection('data/users/'+uid);await loadHistory()}else renderHistory();
+  }catch(e){renderHistory()}
+})();
+</script>
+
+</body></html>

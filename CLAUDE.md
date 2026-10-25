@@ -12,7 +12,7 @@
    NODE_PATH=$(npm root -g) node tools/to_pdf.js tools/fonts/cairo "<in.html>" "<out.pdf>"
    ```
    ضيف للصفحة قبل التصدير ستايل `@media print` يخفي شريط التنقل والأزرار ويمنع تقسيم الكروت بين الصفحات.
-3. **كل ملخص في فولدر موضوعه:** الريبو مترتب حسب الموضوع (`Personal/Health`، `Religion`، `Learning`...)، وفهرس الأقسام في `README.md` الرئيسي.
+3. **كل ملخص في فولدر موضوعه:** الريبو مترتب حسب الموضوع تحت `Personal/` بنفس ترتيب `F:\Personal` (`Health`، `Religion`، `Learning`، `Plans`، `Work`)، وفهرس الأقسام في `README.md` الرئيسي.
    - حط الملخص في الفولدر المناسب (أو اعمل فولدر جديد للسلسلة)، والـ HTML في `html/` جوه نفس الفولدر. مع السكيل استخدم `SUMMARIES_DIR` للفولدر ده.
    - حدّث README الفولدر والقسم، واعمل commit و push.
    - ابعت الـ PDF للمستخدم في الشات كمان.

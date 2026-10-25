@@ -2,21 +2,22 @@
 
 كل حاجة اتعملت مع Claude، مرتبة حسب الموضوع.
 
-| القسم | المحتوى |
+| الفولدر | المحتوى |
 |---|---|
-| [Personal/Health](<Personal/Health/>) | التعافي من الإدمان (سلسلة فهم التعافي، ومهجة، وتأسيس فهم التعافي)، والتحرر من الماضي (10 حلقات)، والخزي، والأمراض النفسية |
-| [Personal/Plans](<Personal/Plans/خطة الحياة والكارير/>) | خطة الحياة والكارير |
-| [Religion](<Religion/>) | تراث ابن تيمية (الشيخ حسين عبد الرازق)، والتصوف بوصفه علمًا |
-| [Learning](<Learning/>) | أدوات Claude، وكورس أكسل، والبيرسونال براند، وملاحظات الموشن جرافيك |
-| `.claude/skills/video-summary`، `tools/`، `CLAUDE.md` | السكيل والأدوات اللي بتعمل الملخصات (تفريغ ← صفحة بخط Cairo ← PDF) |
+| [Personal/Health](<Personal/Health/>) | التعافي من الإدمان (مهجة، وتأسيس فهم التعافي، وسلسلة فهم التعافي)، والصحة النفسية (التحرر من الماضي، والخزي، والأمراض النفسية) |
+| [Personal/Religion](<Personal/Religion/>) | تراث ابن تيمية (الشيخ حسين عبد الرازق)، والتصوف بوصفه علمًا |
+| [Personal/Learning](<Personal/Learning/>) | أدوات Claude، والموشن جرافيك، والبيرسونال براند، وكورس أكسل |
+| [Personal/Plans](<Personal/Plans/>) | خطة الحياة والكارير، وأداة Core 4 |
+| [Personal/Work](<Personal/Work/>) | اسكربتات ريلز A&A |
+| `.claude/skills/video-summary`، `tools/`، `CLAUDE.md` | السكيل والأدوات اللي بتعمل الملخصات |
 
-فولدر `Personal/Health` معمول بنفس ترتيب `F:\Personal\Health` على جهازك.
+فولدر `Personal` معمول بنفس ترتيب `F:\Personal` على جهازك.
 
 ## صفحات على Claude (Artifacts)
 
 | الصفحة | الرابط |
 |---|---|
-| Core 4: إطار تقييم النوم والصحة | [فتح](https://claude.ai/artifact/GeXfi48MsaQpx85Gkt8azT) |
+| Core 4: تقييم الأعمدة الأربعة | [فتح](https://claude.ai/artifact/GeXfi48MsaQpx85Gkt8azT) |
 | نظام فيدباك الريلز اللحظي | [فتح](https://claude.ai/artifact/BbTJFUap3vScUBjwphDhQP) |
 | A&A: 40 اسكربت حسب الـ Territory | [فتح](https://claude.ai/artifact/GjqvgmuEMDCWLMyiAfvnJS) |
 | كيف نفهم التصوف بوصفه علمًا | [فتح](https://claude.ai/artifact/QNd1iossGcHmvfrexmdcXB) |
