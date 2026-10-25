@@ -9,7 +9,7 @@
 | [Personal/Learning](<Personal/Learning/>) | أدوات Claude، والموشن جرافيك، والبيرسونال براند، وكورس أكسل |
 | [Personal/Plans](<Personal/Plans/>) | خطة الحياة والكارير، وأداة Core 4 |
 | [Personal/Work](<Personal/Work/>) | اسكربتات ريلز A&A |
-| `.claude/skills/video-summary`، `tools/`، `CLAUDE.md` | السكيل والأدوات اللي بتعمل الملخصات |
+| `.claude/skills/video-summary`، `tools/`، `CLAUDE.md` | السكيل والأدوات اللي بتعمل الملخصات. و`tools/organizer/build.py` بيطلّع أمر `organize-Personal.bat` اللي بيرتب `F:\Personal` بدوسة واحدة |
 
 فولدر `Personal` معمول بنفس ترتيب `F:\Personal` على جهازك.
 
