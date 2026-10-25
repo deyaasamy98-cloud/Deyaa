@@ -1,0 +1,478 @@
+<title>التحرر من الخزي السام</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column; a "lantern" accent (amber) marks actions, teal marks concepts. Light through a crack: the series' own image of recovery. */
+:root{
+  --bg:#F3F5F4; --surface:#E6ECEA; --ink:#14201F; --muted:#52615F; --rule:#CFD9D6;
+  --teal:#136F63; --teal-soft:#D7EAE6; --amber:#9A5806; --amber-soft:#F5E6D0;
+  --red:#A33B3B; --red-soft:#F4DEDC; --green:#2C7650; --green-soft:#DDEFE4;
+  --f-display:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+  --f-body:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#0D1514; --surface:#15201F; --ink:#E3ECEA; --muted:#93A6A3; --rule:#253432;
+  --teal:#5CC2B1; --teal-soft:#12302C; --amber:#E8A84A; --amber-soft:#2E2213;
+  --red:#EE8A84; --red-soft:#2C1716; --green:#69C495; --green-soft:#132A1F; color-scheme:dark;}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.85;font-weight:400}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{direction:rtl;max-width:900px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;line-height:1.4;margin:0;font-weight:700}
+h2{font-size:clamp(1.6rem,1.2rem + 1.5vw,2.1rem)}
+h3{font-size:1.25rem}
+h4{font-size:1.05rem}
+p{margin:0}
+a{color:var(--teal)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+
+header.top{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--amber);font-weight:600}
+h1{font-size:clamp(2.2rem,1.4rem + 3.2vw,3.3rem)}
+.lede{font-size:1.06rem;color:var(--muted);max-width:64ch}
+.coverage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;align-items:center;background:var(--surface);border-radius:12px;padding:14px 16px}
+.coverage .big{font-family:var(--f-display);font-size:2rem;line-height:1;color:var(--teal);grid-row:span 2}
+.coverage .bar{height:8px;background:var(--rule);border-radius:99px;overflow:hidden}
+.coverage .bar i{display:block;height:100%;width:37.5%;background:var(--teal);border-radius:99px}
+.coverage p{font-size:.9rem;color:var(--muted)}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.92rem;padding:5px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--teal);color:var(--teal)}
+
+section.block{padding-top:48px;display:grid;gap:20px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:66ch}
+
+/* themes */
+.theme{border-top:1px solid var(--rule);padding-top:22px;display:grid;gap:10px}
+.theme-head{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:baseline}
+.theme-head .idx{font-family:var(--f-display);color:var(--amber);font-size:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips a{font-size:.8rem;text-decoration:none;padding:2px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);white-space:nowrap}
+.chips a:hover{text-decoration:underline}
+.theme ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.theme ul li::marker{color:var(--teal)}
+.key{background:var(--teal-soft);border-radius:10px;padding:10px 14px;font-weight:500;max-width:70ch}
+.key b{color:var(--teal)}
+
+/* tree */
+.tree-wrap{overflow-x:auto}
+.tree{list-style:none;margin:0;padding:0}
+.tree ul{list-style:none;margin:0;padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul > li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-family:var(--f-display);font-size:1.35rem;background:var(--ink);color:var(--bg);padding:6px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-family:var(--f-display);font-size:1.08rem;color:var(--teal)}
+.tree .lf{font-size:.95rem}
+.tree .lf b{color:var(--amber);font-weight:600}
+
+/* research */
+.res{display:grid;gap:12px}
+.rcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.rcard .claim{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.rcard .claim h4{flex:1 1 260px}
+.pill{display:inline-block;font-size:.76rem;font-weight:600;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--green-soft);color:var(--green)}
+.pill.mix{background:var(--amber-soft);color:var(--amber)}
+.pill.no{background:var(--red-soft);color:var(--red)}
+.rgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rgrid > div{border-radius:8px;padding:10px 12px;font-size:.92rem;min-width:0}
+.rgrid .pro{background:var(--green-soft)}
+.rgrid .con{background:var(--red-soft)}
+.rgrid .lbl{display:block;font-weight:600;font-size:.8rem;margin-bottom:2px}
+.rgrid .pro .lbl{color:var(--green)}
+.rgrid .con .lbl{color:var(--red)}
+.rcard .bottom{font-size:.92rem}
+.rcard .bottom b{color:var(--teal)}
+@media (max-width:620px){.rgrid{grid-template-columns:1fr}}
+.cite{font-size:.82rem;color:var(--muted)}
+
+/* actions */
+.path{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.path > li{counter-increment:p;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border-radius:12px;padding:12px 14px}
+.path > li::before{content:counter(p);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--amber);color:var(--bg);font-weight:600;font-variant-numeric:tabular-nums}
+.path b{display:block;font-family:var(--f-display);font-size:1.05rem}
+.path span{font-size:.93rem}
+.acard{border:1px solid var(--rule);border-radius:12px;padding:16px;display:grid;gap:10px}
+.acard h3{display:flex;gap:10px;align-items:baseline}
+.acard h3 .tag{font-family:var(--f-body);font-size:.75rem;font-weight:600;color:var(--amber);background:var(--amber-soft);padding:1px 8px;border-radius:999px}
+.acard ul,.acard ol{margin:0;padding-inline-start:20px;display:grid;gap:5px}
+.acard li::marker{color:var(--amber);font-variant-numeric:tabular-nums}
+.acard .src{font-size:.78rem;color:var(--muted)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.92rem}
+th,td{text-align:start;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--rule)}
+th{background:var(--surface);font-weight:600;font-size:.85rem}
+tr:last-child td{border-bottom:0}
+td.old{color:var(--red)}
+td.new{color:var(--green);font-weight:500}
+td.v{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two > div{border-radius:10px;padding:12px 14px;min-width:0}
+.two .bad{background:var(--red-soft)}
+.two .good{background:var(--green-soft)}
+.two h4{margin-bottom:4px}
+.two .bad h4{color:var(--red)}
+.two .good h4{color:var(--green)}
+.two ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:.93rem}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--amber);padding-inline-start:12px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--muted);display:grid;gap:8px}
+footer details summary{cursor:pointer;color:var(--ink);font-weight:500}
+footer ul{margin:6px 0 0;padding-inline-start:18px;columns:2;column-gap:28px}
+@media (max-width:560px){footer ul{columns:1}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@page{size:A4;margin:14mm 12mm}
+@media print{
+  nav.toc,body::before,button,#score{display:none!important}
+  .wrap{max-width:none;padding-left:0;padding-right:0}
+  section.block{padding-top:20px}
+  h2,h3,h4{break-after:avoid}
+  .rcard,.qa,fieldset,.path>li,.acard li,tr,.theme-head,.key,.two{break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">د. عماد رشاد عثمان · سلسلة «التحرر من الماضي» · الحلقة 8 من 10 · 50 دقيقة · 20 نوفمبر 2025</span>
+  <h1>التحرر من الخزي السام</h1>
+  <p class="lede">أربع طرق نهرب بها من الخزي (بوصلة ناثانسون)، وكيف يصنع «ثقافة الإلغاء» وهزيمة الذات، ثم خمس أدوات عملية: المشاركة، والحضور في اللحظة، والصوت الرحيم، والتعرض التدريجي، و«تدرّع بخزيك».</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#tree">التشجير</a></li>
+    <li><a href="#research">الأبحاث</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>التوقيت بجانب كل عنوان يفتح الفيديو عند هذه اللحظة.</p>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>«يا ابن الكلب يا حرامي»: من يُلام أولًا؟</h3>
+      <div class="chips"><a href="https://youtu.be/0BcsLkEoQKc?t=92" target="_blank" rel="noopener">1:32</a><a href="https://youtu.be/0BcsLkEoQKc?t=183" target="_blank" rel="noopener">3:03</a></div></div>
+    <p class="key"><b>الفكرة:</b> الطفل المساء إليه يكبر وهو يشعر بالخزي، لأنه رأى «من الأسهل أن أكون سيئًا في حماية أشخاص جيدين» (فيربيرن). ولوم الضحية لنفسها «فكرة طفلية».</p>
+    <ul>
+      <li>سأله صديق: لو خطف أحد الموبايل من يدك وجرى بالموتوسيكل، ما أول فكرة؟ قال: «كان المفروض أمشي على الرصيف وأمسكه أكتر». فرد: «لو ما جاش في بالك أول حاجة <b>يا ابن الكلب يا حرامي</b>، فانت لسه في مرحلة طفلية».</li>
+      <li>الغضب هو الاستجابة الطبيعية للظلم. والتفكير في «إزاي أحترس بعد كده» مرحلة تالية، لا أولى.</li>
+      <li>هذا لا يناقض القراءة المتوازنة: «لو في جانٍ بيور، من الطبيعي تغضب منه، وبعدين تبص على مساحتك من الطريق».</li>
+      <li>يقول إن كتابه «أبي الذي أكره» نجح كثيرًا و«افتُري عليه» كثيرًا: هوجم لاسمه، واستخدمه من يعيشون دور الضحية رغم احترازاته. ومع النضج يعيد قراءة ما كتب.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٢</span><h3>«عبط وعبط مضاد»</h3>
+      <div class="chips"><a href="https://youtu.be/0BcsLkEoQKc?t=273" target="_blank" rel="noopener">4:33</a><a href="https://youtu.be/0BcsLkEoQKc?t=364" target="_blank" rel="noopener">6:04</a></div></div>
+    <ul>
+      <li>خطاب «بص على الجاني»: اكتب «نرجسية» على يوتيوب، صارت كل امرأة مطلقة «متجوزة نرجسي». يغذي التنصل من المسؤولية. «لو أعرف إن الموضوع هيمشي كده ما كنتش كتبت الكتاب». النرجسيون موجودون، «بس مش بالنسب المخبولة دي».</li>
+      <li>والخطاب المضاد، «وللأسف سقط فيه المتدينين»: لوم الذات فقط، وإنكار الصدمات والأمراض النفسية أصلًا.</li>
+      <li>المراحل: في الطفولة نبرئ الآخر ونلوم أنفسنا، وفي المراهقة نتمرد فنلوم الآخر ونبرئ أنفسنا، ثم نصل للجدلية المتوازنة: «الآخر مش الشيطان، وكان فيه حاجات كويسة».</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٣</span><h3>ثقافة الإلغاء ثقافة خزي</h3>
+      <div class="chips"><a href="https://youtu.be/0BcsLkEoQKc?t=454" target="_blank" rel="noopener">7:34</a><a href="https://youtu.be/0BcsLkEoQKc?t=726" target="_blank" rel="noopener">12:06</a></div></div>
+    <p class="key"><b>الفكرة:</b> عقيدة الخزي: «أنا سيئ لأني ارتكبت شيئًا سيئًا». ومن يعيش بها يعامل العالم بنفس المنطق: «انت سيئ إذن أُلغيك».</p>
+    <ul>
+      <li>مثال الهجوم على الشيخ الشعراوي: بعض ما انتُقد ربما يكون خطأ فعلًا، «بس إيه الداعي إن وجود أخطاء يكنسل بني آدم؟».</li>
+      <li>«انت إزاي بتسمع فلان، ده قال كذا؟». لو اشترطت أن من تسمعه بلا أخطاء، فإما لن تسمع أحدًا، وإما تظن من تسمعهم معصومين، «ودي مصيبة».</li>
+      <li>البندول بين المثالية والحط من القيمة: «ما حدش هيرفع حد فوق الكرسي غير لما ينزله تحت ما يستحق». ومن يمدحك بإفراط غالبًا سيهاجمك بعنف يومًا ما.</li>
+      <li>«لو انت لحد دلوقتي مش مختلف معايا في 4 أو 5 حاجات، تبقى مصيبة». «ولو أنا ما عنديش 5 لـ10 حاجات بختلف فيها مع أساتذتي، تبقى مصيبة».</li>
+      <li>الأب الذي عنده خزي «يكنسل عياله» لمجرد خطأ، ويورثهم القالب.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٤</span><h3>بوصلة الخزي: أربعة اتجاهات للهرب</h3>
+      <div class="chips"><a href="https://youtu.be/0BcsLkEoQKc?t=544" target="_blank" rel="noopener">9:04</a><a href="https://youtu.be/0BcsLkEoQKc?t=635" target="_blank" rel="noopener">10:35</a></div></div>
+    <p class="key"><b>الفكرة:</b> دونالد ناثانسون: كل من عنده خزي يتعامل معه بإحدى أربع طرق، «مالهمش خامس».</p>
+    <ol>
+      <li><b>الانسحاب:</b> ليس بالضرورة عزلة اجتماعية. قد يكون عزلة نفسية: لا يعبّر عن نفسه، ويتلوّن حسب ما يريده المكان. «انسحاب الذات عن أصالتها» والذات الزائفة.</li>
+      <li><b>التجنب بالتخدير:</b> التلهي عن الخزي بالطعام (الأكل العاطفي)، أو الإباحية، أو المهدئات والمخدرات، أو «البينج ووتشينج»، «وأكتر حاجة بتلهينا دلوقتي الريلز».</li>
+      <li><b>الهجوم على الذات:</b> جلد ذات واعتذار مستمر: «آسف إني كلمتك، آسف إني تقلت عليك». تنقسم الذات نصفين: «جلاد» و«مجلود».</li>
+      <li><b>الهجوم على الآخر:</b> إسقاط الخزي عليه، ومنه ثقافة الإلغاء.</li>
+    </ol>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٥</span><h3>حب الذات كاللغة</h3>
+      <div class="chips"><a href="https://youtu.be/0BcsLkEoQKc?t=762" target="_blank" rel="noopener">12:42</a><a href="https://youtu.be/0BcsLkEoQKc?t=1033" target="_blank" rel="noopener">17:13</a></div></div>
+    <ul>
+      <li>من كتابه: «الإساءات في الطفولة لا تجعل الأبناء يكبرون وهم يكرهون آباءهم، بل وهم يكرهون أنفسهم».</li>
+      <li>الخزي مركب من: ذنب، وتقزز من النفس، وغضب موجه للداخل، ورفض للذات.</li>
+      <li>«لا يمكن أن تحب ذاتك حبًا صحيًا إلا إذا تلقيت حبًا صحيًا». كاللغة: عندك القابلية (النحو التوليدي عند تشومسكي)، لكن طفلًا معزولًا منذ الولادة لن يتكلم، كالأطفال الذين نشؤوا في البرية.</li>
+      <li>«ما حدش ما اتحبش خالص»: أخذنا خبطة من الحب من أب أو أم أو عم أو مدرس. لكن كلنا عندنا «خبطة» في قالب محبة الذات.</li>
+      <li>في التربية: «Do no harm». «الأزمة الحقيقية في اللي بنعمله للعيال، مش اللي ما بنعملهوش». حب واعتناء، دون إضافات متشنجة باسم التربية.</li>
+      <li><b>الإساءة المشهودة:</b> ليس لازمًا أن تكون موجهة للطفل. رؤية أخيه أو أمه يتأذى تؤذيه بنفس القدر، لأنه يتماهى معهم.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٦</span><h3>هزيمة الذات، و«جلد الفاجر وعجز الثقة»</h3>
+      <div class="chips"><a href="https://youtu.be/0BcsLkEoQKc?t=1364" target="_blank" rel="noopener">22:44</a><a href="https://youtu.be/0BcsLkEoQKc?t=1546" target="_blank" rel="noopener">25:46</a><a href="https://youtu.be/0BcsLkEoQKc?t=1637" target="_blank" rel="noopener">27:17</a></div></div>
+    <ul>
+      <li>أبعد من الجلد: «التخريب الذاتي». يعيش صاحب الخزي في مساحات أضيق بكثير من إمكاناته ماديًا واجتماعيًا. «واحد في إمكاناتك كان المفروض يبقى في حتة تانية».</li>
+      <li>أحيانًا «مش عايز تعدي أبوك»، أو نؤمن أن كل نعمة «هيتاخد قصادها حاجة»، كأن الله «واقف بالميزان». (يحيل لحلقة «متلازمة ابن الفقرية».)</li>
+      <li>«كيف للدنيا أن تمنح من لا يرى في نفسه استحقاقًا للمنحة؟». يقول عن نفسه: قضى سنين يقول «يا ريت تيجي الفرصة»، ومن الداخل يقول «يا رب ما تجيش»، لأن الفرصة اختبار تحت عين النقد. ولما تأتي «بيطلّع فيها القطط الفطسانة ويرفضها».</li>
+      <li>ونعقلن ذلك أخلاقيًا: «زهد، ورضا بالقليل، وإيثار، وتضحية صامتة».</li>
+      <li>برتراند راسل: «مشكلة العالم أن الأغبياء والمتشددين واثقون بأنفسهم أشد الثقة، أما الحكماء فتملؤهم الشكوك». وعمر: «اللهم إني أشكو إليك جلد الفاجر وعجز الثقة». أهل الخير مهزوزون ويثبطون بعضهم، والشر «سهّل الاشتراك»، فانتشر.</li>
+      <li>من فيلم Coach Carter: «خوفنا الأعمق ليس ألا نكون كافين، بل أننا أقوى مما نتصور. نورنا لا ظلامنا هو ما يخيفنا... لا شيء نوراني في الانكماش». وحين نتحرر من خوفنا يصبح وجودنا محررًا للآخرين.</li>
+      <li>«نقضي السهرات نشتكي من طاقاتنا المعطلة ونتندر على المديوكر الناجحين، لكن في بقعة عميقة نخشى أن نصير مرئيين»، لأن النقد نظرة، والنظرة عورة، والعورة عار.</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="theme-head"><span class="idx">٧</span><h3>العلاج: خمس أدوات</h3>
+      <div class="chips"><a href="https://youtu.be/0BcsLkEoQKc?t=2040" target="_blank" rel="noopener">34:00</a><a href="https://youtu.be/0BcsLkEoQKc?t=2272" target="_blank" rel="noopener">37:52</a><a href="https://youtu.be/0BcsLkEoQKc?t=2455" target="_blank" rel="noopener">40:55</a><a href="https://youtu.be/0BcsLkEoQKc?t=2638" target="_blank" rel="noopener">43:58</a></div></div>
+    <ol>
+      <li><b>الخروج من العزلة بالمشاركة:</b> شارك ما لديك مع العالم، أو حتى مع شخص تثق فيه. أن تسمح لأحد برؤيتك وتكون «vulnerable»، معرضًا لاحتمال الرفض، «خطوة كبيرة قصاد الخزي».</li>
+      <li><b>الحضور في اللحظة (التجذّر):</b> كان يستهزئ بها حين سمعها من أستاذه عام 2015، ثم جربها. احضر في حواسك: سمعك، ونظرك، وضغط جسمك على الكرسي، وتنفسك. فتوقف تيار الأفكار المخزية. وأقرب مكان للتدريب الصلاة بخشوع، وفي الشرب «مصًّا لا عبًّا». تنفع في الخوف والغضب واللهفة والخزي. واحضر حتى مع الألم نفسه: أين هو في جسمك؟ «الصراع مع الألم يزيده».</li>
+      <li><b>الممارسة التصالحية مع الذات:</b> أعطِ الجلاد الداخلي اسمًا وصوتًا وشكلًا كرتونيًا. هو اختار الست صاحبة النشابة في «توم وجيري» التي لا يظهر وجهها، فصار يضحك عليها. ثم تبنَّ صوتًا بديلًا «رحيمًا وأمينًا»، كما تكلم صديقًا عمره 17 سنة تحبه وتحترمه وتشفق عليه: صريح وأحيانًا صارم، لكن «عمرك ما هتقول له انت كلب ولا غبي».</li>
+      <li><b>التعرض ومنع الاستجابة (ERP):</b> ارسم هرمًا للأشياء المؤجلة بسبب الخزي، من الأسهل للأصعب، وتعرّض لها تدريجيًا، وامنع نفسك من استجابة اللوم والتأنيب، مع التجذر قبلها. كألعاب الفيديو: «بوصات غلابة» في الأول ثم تزيد الصعوبة. مثال: الكلام مع صديق، ثم الأصحاب، ثم الأب والأم (أصعب)، ثم الابن، ثم كورس إلقاء، ثم عرض أمام جمهور أو قناة.</li>
+      <li><b>«تدرّع بخزيك»</b> (رأيه الشخصي، «ليس للجميع»): من «صراع العروش»، تيريون لجون سنو الملقب بـ«اللقيط»: «ارتدِ خزيك كدرع، ولن يستخدمه أحد ضدك أبدًا». خذ ما تخجل منه و«بروزه»: «ماما بتقول عليّ بخيل؟ ده أنا بخيل لدرجة...». بمبالغة هزلية تنزع سطوته وحساسيتك له. ليس مجاهرة ولا تباهيًا، بل أن تتكلم عنه بأريحية وتتعلم منه وتلهم غيرك، كمدمنين صاروا رموزًا في التعافي. «إما أن تكون كما تبدو، وإما أن تبدو كما أنت».</li>
+    </ol>
+  </div>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head"><h2>التشجير</h2></div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">التحرر من الخزي السام</span>
+        <ul>
+          <li><span class="br">جذره</span>
+            <ul>
+              <li class="lf">الطفل يلوم نفسه ليحمي صورة الكبار</li>
+              <li class="lf">لم يُحَب حبًا صحيًا، فلم يتعلم حب ذاته</li>
+              <li class="lf">إساءة مباشرة أو مشهودة</li>
+            </ul>
+          </li>
+          <li><span class="br">بوصلة الهرب</span>
+            <ul>
+              <li class="lf">انسحاب</li>
+              <li class="lf">تخدير وتلهٍّ</li>
+              <li class="lf">هجوم على الذات</li>
+              <li class="lf">هجوم على الآخر (إلغاء)</li>
+            </ul>
+          </li>
+          <li><span class="br">آثاره</span>
+            <ul>
+              <li class="lf">مثالية ثم حط من القيمة</li>
+              <li class="lf">تخريب الذات ورفض الفرص</li>
+              <li class="lf">أهل الخير مهزوزون</li>
+            </ul>
+          </li>
+          <li><span class="br">العلاج</span>
+            <ul>
+              <li class="lf">المشاركة والظهور</li>
+              <li class="lf">الحضور في اللحظة</li>
+              <li class="lf">جلاد كرتوني وصوت رحيم أمين</li>
+              <li class="lf">هرم تعرض تدريجي</li>
+              <li class="lf">تدرّع بخزيك</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="research">
+  <div class="sec-head">
+    <h2>الأبحاث والمعلومات العلمية</h2>
+    <p>لكل فكرة رئيسية: ما يؤيدها، وما يعارضها أو يحدّها، والخلاصة.</p>
+  </div>
+  <div class="res">
+
+    <div class="rcard">
+      <div class="claim"><h4>بوصلة الخزي الأربعة</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>وضعها ناثانسون (1992)، وصُمم لها مقياس. «الهجوم على الذات» و«الانسحاب» يرتبطان بالاكتئاب، و«الهجوم على الآخر» بالعدوانية والغضب. <span class="cite">(Elison, Lennon &amp; Pulos, 2006, Psychological Reports)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>نموذج وصفي مفيد، لا قانون. والناس يستخدمون أكثر من اتجاه حسب الموقف.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«كل الناس نرجسيين»</h4><span class="pill ok">نقده في محله</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>اضطراب الشخصية النرجسية يصيب نحو 1% إلى 6% من الناس في الدراسات السكانية. ومصطلحات مثل «إساءة نرجسية» انتشرت في الخطاب الشعبي أوسع بكثير من استخدامها العلمي، ضمن ما يسمى «زحف المفاهيم». <span class="cite">(Haslam, 2016)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>العلاقات المسيئة حقيقية ولو لم يكن المسيء «نرجسيًا» بالتشخيص. المهم وصف السلوك، لا تشخيص الشخص.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>حب الذات يُتعلم من أن تُحَب</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>نظرية التعلق: صورة الطفل عن قيمته تتكون من استجابة من يرعاه («النماذج العاملة الداخلية»). <span class="cite">(Bowlby)</span> ودعم الأم وأسلوب الأسرة يتنبآن بقدرة المراهق على الرحمة بنفسه. <span class="cite">(Neff &amp; McGehee, 2010, Self and Identity)</span> وتشبيه اللغة قريب من «الفترة الحرجة» في اكتساب اللغة.</div>
+        <div class="con"><span class="lbl">يحدّ</span>الرحمة بالذات يمكن تعلمها لاحقًا بالتدريب، والتشبيه باللغة لا يعني أن الفرصة ضاعت.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الإساءة المشهودة</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>تحليل تجميعي: الأطفال الذين يشهدون عنفًا بين الوالدين يظهرون مشكلات نفسية بقدر مشابه لمن تعرضوا للإساءة الجسدية مباشرة. <span class="cite">(Kitzmann et al., 2003, J of Consulting and Clinical Psychology)</span></div>
+        <div class="con"><span class="lbl">يحدّ</span>لا اعتراض جوهري.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>الحضور في اللحظة، والصوت الرحيم</h4><span class="pill ok">مدعوم</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>تحليل تجميعي لتدخلات الرحمة بالذات: تخفض النقد الذاتي والاكتئاب والقلق. <span class="cite">(Kirby, Tellegen &amp; Steindl, 2017, Behavior Therapy)</span> و«العلاج المركّز على الرحمة» (جيلبرت) صُمم أصلًا لمن عندهم خزي ونقد ذاتي عالٍ، ويستخدم تمرين تخيّل «الناقد الداخلي» وتبني صوت رحيم. وفصل الصوت الناقد عن الذات («التخريج») أداة في العلاج السردي.</div>
+        <div class="con"><span class="lbl">يحدّ</span>تمارين اليقظة قد تزيد القلق عند بعض من عاشوا صدمات شديدة في البداية. ابدأ بتمارين قصيرة، وتوقف لو زاد الضيق.</div>
+      </div>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>«تدرّع بخزيك»</h4><span class="pill mix">مفيد بشرط</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">يؤيد</span>الإفصاح عن جانب «موصوم» من هويتك يحسّن الرفاهية حين تكون البيئة متقبلة. <span class="cite">(Quinn &amp; Chaudoir, 2009, JPSP؛ Chaudoir &amp; Fisher, 2010)</span> والمدمنون المتعافون الذين يحكون قصتهم مثال حي.</div>
+        <div class="con"><span class="lbl">يحدّ</span>الدعابة الساخرة من الذات («الدعابة الهازمة للذات») ترتبط بصحة نفسية أسوأ، بعكس الدعابة الودودة أو المعززة للذات. <span class="cite">(Martin et al., 2003, J of Research in Personality)</span> فالمبالغة الهزلية في عيبك قد تنقلب جلدًا مقنّعًا. وهو نفسه قال إنها «ليست للجميع».</div>
+      </div>
+      <p class="bottom"><b>الخلاصة:</b> امتلك قصتك وتكلم عنها بأريحية. انتبه ألا تتحول السخرية من نفسك إلى إهانة لها.</p>
+    </div>
+
+    <div class="rcard">
+      <div class="claim"><h4>نسبة الاقتباسات</h4><span class="pill mix">بعضها يحتاج تصحيحًا</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">صحيح</span>«اللهم إني أشكو إليك جلد الفاجر وعجز الثقة» لعمر بن الخطاب. وعبارة راسل صحيحة المعنى. وجملة تيريون في الحلقة الأولى من «صراع العروش»: «Wear it like armor, and it can never be used to hurt you».</div>
+        <div class="con"><span class="lbl">التصحيح</span>«خوفنا الأعمق...» التي يقولها الطالب في Coach Carter ليست للفيلم أصلًا، بل من كتاب «A Return to Love» لماريان ويليامسون (1992)، وتُنسب خطأً لنيلسون مانديلا كثيرًا.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>كل الأفعال والسلوكيات والمعتقدات التي طلبتها الحلقة، مرتبة.</p>
+  </div>
+
+  <h3>الترتيب المقترح للبدء</h3>
+  <ol class="path">
+    <li><div><b>حدد اتجاهك في البوصلة</b><span>كيف تهرب من الخزي؟ (البطاقة 2)</span></div></li>
+    <li><div><b>درّب الحضور</b><span>دقائق كل يوم (البطاقة 3).</span></div></li>
+    <li><div><b>ارسم جلادك وابنِ صوتًا رحيمًا</b><span>(البطاقة 4)</span></div></li>
+    <li><div><b>ابنِ هرم التعرض</b><span>للأشياء المؤجلة (البطاقة 5).</span></div></li>
+    <li><div><b>شارك شيئًا</b><span>مع شخص آمن (البطاقة 6).</span></div></li>
+  </ol>
+
+  <div class="acard">
+    <h3>1. المعتقدات: تخلَّ عن هذا، وتبنَّ هذا</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المعتقد القديم</th><th>المعتقد الجديد</th><th>التوقيت</th></tr></thead>
+        <tbody>
+          <tr><td class="old">لو حد أذاني يبقى أنا السبب</td><td class="new">ألوم الجاني أولًا، ثم أنظر لمساحتي</td><td class="v num">3:03</td></tr>
+          <tr><td class="old">كل اللي آذوني نرجسيين</td><td class="new">أصف السلوك المؤذي، ولا أوزع التشخيصات</td><td class="v num">4:33</td></tr>
+          <tr><td class="old">مفيش حاجة اسمها صدمة، دي حجج</td><td class="new">الصدمات حقيقية، والتجمد فيها هو المشكلة</td><td class="v num">6:04</td></tr>
+          <tr><td class="old">اللي يغلط يبقى سيئ ويتلغي</td><td class="new">الإنسان يخطئ ولا يصير خطأً</td><td class="v num">7:34</td></tr>
+          <tr><td class="old">لازم اللي أسمعه يكون معصوم</td><td class="new">أختلف معه في أشياء وأستفيد منه في أشياء</td><td class="v num">12:06</td></tr>
+          <tr><td class="old">أنا آسف إني موجود وتقيل عليكم</td><td class="new">هذا هجوم على الذات؛ وجودي مشروع</td><td class="v num">10:35</td></tr>
+          <tr><td class="old">قعدتي في مساحة صغيرة دي زهد ورضا</td><td class="new">قد تكون خوفًا من الظهور وإحساسًا بعدم الاستحقاق</td><td class="v num">28:47</td></tr>
+          <tr><td class="old">نفسي تيجي الفرصة</td><td class="new">أعترف بأني أخاف منها، وأتدرب عليها</td><td class="v num">27:17</td></tr>
+          <tr><td class="old">صوت الجلاد ده ضميري وهو على حق</td><td class="new">ده صوت كرتوني؛ أتبنى صوتًا أمينًا ورحيمًا</td><td class="v num">37:52</td></tr>
+          <tr><td class="old">العيب اللي فيّ لازم أخبيه</td><td class="new">أمتلكه وأتكلم عنه بأريحية، فتسقط سطوته</td><td class="v num">45:29</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="acard">
+    <h3>2. بوصلتك <span class="tag">تمرين كتابة</span></h3>
+    <ol>
+      <li>تذكّر آخر موقف شعرت فيه بالخزي. ماذا فعلت؟</li>
+      <li><b>انسحاب:</b> هل اختفيت، أو تلوّنت حسب المكان، أو سكتّ عن رأيك؟</li>
+      <li><b>تخدير:</b> هل هربت للأكل أو الريلز أو الإباحية أو غيرها؟</li>
+      <li><b>هجوم على الذات:</b> هل جلدت نفسك أو اعتذرت كثيرًا؟</li>
+      <li><b>هجوم على الآخر:</b> هل انتقدت أحدًا بقسوة، أو «ألغيته»؟</li>
+      <li>أي اتجاه هو الأكثر عندك؟</li>
+    </ol>
+    <p class="src">من 9:04 إلى 12:06</p>
+  </div>
+
+  <div class="acard">
+    <h3>3. الحضور في اللحظة <span class="tag">كل يوم</span></h3>
+    <ul>
+      <li>دقائق تحضر فيها في حاسة واحدة: سمعك، أو نظرك كأنك ترى لأول مرة، أو ضغط جسمك على الكرسي، أو تنفسك.</li>
+      <li>في الصلاة: احضر في الحركة (يدك على ركبتك، جبهتك على الأرض) وفي الكلمات.</li>
+      <li>وأنت تشرب أو تأكل أو تسوق: احضر.</li>
+      <li>مع الشعور المؤلم: أين هو في جسمك؟ اسمح له أن يكون موجودًا بدل مصارعته.</li>
+      <li>استخدمها مع الخزي والخوف والغضب واللهفة.</li>
+    </ul>
+    <p class="src">من 34:00 إلى 37:52</p>
+  </div>
+
+  <div class="acard">
+    <h3>4. الجلاد الكرتوني والصوت الرحيم</h3>
+    <ol>
+      <li>اكتب ما يقوله صوت الجلد داخلك حرفيًا.</li>
+      <li>أعطه اسمًا وشكلًا كرتونيًا مضحكًا.</li>
+      <li>كلما ظهر، تخيله بشكله الكرتوني.</li>
+      <li>أعد صياغة نفس الرسالة بصوت أمين ورحيم، كما تكلم صديقًا عمره 17 سنة تحبه: صريح وأحيانًا صارم، بلا إهانة.</li>
+      <li>مثال: بدل «انت غبي وبتبوظ كل حاجة»، قل: «الجزء ده ما اتوفقتش فيه، محتاج تخلي بالك من كذا، وانت تستاهل أحسن من كده».</li>
+    </ol>
+    <p class="src">من 37:52 إلى 40:55</p>
+  </div>
+
+  <div class="acard">
+    <h3>5. هرم التعرض للخزي</h3>
+    <ol>
+      <li>اكتب كل ما تؤجله لأنك «مكسوف» أو «مش جاهز».</li>
+      <li>رتبه من الأسهل في الأسفل للأصعب في الأعلى. انتبه: المواقف مع من تحب (الأب، الأم، الابن) غالبًا أصعب من الغرباء.</li>
+      <li>ابدأ بالأسهل، مع تجذّر قبله (تنفس وحضور).</li>
+      <li>امنع الاستجابة بعده: لا لوم ولا تأنيب ولا «كان المفروض».</li>
+      <li>اصعد درجة حين تصير السابقة سهلة، كمستويات لعبة.</li>
+    </ol>
+    <p class="src">من 40:55 إلى 43:58</p>
+  </div>
+
+  <div class="acard">
+    <h3>6. المشاركة والتدرع</h3>
+    <ul>
+      <li>اختر شخصًا آمنًا واحكِ له شيئًا تخجل منه.</li>
+      <li>لو مناسب لك: تكلم عن عيب أو ماضٍ بأريحية ودعابة، دون أن تهين نفسك.</li>
+      <li>ليس مجاهرة ولا تباهيًا، بل تعلّم وإلهام.</li>
+      <li>«إما أن تكون كما تبدو، وإما أن تبدو كما أنت».</li>
+    </ul>
+    <p class="src">من 43:58 إلى 49:00</p>
+  </div>
+
+  <div class="acard">
+    <h3>7. مع الآخرين وأولادك</h3>
+    <ul>
+      <li>لا تشارك في حملات الإلغاء؛ فرّق بين الخطأ وصاحبه.</li>
+      <li>احذر من مديحك المفرط لأحد، ومن مدح الناس المفرط لك.</li>
+      <li>مع أولادك: «Do no harm». لا تلغهم لخطأ، ولا تجعلهم يشهدون الإساءة في البيت.</li>
+    </ul>
+    <p class="src">من 7:34 إلى 21:13</p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: <a href="https://www.youtube.com/watch?v=0BcsLkEoQKc" target="_blank" rel="noopener">free yourself from toxic shame</a> على قناة Emad Rashad Othman، الحلقة الثامنة من سلسلة <a href="https://www.youtube.com/playlist?list=PLOjvW1C4hDCkU_l5F1sTSdo6xDHXMWBfP" target="_blank" rel="noopener">التحرر من الماضي</a>. المحتوى مبني على نص الفيديو كاملًا، والتوقيتات تقريبية.</p>
+  <p>هذه الصفحة تلخيص تعليمي وليست بديلًا عن معالج.</p>
+</footer>
+
+</div>
