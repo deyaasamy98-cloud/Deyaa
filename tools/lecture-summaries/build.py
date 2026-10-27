@@ -232,7 +232,7 @@ def pdf_html(spec, mind_png, tree_png):
             qs += (f'<div class="q"><div class="qh"><span class="qn">{k}</span><span style="flex:1">{md(q["q"])}</span>'
                    f'<span class="qt">{QTYPE[g]}</span></div>{opts}<div class="ans">{md(q["a"])}</div></div>')
     exp = "".join(f"<div><b>{esc(e['title'])}</b>{md(e['desc'])}</div>" for e in spec["expand"])
-    return f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><style>{CSS}</style></head><body>
+    return f"""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>{html.escape(spec["file_base"])}</title><style>{CSS}</style></head><body>
 <div class="cover"><div><div class="series">{esc(spec['series'])}</div><div class="orn">۞ ❁ ۞</div>
 <div class="book">{esc(spec['book'])}</div><span class="lesson">{esc(spec['lesson_label'])}</span>
 <div class="title">{esc(spec['title'])}</div></div>
