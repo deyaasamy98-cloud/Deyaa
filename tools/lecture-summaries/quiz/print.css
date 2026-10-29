@@ -1,0 +1,18 @@
+@font-face{font-family:"Cairo";font-weight:200 1000;src:url(data:font/woff2;base64,__FONT_AR__) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+200C-200E,U+FB50-FDFF,U+FE70-FEFC}
+@font-face{font-family:"Cairo";font-weight:200 1000;src:url(data:font/woff2;base64,__FONT_LA__) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
+@page{size:A4;margin:16mm 14mm}
+body{font-family:"Cairo",sans-serif;font-size:12.5pt;line-height:1.75;color:#1d2b29;direction:rtl}
+h1{font-size:19pt;line-height:1.4;margin:0 0 4px;color:#0d6b59}
+.sub{color:#5b6b67;margin:0 0 10px;font-size:11pt}
+h2{font-size:15pt;color:#0d6b59;border-bottom:2px solid #0d6b59;padding-bottom:2px;margin:18px 0 8px;break-after:avoid}
+h2.key{break-before:page}
+.q,.a{break-inside:avoid;border:1px solid #d9e0dc;border-radius:8px;padding:8px 12px;margin:0 0 8px}
+.h{font-size:9.5pt;color:#94660f;font-weight:700}
+.t{font-weight:700;margin:2px 0 4px}
+.o{list-style:none;margin:0;padding:0}
+.o li{margin:1px 0}
+.o b{color:#0d6b59;margin-inline-end:6px}
+.a p{margin:2px 0}
+blockquote{margin:4px 0;padding:4px 10px;border-inline-start:3px solid #0d6b59;background:#f3f5f2;font-size:11pt}
+.r{font-size:9.5pt;color:#5b6b67}
+.r a{color:#0d6b59;direction:ltr;unicode-bidi:embed}

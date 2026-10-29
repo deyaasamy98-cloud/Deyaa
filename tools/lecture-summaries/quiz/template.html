@@ -1,0 +1,252 @@
+<title>اختبار تراث ابن تيمية</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+@font-face{font-family:"Cairo";font-style:normal;font-weight:200 1000;font-display:swap;src:url(data:font/woff2;base64,__FONT_AR__) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+200C-200E,U+2010-2011,U+FB50-FDFF,U+FE70-FEFC}
+@font-face{font-family:"Cairo";font-style:normal;font-weight:200 1000;font-display:swap;src:url(data:font/woff2;base64,__FONT_LA__) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+/* تخطيط: عمود واحد للقراءة، رأس ثابت فيه شريط التقدم، وبطاقة لكل سؤال */
+:root{
+  --bg:#f3f5f2; --surface:#ffffff; --ink:#1d2b29; --muted:#5b6b67; --line:#d9e0dc;
+  --accent:#0d6b59; --accent-soft:#e3f0ec; --gold:#94660f; --gold-soft:#f7eedb;
+  --ok:#1b7a47; --ok-soft:#e4f3ea; --bad:#b0281f; --bad-soft:#fbe9e7;
+  --font:"Cairo","Segoe UI",Tahoma,"Noto Sans Arabic",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111816; --surface:#19221f; --ink:#e5ece9; --muted:#9aaba6; --line:#2c3935;
+  --accent:#4cc2a6; --accent-soft:#16332c; --gold:#d9a948; --gold-soft:#332a17;
+  --ok:#5dc78d; --ok-soft:#163323; --bad:#f0736a; --bad-soft:#3a1c1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111816; --surface:#19221f; --ink:#e5ece9; --muted:#9aaba6; --line:#2c3935;
+  --accent:#4cc2a6; --accent-soft:#16332c; --gold:#d9a948; --gold-soft:#332a17;
+  --ok:#5dc78d; --ok-soft:#163323; --bad:#f0736a; --bad-soft:#3a1c1a; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.85;direction:rtl}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:780px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+header.top .wrap{padding-block:10px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.brand{font-weight:800;font-size:1rem}
+.stat{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.stat b{color:var(--ink)}
+.bar{height:4px;background:var(--line)}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.hero{padding-block:28px 8px}
+h1{font-size:1.75rem;line-height:1.4;margin:0 0 6px;text-wrap:balance;font-weight:800}
+.sub{color:var(--muted);margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;padding:0;list-style:none}
+.meta li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:2px 14px;font-size:.9rem}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--gold);padding:4px 12px;margin:18px 0 0;background:var(--gold-soft);border-radius:4px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
+.toc a{font-size:.88rem;color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:4px 10px;background:var(--surface)}
+.toc a:focus-visible,.toc a:hover{border-color:var(--accent)}
+section.book{margin-top:36px;scroll-margin-top:70px}
+section.book>h2{font-size:1.3rem;margin:0 0 4px;text-wrap:balance}
+section.book>p{margin:0 0 14px;color:var(--muted);font-size:.92rem}
+.qs{display:flex;flex-direction:column;gap:14px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;scroll-margin-top:70px}
+.q.right{border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
+.q.wrong{border-color:color-mix(in srgb,var(--bad) 45%,var(--line))}
+.qh{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:.82rem;color:var(--muted);margin-bottom:6px}
+.qh .n{font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+.tag{border-radius:6px;padding:0 8px;background:var(--accent-soft);color:var(--accent)}
+.tag.lv{background:var(--gold-soft);color:var(--gold)}
+.qt{font-weight:700;font-size:1.05rem;margin:0 0 12px}
+.opts{display:grid;gap:8px}
+.opts.tf{grid-template-columns:1fr 1fr}
+.opt{font:inherit;font-size:.98rem;text-align:right;line-height:1.7;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:9px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+.opts.tf .opt{justify-content:center;font-weight:700}
+.opt .k{font-weight:800;color:var(--muted);min-width:1.2em}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
+.opt[disabled]{cursor:default}
+.opt.is-right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.is-wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:12px;border-radius:10px;padding:12px 14px;font-size:.95rem}
+.fb.ok{background:var(--ok-soft)}
+.fb.no{background:var(--bad-soft)}
+.fb .head{font-weight:800}
+.fb.ok .head{color:var(--ok)}
+.fb.no .head{color:var(--bad)}
+.fb dl{margin:8px 0 0;display:grid;gap:8px}
+.fb dt{font-weight:700;font-size:.85rem;color:var(--muted)}
+.fb dd{margin:0}
+.fb blockquote{margin:0;padding:6px 12px;border-inline-start:3px solid var(--accent);background:var(--surface);border-radius:4px;font-size:.95rem}
+.fb a{color:var(--accent);font-weight:700}
+details.ev{margin-top:6px}
+details.ev summary{cursor:pointer;color:var(--accent);font-weight:700;font-size:.9rem}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+.btn{font:inherit;font-weight:800;border-radius:10px;padding:10px 20px;cursor:pointer;border:1.5px solid var(--accent);background:var(--accent);color:var(--surface)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
+.confirm{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.92rem}
+#result{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 18px;scroll-margin-top:70px}
+#result h2{margin:0 0 4px;font-size:1.35rem}
+.score{font-size:2.6rem;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums}
+.verdict{margin:6px 0 16px;font-weight:700}
+.verdict.pass{color:var(--ok)}
+.verdict.fail{color:var(--bad)}
+.rows{display:grid;gap:10px}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.row .nm{font-weight:700;min-width:0}
+.row .nums{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.row .mini{grid-column:1 / -1}
+.mini{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.score small{display:block;font-size:1rem;font-weight:600;color:var(--muted)}
+.mini i{display:block;height:100%}
+.pill{display:inline-block;border-radius:999px;padding:0 10px;font-size:.8rem;font-weight:700;white-space:nowrap}
+.pill.p{background:var(--ok-soft);color:var(--ok)}
+.pill.f{background:var(--bad-soft);color:var(--bad)}
+.pill.u{background:var(--bg);color:var(--muted)}
+.review{margin-top:16px}
+.review ul{margin:6px 0 0;padding-inline-start:20px}
+.review a{color:var(--accent)}
+@media (max-width:480px){h1{font-size:1.45rem}.q{padding:14px}.opts.tf{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <span class="brand">اختبار تراث ابن تيمية</span>
+    <span class="stat">أجبت <b id="answered">0</b> من <b id="total">0</b> · الصحيح <b id="correct">0</b></span>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>اختبار الكتب الخمسة الأولى من «جمع الكتب المشروحة من تراث ابن تيمية»</h1>
+    <p class="sub">شرح الشيخ حسين عبد الرازق · الفيديوهات 9 إلى 27 (19 درسًا)</p>
+    <ul class="meta" id="meta"></ul>
+    <p class="note">اختر إجابتك فيظهر التصحيح فورًا. عند الخطأ تظهر الإجابة الصحيحة وسببها، والدليل من كلام الشيخ في الدرس، ورابط الموضع في الفيديو. النصوص منقولة من التفريغ الآلي لصوت الدروس، مع تصحيح أخطاء التفريغ الظاهرة في الآيات والكلمات فقط. درجة النجاح 70٪.</p>
+    <nav class="toc" id="toc" aria-label="الكتب"></nav>
+  </div>
+  <div id="books"></div>
+  <div class="actions">
+    <button class="btn" id="showResult" type="button">اعرض النتيجة</button>
+    <button class="btn ghost" id="resetBtn" type="button">ابدأ الاختبار من جديد</button>
+  </div>
+  <div class="confirm" id="confirmReset" hidden>
+    <span>سيُمسح كل ما أجبته. متأكد؟</span>
+    <button class="btn" id="resetYes" type="button">نعم، امسح الإجابات</button>
+    <button class="btn ghost" id="resetNo" type="button">تراجع</button>
+  </div>
+  <section id="result" hidden aria-live="polite"></section>
+</main>
+
+<script>
+const DATA = __DATA__;
+const PASS = 70, KEY = "ibn-taymiyya-quiz-1-5";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const LETTERS = ["أ","ب","ج","د"];
+const pct = (a, b) => b ? Math.round(a * 100 / b) : 0;
+
+function ref(q) {
+  return `${esc(DATA.books[q.b].name)} — الدرس ${q.lesson} (الفيديو ${q.video})`;
+}
+function evidence(q) {
+  return `<dl>
+    <dt>الإجابة الصحيحة</dt><dd>${esc(q.opts[q.a])}</dd>
+    <dt>لماذا هي الصحيحة</dt><dd>${esc(q.why)}</dd>
+    <dt>الدليل من الدرس</dt><dd><blockquote>«${esc(q.quote)}»</blockquote></dd>
+    <dt>المرجع</dt><dd>${ref(q)} · <a href="${q.url}" target="_blank" rel="noopener">شاهد الموضع عند ${q.time}</a></dd>
+  </dl>`;
+}
+function render() {
+  document.getElementById("total").textContent = DATA.qs.length;
+  document.getElementById("meta").innerHTML =
+    `<li>${DATA.qs.length} سؤالًا</li><li>اختيار من متعدد وصح وخطأ</li><li>النجاح من 70٪</li>`;
+  const toc = [], html = [];
+  DATA.books.forEach((bk, bi) => {
+    const qs = DATA.qs.filter(q => q.b === bi);
+    toc.push(`<a href="#book-${bi}">${esc(bk.name)} <span class="stat">(${qs.length})</span></a>`);
+    html.push(`<section class="book" id="book-${bi}"><h2>${bi + 1}. ${esc(bk.name)}</h2>
+      <p>${bk.lessons} ${bk.lessons > 2 ? "دروس" : "درسان"} · الفيديوهات ${bk.videos} · ${qs.length} سؤالًا</p><div class="qs">`);
+    qs.forEach(q => {
+      const tf = q.type === "tf";
+      html.push(`<article class="q" id="q${q.id}" data-id="${q.id}">
+        <div class="qh"><span class="n">سؤال ${q.id}</span><span class="tag">الدرس ${q.lesson}</span><span class="tag lv">${esc(q.level)}</span>${tf ? '<span class="tag">صح أو خطأ</span>' : ""}</div>
+        <p class="qt">${esc(q.q)}</p>
+        <div class="opts${tf ? " tf" : ""}" role="group" aria-label="الاختيارات">
+          ${q.opts.map((o, i) => `<button class="opt" type="button" id="q${q.id}o${i}" data-i="${i}">${tf ? "" : `<span class="k">${LETTERS[i]}</span>`}<span>${esc(o)}</span></button>`).join("")}
+        </div><div class="fbx"></div></article>`);
+    });
+    html.push(`</div></section>`);
+  });
+  document.getElementById("toc").innerHTML = toc.join("");
+  document.getElementById("books").innerHTML = html.join("");
+  DATA.qs.forEach(q => { if (state[q.id] !== undefined) mark(q, state[q.id]); });
+  stats();
+}
+function mark(q, pick) {
+  const card = document.getElementById("q" + q.id);
+  const ok = pick === q.a;
+  card.classList.add(ok ? "right" : "wrong");
+  card.querySelectorAll(".opt").forEach(b => {
+    const i = +b.dataset.i; b.disabled = true;
+    if (i === q.a) b.classList.add("is-right");
+    else if (i === pick) b.classList.add("is-wrong");
+  });
+  card.querySelector(".fbx").innerHTML = ok
+    ? `<div class="fb ok"><div class="head">إجابة صحيحة</div><details class="ev"><summary>اعرض الدليل والمرجع</summary>${evidence(q)}</details></div>`
+    : `<div class="fb no"><div class="head">إجابة غير صحيحة؛ اخترت: ${esc(q.opts[pick])}</div>${evidence(q)}</div>`;
+}
+function tally() {
+  const per = DATA.books.map(() => ({n: 0, done: 0, ok: 0}));
+  let done = 0, ok = 0;
+  DATA.qs.forEach(q => {
+    per[q.b].n++;
+    if (state[q.id] !== undefined) { per[q.b].done++; done++; if (state[q.id] === q.a) { per[q.b].ok++; ok++; } }
+  });
+  return {per, done, ok};
+}
+function stats() {
+  const t = tally();
+  document.getElementById("answered").textContent = t.done;
+  document.getElementById("correct").textContent = t.ok;
+  document.getElementById("bar").style.width = pct(t.done, DATA.qs.length) + "%";
+  if (t.done === DATA.qs.length) showResult(false);
+}
+function showResult(scroll) {
+  const t = tally(), total = DATA.qs.length, score = pct(t.ok, total), box = document.getElementById("result");
+  const rows = DATA.books.map((bk, i) => {
+    const p = t.per[i], s = pct(p.ok, p.n);
+    const st = p.done < p.n ? `<span class="pill u">لم يكتمل (${p.done}/${p.n})</span>` : s >= PASS ? '<span class="pill p">ناجح</span>' : '<span class="pill f">يحتاج مراجعة</span>';
+    const color = s >= PASS ? "var(--ok)" : "var(--bad)";
+    return `<div class="row"><span class="nm">${esc(bk.name)}</span>${st}<span class="nums">${p.ok} صحيحة من ${p.n} · ${s}٪</span><span></span><div class="mini"><i style="width:${s}%;background:${color}"></i></div></div>`;
+  }).join("");
+  const weak = DATA.books.filter((bk, i) => pct(t.per[i].ok, t.per[i].n) < PASS);
+  const pass = score >= PASS;
+  let verdict;
+  if (t.done < total) verdict = `<p class="verdict">أجبت ${t.done} من ${total}. الأسئلة التي لم تُجب عنها تُحسب خطأ في الدرجة.</p>`;
+  else verdict = "";
+  verdict += pass
+    ? `<p class="verdict pass">نجحت بنسبة ${score}٪. فهمك لهذه الكتب جيد${weak.length ? "، لكن راجع: " + weak.map(b => esc(b.name)).join("، ") : ""}.</p>`
+    : `<p class="verdict fail">نتيجتك ${score}٪، وهي أقل من 70٪. راجع هذه الكتب: ${weak.map(b => esc(b.name)).join("، ")}.</p>`;
+  const wrong = DATA.qs.filter(q => state[q.id] !== undefined && state[q.id] !== q.a);
+  const review = wrong.length
+    ? `<div class="review"><b>الأسئلة التي أخطأت فيها (${wrong.length})</b><ul>${wrong.map(q => `<li><a href="#q${q.id}">سؤال ${q.id}</a> — ${esc(DATA.books[q.b].name)}، الدرس ${q.lesson}</li>`).join("")}</ul></div>`
+    : (t.done ? `<div class="review"><b>لم تخطئ في أي سؤال أجبت عنه.</b></div>` : "");
+  box.innerHTML = `<h2>النتيجة</h2><div class="score">${score}٪<small>${t.ok} إجابة صحيحة من ${total}</small></div>${verdict}
+    <h3>النتيجة لكل كتاب</h3><div class="rows">${rows}</div>${review}`;
+  box.hidden = false;
+  if (scroll) box.scrollIntoView({behavior: "smooth", block: "start"});
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest(".opt");
+  if (b && !b.disabled) {
+    const id = +b.closest(".q").dataset.id, q = DATA.qs[id - 1];
+    if (state[id] !== undefined) return;
+    state[id] = +b.dataset.i; save(); mark(q, state[id]); stats();
+  }
+});
+document.getElementById("showResult").addEventListener("click", () => showResult(true));
+document.getElementById("resetBtn").addEventListener("click", () => { document.getElementById("confirmReset").hidden = false; });
+document.getElementById("resetNo").addEventListener("click", () => { document.getElementById("confirmReset").hidden = true; });
+document.getElementById("resetYes").addEventListener("click", () => {
+  state = {}; save(); document.getElementById("confirmReset").hidden = true;
+  document.getElementById("result").hidden = true; render(); window.scrollTo({top: 0});
+});
+render();
+</script>
