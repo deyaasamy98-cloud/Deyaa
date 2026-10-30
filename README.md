@@ -21,6 +21,7 @@
 | نظام فيدباك الريلز اللحظي | [فتح](https://claude.ai/artifact/BbTJFUap3vScUBjwphDhQP) |
 | A&A: 40 اسكربت حسب الـ Territory | [فتح](https://claude.ai/artifact/GjqvgmuEMDCWLMyiAfvnJS) |
 | متن أبي شجاع 01: مقدمة المصنف وجلود الميتة | [فتح](https://claude.ai/artifact/6MdupmBbCo9fXnTgG7YsMw) |
+| اختبار متن أبي شجاع 01 | [فتح](https://claude.ai/artifact/HKyWWUgNRoGbb24K3i51qp) |
 | كيف نفهم التصوف بوصفه علمًا | [فتح](https://claude.ai/artifact/QNd1iossGcHmvfrexmdcXB) |
 | سلسلة فهم التعافي | [فتح](https://claude.ai/artifact/TPicma8P9EiL16enzpnMfM) |
 | الأمراض النفسية حلول | [فتح](https://claude.ai/artifact/TUAgeaJ8WDK5P6XBPd5NZV) |
