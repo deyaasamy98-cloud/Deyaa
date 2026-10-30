@@ -5,7 +5,7 @@
 | الفولدر | المحتوى |
 |---|---|
 | [Personal/Health](<Personal/Health/>) | التعافي من الإدمان (مهجة، وتأسيس فهم التعافي، وسلسلة فهم التعافي)، والصحة النفسية (التحرر من الماضي، والخزي، والأمراض النفسية) |
-| [Personal/Religion](<Personal/Religion/>) | تراث ابن تيمية (الشيخ حسين عبد الرازق)، والتصوف بوصفه علمًا |
+| [Personal/Religion](<Personal/Religion/>) | تراث ابن تيمية (الشيخ حسين عبد الرازق)، والتصوف بوصفه علمًا، ومتن أبي شجاع (د. لبيب نجيب) |
 | [Personal/Learning](<Personal/Learning/>) | أدوات Claude، والموشن جرافيك، والبيرسونال براند، وكورس أكسل |
 | [Personal/Plans](<Personal/Plans/>) | خطة الحياة والكارير، وأداة Core 4 |
 | [Personal/Work](<Personal/Work/>) | اسكربتات ريلز A&A |
@@ -20,6 +20,7 @@
 | Core 4: تقييم الأعمدة الأربعة | [فتح](https://claude.ai/artifact/GeXfi48MsaQpx85Gkt8azT) |
 | نظام فيدباك الريلز اللحظي | [فتح](https://claude.ai/artifact/BbTJFUap3vScUBjwphDhQP) |
 | A&A: 40 اسكربت حسب الـ Territory | [فتح](https://claude.ai/artifact/GjqvgmuEMDCWLMyiAfvnJS) |
+| متن أبي شجاع 01: مقدمة المصنف وجلود الميتة | [فتح](https://claude.ai/artifact/6MdupmBbCo9fXnTgG7YsMw) |
 | كيف نفهم التصوف بوصفه علمًا | [فتح](https://claude.ai/artifact/QNd1iossGcHmvfrexmdcXB) |
 | سلسلة فهم التعافي | [فتح](https://claude.ai/artifact/TPicma8P9EiL16enzpnMfM) |
 | الأمراض النفسية حلول | [فتح](https://claude.ai/artifact/TUAgeaJ8WDK5P6XBPd5NZV) |

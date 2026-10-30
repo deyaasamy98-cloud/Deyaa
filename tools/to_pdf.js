@@ -6,7 +6,7 @@ let fontCss=fs.readFileSync(path.join(fontDir,'cairo.css'),'utf8')
   .replace(/url\(https:\/\/fonts\.gstatic\.com\/[^)]*\/([^/)]+\.woff2)\)/g,(m,f)=>
     `url(data:font/woff2;base64,${fs.readFileSync(path.join(fontDir,f)).toString('base64')})`);
 (async()=>{
-  const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+  const b=await chromium.launch();
   const page=await b.newPage();
   for(let i=0;i<pairs.length;i+=2){
     let body=fs.readFileSync(pairs[i],'utf8')

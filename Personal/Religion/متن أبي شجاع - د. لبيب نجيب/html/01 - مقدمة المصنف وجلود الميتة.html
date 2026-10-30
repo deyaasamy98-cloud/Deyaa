@@ -1,0 +1,520 @@
+<title>أبو شجاع 01: المياه وجلود الميتة</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: a sharh page. The matn sits in rubric red between parentheses inside a double-ruled frame, as in printed shuruh; the explanation follows in plain ink. One column, then Feynman Q&A and a self-graded quiz. Series style: keep for every lesson. */
+:root{
+  --paper:#F3F5F2; --sheet:#FBFCFA; --ink:#18221F; --muted:#56635F; --rule:#D3DBD6;
+  --rubric:#9E2F28; --rubric-soft:#F5E2DE; --fiqh:#1D5B69; --fiqh-soft:#DCEAED;
+  --gold:#7E5F0E; --gold-soft:#F1E7CC; --ok:#2B7A4B; --ok-soft:#DCEFE3; --bad:#B0372F; --bad-soft:#F6DEDB;
+  --f:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F1513; --sheet:#151D1A; --ink:#E2EAE6; --muted:#97A7A1; --rule:#27332F;
+  --rubric:#F0877C; --rubric-soft:#2F1815; --fiqh:#6FC0D0; --fiqh-soft:#12292E;
+  --gold:#E2BC5C; --gold-soft:#2A2312; --ok:#6CCB92; --ok-soft:#132A1D; --bad:#F08B82; --bad-soft:#2E1715; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#0F1513; --sheet:#151D1A; --ink:#E2EAE6; --muted:#97A7A1; --rule:#27332F;
+  --rubric:#F0877C; --rubric-soft:#2F1815; --fiqh:#6FC0D0; --fiqh-soft:#12292E;
+  --gold:#E2BC5C; --gold-soft:#2A2312; --ok:#6CCB92; --ok-soft:#132A1D; --bad:#F08B82; --bad-soft:#2E1715; color-scheme:dark;}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f);font-size:16.5px;line-height:1.9}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{direction:rtl;max-width:860px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 72px}
+h1,h2,h3{margin:0;line-height:1.45;text-wrap:balance;font-weight:700}
+h2{font-size:clamp(1.5rem,1.15rem + 1.4vw,2rem)}
+h3{font-size:1.2rem}
+p{margin:0}
+a{color:var(--fiqh)}
+:focus-visible{outline:2px solid var(--fiqh);outline-offset:3px;border-radius:4px}
+.muted{color:var(--muted)}
+
+header.top{padding-block:40px 26px;display:grid;gap:14px}
+.series{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:.86rem;color:var(--muted);font-weight:600}
+.series .no{background:var(--rubric);color:var(--sheet);border-radius:6px;padding:1px 10px}
+h1{font-size:clamp(2rem,1.3rem + 3vw,3rem);font-weight:800}
+.lede{color:var(--muted);max-width:62ch;font-size:1.04rem}
+.meta{display:flex;flex-wrap:wrap;gap:8px}
+.meta a,.meta span{font-size:.86rem;text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:3px 14px;color:var(--ink)}
+.meta a{color:var(--fiqh);border-color:var(--fiqh)}
+.note{font-size:.88rem;color:var(--muted);background:var(--sheet);border:1px dashed var(--rule);border-radius:10px;padding:10px 14px;max-width:70ch}
+
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--rule);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+nav.toc ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.toc a{display:block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:.9rem;padding:4px 14px;border-radius:999px;border:1px solid var(--rule)}
+nav.toc a:hover{border-color:var(--fiqh);color:var(--fiqh)}
+
+section.block{padding-top:50px;display:grid;gap:22px;scroll-margin-top:60px}
+.sec-head{display:grid;gap:6px}
+.sec-head p{color:var(--muted);max-width:64ch}
+
+/* masala: matn + sharh */
+.masala{display:grid;gap:12px;padding-top:24px;border-top:1px solid var(--rule)}
+.masala-head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.masala-head .idx{color:var(--rubric);font-weight:800;font-size:1.05rem}
+.matn{background:var(--sheet);border-block:3px double var(--rubric);padding:14px 18px;font-size:1.12rem;line-height:2.1;font-weight:600}
+.matn .lbl{display:block;font-size:.76rem;letter-spacing:.04em;color:var(--muted);font-weight:600;margin-bottom:2px}
+.matn q{quotes:"(" ")";color:var(--rubric)}
+.sharh{display:grid;gap:10px;max-width:70ch}
+.sharh ul{margin:0;padding-inline-start:20px;display:grid;gap:6px}
+.sharh li::marker{color:var(--fiqh)}
+.term{font-weight:700;color:var(--fiqh)}
+.key{background:var(--fiqh-soft);border-radius:10px;padding:10px 14px;font-weight:500}
+.key b{color:var(--fiqh)}
+.warn{background:var(--gold-soft);border-radius:10px;padding:10px 14px}
+.warn b{color:var(--gold)}
+.dalil{font-size:.95rem;color:var(--muted)}
+.dalil b{color:var(--ink);font-weight:600}
+
+/* water table */
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:520px;background:var(--sheet);font-size:.95rem}
+th,td{border:1px solid var(--rule);padding:8px 10px;text-align:start;vertical-align:top}
+th{background:var(--fiqh-soft);color:var(--fiqh);font-weight:700}
+td:first-child{font-weight:700;white-space:nowrap}
+
+/* tree */
+.tree-wrap{overflow-x:auto;background:var(--sheet);border-radius:12px;padding:18px}
+.tree,.tree ul{list-style:none;margin:0;padding:0}
+.tree ul{padding-inline-start:22px;border-inline-start:2px solid var(--rule)}
+.tree li{position:relative;padding-block:3px}
+.tree ul>li::before{content:"";position:absolute;inset-inline-start:-22px;top:1.05em;width:16px;border-top:2px solid var(--rule)}
+.tree .root{display:inline-block;font-size:1.25rem;font-weight:800;background:var(--rubric);color:var(--sheet);padding:4px 18px;border-radius:999px;margin-bottom:6px}
+.tree .br{font-weight:700;color:var(--fiqh);font-size:1.05rem}
+.tree .lf b{color:var(--rubric);font-weight:700}
+
+/* feynman */
+.fy{display:grid;gap:12px}
+.fq{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:8px}
+.fq h3{font-size:1.08rem}
+.fq h3::before{content:"س: ";color:var(--rubric)}
+.fq .simple::before{content:"ج: ";color:var(--fiqh);font-weight:700}
+.fq .like{font-size:.95rem;color:var(--muted)}
+.fq .like b{color:var(--gold)}
+.fq .myth{font-size:.94rem;background:var(--bad-soft);border-radius:8px;padding:6px 12px}
+.fq .myth b{color:var(--bad)}
+
+/* quiz */
+.quiz-bar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:12px 16px}
+.quiz-bar label{font-weight:600;font-size:.92rem}
+.quiz-bar input{font:inherit;font-size:.95rem;border:1px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:8px;padding:4px 10px;min-width:0;width:14rem;max-width:100%}
+.score{margin-inline-start:auto;font-weight:700;font-variant-numeric:tabular-nums}
+.qlist{display:grid;gap:14px;counter-reset:q}
+.qq{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:grid;gap:10px;counter-increment:q}
+.qq .qt{font-weight:700}
+.qq .qt::before{content:counter(q) ". ";color:var(--rubric)}
+.qq .tag{font-size:.75rem;color:var(--muted);font-weight:600}
+.opts{display:grid;gap:6px}
+.opt{font:inherit;text-align:start;background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:9px;padding:7px 12px;cursor:pointer;line-height:1.7}
+.opt:hover:not(:disabled){border-color:var(--fiqh)}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ink)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--ink)}
+.why{display:none;font-size:.94rem;border-inline-start:3px solid var(--fiqh);padding-inline-start:12px;color:var(--ink)}
+.qq.done .why{display:block}
+.result{display:none;background:var(--fiqh-soft);border-radius:12px;padding:16px;gap:6px}
+.result.show{display:grid}
+.result h3{color:var(--fiqh)}
+.btn{font:inherit;font-weight:700;background:var(--fiqh);color:var(--sheet);border:0;border-radius:9px;padding:6px 18px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--fiqh);border:1px solid var(--fiqh)}
+
+/* do */
+.steps{margin:0;padding-inline-start:22px;display:grid;gap:8px;max-width:70ch}
+.steps li::marker{color:var(--rubric);font-weight:800}
+.flow{display:grid;gap:8px;max-width:70ch}
+.flow div{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:8px 14px}
+.flow b{color:var(--rubric)}
+
+footer{padding-top:48px;color:var(--muted);font-size:.85rem}
+
+@media (prefers-reduced-motion:no-preference){.opt{transition:background .15s,border-color .15s}}
+@media print{
+  nav.toc,.quiz-bar,.btn,.result{display:none!important}
+  body{font-size:12.5pt;background:#fff}
+  .matn,.key,.warn,.fq,.qq,.flow div,table{break-inside:avoid}
+  .masala-head,h3{break-after:avoid}
+  .qq{padding:8px 12px;gap:5px}
+  .opts{grid-template-columns:1fr 1fr;gap:4px}
+  .opt{padding:2px 10px;font-size:.9em}
+  .qlist{gap:8px}
+  .why{display:block}
+  .opt.is-key{background:var(--ok-soft);border-color:var(--ok)}
+  section.block{padding-top:26px}
+}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="series"><span class="no">الدرس 1</span><span>سلسلة شرح متن أبي شجاع في الفقه الشافعي</span><span>د. لبيب نجيب عبد الله</span></div>
+  <h1>مقدمة المصنف، والمياه، وجلود الميتة</h1>
+  <p class="lede">أول درس في الفقه: لماذا كُتب هذا المتن، وأي ماء تتطهر به، وكيف تحكم على أي ماء أمامك، ومتى يطهر جلد الميتة. كل مسألة تبدأ بلفظ المتن، ثم شرح مبسط، ثم أسئلة تختبر فهمك.</p>
+  <div class="meta">
+    <a href="https://youtu.be/P-LDVYeyURk" target="_blank" rel="noopener">شاهد الدرس على يوتيوب</a>
+    <span>8 مسائل</span><span>12 سؤال فهم</span><span>26 سؤال اختبار</span>
+  </div>
+  <p class="note">الشرح هنا على المعتمد في المذهب الشافعي فقط، من غير ذكر خلاف المذاهب حتى لا يتشتت المبتدئ. وألفاظ المتن قد تختلف اختلافًا يسيرًا بين الطبعات.</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة"><ul>
+  <li><a href="#matn">المتن والشرح</a></li>
+  <li><a href="#tree">التشجير</a></li>
+  <li><a href="#feynman">اشرحها لغيرك</a></li>
+  <li><a href="#quiz">اختبر فهمك</a></li>
+  <li><a href="#do">المطلوب: اعمل إيه</a></li>
+</ul></nav>
+
+<section class="block" id="matn">
+  <div class="sec-head"><h2>المتن والشرح</h2><p>اقرأ لفظ المتن أولًا بصوت مسموع، ثم الشرح، ثم ارجع للمتن مرة ثانية. ستجد أن كل كلمة فيه صار لها معنى.</p></div>
+
+  <article class="masala">
+    <div class="masala-head"><span class="idx">المسألة 1</span><h3>مقدمة المصنف: لماذا كُتب هذا المتن؟</h3></div>
+    <p class="matn"><span class="lbl">قال المصنف رحمه الله</span><q>بسم الله الرحمن الرحيم. الحمد لله رب العالمين، وصلى الله على سيدنا محمد النبي وآله وصحبه الطاهرين. قال القاضي أبو شجاع أحمد بن الحسين بن أحمد الأصفهاني رحمه الله تعالى: سألني بعض الأصدقاء حفظهم الله تعالى أن أعمل مختصرًا في الفقه على مذهب الإمام الشافعي رحمة الله عليه ورضوانه، في غاية الاختصار ونهاية الإيجاز؛ ليقرب على المتعلم درسه، ويسهل على المبتدئ حفظه، وأن أكثر فيه من التقسيمات وحصر الخصال، فأجبته إلى ذلك طالبًا للثواب، راغبًا إلى الله سبحانه وتعالى في التوفيق للصواب، إنه على ما يشاء قدير، وبعباده لطيف خبير.</q></p>
+    <div class="sharh">
+      <p><span class="term">المصنف:</span> القاضي أبو شجاع الأصفهاني، من علماء الشافعية في القرنين الخامس والسادس الهجريين. ويُسمى كتابه «غاية الاختصار» ويُعرف أيضًا بـ«التقريب»، وهو من أشهر متون المبتدئين في المذهب، وعليه شروح كثيرة.</p>
+      <ul>
+        <li><b>سبب التأليف:</b> طلبٌ من بعض أصحابه، فأجابهم طلبًا للثواب لا للشهرة.</li>
+        <li><b>غاية الاختصار ونهاية الإيجاز:</b> أقل عدد من الكلمات يحمل أكبر عدد من الأحكام. لذلك كل كلمة في المتن مقصودة.</li>
+        <li><b>هدفان:</b> أن يقرب على المتعلم فهمه (درسه)، وأن يسهل على المبتدئ حفظه.</li>
+        <li><b>طريقته:</b> الإكثار من <span class="term">التقسيمات</span> (المياه أربعة أقسام) و<span class="term">حصر الخصال</span> (المياه سبعة، وهكذا). فالمتن يعطيك «أدراجًا» مرتبة تضع فيها المسائل.</li>
+      </ul>
+      <p class="key"><b>الفكرة الأساسية:</b> هذا المتن خريطة مختصرة للفقه كله. تحفظ لفظه، ثم تفهم الشرح، فيصبح عندك هيكل تضيف عليه كل ما تتعلمه بعد ذلك.</p>
+    </div>
+  </article>
+
+  <article class="masala">
+    <div class="masala-head"><span class="idx">المسألة 2</span><h3>كتاب الطهارة: لماذا نبدأ بها؟</h3></div>
+    <p class="matn"><span class="lbl">قال المصنف</span><q>كتاب الطهارة.</q></p>
+    <div class="sharh">
+      <ul>
+        <li><span class="term">الكتاب</span> عند الفقهاء: مجموعة مسائل في موضوع واحد. وتحته «أبواب» و«فصول».</li>
+        <li><span class="term">الطهارة لغة:</span> النظافة والخلوص من الأدناس. <span class="term">وشرعًا:</span> فعلٌ تُستباح به الصلاة، كالوضوء والغسل والتيمم وإزالة النجاسة.</li>
+        <li>بدأ بها لأن الصلاة أعظم العبادات بعد الشهادتين، والطهارة شرط لصحتها. والشرط يُقدَّم على المشروط.</li>
+      </ul>
+      <p class="dalil"><b>الدليل:</b> قوله ﷺ: «مفتاح الصلاة الطهور» (رواه أبو داود والترمذي).</p>
+      <p class="key"><b>الفكرة الأساسية:</b> الطهارة مفتاح، والصلاة هي الباب. من لا يعرف المفتاح لا يدخل.</p>
+    </div>
+  </article>
+
+  <article class="masala">
+    <div class="masala-head"><span class="idx">المسألة 3</span><h3>المياه السبعة التي يجوز التطهر بها</h3></div>
+    <p class="matn"><span class="lbl">قال المصنف</span><q>المياه التي يجوز التطهير بها سبع مياه: ماء السماء، وماء البحر، وماء النهر، وماء البئر، وماء العين، وماء الثلج، وماء البرد.</q></p>
+    <div class="sharh">
+      <ul>
+        <li>السبعة ترجع إلى أصلين: <b>ما نزل من السماء</b> (المطر والثلج والبرد)، و<b>ما نبع من الأرض</b> (البحر والنهر والبئر والعين).</li>
+        <li>الثلج والبرد يُتطهر بهما <b>بعد أن يذوبا ويسيلا</b> على العضو، لا وهما قطع جامدة.</li>
+        <li>العدد للحصر التعليمي. فماء الحنفية والماء المعبأ داخلان في «ما نبع من الأرض»، وهما ماء مطلق.</li>
+        <li>رفع الحدث وإزالة النجاسة لا يكونان إلا <b>بالماء</b>. فلا يصح الوضوء بعصير ولا بماء ورد ولا بخل.</li>
+      </ul>
+      <p class="dalil"><b>من الأدلة:</b> ﴿وَيُنَزِّلُ عَلَيْكُم مِّنَ السَّمَاءِ مَاءً لِّيُطَهِّرَكُم بِهِ﴾ [الأنفال: 11]. وفي البحر: «هو الطهور ماؤه، الحل ميتته» (رواه أصحاب السنن). وفي الثلج والبرد دعاء النبي ﷺ: «اللهم اغسل خطاياي بالماء والثلج والبرد» (متفق عليه).</p>
+    </div>
+  </article>
+
+  <article class="masala">
+    <div class="masala-head"><span class="idx">المسألة 4</span><h3>القسم الأول: الطاهر المطهر غير المكروه (الماء المطلق)</h3></div>
+    <p class="matn"><span class="lbl">قال المصنف</span><q>ثم المياه على أربعة أقسام: طاهر مطهر غير مكروه، وهو الماء المطلق.</q></p>
+    <div class="sharh">
+      <p>قبل الأقسام افهم كلمتين يقوم عليهما الباب كله:</p>
+      <ul>
+        <li><span class="term">طاهر:</span> نظيف في نفسه، يجوز شربه ولا ينجس ما يلاقيه.</li>
+        <li><span class="term">مطهِّر:</span> يطهِّر غيره، أي يرفع الحدث ويزيل النجاسة. كل مطهر طاهر، وليس كل طاهر مطهرًا.</li>
+      </ul>
+      <p><span class="term">الماء المطلق:</span> ما يُسمى «ماء» بلا قيد لازم.</p>
+      <ul>
+        <li><b>قيد منفك</b> لا يضر: «ماء البئر» و«ماء النهر». لو نقلته من البئر سميته «ماء» فقط، فهو مطلق.</li>
+        <li><b>قيد لازم</b> يُخرجه عن الإطلاق: «ماء الورد» و«ماء الزهر». لا يُسمى ماء إلا مع قيده، فليس مطلقًا.</li>
+      </ul>
+      <p class="key"><b>الفكرة الأساسية:</b> إذا سألك أحد: «هات ماء» فأعطيته هذا الماء دون أن يعترض، فهو مطلق.</p>
+    </div>
+  </article>
+
+  <article class="masala">
+    <div class="masala-head"><span class="idx">المسألة 5</span><h3>القسم الثاني: الطاهر المطهر المكروه (الماء المشمَّس)</h3></div>
+    <p class="matn"><span class="lbl">قال المصنف</span><q>وطاهر مطهر مكروه، وهو الماء المشمس.</q></p>
+    <div class="sharh">
+      <p>هو الماء الذي سخنته الشمس. يصح التطهر به، لكن يُكره استعماله في البدن كراهة تنزيه، لما ذُكر من أنه يُخشى منه الضرر على الجلد.</p>
+      <p>ولا يُكره إلا باجتماع ثلاثة شروط:</p>
+      <ul>
+        <li>أن يكون في <b>بلد حار</b>.</li>
+        <li>أن يكون في <b>إناء منطبع</b>، أي من معدن يُطرق كالحديد والنحاس (غير الذهب والفضة).</li>
+        <li>أن يُستعمل في <b>البدن وهو ما زال حارًّا</b>. فإن برد زالت الكراهة.</li>
+      </ul>
+      <p class="warn"><b>خلي بالك:</b> الماء المسخن بالنار أو بالسخان الكهربائي غير مكروه. الكراهة خاصة بما سخنته الشمس بالشروط الثلاثة.</p>
+    </div>
+  </article>
+
+  <article class="masala">
+    <div class="masala-head"><span class="idx">المسألة 6</span><h3>القسم الثالث: الطاهر غير المطهر (المستعمل والمتغير)</h3></div>
+    <p class="matn"><span class="lbl">قال المصنف</span><q>وطاهر غير مطهر، وهو الماء المستعمل، والمتغير بما خالطه من الطاهرات.</q></p>
+    <div class="sharh">
+      <p>هذا الماء نظيف يجوز شربه، لكن لا يُتوضأ به ولا تُزال به نجاسة. وهو نوعان:</p>
+      <ul>
+        <li><span class="term">المستعمل:</span> الماء <b>القليل</b> الذي <b>انفصل عن العضو</b> بعد استعماله في <b>طهارة واجبة</b>، كرفع حدث في الوضوء أو الغسل، أو إزالة نجاسة. مثاله: الماء الذي يتساقط من وجهك ويديك في الوضوء ثم تجمعه في إناء.</li>
+        <li><span class="term">المتغير بمخالط طاهر:</span> ماء خالطه شيء طاهر فذاب فيه، وغيّره تغيرًا كثيرًا حتى لم يعد يُسمى «ماء» مطلقًا، كالشاي والقهوة والماء الذي ذاب فيه زعفران كثير.</li>
+      </ul>
+      <p>وهناك تغيرات <b>لا تضر</b> ويبقى الماء مطهرًا:</p>
+      <ul>
+        <li>التغير <b>اليسير</b> الذي لا يسلب اسم الماء.</li>
+        <li>التغير <b>بالمجاور</b>: شيء لا يذوب في الماء بل يتميز عنه، كقطعة خشب أو دهن يطفو.</li>
+        <li>التغير بما <b>يشق الاحتراز منه</b>: كالطين والطحلب وما في مقر الماء وممره.</li>
+        <li>التغير <b>بطول المكث</b>: الماء الراكد الذي تغير من طول بقائه وحده.</li>
+      </ul>
+      <p class="key"><b>الفكرة الأساسية:</b> المستعمل «أدّى وظيفته»، والمتغير «فقد اسمه». وكلاهما ما زال نظيفًا.</p>
+    </div>
+  </article>
+
+  <article class="masala">
+    <div class="masala-head"><span class="idx">المسألة 7</span><h3>القسم الرابع: الماء النجس، والقلتان</h3></div>
+    <p class="matn"><span class="lbl">قال المصنف</span><q>وماء نجس، وهو الذي حلت فيه نجاسة وهو دون القلتين، أو كان قلتين فتغير. والقلتان خمسمائة رطل بغدادي تقريبًا في الأصح.</q></p>
+    <div class="sharh">
+      <p>الحكم يتوقف على <b>كمية الماء</b>:</p>
+      <ul>
+        <li><b>الماء القليل</b> (أقل من قلتين): ينجس بمجرد وقوع النجاسة فيه، <b>ولو لم يتغير</b>.</li>
+        <li><b>الماء الكثير</b> (قلتان فأكثر): لا ينجس إلا إذا <b>تغير</b> بالنجاسة في طعمه أو لونه أو ريحه، ولو تغيرًا يسيرًا.</li>
+      </ul>
+      <p><span class="term">القلتان:</span> خمسمئة رطل بغدادي تقريبًا. وتُقدَّر عند المعاصرين بنحو مئتي لتر تقريبًا، وفي الإناء المربع ذراع وربع طولًا وعرضًا وعمقًا.</p>
+      <ul>
+        <li><b>«تقريبًا»</b>: النقص اليسير، كرطل أو رطلين، لا يضر.</li>
+        <li><b>«في الأصح»</b>: هذا هو الرأي المعتمد في المذهب. وكلمة «الأصح» من مصطلحات الشافعية تدل على أن هناك وجهًا آخر أضعف، والعمل على الأصح.</li>
+      </ul>
+      <p class="dalil"><b>الدليل:</b> قوله ﷺ: «إذا بلغ الماء قلتين لم يحمل الخبث» (رواه أبو داود وغيره).</p>
+      <p class="warn"><b>من الشرح:</b> يُعفى عن الميتة التي ليس لها دم يسيل، كالذبابة والنملة، إذا وقعت في الماء القليل ولم تغيره. ويُعفى عن النجاسة اليسيرة جدًا التي لا تدركها العين.</p>
+
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>القسم</th><th>طاهر؟</th><th>مطهر؟</th><th>مثال</th></tr></thead>
+        <tbody>
+          <tr><td>الماء المطلق</td><td>نعم</td><td>نعم بلا كراهة</td><td>ماء الحنفية، ماء المطر، ماء البحر</td></tr>
+          <tr><td>الماء المشمس</td><td>نعم</td><td>نعم مع الكراهة</td><td>ماء في خزان حديد تحت الشمس في بلد حار</td></tr>
+          <tr><td>طاهر غير مطهر</td><td>نعم</td><td>لا</td><td>ماء متساقط من أعضاء الوضوء، شاي</td></tr>
+          <tr><td>الماء النجس</td><td>لا</td><td>لا</td><td>جردل صغير وقعت فيه نقطة بول</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </article>
+
+  <article class="masala">
+    <div class="masala-head"><span class="idx">المسألة 8</span><h3>جلود الميتة وعظمها وشعرها</h3></div>
+    <p class="matn"><span class="lbl">قال المصنف</span><q>فصل: وجلود الميتة تطهر بالدباغ إلا جلد الكلب والخنزير وما تولد منهما أو من أحدهما. وعظم الميتة وشعرها نجس إلا الآدمي.</q></p>
+    <div class="sharh">
+      <ul>
+        <li><span class="term">الميتة:</span> كل حيوان زالت حياته بغير ذكاة شرعية (ذبح شرعي). ويُستثنى من نجاستها الآدمي والسمك والجراد، فميتتها طاهرة.</li>
+        <li><span class="term">الدباغ:</span> نزع فضول الجلد (رطوباته ودمه ولحمه) بمادة حِرِّيفة كالشَّبّ والقَرَظ وقشر الرمان، بحيث لو نُقع الجلد في الماء بعد ذلك لم يرجع إليه النتن والفساد. أما تجفيفه في الشمس أو بالتراب فليس دباغًا.</li>
+        <li>بعد الدباغ يصير الجلد <b>كثوب متنجس</b>، فيجب غسله بالماء لأن مادة الدباغ تنجست بملاقاته، ثم يطهر.</li>
+        <li><b>المستثنى:</b> جلد الكلب والخنزير وما تولد منهما أو من أحدهما مع حيوان آخر. هذه نجسة في حياتها، فلا يطهرها الدباغ.</li>
+        <li><b>العظم والشعر:</b> نجسان من الميتة، ولا يطهران بالدباغ لأنه لا يؤثر فيهما.</li>
+        <li><b>إلا الآدمي:</b> الإنسان طاهر حيًّا وميتًا، فشعره وعظمه طاهران، تكريمًا له.</li>
+      </ul>
+      <p class="dalil"><b>الأدلة:</b> «إذا دُبغ الإهاب فقد طهر» (رواه مسلم). و﴿وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ﴾ [الإسراء: 70]. و«إن المؤمن لا ينجس» (متفق عليه).</p>
+      <p class="key"><b>الفكرة الأساسية:</b> الدباغ يزيل النجاسة التي جاءت بالموت، ولا يجعل الشيء أطهر مما كان في حياته. فالكلب والخنزير نجسان في الحياة، فلا يطهر جلدهما بالدباغ.</p>
+      <p class="warn"><b>خلي بالك:</b> جلد الحيوان المأكول إذا ذُبح ذبحًا شرعيًّا طاهر من غير دباغ. والدباغ يُحتاج إليه في جلد <b>الميتة</b> فقط.</p>
+    </div>
+  </article>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head"><h2>التشجير</h2><p>الدرس كله في نظرة واحدة. حاول أن ترسمه من ذاكرتك قبل أن تنظر إليه.</p></div>
+  <div class="tree-wrap"><ul class="tree"><li><span class="root">الدرس الأول</span>
+    <ul>
+      <li><span class="br">مقدمة المصنف</span><ul>
+        <li class="lf">سبب التأليف: <b>طلب الأصحاب</b>، والنية طلب الثواب</li>
+        <li class="lf">المنهج: <b>غاية الاختصار</b>، والإكثار من التقسيمات وحصر الخصال</li>
+      </ul></li>
+      <li><span class="br">الطهارة</span><ul>
+        <li class="lf">لغة: النظافة. شرعًا: فعل تُستباح به الصلاة</li>
+        <li class="lf">تُقدَّم لأنها <b>شرط الصلاة</b></li>
+      </ul></li>
+      <li><span class="br">المياه المطهرة: سبعة</span><ul>
+        <li class="lf"><b>من السماء:</b> المطر، الثلج، البرد</li>
+        <li class="lf"><b>من الأرض:</b> البحر، النهر، البئر، العين</li>
+      </ul></li>
+      <li><span class="br">أقسام المياه: أربعة</span><ul>
+        <li class="lf"><b>طاهر مطهر غير مكروه:</b> المطلق</li>
+        <li class="lf"><b>طاهر مطهر مكروه:</b> المشمس (بلد حار، إناء منطبع، في البدن وهو حار)</li>
+        <li class="lf"><b>طاهر غير مطهر:</b> المستعمل، والمتغير بمخالط طاهر</li>
+        <li class="lf"><b>نجس:</b> قليل لاقته نجاسة، أو كثير تغير بها</li>
+      </ul></li>
+      <li><span class="br">القلتان</span><ul>
+        <li class="lf">خمسمئة رطل بغدادي <b>تقريبًا</b>، نحو مئتي لتر</li>
+        <li class="lf">«في الأصح»: الرأي المعتمد في المذهب</li>
+      </ul></li>
+      <li><span class="br">الميتة</span><ul>
+        <li class="lf"><b>الجلد:</b> يطهر بالدباغ، ثم يُغسل. إلا الكلب والخنزير وفرعهما</li>
+        <li class="lf"><b>العظم والشعر:</b> نجسان، إلا من الآدمي</li>
+      </ul></li>
+    </ul>
+  </li></ul></div>
+</section>
+
+<section class="block" id="feynman">
+  <div class="sec-head"><h2>اشرحها لغيرك: أسئلة على طريقة فاينمان</h2><p>طريقة فاينمان: إن استطعت أن تشرح المسألة لطفل بكلمات بسيطة فقد فهمتها. اقرأ السؤال، وحاول أن تجيب بصوت مسموع قبل أن تقرأ الجواب.</p></div>
+  <div class="fy">
+    <div class="fq"><h3>لماذا يناسب هذا المتن من يبدأ تعلم الفقه؟</h3>
+      <p class="simple">لأنه قصير جدًّا ومرتب بالتقسيم والعدد. أنت لا تحفظ كلامًا مسترسلًا، بل قوائم: «المياه سبعة»، «الأقسام أربعة».</p>
+      <p class="like"><b>تشبيه:</b> مثل خريطة مترو. لا تريك كل شارع، لكنها تريك الخطوط والمحطات بوضوح، وبعدها تكتشف الشوارع وحدك.</p></div>
+
+    <div class="fq"><h3>ما الفرق بين «طاهر» و«مطهِّر»؟</h3>
+      <p class="simple">الطاهر نظيف في نفسه. والمطهر نظيف ويُنظف غيره. فكل مطهر طاهر، وليس كل طاهر مطهرًا.</p>
+      <p class="like"><b>تشبيه:</b> كوب لبن نظيف. تشربه بلا حرج (طاهر)، لكنك لا تتوضأ به ولا تغسل به نجاسة (غير مطهر).</p>
+      <p class="myth"><b>فهم خاطئ شائع:</b> «طالما الماء نظيف فأتوضأ به». النظافة وحدها لا تكفي، لا بد أن يكون ماءً مطلقًا.</p></div>
+
+    <div class="fq"><h3>هل ماء الحنفية والماء المعبأ داخلان في المياه السبعة؟</h3>
+      <p class="simple">نعم. السبعة ترجع إلى أصلين: ما نزل من السماء، وما نبع من الأرض. وماء الحنفية أصله من نهر أو بئر.</p>
+      <p class="myth"><b>فهم خاطئ شائع:</b> أن المياه السبعة قائمة مغلقة، وما سواها لا يصح. العدد للتعليم، والقاعدة هي الأصلان.</p></div>
+
+    <div class="fq"><h3>كيف أعرف أن الماء «مطلق»؟</h3>
+      <p class="simple">اسأل نفسك: لو طلب شخص «ماء» فأعطيته هذا، هل يقبله دون أن يقول «هذا ليس ماء»؟ إن قبله فهو مطلق.</p>
+      <p class="like"><b>مثال:</b> «ماء البئر» قيده يزول إذا نقلته، فهو مطلق. «ماء الورد» لا يُسمى ماء إلا مع قيده، فليس مطلقًا.</p></div>
+
+    <div class="fq"><h3>لماذا الماء المستعمل لا يطهر وهو نظيف؟</h3>
+      <p class="simple">لأنه أدّى وظيفته في طهارة واجبة. فهو باقٍ على نظافته، لكنه لا يُستعمل في التطهير مرة ثانية.</p>
+      <p class="like"><b>تشبيه:</b> تذكرة قطار استُعملت. الورقة سليمة ونظيفة، لكنها لا تُدخلك القطار مرة أخرى.</p>
+      <p class="myth"><b>فهم خاطئ شائع:</b> أن الماء الباقي في الإبريق بعد الوضوء صار مستعملًا. المستعمل هو ما <b>انفصل عن أعضائك</b>، لا ما بقي في الإناء.</p></div>
+
+    <div class="fq"><h3>ما الفرق بين «المخالط» و«المجاور»؟</h3>
+      <p class="simple">المخالط يذوب في الماء ولا تستطيع فصله، كالسكر والشاي. والمجاور يبقى متميزًا، كقطعة خشب أو بقعة زيت تطفو.</p>
+      <p class="like"><b>القاعدة:</b> المخالط الطاهر إذا غيّر الماء تغيرًا كثيرًا سلبه الطهورية. أما المجاور فلا يضر ولو غيّر رائحته.</p></div>
+
+    <div class="fq"><h3>لماذا ينجس الماء القليل بمجرد وقوع النجاسة، والكثير لا ينجس إلا بالتغير؟</h3>
+      <p class="simple">لأن النبي ﷺ جعل القلتين حدًّا: «إذا بلغ الماء قلتين لم يحمل الخبث». فما دون القلتين يحمل النجاسة ولو لم تظهر، وما فوقهما لا يحملها إلا إذا ظهر أثرها.</p>
+      <p class="like"><b>تشبيه:</b> نقطة حبر في كوب ماء، ونقطة حبر في حوض كبير. في الحوض تذوب ولا يظهر لها أثر.</p>
+      <p class="myth"><b>فهم خاطئ شائع:</b> «الماء القليل ما دام لم يتغير فهو طاهر». هذا حكم الكثير، أما القليل فينجس ولو لم يتغير.</p></div>
+
+    <div class="fq"><h3>ماذا تعني «تقريبًا في الأصح» في كلام المصنف؟</h3>
+      <p class="simple">«تقريبًا»: لا يضر نقص يسير. «في الأصح»: هذا هو المعتمد الذي يُعمل به في المذهب.</p>
+      <p class="like"><b>للمبتدئ:</b> كلما رأيت «الأصح» أو «الصحيح» في المتن فخذ به واطمئن، فهو الذي عليه الفتوى في المذهب.</p></div>
+
+    <div class="fq"><h3>هل كل ماء سخن في الشمس مكروه؟</h3>
+      <p class="simple">لا. يُكره فقط إذا اجتمعت ثلاثة شروط: بلد حار، وإناء معدني منطبع، واستعمال في البدن وهو ما زال حارًّا.</p>
+      <p class="myth"><b>فهم خاطئ شائع:</b> كراهة الماء الساخن عمومًا. ماء السخان والماء المسخن بالنار لا كراهة فيه.</p></div>
+
+    <div class="fq"><h3>لماذا يطهر الدباغ جلد الشاة الميتة ولا يطهر جلد الكلب؟</h3>
+      <p class="simple">الدباغ يزيل النجاسة التي جاءت بسبب الموت. والشاة كانت طاهرة في حياتها، فيرجعها الدباغ إلى طهارتها. أما الكلب فنجس في حياته، والدباغ لا يجعله أطهر مما كان حيًّا.</p>
+      <p class="like"><b>تشبيه:</b> الغسيل يرجع القميص الأبيض لونه الأبيض، لكنه لا يحوّل القميص الأسود إلى أبيض.</p></div>
+
+    <div class="fq"><h3>بعد دبغ الجلد، هل يُستعمل مباشرة؟</h3>
+      <p class="simple">لا. يصير كثوب متنجس، فيُغسل بالماء، ثم يطهر.</p>
+      <p class="myth"><b>فهم خاطئ شائع:</b> أن تجفيف الجلد في الشمس دباغ. الدباغ لا يكون إلا بمادة حريفة تنزع رطوباته.</p></div>
+
+    <div class="fq"><h3>لماذا شعر الإنسان وعظمه طاهران بعد موته؟</h3>
+      <p class="simple">لأن الإنسان طاهر حيًّا وميتًا، تكريمًا من الله له: ﴿وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ﴾.</p>
+      <p class="like"><b>القاعدة:</b> كل الميتات نجسة إلا ثلاثة: الآدمي، والسمك، والجراد.</p></div>
+  </div>
+</section>
+
+<section class="block" id="quiz">
+  <div class="sec-head"><h2>اختبر فهمك</h2><p>26 سؤالًا من صلب الدرس. اختر إجابة واحدة لكل سؤال، وسيظهر لك التصحيح والتعليل فورًا. في النهاية تظهر نتيجتك ومستواك.</p></div>
+  <div class="quiz-bar">
+    <label for="qname">اسمك</label><input id="qname" type="text" placeholder="اكتب اسمك لتظهر في النتيجة" autocomplete="name">
+    <span class="score" id="score" aria-live="polite">0 / 26</span>
+    <button class="btn ghost" id="reset" type="button">ابدأ من جديد</button>
+  </div>
+  <div class="qlist" id="qlist"></div>
+  <div class="result" id="result" aria-live="polite"></div>
+</section>
+
+<section class="block" id="do">
+  <div class="sec-head"><h2>المطلوب: اعمل إيه</h2><p>خطوات عملية لتثبيت الدرس قبل الانتقال للدرس الثاني.</p></div>
+  <h3>ترتيب المذاكرة</h3>
+  <ol class="steps">
+    <li><b>احفظ لفظ المتن</b> على ثلاث دفعات: المقدمة، ثم المياه وأقسامها، ثم فصل الميتة. ردده حتى تقوله من غير نظر.</li>
+    <li><b>اقرأ الشرح</b> مسألة مسألة، ثم ارجع للمتن وتأكد أنك تفهم كل كلمة فيه.</li>
+    <li><b>ارسم التشجير من ذاكرتك</b> على ورقة، ثم قارنه بالتشجير في الصفحة.</li>
+    <li><b>اشرح الدرس لشخص آخر</b> في خمس دقائق دون النظر في الصفحة. المواضع التي تتوقف عندها هي ما تحتاج إلى مراجعة.</li>
+    <li><b>حل الاختبار</b>. إن قلّت نتيجتك عن 80% فأعد المسائل التي أخطأت فيها ثم حله مرة أخرى.</li>
+  </ol>
+  <h3>كيف تحكم على أي ماء أمامك؟</h3>
+  <div class="flow">
+    <div><b>1.</b> هل يُسمى «ماء» بلا قيد لازم؟ إن كان لا (عصير، ماء ورد، شاي) فلا يُتطهر به.</div>
+    <div><b>2.</b> هل وقعت فيه نجاسة؟ إن كان أقل من قلتين فهو نجس. وإن كان قلتين فأكثر فانظر: هل تغير طعمه أو لونه أو ريحه بها؟ إن تغير فهو نجس، وإلا فهو طاهر مطهر.</div>
+    <div><b>3.</b> هل هو ماء قليل انفصل عن أعضاء وضوء أو غسل واجب؟ إن كان كذلك فهو طاهر غير مطهر.</div>
+    <div><b>4.</b> هل هو مشمس في بلد حار في إناء معدني وما زال حارًّا؟ إن كان كذلك فهو مطهر مع الكراهة في البدن.</div>
+    <div><b>5.</b> غير ذلك: ماء مطلق، طاهر مطهر بلا كراهة.</div>
+  </div>
+  <h3>في حياتك اليومية</h3>
+  <ol class="steps">
+    <li>لا تتوضأ من ماء جمعته مما تساقط من أعضائك في وضوء سابق.</li>
+    <li>إذا وقعت نجاسة في إناء صغير أو جردل، فلا تتوضأ منه ولو لم يتغير.</li>
+    <li>منتجات الجلد من حيوان مذبوح ذبحًا شرعيًّا طاهرة. والمصنوعة من جلد الخنزير نجسة ولو دُبغت.</li>
+  </ol>
+</section>
+
+<footer>سلسلة شرح متن أبي شجاع، الدرس 1. الشرح على المعتمد في المذهب الشافعي.</footer>
+</div>
+
+<script>
+const Q=[
+ {t:"المقدمة",q:"لماذا ألّف أبو شجاع هذا المتن؟",o:["طلب منه ذلك بعض أصحابه، فأجابهم طلبًا للثواب","أمره به الخليفة","ليرد على المذاهب الأخرى","ليكون كتابًا مطولًا للعلماء"],a:0,w:"قال: «سألني بعض الأصدقاء... فأجبته إلى ذلك طالبًا للثواب»."},
+ {t:"المقدمة",q:"أيُّ هذه من طريقة المتن التي ذكرها المصنف؟",o:["ذكر الأدلة التفصيلية لكل مسألة","الإكثار من التقسيمات وحصر الخصال","مقارنة أقوال المذاهب","الإطالة في الأمثلة"],a:1,w:"قال: «وأن أكثر فيه من التقسيمات وحصر الخصال»، ليسهل الحفظ والفهم."},
+ {t:"المقدمة",q:"ما معنى «ليقرب على المتعلم درسه، ويسهل على المبتدئ حفظه»؟",o:["أن الكتاب للعلماء الكبار","أن المتن مختصر ليسهل فهمه وحفظه على المبتدئ","أن الكتاب بلا أحكام","أن المبتدئ لا يحتاج إلى شرح"],a:1,w:"هذان هما هدفا الاختصار: تقريب الفهم وتسهيل الحفظ."},
+ {t:"الطهارة",q:"لماذا يبدأ الفقهاء بكتاب الطهارة؟",o:["لأنها أسهل الأبواب","لأنها شرط لصحة الصلاة التي هي أعظم العبادات بعد الشهادتين","لأنها آخر ما نزل من الأحكام","لأن الصوم لا يصح إلا بها"],a:1,w:"«مفتاح الصلاة الطهور»، والشرط يُقدَّم على المشروط."},
+ {t:"الطهارة",q:"ما معنى الطهارة شرعًا؟",o:["النظافة من الأوساخ فقط","فعلٌ تُستباح به الصلاة كالوضوء والغسل والتيمم وإزالة النجاسة","الاغتسال يوم الجمعة","غسل اليدين قبل الطعام"],a:1,w:"لغة: النظافة. وشرعًا: فعل تُستباح به الصلاة."},
+ {t:"المياه السبعة",q:"كم عدد المياه التي يجوز التطهير بها في المتن؟",o:["خمسة","ستة","سبعة","أربعة"],a:2,w:"السماء، والبحر، والنهر، والبئر، والعين، والثلج، والبرد."},
+ {t:"المياه السبعة",q:"المياه السبعة ترجع إلى أصلين، هما:",o:["الحلو والمالح","ما نزل من السماء وما نبع من الأرض","الجاري والراكد","البارد والساخن"],a:1,w:"السماء: المطر والثلج والبرد. والأرض: البحر والنهر والبئر والعين."},
+ {t:"المياه السبعة",q:"متى يصح التطهر بالثلج؟",o:["وهو قطع جامدة يُمسح بها العضو","بعد أن يذوب ويسيل على العضو","لا يصح أبدًا","في السفر فقط"],a:1,w:"لا بد من جريان الماء على العضو، فيُستعمل بعد أن يذوب ويسيل."},
+ {t:"الماء المطلق",q:"ما هو الماء المطلق؟",o:["كل ماء نظيف","ما يُسمى «ماء» بلا قيد لازم","ماء المطر فقط","الماء البارد"],a:1,w:"الماء المطلق ما يقع عليه اسم الماء بلا قيد لازم."},
+ {t:"الماء المطلق",q:"«ماء البئر» حكمه:",o:["مطلق، لأن قيد «البئر» منفك يزول بنقله","غير مطلق لأنه مقيد بالبئر","مكروه","طاهر غير مطهر"],a:0,w:"القيد المنفك لا يضر. لو نقلته سميته «ماء» فقط."},
+ {t:"الماء المطلق",q:"هل يصح الوضوء بماء الورد؟",o:["نعم، لأنه طاهر","لا، لأنه ليس ماءً مطلقًا","نعم مع الكراهة","نعم إذا لم يوجد غيره"],a:1,w:"«ماء الورد» قيده لازم، فهو ليس ماءً مطلقًا، ولا يرفع حدثًا."},
+ {t:"المشمس",q:"ما حكم الماء المشمس؟",o:["نجس","طاهر غير مطهر","طاهر مطهر مكروه","طاهر مطهر بلا كراهة دائمًا"],a:2,w:"هو القسم الثاني: «طاهر مطهر مكروه، وهو الماء المشمس»."},
+ {t:"المشمس",q:"ماء تُرك في الشمس في إناء فخار في بلد حار، ثم توضأت به وهو حار. ما حكمه؟",o:["مكروه","غير مكروه، لأن الإناء ليس معدنيًّا منطبعًا","نجس","لا يصح الوضوء به"],a:1,w:"من شروط الكراهة أن يكون الإناء منطبعًا، أي معدنيًّا كالحديد والنحاس. والفخار ليس كذلك."},
+ {t:"المستعمل",q:"ما حكم الماء المستعمل؟",o:["نجس","طاهر غير مطهر","طاهر مطهر","طاهر مطهر مكروه"],a:1,w:"المستعمل من القسم الثالث: طاهر في نفسه، لا يرفع حدثًا ولا يزيل نجسًا."},
+ {t:"المستعمل",q:"أيُّ هذه يُعد ماءً مستعملًا؟",o:["الماء الباقي في الإبريق بعد الوضوء","ماء قليل تساقط من أعضاء من توضأ وضوءًا واجبًا","ماء البحر بعد أن غسلت فيه يدك","ماء خزان كبير توضأ منه الناس"],a:1,w:"المستعمل: قليل، انفصل عن العضو، استُعمل في طهارة واجبة."},
+ {t:"المتغير",q:"ماء وُضع فيه الشاي حتى صار شايًا. ما حكمه؟",o:["طاهر مطهر","طاهر غير مطهر","نجس","مكروه"],a:1,w:"تغير بمخالط طاهر تغيرًا كثيرًا سلبه اسم الماء."},
+ {t:"المتغير",q:"ماء في بركة تغير لونه من طول المكث وحده. ما حكمه؟",o:["طاهر مطهر","طاهر غير مطهر","نجس","مكروه"],a:0,w:"التغير بطول المكث لا يضر، لأنه ليس بمخالط."},
+ {t:"المتغير",q:"وقعت قطعة خشب في ماء فتغيرت رائحته. ما حكمه؟",o:["طاهر غير مطهر","طاهر مطهر، لأن الخشب مجاور لا مخالط","نجس","لا يجوز شربه"],a:1,w:"المجاور يتميز عن الماء ولا يذوب فيه، فلا يسلبه الطهورية."},
+ {t:"النجس",q:"وقعت نقطة بول في جردل ماء صغير (أقل من قلتين)، ولم يتغير. ما حكمه؟",o:["طاهر مطهر لأنه لم يتغير","نجس","طاهر غير مطهر","مكروه"],a:1,w:"الماء القليل ينجس بمجرد وقوع النجاسة فيه، ولو لم يتغير."},
+ {t:"النجس",q:"وقعت نقطة بول في خزان كبير يزيد على القلتين، ولم يتغير. ما حكمه؟",o:["نجس","طاهر مطهر","طاهر غير مطهر","مكروه"],a:1,w:"«إذا بلغ الماء قلتين لم يحمل الخبث». الكثير لا ينجس إلا بالتغير."},
+ {t:"النجس",q:"خزان كبير يزيد على القلتين، وقعت فيه نجاسة فتغيرت رائحته قليلًا. ما حكمه؟",o:["طاهر لأنه كثير","نجس، لأن الكثير ينجس بالتغير ولو كان يسيرًا","طاهر غير مطهر","مكروه"],a:1,w:"الماء الكثير ينجس إذا تغير بالنجاسة في طعمه أو لونه أو ريحه."},
+ {t:"القلتان",q:"ماذا تعني «في الأصح» في قول المصنف: «والقلتان خمسمائة رطل بغدادي تقريبًا في الأصح»؟",o:["أن هذا هو الرأي المعتمد في المذهب، ومقابله رأي أضعف","أن المسألة لا خلاف فيها","أن هذا قول مذهب آخر","أن المقدار دقيق لا يحتمل أي نقص"],a:0,w:"«الأصح» من مصطلحات الشافعية: المعتمد الذي يُعمل به، ويقابله وجه أضعف."},
+ {t:"الميتة",q:"جلد شاة ماتت من غير ذبح شرعي. هل يطهر؟",o:["لا يطهر أبدًا","يطهر بالدباغ ثم يُغسل بالماء","يطهر بالتجفيف في الشمس","يطهر بلا دباغ"],a:1,w:"«إذا دُبغ الإهاب فقد طهر»، ثم يصير كثوب متنجس فيُغسل."},
+ {t:"الميتة",q:"أيُّ هذه لا يطهر بالدباغ؟",o:["جلد بقرة ميتة","جلد خنزير","جلد غزال ميت","جلد جمل ميت"],a:1,w:"يُستثنى جلد الكلب والخنزير وما تولد منهما، لأنهما نجسان في الحياة."},
+ {t:"الميتة",q:"ما الذي يُعد دباغًا صحيحًا؟",o:["تجفيف الجلد في الشمس","دفنه في التراب","نزع فضول الجلد بمادة حريفة كالشب والقرظ","غسله بالماء مرة واحدة"],a:2,w:"الدباغ نزع الرطوبات بمادة حريفة، بحيث لا يعود النتن لو نُقع في الماء."},
+ {t:"الميتة",q:"شعر وعظم إنسان ميت. ما حكمهما؟",o:["نجسان","طاهران، لأن الآدمي طاهر حيًّا وميتًا","يطهران بالدباغ","الشعر طاهر والعظم نجس"],a:1,w:"«وعظم الميتة وشعرها نجس إلا الآدمي»، تكريمًا له."}
+];
+// keep the count shown on the page in sync
+const N=Q.length;
+const list=document.getElementById('qlist'),scoreEl=document.getElementById('score'),res=document.getElementById('result'),nameEl=document.getElementById('qname');
+let answered=0,correct=0;
+function render(){
+  list.innerHTML='';answered=0;correct=0;res.className='result';res.innerHTML='';
+  Q.forEach((it,i)=>{
+    const box=document.createElement('div');box.className='qq';
+    box.innerHTML='<span class="tag"></span><p class="qt"></p><div class="opts"></div><p class="why"></p>';
+    box.querySelector('.tag').textContent=it.t;box.querySelector('.qt').textContent=it.q;
+    box.querySelector('.why').textContent='التعليل: '+it.w;
+    const opts=box.querySelector('.opts');
+    it.o.forEach((txt,j)=>{
+      const b=document.createElement('button');b.type='button';b.className='opt'+(j===it.a?' is-key':'');b.textContent=txt;
+      b.addEventListener('click',()=>pick(box,it,j));opts.appendChild(b);
+    });
+    list.appendChild(box);
+  });
+  scoreEl.textContent='0 / '+N;
+}
+function pick(box,it,j){
+  if(box.classList.contains('done'))return;
+  box.classList.add('done');answered++;
+  const bs=box.querySelectorAll('.opt');bs.forEach(b=>b.disabled=true);
+  bs[it.a].classList.add('right');
+  if(j===it.a)correct++;else bs[j].classList.add('wrong');
+  scoreEl.textContent=correct+' / '+N;
+  if(answered===N)finish();
+}
+function finish(){
+  const p=Math.round(correct/N*100),nm=(nameEl.value||'').trim();
+  let lvl,msg;
+  if(p>=90){lvl='ممتاز';msg='فهمت الدرس فهمًا متينًا. انتقل إلى الدرس الثاني.';}
+  else if(p>=75){lvl='جيد جدًّا';msg='فهمك جيد. راجع الأسئلة التي أخطأت فيها ثم انتقل.';}
+  else if(p>=60){lvl='مقبول';msg='الأساس موجود، لكن أعد قراءة الشرح وأسئلة فاينمان ثم حل الاختبار مرة أخرى.';}
+  else{lvl='يحتاج إعادة';msg='أعد مشاهدة الدرس واقرأ المتن والشرح من جديد قبل الانتقال.';}
+  res.innerHTML='<h3></h3><p></p><p class="muted">صوّر هذه النتيجة وأرسلها لمن أرسل لك الاختبار.</p>';
+  res.querySelector('h3').textContent=(nm?nm+': ':'')+correct+' من '+N+' ('+p+'%) · '+lvl;
+  res.querySelector('p').textContent=msg;res.classList.add('show');
+  res.scrollIntoView({behavior:'smooth',block:'center'});
+}
+document.getElementById('reset').addEventListener('click',render);
+render();
+</script>
