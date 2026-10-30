@@ -1,0 +1,295 @@
+<title>اختبار أبو شجاع 01</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column, sticky progress header, one card per question grouped by the lesson's sections. Same tokens as the series summaries. */
+:root{
+  --paper:#F3F5F2; --sheet:#FBFCFA; --ink:#18221F; --muted:#56635F; --rule:#D3DBD6;
+  --rubric:#9E2F28; --rubric-soft:#F5E2DE; --fiqh:#1D5B69; --fiqh-soft:#DCEAED;
+  --gold:#7E5F0E; --gold-soft:#F1E7CC; --ok:#2B7A4B; --ok-soft:#DCEFE3; --bad:#B0372F; --bad-soft:#F6DEDB;
+  --f:"Cairo","Noto Sans Arabic",Tahoma,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F1513; --sheet:#151D1A; --ink:#E2EAE6; --muted:#97A7A1; --rule:#27332F;
+  --rubric:#F0877C; --rubric-soft:#2F1815; --fiqh:#6FC0D0; --fiqh-soft:#12292E;
+  --gold:#E2BC5C; --gold-soft:#2A2312; --ok:#6CCB92; --ok-soft:#132A1D; --bad:#F08B82; --bad-soft:#2E1715; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#0F1513; --sheet:#151D1A; --ink:#E2EAE6; --muted:#97A7A1; --rule:#27332F;
+  --rubric:#F0877C; --rubric-soft:#2F1815; --fiqh:#6FC0D0; --fiqh-soft:#12292E;
+  --gold:#E2BC5C; --gold-soft:#2A2312; --ok:#6CCB92; --ok-soft:#132A1D; --bad:#F08B82; --bad-soft:#2E1715; color-scheme:dark;}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f);font-size:17px;line-height:1.85}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sheet)}
+.wrap{direction:rtl;max-width:780px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 56px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sheet);border-bottom:1px solid var(--rule)}
+header.top .wrap{padding-block:10px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.brand{font-weight:800}
+.stat{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.stat b{color:var(--ink)}
+.bar{height:4px;background:var(--rule)}
+.bar i{display:block;height:100%;width:0;background:var(--fiqh);transition:width .3s}
+.hero{padding-block:28px 6px;display:grid;gap:10px}
+h1{font-size:clamp(1.5rem,1.2rem + 1.4vw,1.9rem);line-height:1.4;margin:0;text-wrap:balance;font-weight:800}
+.sub{color:var(--muted);margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.meta li{background:var(--sheet);border:1px solid var(--rule);border-radius:999px;padding:2px 14px;font-size:.88rem}
+.who{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:10px 14px}
+.who label{font-weight:700;font-size:.92rem}
+.who input{font:inherit;font-size:.95rem;border:1px solid var(--rule);background:var(--paper);color:var(--ink);border-radius:8px;padding:4px 10px;width:16rem;max-width:100%}
+.note{font-size:.88rem;color:var(--muted);border-inline-start:3px solid var(--gold);padding:4px 12px;margin:0;background:var(--gold-soft);border-radius:4px}
+.toc{display:flex;flex-wrap:wrap;gap:6px}
+.toc a{font-size:.85rem;color:var(--fiqh);text-decoration:none;border:1px solid var(--rule);border-radius:8px;padding:2px 10px;background:var(--sheet)}
+.toc a:hover{border-color:var(--fiqh)}
+section.grp{margin-top:34px;scroll-margin-top:70px}
+section.grp>h2{font-size:1.2rem;margin:0 0 12px;display:flex;gap:10px;align-items:center}
+section.grp>h2 .n{display:inline-grid;place-items:center;min-width:1.9rem;height:1.9rem;border-radius:50%;background:var(--fiqh);color:var(--sheet);font-size:.9rem}
+.qs{display:grid;gap:14px}
+.q{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:16px 18px;scroll-margin-top:70px}
+.q.right{border-color:var(--ok)}
+.q.wrong{border-color:var(--bad)}
+.qh{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:.8rem;color:var(--muted);margin-bottom:4px}
+.qh .n{font-weight:800;color:var(--fiqh);font-variant-numeric:tabular-nums}
+.tag{border-radius:6px;padding:0 8px;background:var(--fiqh-soft);color:var(--fiqh)}
+.qt{font-weight:700;font-size:1.04rem;margin:0 0 12px}
+.opts{display:grid;gap:8px}
+.opts.tf{grid-template-columns:1fr 1fr}
+.opt{font:inherit;font-size:.97rem;text-align:start;line-height:1.7;background:var(--paper);color:var(--ink);border:1.5px solid var(--rule);border-radius:10px;padding:8px 14px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+.opts.tf .opt{justify-content:center;font-weight:700}
+.opt .k{font-weight:800;color:var(--muted);min-width:1.2em}
+.opt:hover:not([disabled]){border-color:var(--fiqh)}
+.opt:focus-visible{outline:3px solid var(--fiqh-soft);outline-offset:2px}
+.opt[disabled]{cursor:default}
+.opt.is-right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.is-wrong{border-color:var(--bad);background:var(--bad-soft)}
+.fb{margin-top:12px;border-radius:10px;padding:10px 14px;font-size:.94rem}
+.fb.ok{background:var(--ok-soft)}.fb.no{background:var(--bad-soft)}
+.fb .head{font-weight:800}.fb.ok .head{color:var(--ok)}.fb.no .head{color:var(--bad)}
+.fb dl{margin:8px 0 0;display:grid;gap:6px}
+.fb dt{font-weight:700;font-size:.82rem;color:var(--muted)}
+.fb dd{margin:0}
+.fb blockquote{margin:0;padding:4px 12px;border-inline-start:3px solid var(--rubric);background:var(--sheet);border-radius:4px;color:var(--rubric);font-weight:600}
+details.ev{margin-top:4px}
+details.ev summary{cursor:pointer;color:var(--fiqh);font-weight:700;font-size:.88rem}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.btn{font:inherit;font-weight:800;border-radius:10px;padding:8px 20px;cursor:pointer;border:1.5px solid var(--fiqh);background:var(--fiqh);color:var(--sheet)}
+.btn.ghost{background:transparent;color:var(--fiqh)}
+.confirm{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.92rem;margin-top:10px}
+#result{margin-top:26px;background:var(--sheet);border:1px solid var(--rule);border-radius:14px;padding:18px;scroll-margin-top:70px;display:grid;gap:10px}
+#result h2{margin:0;font-size:1.3rem}
+.score{font-size:2.4rem;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums}
+.score small{display:block;font-size:1rem;font-weight:600;color:var(--muted)}
+.verdict{margin:0;font-weight:700}
+.verdict.pass{color:var(--ok)}.verdict.fail{color:var(--bad)}
+.rows{display:grid;gap:8px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.row .nm{font-weight:700;min-width:0}
+.row .nums{font-size:.88rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mini{grid-column:1 / -1;height:7px;border-radius:4px;background:var(--rule);overflow:hidden}
+.mini i{display:block;height:100%}
+.review ul{margin:4px 0 0;padding-inline-start:20px}
+.review a{color:var(--fiqh)}
+@media (max-width:480px){.opts.tf{grid-template-columns:1fr}.q{padding:14px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{
+  header.top,.who,.actions,.confirm,#result,.toc{display:none!important}
+  body{background:#fff;font-size:12pt}
+  .q{break-inside:avoid;padding:8px 12px}
+  .opts{grid-template-columns:1fr 1fr;gap:4px}
+  .opt{padding:2px 10px}
+  .opt.key{border-color:var(--ok);background:var(--ok-soft)}
+  .printkey{display:block!important;font-size:.9em;margin-top:6px;border-inline-start:3px solid var(--fiqh);padding-inline-start:10px}
+}
+.printkey{display:none}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <span class="brand">اختبار أبي شجاع · الدرس 1</span>
+    <span class="stat">أجبت <b id="answered">0</b> من <b id="total">0</b> · الصحيح <b id="correct">0</b></span>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>اختبار الدرس الأول: مقدمة المصنف، والمياه، وجلود الميتة</h1>
+    <p class="sub">شرح متن أبي شجاع في الفقه الشافعي · د. لبيب نجيب عبد الله</p>
+    <ul class="meta" id="meta"></ul>
+    <div class="who"><label for="qname">اسمك</label><input id="qname" type="text" placeholder="اكتب اسمك ليظهر في النتيجة" autocomplete="name"></div>
+    <p class="note">اختر إجابتك فيظهر التصحيح فورًا. عند الخطأ تظهر الإجابة الصحيحة وسببها، ونص المتن الذي تقوم عليه المسألة. وفي النهاية تظهر نتيجتك لكل قسم من الدرس.</p>
+    <nav class="toc" id="toc" aria-label="أقسام الاختبار"></nav>
+  </div>
+  <div id="groups"></div>
+  <div class="actions">
+    <button class="btn" id="showResult" type="button">اعرض النتيجة</button>
+    <button class="btn ghost" id="resetBtn" type="button">ابدأ الاختبار من جديد</button>
+  </div>
+  <div class="confirm" id="confirmReset" hidden>
+    <span>سيُمسح كل ما أجبته. متأكد؟</span>
+    <button class="btn" id="resetYes" type="button">نعم، امسح الإجابات</button>
+    <button class="btn ghost" id="resetNo" type="button">تراجع</button>
+  </div>
+  <section id="result" hidden aria-live="polite"></section>
+</main>
+
+<script>
+const M = {
+  muqaddima: "سألني بعض الأصدقاء… أن أعمل مختصرًا في الفقه على مذهب الإمام الشافعي… في غاية الاختصار ونهاية الإيجاز؛ ليقرب على المتعلم درسه، ويسهل على المبتدئ حفظه، وأن أكثر فيه من التقسيمات وحصر الخصال، فأجبته إلى ذلك طالبًا للثواب",
+  tahara: "كتاب الطهارة",
+  sab3: "المياه التي يجوز التطهير بها سبع مياه: ماء السماء، وماء البحر، وماء النهر، وماء البئر، وماء العين، وماء الثلج، وماء البرد",
+  mutlaq: "طاهر مطهر غير مكروه، وهو الماء المطلق",
+  mushammas: "وطاهر مطهر مكروه، وهو الماء المشمس",
+  musta3mal: "وطاهر غير مطهر، وهو الماء المستعمل، والمتغير بما خالطه من الطاهرات",
+  najis: "وماء نجس، وهو الذي حلت فيه نجاسة وهو دون القلتين، أو كان قلتين فتغير. والقلتان خمسمائة رطل بغدادي تقريبًا في الأصح",
+  julud: "وجلود الميتة تطهر بالدباغ إلا جلد الكلب والخنزير وما تولد منهما أو من أحدهما",
+  "3azm": "وعظم الميتة وشعرها نجس إلا الآدمي"
+};
+const GROUPS = ["مقدمة المصنف", "كتاب الطهارة والمياه السبعة", "الماء المطلق والمشمس", "الطاهر غير المطهر", "الماء النجس والقلتان", "الميتة: الجلد والعظم والشعر"];
+// g: group, m: matn key, o: options (first is correct before shuffling), tf: true/false answer
+const RAW = [
+ {g:0,m:"muqaddima",q:"لماذا ألّف أبو شجاع هذا المتن؟",o:["طلب منه ذلك بعض أصحابه، فأجابهم طلبًا للثواب","أمره به الخليفة","ليرد على المذاهب الأخرى","ليكون كتابًا مطولًا للعلماء"],w:"صرّح بالسبب في المقدمة: «سألني بعض الأصدقاء… فأجبته إلى ذلك طالبًا للثواب»."},
+ {g:0,m:"muqaddima",q:"ما المنهج الذي ذكر المصنف أنه سار عليه؟",o:["الإكثار من التقسيمات وحصر الخصال","ذكر الأدلة التفصيلية لكل مسألة","مقارنة أقوال المذاهب","الإطالة في الأمثلة"],w:"قال: «وأن أكثر فيه من التقسيمات وحصر الخصال»، مثل «سبع مياه» و«أربعة أقسام»."},
+ {g:0,m:"muqaddima",q:"ذكر المصنف هدفين لاختصار المتن، هما:",o:["تقريب الفهم على المتعلم، وتسهيل الحفظ على المبتدئ","جمع الخلاف، والترجيح بين الأقوال","الرد على المخالف، ونصرة المذهب","تقليل حجم الكتاب، وتقليل ثمنه"],w:"«ليقرب على المتعلم درسه، ويسهل على المبتدئ حفظه»."},
+ {g:0,m:"muqaddima",q:"«المختصر» هو ما قلّ لفظه وكثر معناه.",tf:true,w:"ولذلك كل كلمة في المتن مقصودة، ويحتاج المتن إلى شرح يبين معانيه."},
+ {g:1,m:"tahara",q:"ما معنى الطهارة شرعًا؟",o:["فعلٌ تُستباح به الصلاة كالوضوء والغسل والتيمم وإزالة النجاسة","النظافة من الأوساخ فقط","الاغتسال يوم الجمعة","غسل اليدين قبل الطعام"],w:"الطهارة لغة: النظافة. وشرعًا: فعل تُستباح به الصلاة."},
+ {g:1,m:"tahara",q:"لماذا يبدأ الفقهاء بكتاب الطهارة؟",o:["لأنها شرط لصحة الصلاة التي هي أعظم العبادات بعد الشهادتين","لأنها أسهل الأبواب","لأنها آخر ما نزل من الأحكام","لأن الصوم لا يصح إلا بها"],w:"«مفتاح الصلاة الطهور»، والشرط يُقدَّم على المشروط."},
+ {g:1,m:"sab3",q:"المياه السبعة ترجع إلى أصلين، هما:",o:["ما نزل من السماء وما نبع من الأرض","الحلو والمالح","الجاري والراكد","البارد والساخن"],w:"السماء: المطر والثلج والبرد. والأرض: البحر والنهر والبئر والعين."},
+ {g:1,m:"sab3",q:"متى يصح التطهر بالثلج؟",o:["بعد أن يذوب ويسيل على العضو","وهو قطع جامدة يُمسح بها العضو","لا يصح أبدًا","في السفر فقط"],w:"لا بد من جريان الماء على العضو، فيُستعمل بعد أن يذوب."},
+ {g:1,m:"sab3",q:"ماء الحنفية لا يصح الوضوء به لأنه ليس من المياه السبعة.",tf:false,w:"العدد للتعليم. وماء الحنفية أصله من نهر أو بئر، فهو داخل في «ما نبع من الأرض»، وهو ماء مطلق."},
+ {g:2,m:"mutlaq",q:"ما هو الماء المطلق؟",o:["ما يُسمى «ماء» بلا قيد لازم","كل ماء نظيف","ماء المطر فقط","الماء البارد"],w:"الماء المطلق ما يقع عليه اسم الماء بلا قيد لازم."},
+ {g:2,m:"mutlaq",q:"«ماء البئر» حكمه:",o:["مطلق، لأن قيد «البئر» منفك يزول بنقله","غير مطلق لأنه مقيد بالبئر","مكروه","طاهر غير مطهر"],w:"القيد المنفك لا يضر. لو نقلته سميته «ماء» فقط."},
+ {g:2,m:"mutlaq",q:"هل يصح الوضوء بماء الورد؟",o:["لا، لأنه ليس ماءً مطلقًا","نعم، لأنه طاهر","نعم مع الكراهة","نعم إذا لم يوجد غيره"],w:"«ماء الورد» قيده لازم، فليس ماءً مطلقًا ولا يرفع حدثًا."},
+ {g:2,m:"mushammas",q:"ما حكم الماء المشمس؟",o:["طاهر مطهر مكروه","نجس","طاهر غير مطهر","طاهر مطهر بلا كراهة دائمًا"],w:"هو القسم الثاني في المتن: «طاهر مطهر مكروه، وهو الماء المشمس»."},
+ {g:2,m:"mushammas",q:"ماء تُرك في الشمس في إناء فخار في بلد حار، ثم توضأت به وهو حار. ما حكمه؟",o:["غير مكروه، لأن الإناء ليس معدنيًّا منطبعًا","مكروه","نجس","لا يصح الوضوء به"],w:"من شروط الكراهة أن يكون الإناء منطبعًا، أي معدنيًّا كالحديد والنحاس. والفخار ليس كذلك."},
+ {g:2,m:"mushammas",q:"الماء المسخن بالسخان الكهربائي مكروه كالمشمس.",tf:false,w:"الكراهة خاصة بما سخنته الشمس بشروطها الثلاثة. والمسخن بالنار أو الكهرباء لا كراهة فيه."},
+ {g:3,m:"musta3mal",q:"ما حكم الماء المستعمل؟",o:["طاهر غير مطهر","نجس","طاهر مطهر","طاهر مطهر مكروه"],w:"المستعمل من القسم الثالث: طاهر في نفسه، لا يرفع حدثًا ولا يزيل نجسًا."},
+ {g:3,m:"musta3mal",q:"أيُّ هذه يُعد ماءً مستعملًا؟",o:["ماء قليل تساقط من أعضاء من توضأ وضوءًا واجبًا","الماء الباقي في الإبريق بعد الوضوء","ماء البحر بعد أن غسلت فيه يدك","ماء خزان كبير توضأ منه الناس"],w:"المستعمل: قليل، انفصل عن العضو، استُعمل في طهارة واجبة."},
+ {g:3,m:"musta3mal",q:"ماء وُضع فيه الشاي حتى صار شايًا. ما حكمه؟",o:["طاهر غير مطهر","طاهر مطهر","نجس","مكروه"],w:"تغير بمخالط طاهر تغيرًا كثيرًا سلبه اسم الماء."},
+ {g:3,m:"musta3mal",q:"ماء في بركة تغير لونه من طول المكث وحده. ما حكمه؟",o:["طاهر مطهر","طاهر غير مطهر","نجس","مكروه"],w:"التغير بطول المكث لا يضر، لأنه ليس بمخالط."},
+ {g:3,m:"musta3mal",q:"وقعت قطعة خشب في ماء فتغيرت رائحته. ما حكمه؟",o:["طاهر مطهر، لأن الخشب مجاور لا مخالط","طاهر غير مطهر","نجس","لا يجوز شربه"],w:"المجاور يتميز عن الماء ولا يذوب فيه، فلا يسلبه الطهورية."},
+ {g:3,m:"musta3mal",q:"الماء الطاهر غير المطهر يجوز شربه.",tf:true,w:"هو طاهر في نفسه، وإنما مُنع من التطهير به فقط."},
+ {g:4,m:"najis",q:"وقعت نقطة بول في جردل ماء صغير (أقل من قلتين)، ولم يتغير. ما حكمه؟",o:["نجس","طاهر مطهر لأنه لم يتغير","طاهر غير مطهر","مكروه"],w:"الماء القليل ينجس بمجرد وقوع النجاسة فيه، ولو لم يتغير."},
+ {g:4,m:"najis",q:"وقعت نقطة بول في خزان كبير يزيد على القلتين، ولم يتغير. ما حكمه؟",o:["طاهر مطهر","نجس","طاهر غير مطهر","مكروه"],w:"«إذا بلغ الماء قلتين لم يحمل الخبث». الكثير لا ينجس إلا بالتغير."},
+ {g:4,m:"najis",q:"خزان كبير يزيد على القلتين، وقعت فيه نجاسة فتغيرت رائحته قليلًا. ما حكمه؟",o:["نجس، لأن الكثير ينجس بالتغير ولو كان يسيرًا","طاهر لأنه كثير","طاهر غير مطهر","مكروه"],w:"الماء الكثير ينجس إذا تغير بالنجاسة في طعمه أو لونه أو ريحه."},
+ {g:4,m:"najis",q:"ماذا تعني «في الأصح» في قول المصنف عن القلتين؟",o:["أن هذا هو الرأي المعتمد في المذهب، ومقابله رأي أضعف","أن المسألة لا خلاف فيها","أن هذا قول مذهب آخر","أن المقدار دقيق لا يحتمل أي نقص"],w:"«الأصح» من مصطلحات الشافعية: المعتمد الذي يُعمل به، ويقابله وجه أضعف."},
+ {g:4,m:"najis",q:"لو نقص الماء عن خمسمئة رطل برطل أو رطلين فهو في حكم القلتين.",tf:true,w:"لأن المصنف قال «تقريبًا»، فالنقص اليسير لا يضر."},
+ {g:5,m:"julud",q:"جلد شاة ماتت من غير ذبح شرعي. هل يطهر؟",o:["يطهر بالدباغ ثم يُغسل بالماء","لا يطهر أبدًا","يطهر بالتجفيف في الشمس","يطهر بلا دباغ"],w:"«إذا دُبغ الإهاب فقد طهر»، ثم يصير كثوب متنجس فيُغسل."},
+ {g:5,m:"julud",q:"أيُّ هذه لا يطهر بالدباغ؟",o:["جلد خنزير","جلد بقرة ميتة","جلد غزال ميت","جلد جمل ميت"],w:"يُستثنى جلد الكلب والخنزير وما تولد منهما، لأنهما نجسان في الحياة."},
+ {g:5,m:"julud",q:"ما الذي يُعد دباغًا صحيحًا؟",o:["نزع فضول الجلد بمادة حريفة كالشب والقرظ","تجفيف الجلد في الشمس","دفنه في التراب","غسله بالماء مرة واحدة"],w:"الدباغ نزع الرطوبات بمادة حريفة، بحيث لا يعود النتن لو نُقع في الماء."},
+ {g:5,m:"julud",q:"جلد الحيوان المأكول المذبوح ذبحًا شرعيًّا يحتاج إلى دباغ حتى يطهر.",tf:false,w:"هو طاهر من غير دباغ. الدباغ يُحتاج إليه في جلد الميتة فقط."},
+ {g:5,m:"3azm",q:"شعر وعظم إنسان ميت. ما حكمهما؟",o:["طاهران، لأن الآدمي طاهر حيًّا وميتًا","نجسان","يطهران بالدباغ","الشعر طاهر والعظم نجس"],w:"«وعظم الميتة وشعرها نجس إلا الآدمي»، تكريمًا له."},
+ {g:5,m:"3azm",q:"شعر الميتة (غير الآدمي) يطهر بالدباغ مع الجلد.",tf:false,w:"العظم والشعر نجسان، والدباغ لا يؤثر فيهما."}
+];
+// place the correct option in a balanced, fixed position
+let k = 0;
+const DATA = RAW.map((r, i) => {
+  if (r.tf !== undefined) return {...r, id: i + 1, type: "tf", opts: ["صح", "خطأ"], a: r.tf ? 0 : 1};
+  const pos = [0, 2, 1, 3, 1, 3, 0, 2][k++ % 8], wrong = r.o.slice(1);
+  return {...r, id: i + 1, type: "mcq", opts: [...wrong.slice(0, pos), r.o[0], ...wrong.slice(pos)], a: pos};
+});
+const PASS = 70, KEY = "abu-shuja-quiz-01";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = ["أ","ب","ج","د"];
+const pct = (a, b) => b ? Math.round(a * 100 / b) : 0;
+const nameEl = document.getElementById("qname");
+try { nameEl.value = localStorage.getItem(KEY + "-name") || ""; } catch (e) {}
+nameEl.addEventListener("input", () => { try { localStorage.setItem(KEY + "-name", nameEl.value); } catch (e) {} });
+
+function evidence(q) {
+  return `<dl><dt>الإجابة الصحيحة</dt><dd>${esc(q.opts[q.a])}</dd>
+    <dt>لماذا هي الصحيحة</dt><dd>${esc(q.w)}</dd>
+    <dt>من المتن</dt><dd><blockquote>(${esc(M[q.m])})</blockquote></dd></dl>`;
+}
+function render() {
+  document.getElementById("total").textContent = DATA.length;
+  const tf = DATA.filter(q => q.type === "tf").length;
+  document.getElementById("meta").innerHTML = `<li>${DATA.length} سؤالًا</li><li>${DATA.length - tf} اختيار من متعدد و${tf} صح وخطأ</li><li>النجاح من 70٪</li>`;
+  const toc = [], out = [];
+  GROUPS.forEach((g, gi) => {
+    const qs = DATA.filter(q => q.g === gi);
+    toc.push(`<a href="#grp-${gi}">${esc(g)} (${qs.length})</a>`);
+    out.push(`<section class="grp" id="grp-${gi}"><h2><span class="n">${gi + 1}</span>${esc(g)}</h2><div class="qs">`);
+    qs.forEach(q => {
+      const t = q.type === "tf";
+      out.push(`<article class="q" id="q${q.id}" data-id="${q.id}">
+        <div class="qh"><span class="n">سؤال ${q.id}</span>${t ? '<span class="tag">صح أو خطأ</span>' : '<span class="tag">اختيار من متعدد</span>'}</div>
+        <p class="qt">${esc(q.q)}</p>
+        <div class="opts${t ? " tf" : ""}" role="group" aria-label="الاختيارات">
+        ${q.opts.map((o, i) => `<button class="opt${i === q.a ? " key" : ""}" type="button" id="q${q.id}o${i}" data-i="${i}">${t ? "" : `<span class="k">${L[i]}</span>`}<span>${esc(o)}</span></button>`).join("")}
+        </div><p class="printkey">الإجابة: ${esc(q.opts[q.a])}. ${esc(q.w)}</p><div class="fbx"></div></article>`);
+    });
+    out.push(`</div></section>`);
+  });
+  document.getElementById("toc").innerHTML = toc.join("");
+  document.getElementById("groups").innerHTML = out.join("");
+  DATA.forEach(q => { if (state[q.id] !== undefined) mark(q, state[q.id]); });
+  stats();
+}
+function mark(q, pick) {
+  const card = document.getElementById("q" + q.id), ok = pick === q.a;
+  card.classList.add(ok ? "right" : "wrong");
+  card.querySelectorAll(".opt").forEach(b => {
+    const i = +b.dataset.i; b.disabled = true;
+    if (i === q.a) b.classList.add("is-right"); else if (i === pick) b.classList.add("is-wrong");
+  });
+  card.querySelector(".fbx").innerHTML = ok
+    ? `<div class="fb ok"><div class="head">إجابة صحيحة</div><details class="ev"><summary>اعرض التعليل ونص المتن</summary>${evidence(q)}</details></div>`
+    : `<div class="fb no"><div class="head">إجابة غير صحيحة، اخترت: ${esc(q.opts[pick])}</div>${evidence(q)}</div>`;
+}
+function tally() {
+  const per = GROUPS.map(() => ({n: 0, done: 0, ok: 0})); let done = 0, ok = 0;
+  DATA.forEach(q => { per[q.g].n++; if (state[q.id] !== undefined) { per[q.g].done++; done++; if (state[q.id] === q.a) { per[q.g].ok++; ok++; } } });
+  return {per, done, ok};
+}
+function stats() {
+  const t = tally();
+  document.getElementById("answered").textContent = t.done;
+  document.getElementById("correct").textContent = t.ok;
+  document.getElementById("bar").style.width = pct(t.done, DATA.length) + "%";
+  if (t.done === DATA.length) showResult(false);
+}
+function showResult(scroll) {
+  const t = tally(), total = DATA.length, score = pct(t.ok, total), box = document.getElementById("result");
+  const nm = nameEl.value.trim();
+  const rows = GROUPS.map((g, i) => {
+    const p = t.per[i], s = pct(p.ok, p.n);
+    return `<div class="row"><span class="nm">${esc(g)}</span><span class="nums">${p.ok} من ${p.n} · ${s}٪</span><div class="mini"><i style="width:${s}%;background:${s >= PASS ? "var(--ok)" : "var(--bad)"}"></i></div></div>`;
+  }).join("");
+  const weak = GROUPS.filter((g, i) => pct(t.per[i].ok, t.per[i].n) < PASS);
+  let lvl = score >= 90 ? "ممتاز" : score >= 80 ? "جيد جدًّا" : score >= PASS ? "جيد" : "يحتاج مراجعة";
+  let v = t.done < total ? `<p class="verdict">أجبت ${t.done} من ${total}. الأسئلة التي لم تُجب عنها تُحسب خطأ.</p>` : "";
+  v += score >= PASS
+    ? `<p class="verdict pass">المستوى: ${lvl}. فهمك للدرس جيد${weak.length ? "، لكن راجع: " + weak.map(esc).join("، ") : ""}.</p>`
+    : `<p class="verdict fail">المستوى: ${lvl}. راجع هذه الأقسام في الملخص ثم أعد الاختبار: ${weak.map(esc).join("، ")}.</p>`;
+  const wrong = DATA.filter(q => state[q.id] !== undefined && state[q.id] !== q.a);
+  const review = wrong.length ? `<div class="review"><b>الأسئلة التي أخطأت فيها (${wrong.length})</b><ul>${wrong.map(q => `<li><a href="#q${q.id}">سؤال ${q.id}</a>: ${esc(GROUPS[q.g])}</li>`).join("")}</ul></div>` : "";
+  box.innerHTML = `<h2>النتيجة${nm ? ": " + esc(nm) : ""}</h2><div class="score">${score}٪<small>${t.ok} إجابة صحيحة من ${total}</small></div>${v}
+    <h3>النتيجة لكل قسم</h3><div class="rows">${rows}</div>${review}<p class="sub">صوّر هذه النتيجة وأرسلها لمن أرسل لك الاختبار.</p>`;
+  box.hidden = false;
+  if (scroll) box.scrollIntoView({behavior: "smooth", block: "start"});
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest(".opt");
+  if (b && !b.disabled) {
+    const id = +b.closest(".q").dataset.id, q = DATA[id - 1];
+    if (state[id] !== undefined) return;
+    state[id] = +b.dataset.i; save(); mark(q, state[id]); stats();
+  }
+});
+document.getElementById("showResult").addEventListener("click", () => showResult(true));
+document.getElementById("resetBtn").addEventListener("click", () => { document.getElementById("confirmReset").hidden = false; });
+document.getElementById("resetNo").addEventListener("click", () => { document.getElementById("confirmReset").hidden = true; });
+document.getElementById("resetYes").addEventListener("click", () => {
+  state = {}; save(); document.getElementById("confirmReset").hidden = true;
+  document.getElementById("result").hidden = true; render(); window.scrollTo({top: 0});
+});
+render();
+</script>
