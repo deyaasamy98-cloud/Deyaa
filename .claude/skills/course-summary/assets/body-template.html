@@ -1,0 +1,112 @@
+<!-- Lesson page body. Replace every {{...}}. Repeat blocks marked REPEAT. Classes come from .claude/skills/video-summary/assets/head.html.
+     Status pills: ok = 🟢 لسه شغال · mix = 🟡 اتغيّر · no = 🔴 قديم -->
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">{{اسم الكورس}} · {{المدرّب}} · الدرس {{س}} من {{ع}} · {{المدة}} · {{تاريخ التسجيل أو النشر}}</span>
+  <h1>{{عنوان قصير 2-4 كلمات}}</h1>
+  <p class="lede">{{سطران: الدرس بيعلّم إيه، وإيه أهم حاجة اتغيرت فيه من وقت التسجيل}}</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#summary">الملخص</a></li>
+    <li><a href="#updates">تحديثات 2026</a></li>
+    <li><a href="#tree">خريطة الحملة</a></li>
+    <li><a href="#todo">المطلوب: اعمل إيه</a></li>
+    <li><a href="#extra">زيادة على الكورس</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="summary">
+  <div class="sec-head">
+    <h2>الملخص</h2>
+    <p>🟢 لسه شغال · 🟡 اتغيّر (شوف التحديثات) · 🔴 قديم. التوقيت يفتح الفيديو عند اللحظة دي.</p>
+  </div>
+
+  <!-- REPEAT per topic (6-10) -->
+  <div class="theme">
+    <div class="theme-head"><span class="idx">١</span><h3>{{عنوان الموضوع}}</h3>
+      <div class="chips"><a href="https://youtu.be/{{ID}}?t={{SECONDS}}" target="_blank" rel="noopener">{{m:ss}}</a><span class="pill ok">🟢 لسه شغال</span></div></div>
+    <p class="key"><b>الفكرة:</b> {{الفكرة في جملتين}}</p>
+    <ul>
+      <li>{{نقطة، مع اقتباس قصير بين «»}}</li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="updates">
+  <div class="sec-head">
+    <h2>تحديثات 2026</h2>
+    <p>اللي اتغير في المنصات من وقت تسجيل الدرس، من المصادر الرسمية.</p>
+  </div>
+  <div class="res">
+    <!-- REPEAT per item (4-8). pill: ok = لسه صح، mix = اتغيّر جزئيًا، no = مبقاش كده / معلومة غلط -->
+    <div class="rcard">
+      <div class="claim"><h4>{{الفكرة زي ما قالها الكورس}}</h4><span class="pill mix">{{اتغيّر}}</span></div>
+      <div class="rgrid">
+        <div class="pro"><span class="lbl">الكورس قال</span>{{...}} <span class="cite">({{m:ss}})</span></div>
+        <div class="con"><span class="lbl">الوضع دلوقتي</span>{{...}} <span class="cite">(<a href="{{رابط المصدر}}" target="_blank" rel="noopener">{{المصدر}}</a>، {{تاريخ التغيير}})</span></div>
+      </div>
+      <p class="bottom"><b>تعمل إيه:</b> {{جملة}}</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="tree">
+  <div class="sec-head"><h2>خريطة الحملة</h2><p>{{هيكل الحملة / القمع / شجرة القرار}}</p></div>
+  <div class="tree-wrap">
+    <ul class="tree">
+      <li><span class="root">{{الجذر}}</span>
+        <ul>
+          <!-- REPEAT per branch (4-7) -->
+          <li><span class="br">{{فرع}}</span>
+            <ul><li class="lf">{{ورقة}}</li></ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block" id="todo">
+  <div class="sec-head">
+    <h2>المطلوب: اعمل إيه</h2>
+    <p>أدوات شغل جاهزة: خطوات، Checklists، معادلات.</p>
+  </div>
+
+  <h3>الترتيب المقترح</h3>
+  <ol class="path">
+    <!-- REPEAT 4-6 -->
+    <li><div><b>{{الخطوة}}</b><span>{{شرح قصير}}</span></div></li>
+  </ol>
+
+  <!-- REPEAT cards (3-6): checklist / Ads Manager click-path / formula -->
+  <div class="acard">
+    <h3>{{عنوان}} <span class="tag">{{Checklist / خطوات في Ads Manager / معادلة}}</span></h3>
+    <ul>
+      <li>☐ {{بند محدد}}</li>
+    </ul>
+    <!-- formula card: <p class="key"><b>المعادلة:</b> ...</p><p class="note">مثال: ... ج.م</p> -->
+    <p class="src">من {{m:ss}} إلى {{m:ss}}</p>
+  </div>
+</section>
+
+<section class="block" id="extra">
+  <div class="sec-head">
+    <h2>زيادة على الكورس</h2>
+    <p>حاجات الكورس ما قالهاش وبتزوّد القيمة.</p>
+  </div>
+  <!-- REPEAT 3-6 -->
+  <div class="acard">
+    <h3>{{العنوان}} <span class="tag">{{أداة / تجربة / السوق المصري / مصدر}}</span></h3>
+    <p>{{شرح عملي}}</p>
+    <p class="src"><a href="{{رابط}}" target="_blank" rel="noopener">{{المصدر}}</a></p>
+  </div>
+</section>
+
+<footer>
+  <p>المصدر: {{اسم الكورس}}، الدرس {{س}}: <a href="{{رابط}}" target="_blank" rel="noopener">{{العنوان}}</a>. التحديثات من المصادر المذكورة بتاريخ {{تاريخ اليوم}}، والمنصات بتتغير، فاتأكد قبل ما تعتمد على أي إعداد.</p>
+</footer>
+
+</div>

@@ -1,0 +1,54 @@
+<!-- Living file: «من الكورس إلى Reel Analytics». Created once, then cards are appended per lesson.
+     Classes from .claude/skills/video-summary/assets/head.html. Priority pills: no = عالية، mix = متوسطة، ok = بعدين -->
+<div class="wrap" dir="rtl" lang="ar">
+
+<header class="top">
+  <span class="eyebrow">{{اسم الكورس}} · آخر تحديث {{التاريخ}} · {{عدد}} فكرة من {{عدد}} درس</span>
+  <h1>من الكورس إلى Reel Analytics</h1>
+  <p class="lede">كل فكرة من الكورس ليها علاقة بالكرييتيف أو تقييمه أو تحليل الداتا، ومكانها في ملف Reel Analytics، وإزاي تطبقها.</p>
+</header>
+
+<nav class="toc" aria-label="أقسام الصفحة">
+  <ul>
+    <li><a href="#backlog">قائمة الأفكار</a></li>
+    <li><a href="#ads">تاب Ads</a></li>
+    <li><a href="#report">تاب Report</a></li>
+    <li><a href="#shoot">What To Shoot</a></li>
+    <li><a href="#new">حاجات جديدة للملف</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="backlog">
+  <div class="sec-head"><h2>قائمة الأفكار</h2><p>الحالة: جديد · بجرّب · اتطبق · اتلغى.</p></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>#</th><th>الفكرة</th><th>المكان</th><th>النوع</th><th>الأولوية</th><th>الحالة</th></tr></thead>
+      <tbody>
+        <!-- REPEAT one row per card -->
+        <tr><td class="num">{{١}}</td><td><a href="#i{{N}}">{{الفكرة}}</a></td><td>{{Ads › Diagnosis}}</td><td>{{تعديل قاعدة}}</td><td><span class="pill no">عالية</span></td><td>جديد</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- One section per tab: #ads, #report, #shoot, #new (attributes/columns the file doesn't have yet). REPEAT cards inside. -->
+<section class="block" id="ads">
+  <div class="sec-head"><h2>تاب Ads</h2></div>
+
+  <div class="acard" id="i{{N}}">
+    <h3>{{N}}. {{الفكرة}} <span class="tag">{{النوع}}</span> <span class="pill no">عالية</span></h3>
+    <p class="key"><b>من الكورس:</b> {{الفكرة زي ما اتقالت}} <span class="chips"><a href="https://youtu.be/{{ID}}?t={{SECONDS}}" target="_blank" rel="noopener">ملخص {{NN}} · {{m:ss}}</a></span></p>
+    <p><b>تتربط بـ:</b> {{التاب › العمود}}، {{ليه}}</p>
+    <ol>
+      <li>{{خطوة تطبيق}}</li>
+    </ol>
+    <!-- optional: <pre dir="ltr">=IF(OR(K2="",K2=0),"",...)</pre> <p class="note">على أرقام سبتمبر: ...</p> -->
+    <!-- optional: <p class="note"><b>تحديث 2026:</b> ...</p> -->
+  </div>
+</section>
+
+<footer>
+  <p>الأفكار مأخوذة من ملخصات الكورس في فولدر ملخصات، وكل فكرة عليها رابط لمصدرها. الأرقام في الأمثلة من تقرير سبتمبر 2026 (Brand Gallery).</p>
+</footer>
+
+</div>
