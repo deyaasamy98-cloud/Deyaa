@@ -42,9 +42,17 @@ A living file that grows with every lesson. **Not numbered**; fixed names:
 - PDF: `ملخصات/ربط الكورس بـ Reel Analytics.pdf`
 - Template: `assets/project-log-template.html`. Keep one artifact URL and republish it each time.
 
+**Direction of authority: the course is stronger than the system.** Reel Analytics is an early, simple tool; the course is the reference. So:
+- Don't force-fit course ideas into the current columns, and don't defend the file's current logic. If the course shows a rule, metric or structure in the file is weak or wrong, say so plainly and propose the change — up to rebuilding a tab or replacing the diagnosis.
+- Judge the file *by* the course, not the other way round. Each card states whether the file currently agrees, partly agrees, or contradicts the course.
+- **Translate the media-buying mindset.** The course thinks like a media buyer (budget, audiences, bidding, scaling, account structure). The user's job is the creative side. For every idea, add «يعني إيه للكرييتيف»: what it changes in what to shoot, how to judge a reel, what to report to the media buyer, or what to ask the media buyer for. Pure buying mechanics with no creative/data angle stay in the lesson page only, not in this file.
+- Keep a short section at the top, «الملف محتاج يتغير في إيه»: the biggest structural changes the course implies so far, ranked, updated every lesson.
+
 After writing each lesson page, go through the lesson again and pull out **anything about creatives, how to evaluate them, metrics, testing, or data analysis**. For each idea add a card:
 - **الفكرة** + source (summary NN + timestamp chip),
-- **تتربط بإيه في الملف** — exact tab/column (e.g. `Ads › Diagnosis`, `Report › Lessons`, `What To Shoot › Priority`),
+- **يعني إيه للكرييتيف** — the media-buying idea translated to the creative side,
+- **الملف دلوقتي** — متوافق / جزئيًا / بيخالف الكورس / مش موجود,
+- **تتربط بإيه في الملف** — exact tab/column (e.g. `Ads › Diagnosis`, `Report › Lessons`, `What To Shoot › Priority`), or «جديد» if the file has no place for it yet,
 - **النوع**: عمود جديد · تعديل قاعدة · حد/عتبة · تجربة (test) · سطر في التقرير · سكريبت/تصوير,
 - **إزاي تطبقها** — steps, and an Excel formula in the file's own style (`IF(OR(x="",x=0),"",…)`, COUNTIFS on `Group`) when it applies; test the formula logic against the September numbers in `references/reel-analytics.md`,
 - **الأولوية**: عالية / متوسطة / بعدين, and **تحديث 2026** if relevant.

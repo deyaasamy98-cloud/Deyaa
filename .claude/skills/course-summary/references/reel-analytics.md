@@ -45,7 +45,7 @@ Model = SKU without the last «-NN» (colour). Per model: colours count, and Don
 | 9 Luxury in Every Detail | 67,143 | 5.82% | 22.35% | 23.08% | 10 | 9,553 | 54,140 | 5.67 |
 Totals: spend 96,908 · value 704,345 · True ROAS 7.27x. Hook vs ROAS correlation ≈ −0.17.
 
-## Known gaps — good places for course ideas to land
+## Known weaknesses (the file is an early tool; the course outranks it — expect bigger changes than these)
 - **Ranks are relative only**: in a bad month the top half is still «Winner». No absolute floor (e.g. break-even ROAS, target CPP).
 - **Small samples**: 10–48 purchases per creative; no minimum spend/purchases before trusting a diagnosis.
 - **CTR is collected but unused** in the diagnosis (could split "video problem" vs "landing page/offer problem").
